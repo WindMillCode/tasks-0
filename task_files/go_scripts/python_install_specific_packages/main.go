@@ -83,8 +83,17 @@ func main() {
 	}
 	if uninstall == "true" {
 
+		cliInfo := utils.ShowMenuModel{
+			Prompt: "force?",
+			Choices:[]string{"YES","NO"},
+			Default: "NO",
+		}
+		force := utils.ShowMenu(cliInfo,nil)
 		packageListArgs := append([]string{"remove_local_packages.py"}, packageList.InputArray...)
 		packageListArgs = append(packageListArgs, sitePackages)
+		if force == "YES" {
+			packageListArgs = append(packageListArgs, "--force")
+		}
 		removeLocalPagesOptions := utils.CommandOptions{
 			Command:   "python",
 			Args:      packageListArgs,

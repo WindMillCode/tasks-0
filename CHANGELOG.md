@@ -105,3 +105,6 @@ tasks_update_workspace_with_latest_tasks so you dont have to manully hit enter f
 * [FIX] -fixed issue with python_install_specific_packages
 install and uninstall  correctly remove duplicates from requirements.txt
 instal and uninstall removes the package itself along with its dist-info folder
+
+## [1.85.2007] -1-31-2024
+* [UPDATE] added flask backend

@@ -110,3 +110,4 @@ instal and uninstall removes the package itself along with its dist-info folder
 * [UPDATE] added flask backend run with reloader for python application running gevent
 * [UPDATE] python install specific packagges has a force option for uninstall
 * [UPDATE] python install specific packagges has an upgrade option for upgreade
+* [UPDATE] update workspace without extension does not build the go executables anymore easier to build the tasks

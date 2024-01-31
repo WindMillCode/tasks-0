@@ -92,7 +92,7 @@ func main() {
 				programLocation3 = "ignore//Windmillcode//go_scripts//" + programLocation2
 			}
 			taskExecutable := ".//main"
-			if runMode == "INTERPRETED" {
+			if runMode == "INTERPRETED" || programLocation2 == "tasks_update_workspace_without_extension"{
 				taskExecutable = fmt.Sprintf("%s %s", goExecutable, "run main.go")
 			}
 			linuxCommand0 := "cd " + programLocation3 + " ; " + taskExecutable

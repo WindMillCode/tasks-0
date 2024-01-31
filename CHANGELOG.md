@@ -107,4 +107,6 @@ install and uninstall  correctly remove duplicates from requirements.txt
 instal and uninstall removes the package itself along with its dist-info folder
 
 ## [1.85.2007] -1-31-2024
-* [UPDATE] added flask backend
+* [UPDATE] added flask backend run with reloader for python application running gevent
+* [UPDATE] python install specific packagges has a force option for uninstall
+* [UPDATE] python install specific packagges has an upgrade option for upgreade

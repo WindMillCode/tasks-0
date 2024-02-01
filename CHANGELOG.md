@@ -111,3 +111,6 @@ instal and uninstall removes the package itself along with its dist-info folder
 * [UPDATE] python install specific packagges has a force option for uninstall
 * [UPDATE] python install specific packagges has an upgrade option for upgreade
 * [UPDATE] update workspace without extension does not build the go executables anymore easier to build the tasks
+
+## [1.85.2008] -1-31-2024
+* [UPDATE] ensured tasks to run on folder open works correctly

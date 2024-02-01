@@ -106,9 +106,10 @@ func main() {
 					Args:       []string{"-ic"},
 				},
 			}
-			if strings.Contains(strings.Join(settings.ExtensionPack.TasksToRunOnFolderOpen, " , "), task.Label) {
+			if utils.ArrayContainsAny([]string{task.Label},settings.ExtensionPack.TasksToRunOnFolderOpen) {
 				tasksJSON.Tasks[index].RunOptions.RunOn = "folderOpen"
 			}
+
 
 		}
 

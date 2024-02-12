@@ -11,7 +11,7 @@ const semver = require('semver');
 let AdmZip = require("adm-zip");
 const targz = require('tar.gz2');
 
-let extensionDesiredVersion = "1.21.4"
+let extensionDesiredVersion = "1.21.6"
 
 let downloadFile =async (url: string, destinationPath: string): Promise<void> => {
 
@@ -31,7 +31,7 @@ let downloadFile =async (url: string, destinationPath: string): Promise<void> =>
       response.on('data', (chunk) => {
         downloadedBytes += chunk.length;
         let progress = (downloadedBytes / totalBytes) * 100;
-        // notifyDeveloper(null,`Downloading... ${progress.toFixed(2)}%`);
+        notifyDeveloper(null,`Downloading... ${progress.toFixed(2)}%`);
       });
 
 

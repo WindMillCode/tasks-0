@@ -114,3 +114,6 @@ instal and uninstall removes the package itself along with its dist-info folder
 
 ## [1.85.2008] -1-31-2024
 * [UPDATE] ensured tasks to run on folder open works correctly
+
+## [1.86.1000] -2-11-2024
+* [UPDATE] - corrected error message from python install specific packages

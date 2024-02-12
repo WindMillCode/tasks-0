@@ -113,7 +113,7 @@ func main() {
 			requirementsFilePath := utils.JoinAndConvertPathToOSFormat(appLocation, requirementsFile)
 			err := utils.RemoveContentFromFile(requirementsFilePath, packagesToRemove)
 			if err != nil {
-				fmt.Printf("Error adding package to requirements file: %v\n", err)
+				fmt.Printf("Error removing package from requirements file: %v\n", err)
 			}
 
 		}

@@ -14,11 +14,10 @@ func main() {
 	utils.CDToWorkspaceRoot()
 	workspaceRoot, err := os.Getwd()
 	settings, err := utils.GetSettingsJSON(workspaceRoot)
-	if err != nil {
-		return
+	var gitCloneSubDirs utils.GitCloneSubdirsStruct;
+	if err == nil { 
+		gitCloneSubDirs = settings.ExtensionPack.GitCloneSubdirs
 	}
-
-	gitCloneSubDirs := settings.ExtensionPack.GitCloneSubdirs
 
 	// stagingDir := os.TempDir()
 	stagingDir := utils.GetInputFromStdin(

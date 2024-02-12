@@ -117,3 +117,6 @@ instal and uninstall removes the package itself along with its dist-info folder
 
 ## [1.86.1000] -2-11-2024
 * [UPDATE] - corrected error message from python install specific packages
+
+## [1.86.1001] -2-12-2024
+* [PATCH] - fixed issue with template for lfask backend create manager

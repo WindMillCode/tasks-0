@@ -1,6 +1,6 @@
 from managers.template_manager.template_manager import TemplateManager
 import pytest
-from unit_tests.conftest import ImportStrings
+from unit_tests.test_utils.common_utils import ImportStrings
 from utils.exceptions.singleton_exception import SingletonException
 
 

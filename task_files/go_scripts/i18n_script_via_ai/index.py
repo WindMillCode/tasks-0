@@ -1,119 +1,46 @@
+"""_summary_
+The script wont fix a file that has the correct key paths but language issues if not start from scratch
+
+There are very high measures in place to ensure that the dest_json is translated as much and as accurately as possible
+
+The dest_json has the same key paths as the source_json but not in the same order hopefully you do not have to
+worry about the order of the keys
+"""
+
+import shutil
+import sys
+import tempfile
+import threading
+
+def local_deps(platform=sys.platform):
+  if platform == 'win32':
+    sys.path.append(sys.path[0] + '\\site-packages\\windows')
+  elif platform == 'linux':
+    sys.path.append(sys.path[0] + '/site-packages/linux')
+  elif platform == 'darwin':
+    sys.path.append(sys.path[0] + '/site-packages/linux')
+
+local_deps()
+from openai import OpenAI
 import argparse
 from enum import Enum
 import json
 import os
 import re
-import time
-import sys
-
-def char_generator():
-    encoding = sys.getdefaultencoding()
-    char_count = 1
-    generated_chars = set()
-
-    while True:
-        try:
-            char = chr(char_count)
-            if char not in generated_chars:
-                generated_chars.add(char)
-                yield char
-            char_count += 1
-        except UnicodeDecodeError:
-            char_count += 1
-            if char_count > len(encoding):
-                char_count = 1
-
-
-
-
-def local_deps():
-  import sys
-  if sys.platform == 'win32':
-    sys.path.append(sys.path[0] + '\site-packages\windows')
-  elif sys.platform =='linux':
-    sys.path.append(sys.path[0] + '/site-packages/linux')
-  elif sys.platform =='darwin':
-    sys.path.append(sys.path[0] + '/site-packages/linux')
-local_deps()
-import openai
 import pprint
+from tenacity import wait_random_exponential,stop_after_attempt,retry
+from tqdm import tqdm
+
 pp = pprint.PrettyPrinter(indent=2, compact=False, width=1)
 
+# Guides chat-gpt
+def translate_list(source_array, source_lang, dest_lang,translate = lambda x,y,z:"translated_value"):
+    # This function is a placeholder for the actual translation function
+    return [translate(source_lang,dest_lang,item) for item in source_array]
 
-def print_if_dev(item,pretty=False):
-  if pretty == True:
-    pp.pprint(item)
-  else:
-    print(item)
-
-def return_empty_type(value):
-  if isinstance(value, str):
-      return ""
-  elif isinstance(value, list):
-      return []
-  elif isinstance(value, dict):
-      return {}
-  else:
-      return value
-
-def reverse_strings(value):
-  if isinstance(value, str):
-      # return value
-      return value[::-1]
-      return "0"
-  elif isinstance(value, list):
-      for i in range(len(value)):
-          value[i] = reverse_strings(value[i])
-      return value
-  elif isinstance(value, dict):
-      for key in value:
-          value[key] = reverse_strings(value[key])
-      return value
-  else:
-      return value
-
-def assign_value_at_path(obj,path, value):
-    keys = path.split(".")
-    parent = keys[0]
-    try:
-      child = keys[1]
-    except IndexError:
-      child = None
-    if child == None:
-      if not parent.isdigit():
-        obj[parent] =value
-      else:
-        obj.insert(int(parent),value)
-    elif not parent.isdigit():
-      if obj.get(parent) == None:
-        if not child.isdigit():
-          obj[parent] ={}
-        else:
-          obj[parent] = []
-      assign_value_at_path(
-        obj[parent],
-        ".".join(keys[1:]),
-        value
-      )
-    elif parent.isdigit():
-      target = None
-      int_parent = int(parent)
-      try:
-        target = obj[int_parent]
-      except IndexError:
-        target = None
-      if target == None:
-        if not child.isdigit():
-          obj.insert(int_parent,{})
-        else:
-
-          obj.insert(int_parent,[])
-      assign_value_at_path(
-        obj[int_parent],
-        ".".join(keys[1:]),
-        value
-      )
-
+def was_translation_successful(failure,dest_array):
+    failure = any(is_from_source_lang(item) for item in dest_array)
+    return failure
 
 class OpenAIModelChatCompletionEnum(Enum):
   GPT_35_TURBO_16K ={
@@ -130,62 +57,89 @@ class OpenAIModelChatCompletionEnum(Enum):
     "name":"gpt-3.5-turbo",
     "max_tokens":int(4096 ),
     "sleep_time":60
-
+  }
+  GPT_4_0125_PREVIEW ={
+    "name":"gpt-4-0125-preview",
+    "max_tokens":int(4096),
+    "sleep_time":60
+  }
+  GPT_3_5_TURBO_0125 ={
+    "name":"gpt-3.5-turbo-0125",
+    "max_tokens":int(4096),
+    "sleep_time":60
   }
 
+
+
 class OpenAIManager():
-  init= False
-  client = None
-  model = OpenAIModelChatCompletionEnum.GPT_35_TURBO_0301
-  chunk_prompt = """ With the following Array `{}` recursively translate every value for each item in the list from English  to the  {} language
-  MAKE SURE TO RETURN PROPER ARRAY ITS AN ARRAY OF JSON THE SOURCE RETURN AN ARRAY OF JSON THE SAME AMOUNT !!!!
-  MAKE SURE TO RETURN THE SAME AMOUNT OF Array ITEMS THAT YOU ORIGINALLY RECEIVED !!!!!
-  MAKE SURE TO TRANSLATE ALL THE VALUES TO THE DESINATION LANGUAGE !!!
-  MAKE SURE TO TRANSLATE ALL THE VALUES TO THE DESINATION LANGUAGE !!!
-  MAKE SURE TO TRANSLATE ALL THE VALUES TO THE DESINATION LANGUAGE !!!
-  IF THE JSON SEEMS TO BE A STRING JUST RETURN A DOUBLE QUOTED STRING RESULT NO JSON !!!!
-  USE DOUBLE QUOTES FOR ALL STRINGS!!!!!!
-  USE DOUBLE QUOTES FOR ALL STRINGS!!!!!!
-  USE DOUBLE QUOTES FOR ALL STRINGS!!!!!!
-  USE DOUBLE QUOTES FOR ALL STRINGS!!!!!!
-  USE DOUBLE QUOTES FOR ALL STRINGS!!!!!!
-  USE DOUBLE QUOTES FOR ALL STRINGS!!!!!!
-  USE DOUBLE QUOTES FOR ALL STRINGS!!!!!!
-  ESCAPE ALL ' AND " AS NECESSARY !!!!!!!!!!
-  ESCAPE ALL ' AND " AS NECESSARY !!!!!!!!!!
-  ESCAPE ALL ' AND " AS NECESSARY !!!!!!!!!!
-  ESCAPE ALL ' AND " AS NECESSARY !!!!!!!!!!
-  ESCAPE ALL ' AND " AS NECESSARY !!!!!!!!!!
-  ESCAPE ALL ' AND " AS NECESSARY !!!!!!!!!!
-  ESCAPE ALL ' AND " AS NECESSARY !!!!!!!!!!
-  ESCAPE ALL ' AND " AS NECESSARY !!!!!!!!!!
-  DO NOT PUT JSON OBJECTS IN QUOTES !!!!!
-  DO NOT PUT JSON OBJECTS IN QUOTES !!!!!
-  DO NOT PUT JSON OBJECTS IN QUOTES !!!!!
-  DO NOT PUT JSON OBJECTS IN QUOTES !!!!!
-  DO NOT PUT JSON OBJECTS IN QUOTES !!!!!
-  DO NOT PUT JSON OBJECTS IN QUOTES !!!!!
-  DO NOT PUT JSON OBJECTS IN QUOTES !!!!!
-  DO NOT PUT JSON OBJECTS IN QUOTES !!!!!
-  DO NOT MODIFY THE STRUCTURE OF THE JSON FOR EVERY ELEMENT IN THE ARRAY !!!
-  DO NOT MODIFY THE STRUCTURE OF THE JSON FOR EVERY ELEMENT IN THE ARRAY !!!
-  DO NOT MODIFY THE STRUCTURE OF THE JSON FOR EVERY ELEMENT IN THE ARRAY !!!
-  DO NOT MODIFY THE STRUCTURE OF THE JSON FOR EVERY ELEMENT IN THE ARRAY !!!
-  DO NOT MODIFY THE STRUCTURE OF THE JSON FOR EVERY ELEMENT IN THE ARRAY !!!
-  DO NOT MODIFY THE STRUCTURE OF THE JSON FOR EVERY ELEMENT IN THE ARRAY !!!
-  I ONLY WANT THE DESTINATION LANGUAGE JSON OBJECT NO EXPLANATIONS !!!!
-  IF YOU GET THE SAME ARRAY AS A PROMPT YOU MADE A MISTAKE CHECK THE RESULT ,ESPECIALLY AGAINST THE PREVIOUS RESULT, YOU ARE RETURNING CAREFULLY BEFORE RETURNING !!!
+  model = OpenAIModelChatCompletionEnum.GPT_3_5_TURBO_0125
+  translation_prompt = """
+  Given the list of strings below, each item is in the "{}" language. Your task is to translate each item into the "{}" language. It is important that the translation is accurate and reflects the correct meaning in the destination language. Please ensure that the output is solely a list of translated strings, without any additional comments or explanations. The focus should be on the accuracy and relevance of the translations.
+
+  Original list:
+  `{}`
+
+  Translate this list from "{}" to "{}" and return the translated list. Make sure to carefully review each translation to ensure it is correct and appropriate for the context.
   """
-  prompt ="""Translate the following words `{}` from English  to the  {} language
-  MAKE SURE TO RETURN THE TRANSLATED STRING NO EXPLANATIONS!!!!!!!!!!!!!!
-  THIS GOES FOR THE NAME OF THE LANGUAGE TOO!!!!!!!!!!!!!
-  DONT MENTION ANYTHING BUT THE RESULT!!!!!!!!!!!!
+  translation_prompt_tools = [
+    {
+        "type": "function",
+        "function": {
+            "name": "translate_list",
+            "description": "Translates each item in a list from one language to another",
+            "parameters": {
+                "type":"object",
+                "properties": {
+                  "dest_array":{
+                    "type": "array",
+                    "items":{"type": "string", "description": "The respective translated list of values"}
+                  },
+                  # "source_array":{
+                  #   "type": "array",
+                  #   "items":{"type": "string", "description": "The soruce list of values to translate"}
+                  # },
+                  # "source_lang": {"type": "string", "description": "The language of the source text"},
+                  # "dest_lang": {"type": "string", "description": "The language to translate the source text to"}
+                },
+            },
+        },
+    }
+  ]
+  was_translation_successful_prompt = """
+  For every value in the given list {} are any of the values in the {} language return either return   False for no or True for yes
   """
+  was_translation_successful_prompt_tools = [
+  {
+      "type": "function",
+      "function": {
+          "name": "was_translation_successful",
+          "description": "Iterates through a list of translated values and checks if any of the values are in the source language returns False for no values or True if there was at least 1",
+          "parameters": {
+              "type":"object",
+              "properties": {
+                "failure":{
+                  "type": "boolean",
+                  "description":" False if there were none True if there was at least 1 value in the source language,"
+                },
+                # "source_array":{
+                #   "type": "array",
+                #   "items":{"type": "string", "description": "The soruce list of values to translate"}
+                # },
+                # "source_lang": {"type": "string", "description": "The language of the source text"},
+                # "dest_lang": {"type": "string", "description": "The language to translate the source text to"}
+              },
+          },
+      },
+    }
+  ]
+
+
   language_codes = {
     'zh': 'Mandarin Chinese',
     'ja': 'Japanese',
     'pt': 'Portuguese',
     'es': 'Spanish',
+    'en': 'English',
     'hi': 'Hindi',
     'uk': 'Ukrainian',
     'ar': 'Arabic',
@@ -195,322 +149,276 @@ class OpenAIManager():
     'de': 'German',
     'sw': 'Swahili',
     'am': 'Amharic'
-}
-
-  def __init__(self,api_key):
-      self.init = True
-      openai.api_key = api_key
-      self.retry_ask_chatgpt = self._retry_ask_chatgpt
-
-
-  _retry_ask_chatgpt = 3
-  def _ask_chatgpt(self,prompt,randomness=0):
-    try:
-      model = self.model
-      if(len(prompt) > model.value["max_tokens"]):
-        model = OpenAIModelChatCompletionEnum.GPT_35_TURBO_16K
-      response = openai.ChatCompletion.create(
-          model=model.value["name"],
-          messages=[{
-            "role":"user",
-            "content":prompt,
-          }],
-           max_tokens=model.value["max_tokens"]-len(prompt),
-          temperature=randomness,
-      )
-      # print_if_dev(response,True)
-      return response.choices[0].message.content
-    except BaseException as e:
-      print("Chat gpt error")
-      print(self.retry_ask_chatgpt)
-      print(e)
-      time.sleep(model.value["sleep_time"])
-      if self.retry_ask_chatgpt !=0:
-        self.retry_ask_chatgpt -=1
-        return self._ask_chatgpt(prompt,randomness)
-      else:
-        return {}
-    # response = openai.Completion.create(
-    #   model="text-davinci-003",
-    #   prompt=prompt,
-    #   temperature=randomness
-    # )
-
-
-
-
-
-  def translate_object(self,dest_lang):
-    def inner(target):
-      prompt = self.prompt.format(
-        target,dest_lang
-      )
-      self.retry_ask_chatgpt = self._retry_ask_chatgpt
-      my_translate = self._ask_chatgpt(prompt)
-      my_translate = re.sub(r'[\\\n]', '', my_translate)
-      try:
-        print(my_translate)
-        if isinstance(target, str):
-          return my_translate
-        return json.loads(my_translate)
-      except json.JSONDecodeError as e:
-        print(e)
-        return return_empty_type(target)
-    return inner
-
-
-  chunk ={}
-  char_generator_instance =char_generator()
-  debug_info = {
-    "keys":[]
   }
-  chunk_stats = ""
-  recreated_lang_obj ={}
-  system_error = 0
-  system_retry_error = 0
 
-  def retry_predicate_till_success(self,predicate,retry=3):
-    result = predicate(list(self.chunk.values()))
-    if len(result) != len(self.debug_info["keys"]) and retry!=0:
-      self.system_retry_error += 1
-      # debug
-      print("retry errors")
-      print(self.system_retry_error)
-      print(result)
-      print("result lenght is "+str(len(result)))
-      print("debug keys length is "+str(len(self.debug_info["keys"])))
-      #
-      result = self.retry_predicate_till_success(predicate,retry-1)
-    return result
-
-  def call_predicate_with_chunk(self,predicate=reverse_strings):
-    self.print_chunk_stats()
-    result =self.retry_predicate_till_success(predicate)
-    if len(result) == len(self.debug_info["keys"]):
-      for key_path,result_item in zip(self.debug_info["keys"],result):
-        assign_value_at_path(
-          self.recreated_lang_obj,
-          key_path,result_item
-        )
-    else:
-      self.system_error += 1
-      None
-      # raise RuntimeError("""
-      #   A system error occured,
-      #   the chunk result does not match the keyPaths length,
-      #   as the program iterates through your source object it grabs the keyPath the value,
-      #   if the lengths dont match, then the program can update the object with incorrect keypaths
-      #   and that spells disaster for your application code
-      #   we will stop because there are no further means
-      #   with which this command line program can try to fix the error
-      #   contact the creator of the software with your source JSON file
-      # """)
+  def __init__(self,api_key,retry_ask_chatgpt=3):
+      self.init = True
+      self.client = OpenAI(api_key=api_key)
+      self.retry_ask_chatgpt = retry_ask_chatgpt
 
 
-  def print_chunk_stats(self):
-      self.chunk_stats += "\n" + str(len(str(self.chunk)))
-      self.chunk_stats += "\n" + str(self.debug_info["keys"])
-      if len(self.debug_info["keys"]) == 1:
-        self.chunk_stats += "\n"+str(list(self.chunk.values())[0])
 
 
-  def update_chunk(self, limit, key, value, string_len=0,predicate=reverse_strings,preserve=False):
-      objKey= key[1:]
-      if preserve == True:
-        assign_value_at_path(
-          self.recreated_lang_obj,
-          objKey,value
-        )
-      else:
-        chunk_len =len(str(self.chunk)) + string_len
-        if  chunk_len >= limit -5:
-          self.call_predicate_with_chunk(predicate)
-          self.chunk,self.char_generator_instance = {},char_generator()
-          self.debug_info["keys"] = []
-        self.chunk[next(self.char_generator_instance)] = value
-        self.debug_info["keys"].append(objKey)
+  def _process_json_for_null_values(self, source, dest, current_path):
+    if isinstance(dest, dict):
+      for key, value in dest.items():
+        new_path = current_path + [key]
+        if value is None:
+          self._add_value_from_source(source, key, new_path)
+        elif isinstance(value, (dict, list)):
+          source_item = source.get(key, type(value)())
+          self._process_json_for_null_values(source_item, value, new_path)
+    elif isinstance(dest, list):
+      self._process_list_for_null_values(source, dest, current_path)
 
-  def transform_object_via_chunk(
-    self,
-    source,
-    target,
-    predicate=reverse_strings,
-    limit=0,
-    preserve=True,
-    keyPath=""
-  ):
-    dest = return_empty_type(source)
+  def _process_list_for_null_values(self, source, dest, current_path):
+    for i, item in enumerate(dest):
+      new_path = current_path + [str(i)]
+      if item is None and i < len(source):
+        self._add_value_from_source(source, i, new_path)
+      elif isinstance(item, (dict, list)):
+        source_item = source[i] if i < len(source) else type(item)()
+        self._process_json_for_null_values(source_item, item, new_path)
+
+  def _add_value_from_source(self, source, key, path):
+    if isinstance(key, int):  # Adjusted for list source handling
+      value = source[key] if key < len(source) else None
+    else:  # Dict source handling
+      value = source.get(key)
+    if value is not None:
+      if isinstance(value, str):
+        self.all_missing_values.append(value)
+        self.all_missing_value_paths.append(".".join(map(str, path)))
+      elif isinstance(value, dict):
+        for sub_key in value:
+          new_path = path + [sub_key]
+          self._add_value_from_source(value, sub_key, new_path)
+      elif isinstance(value, list):
+        for i, item in enumerate(value):
+          new_path = path + [str(i)]
+          self._add_value_from_source(value, i, new_path)
+
+  def _map_translated_values_back(self, dest_json):
+      for group in self.chunked_missing_groups:
+          for result, path in zip(group["result"], group["value_paths"]):
+              self._set_value_by_path(dest_json, path.split('.'), result)
+
+  def _set_value_by_path(self, obj, path, value):
+      for i, key in enumerate(path):
+          if i + 1 < len(path):  # Not at the last key yet
+              if key.isdigit():
+                  key = int(key)  # Convert to integer for lists
+                  while key >= len(obj):
+                      obj.append(None)  # Extend the list with None values if key is out of current range
+                  if obj[key] is None:
+                      # Determine the type of the next key to decide whether to insert a list or a dictionary
+                      next_key = path[i + 1]
+                      obj[key] = [] if next_key.isdigit() else {}
+              else:
+                  if key not in obj:
+                      # Insert a list or a dictionary based on the next key
+                      next_key = path[i + 1]
+                      obj[key] = [] if next_key.isdigit() else {}
+              obj = obj[key]
+          else:  # Last key, set the value
+              if key.isdigit():
+                  key = int(key)
+                  while key >= len(obj):
+                      obj.append(None)
+                  obj[key] = value
+              else:
+                  obj[key] = value
+
+
+
+  @retry(wait=wait_random_exponential(multiplier=1, max=40), stop=stop_after_attempt(3))
+  def _ask_chatgpt(self,content,tools):
+    try:
+
+      messages = [{"role": "user", "content": content}]
+
+      response = self.client.chat.completions.create(
+        model=self.model.value['name'],
+        messages=messages,
+        tools=tools,
+        tool_choice="auto",  # auto is default, but we'll be explicit
+      )
+
+      # print(chunk)
+      fn_args = json.loads(response.choices[0].message.tool_calls[0].function.arguments)
+      return fn_args
+    except  Exception as e:
+      print(e)
+      raise e
+
+
+
+  def mirror(self, source, dest):
+    if not isinstance(dest, type(source)):
+      return {k: None for k in source} if isinstance(source, dict) else [None] * len(source)
     if isinstance(source, dict):
+      keys_to_delete = dest.keys() - source.keys()
+      for key in keys_to_delete:
+        del dest[key]
       for key, value in source.items():
-        newKeyPath  = keyPath+"."+key
-        if target.get(key,None) != None and preserve == True:
-          # dest[key] = target[key]
-          self.update_chunk(limit=None,key= newKeyPath,value= target[key],preserve=True)
-        else:
-          string_len = len(str(value))
-          if string_len > limit:
-            dest[key] = self.transform_object_via_chunk(
-              value,
-              target.get(key,return_empty_type(value)),
-              predicate,
-              limit,
-              preserve,
-              keyPath=newKeyPath
-            )
-          else:
-            self.update_chunk(limit, newKeyPath, value, string_len,predicate)
-
-            # dest[key]=predicate(value)
-            dest[key]=value
-      return dest
+        if key not in dest or not isinstance(dest[key], type(value)):
+          dest[key] = {} if isinstance(value, dict) else [None] * len(value) if isinstance(value, list) else None
+        self.mirror(value, dest[key])
     elif isinstance(source, list):
-        for key, value in enumerate(source):
-          newKeyPath  = keyPath+"."+str(key)
-          try:
-            new_target = target[key]
-          except BaseException:
-            new_target = None
-          if new_target != None and preserve == True:
-            # result = dest[key]
-            self.update_chunk(limit=None, key=newKeyPath, value=new_target,preserve=True)
+      for i in range(len(source)):
+        if i >= len(dest) or not isinstance(dest[i], type(source[i])):
+          dest.append(None)
+        self.mirror(source[i], dest[i])
+      del dest[len(source):]
+    return dest
+
+
+
+
+
+  def gather_values_for_translation(self, source_json, dest_json):
+    self.all_missing_values = []  # Reset for each translation task
+    self.all_missing_value_paths = []  # Reset for each translation task
+    self._process_json_for_null_values(source_json, dest_json, [])
+
+  def chunk_values_based_on_tokens(self):
+      max_length_per_chunk = (self.model.value['max_tokens'] // 2)  - (len(self.translation_prompt) + 20) # 2x because we're using json.dumps to get the length of the string
+      chunked_missing_values = []
+      chunked_missing_value_paths = []
+      current_chunk = []
+      current_chunk_paths = []
+      current_length = 0
+
+      for value, path in zip(self.all_missing_values, self.all_missing_value_paths):
+          value_str = json.dumps(value)
+          value_length = len(value_str)
+
+          if current_length + value_length > max_length_per_chunk:
+              chunked_missing_values.append(current_chunk)
+              chunked_missing_value_paths.append(current_chunk_paths)
+              current_chunk = [value]
+              current_chunk_paths = [path]
+              current_length = value_length
           else:
-            string_len = len(str(value))
-            if string_len > limit:
+              current_chunk.append(value)
+              current_chunk_paths.append(path)
+              current_length += value_length
+
+      if current_chunk:
+          chunked_missing_values.append(current_chunk)
+          chunked_missing_value_paths.append(current_chunk_paths)
+
+
+      self.chunked_missing_groups = list(zip(chunked_missing_values, chunked_missing_value_paths))
+      self.chunked_missing_groups = [ {"chunk":x,"value_paths":y} for x,y in self.chunked_missing_groups if x and y]
+
+
+
+  def translate_and_map(self, dest_json, source_lang, dest_lang):
+
+    @retry(wait=wait_random_exponential(multiplier=1, max=40), stop=stop_after_attempt(10))
+    def translate(group):
+      translation_content =self.translation_prompt.format(source_lang,dest_lang,group["chunk"],source_lang,dest_lang)
+      group["result"] = self._ask_chatgpt(translation_content,self.translation_prompt_tools).get("dest_array")
+      was_translation_successful_content = self.was_translation_successful_prompt.format(group["result"],source_lang)
+      failure = self._ask_chatgpt(was_translation_successful_content,self.was_translation_successful_prompt_tools)
+      failure = failure.get("failure")
+      if not group["result"] or len(group["result"]) != len(group["chunk"]) or any(item is None for item in group["result"]) or failure:
+        pass
+      # print(group["value_paths"])
+      # print(len(group["result"]))
+      # print(len(group["value_paths"]))
+      if failure:
+        raise ValueError("One or more translated values are still in the source language")
+      if not group["result"]:
+        raise ValueError("Translation failed")
+      if len(group["result"]) != len(group["value_paths"]):
+        raise ValueError("The number of translated values does not match the number of source values")
+      if any(item is None for item in group["result"]):
+        raise ValueError("One or more translated values are null")
+
+
+
+    threads = []
+    for group in self.chunked_missing_groups:
+      # translate(group)
+      thread = threading.Thread(target=translate, args=(group,))
+      threads.append(thread)
+      thread.start()
+
+    for thread in tqdm(threads, desc="Translating {}".format(dest_lang)):
+      thread.join()
+
+    self._map_translated_values_back(dest_json)
+
+  def safe_write_to_dest_file(self, dest_json, dest_file):
+      original_content = None
+      print("writing to dest file")
+      # Check if the dest_file already exists and read its original content
+      if os.path.exists(dest_file):
+          with open(dest_file, 'r', encoding='utf-8') as file:
+              original_content = file.read()
+
+      try:
+          # Attempt to write the new content to the dest_file
+          with open(dest_file, 'w', encoding='utf-8') as file:
+              json.dump(dest_json, file, indent=2, ensure_ascii=False)
+      except Exception as e:
+          # If an error occurs, log the error and write back the original content if it exists
+          print(f"Error writing to {dest_file}: {e}")
+          if original_content is not None:
+              with open(dest_file, 'w', encoding='utf-8') as file:
+                  file.write(original_content)
+          else:
+              # If there was no original content (new file), ensure no corrupted file is left
               try:
-                new_target = target[key]
-              except IndexError:
-                new_target = return_empty_type(value)
-              result = self.transform_object_via_chunk(
-                value,
-                new_target,
-                predicate,
-                limit,
-                preserve,
-                keyPath=newKeyPath
-              )
-            else:
-              self.update_chunk(limit, newKeyPath, value, string_len,predicate)
-              # result = predicate(value)
-              result = value
-          dest.append(result)
-        return dest
-    elif isinstance(source, str):
-
-        if len(source) > (limit*4):
-          dest = value ="Could not process string value too big"
-        else:
-          value = source
-          # dest = predicate(source)
-          dest = source
-        print(keyPath)
-        self.update_chunk(limit, keyPath, value, len(source),predicate)
-        return dest
+                  os.remove(dest_file)
+              except OSError as os_error:
+                  print(f"Error removing corrupted file {dest_file}: {os_error}")
+          raise
 
 
-  def transform_object_via_string(
-    self,
-    source,
-    target,
-    predicate=reverse_strings,
-    limit=0,
-    preserve=True,
-    keyPath=""
-  ):
-    dest = return_empty_type(source)
-    if isinstance(source, dict):
-      for key, value in source.items():
-        newKeyPath  = keyPath+"."+key
-        target = target if target else {}
-        if target.get(key,None) != None and preserve == True:
-          dest[key] = target[key]
-        else:
-          dest[key] = self.transform_object_via_string(
-            value,
-            target.get(key,return_empty_type(value)),
-            predicate,
-            limit,
-            preserve,
-            keyPath=newKeyPath
-          )
-      return dest
-    elif isinstance(source, list):
-        for key, value in enumerate(source):
-          newKeyPath  = keyPath+"."+str(key)
-          try:
-            new_target = target[key]
-          except BaseException:
-            new_target = None
-          if new_target != None and preserve == True:
-            result = dest[key]
-          else:
-            result = self.transform_object_via_string(
-              value,
-              new_target,
-              predicate,
-              limit,
-              preserve,
-              keyPath=newKeyPath
-            )
-          dest.append(result)
-        return dest
-    elif isinstance(source, str):
+  def update_dest_language(self, source_json, dest_json, source_lang, dest_lang, abs_path_dest_file):
+    dest_json =self.mirror(source_json, dest_json)
+    self.gather_values_for_translation(source_json, dest_json)
+    self.chunk_values_based_on_tokens()
+    self.translate_and_map(dest_json, source_lang, dest_lang)
+    self.safe_write_to_dest_file(dest_json, abs_path_dest_file)
 
-        if len(source) > (limit*4):
-          dest = value ="Could not process string value too big"
-        else:
-          dest = predicate(source)
-        return dest
-
-
-  def update_translations(self,dev_obj,my_type):
+  def update_translations(self, dev_obj):
     lang_codes = dev_obj.get("lang_codes")
     source_file = dev_obj.get("source_file")
     dest_file = dev_obj.get("dest_file")
     abs_path_source_file = dev_obj.get("abs_path_source_file")
-    for x in lang_codes:
-      x = re.sub(r"\s", "", x)
-      full_lang_name = self.language_codes.get(x)
-      self.chunk_stats += "\n for the {} language \n".format(full_lang_name)
-      with open(abs_path_source_file,encoding="utf-8") as f:
-        source_lang  = json.load(f)
+    source_json = {}
+    source_lang = self.language_codes.get(source_file.split(".")[0])
+    with open(abs_path_source_file, encoding="utf-8") as f:
+      source_json = json.load(f)
 
-        abs_path_dest_file = os.path.join(os.getcwd(),args.location,dest_file.replace("{}",x))
+    threads = []
+    with tqdm(total=len(lang_codes), desc="Updating Translations") as pbar:
+      for x in lang_codes:
+        x = re.sub(r"\s", "", x)
+        dest_json = {}
+        dest_lang = self.language_codes.get(x)
+
+        abs_path_dest_file = os.path.join(os.getcwd(), args.location, dest_file.replace("{}", x))
         if not os.path.exists(abs_path_dest_file):
           with open(abs_path_dest_file, 'w') as e:
             e.write("{}")
-        with open(abs_path_dest_file,encoding="utf-8") as g:
-          dest_lang  = json.load(g)
-          new_lang =self.transform_object_via_string(
-            source=source_lang,
-            target=dest_lang,
-            limit=self.model.value["max_tokens"] //4 ,
-            preserve=True,
-            predicate=self.translate_object(full_lang_name)
-          )
-          g.close()
-          if my_type == "chunk":
-            self.call_predicate_with_chunk(
-              self.translate_object(full_lang_name)
-            )
+        with open(abs_path_dest_file, encoding="utf-8") as g:
+          dest_json = json.load(g)
 
-        self.chunk_stats += "\n system_errors\n"+ str(self.system_error)
-        self.chunk_stats += "\n system_retry_errors\n"+ str(self.system_retry_error)
-        with open(abs_path_dest_file,"w",encoding="utf-8") as h:
-            if my_type == "chunk":
-              print(json.dumps(self.recreated_lang_obj,indent=2) , file=h)
-            elif my_type == "string":
-              print(json.dumps(new_lang,indent=2) , file=h)
+        self.update_dest_language(source_json, dest_json, source_lang, dest_lang, abs_path_dest_file)
+        # thread = threading.Thread(target=self.update_dest_language, args=(source_json, dest_json, source_lang, dest_lang, abs_path_dest_file))
+        # threads.append(thread)
+        # thread.start()
 
-            f.close()
-            h.close()
+        pbar.update(1)
 
+    for thread in threads:
+      thread.join()
 
-    with open("chunk_stats.txt","w",encoding="utf-8") as i:
-        self.chunk_stats += "\n All languages\n"
-        self.chunk_stats += "\n system_errors\n"+ str(self.system_error)
-        self.chunk_stats += "\n system_retry_errors\n"+ str(self.system_retry_error)
-        print(self.chunk_stats , file=i)
-        i.close()
 
 
 
@@ -535,5 +443,4 @@ if __name__ == "__main__":
         "abs_path_source_file":abs_path_source_file
     }
     mngr = OpenAIManager(os.environ.get("OPENAI_API_KEY_0"))
-    mngr.update_translations(params,"string")
-
+    mngr.update_translations(params)

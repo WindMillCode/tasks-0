@@ -52,8 +52,9 @@ type TasksJSON struct {
 	Inputs  []Input `json:"inputs"`
 }
 
-func RebuildExecutables(proceed string, cliInfo utils.ShowMenuModel, tasksJSON TasksJSON, goScriptsDestDirPath string, goExecutable string) {
+func RebuildExecutables(proceed string, tasksJSON TasksJSON, goScriptsDestDirPath string, goExecutable string) {
 	var rebuild string
+	var cliInfo utils.ShowMenuModel
 	if proceed == "TRUE" {
 		rebuild = "TRUE"
 	} else {
@@ -208,4 +209,15 @@ func SetupEnvironmentToRunFlaskApp() (string, error) {
 	}
 
 	return flaskAppFolder, nil
+}
+
+
+func GetGoExecutable() string {
+	cliInfo := utils.ShowMenuModel{
+		Prompt:  "choose the executable to use (try with windmillcode_go first if not then use go)",
+		Choices: []string{"go", "windmillcode_go"},
+		Default: "windmillcode_go",
+	}
+	goExecutable := utils.ShowMenu(cliInfo, nil)
+	return goExecutable
 }

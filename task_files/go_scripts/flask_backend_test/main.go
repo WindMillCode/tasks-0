@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"main/shared"
 	"net/http"
 	"os"
 	"path/filepath"
@@ -45,7 +46,7 @@ func main() {
 	utils.CDToLocation(workspaceFolder)
 
 	envVarCommandOptions := utils.CommandOptions{
-		Command:      "windmillcode_go",
+		Command:      shared.GetGoExecutable(),
 		Args:         []string{"run", envVarsFile, filepath.Dir(utils.JoinAndConvertPathToOSFormat(envVarsFile)), workspaceFolder},
 		GetOutput:    true,
 		TargetDir:     filepath.Dir(utils.JoinAndConvertPathToOSFormat(envVarsFile)),

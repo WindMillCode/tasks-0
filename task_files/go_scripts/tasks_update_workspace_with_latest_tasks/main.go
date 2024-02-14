@@ -19,13 +19,9 @@ func main() {
 	if err != nil {
 		return
 	}
+
+	goExecutable := shared.GetGoExecutable()
 	cliInfo := utils.ShowMenuModel{
-		Prompt:  "choose the executable to use (try with windmillcode_go first if not then use go)",
-		Choices: []string{"go", "windmillcode_go"},
-		Default: os.Args[4],
-	}
-	goExecutable := utils.ShowMenu(cliInfo, nil)
-	cliInfo = utils.ShowMenuModel{
 		Prompt:  "This will delete your vscode/tasks.json in your workspace folder. If you don't have a .vscode/tasks.json or you have not used this command before, it is safe to choose TRUE. Otherwise, consult with your manager before continuing",
 		Choices: []string{"TRUE", "FALSE"},
 	}
@@ -133,6 +129,6 @@ func main() {
 		}
 	}
 
-	shared.RebuildExecutables(proceed, cliInfo, tasksJSON, goScriptsDestDirPath, goExecutable)
+	shared.RebuildExecutables(proceed, tasksJSON, goScriptsDestDirPath, goExecutable)
 
 }

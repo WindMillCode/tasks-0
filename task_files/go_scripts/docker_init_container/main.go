@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	"path/filepath"
-
+	"main/shared"
 	"github.com/windmillcode/go_cli_scripts/v4/utils"
 )
 
@@ -25,5 +25,6 @@ func main() {
 	utils.CDToLocation(initScriptLocation)
 	initScript = filepath.Base(initScript)
 
-	utils.RunCommand("windmillcode_go", []string{"run", initScript, initScriptArgs})
+
+	utils.RunCommand(shared.GetGoExecutable(), []string{"run", initScript, initScriptArgs})
 }

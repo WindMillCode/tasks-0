@@ -13,12 +13,8 @@ import (
 func main() {
 	utils.CDToWorkspaceRoot()
 	workSpaceFolder, _ := os.Getwd()
-	cliInfo := utils.ShowMenuModel{
-		Prompt:  "choose the executable to use (try with windmillcode_go first if not then use go)",
-		Choices: []string{"go", "windmillcode_go"},
-		Default: "windmillcode_go",
-	}
-	goExecutable := utils.ShowMenu(cliInfo, nil)
+
+	goExecutable := shared.GetGoExecutable()
 
 
 
@@ -37,7 +33,7 @@ func main() {
 	}
 	goScriptsDestDirPath := utils.JoinAndConvertPathToOSFormat(workSpaceFolder, "ignore/Windmillcode/go_scripts")
 
-	shared.RebuildExecutables("FALSE", cliInfo, tasksJSON, goScriptsDestDirPath, goExecutable)
+	shared.RebuildExecutables("FALSE", tasksJSON, goScriptsDestDirPath, goExecutable)
 
 }
 

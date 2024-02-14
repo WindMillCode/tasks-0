@@ -160,7 +160,11 @@ async function addToPath(directory:string) {
     changePermission(directory)
     return Promise.resolve(true)
   }
-  process.env.PATH = `${directory}${path.delimiter}${process.env.PATH}`;
+  let cleanedPath = process.env.PATH?.split(path.delimiter)
+  .filter((path)=>!path.includes("windmillcode"))
+  .join(path.delimiter)
+
+  process.env.PATH = `${directory}${path.delimiter}${cleanedPath}`;
   concatPath(platform, directory);
   changePermission(directory)
   return new Promise((res,rej)=>{
@@ -179,8 +183,8 @@ async function addToPath(directory:string) {
 
 function concatPath(platform: string, directory: string) {
   if (platform === "darwin") {
-    let execStart = "export PATH=$PATH:";
-    let finalExecMac = execStart.concat(directory);
+    let execStart = "export PATH=$PATH"+path.delimiter;
+    let finalExecMac = execStart +directory;
     editZshrcFile(finalExecMac);
   }
 }
@@ -322,7 +326,10 @@ function editZshrcFile(newContent: string): void {
       return;
     }
 
-    const modifiedContent = data + '\n' + newContent;
+    let modifiedContent = data + '\n' + newContent;
+    modifiedContent = modifiedContent.split('\n')
+    .filter((path)=>!path.includes("windmillcode"))
+    .join('\n')
 
     fs.writeFile(zshrcPath, modifiedContent, 'utf8', (err) => {
       if (err) {

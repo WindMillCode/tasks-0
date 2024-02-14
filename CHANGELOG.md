@@ -124,3 +124,5 @@ instal and uninstall removes the package itself along with its dist-info folder
 ## [1.86.1010] -2-13-2024
 * [MAJOR UPDATE] -fixed angular run translate i18n script does an amazing job at translating to dest_json
 
+## [1.86.1011] -2-14-2024
+* [UPDATE] - update all scripts to give the option of which go executable they want to use

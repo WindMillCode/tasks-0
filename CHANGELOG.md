@@ -119,7 +119,7 @@ instal and uninstall removes the package itself along with its dist-info folder
 * [UPDATE] - corrected error message from python install specific packages
 
 ## [1.86.1001] -2-12-2024
-* [PATCH] - fixed issue with template for lfask backend create manager
+* [PATCH] - fixed issue with template for flask backend create manager
 
 ## [1.86.1010] -2-13-2024
 * [MAJOR UPDATE] -fixed angular run translate i18n script does an amazing job at translating to dest_json

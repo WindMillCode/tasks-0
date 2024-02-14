@@ -329,7 +329,8 @@ class OpenAIManager():
       # print(len(group["result"]))
       # print(len(group["value_paths"]))
       if failure:
-        raise ValueError("One or more translated values are still in the source language")
+
+        raise ValueError("One or more translated values are still in the source language {}".format(group["result"]))
       if not group["result"]:
         raise ValueError("Translation failed")
       if len(group["result"]) != len(group["value_paths"]):

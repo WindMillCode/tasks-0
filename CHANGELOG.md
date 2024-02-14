@@ -126,3 +126,6 @@ instal and uninstall removes the package itself along with its dist-info folder
 
 ## [1.86.1011] -2-14-2024
 * [UPDATE] - update all scripts to give the option of which go executable they want to use
+
+## [1.86.1012] -2-14-2024
+* [PATCH] - a few scripts were missing the go executable option

@@ -184,7 +184,7 @@ func SetupEnvironmentToRunFlaskApp() (string, error) {
 
 	utils.CDToLocation(workspaceFolder)
 	envVarCommandOptions := utils.CommandOptions{
-		Command:     "windmillcode_go",
+		Command:     GetGoExecutable(),
 		Args:        []string{"run", envVarsFile, filepath.Dir(utils.JoinAndConvertPathToOSFormat(envVarsFile)), workspaceFolder},
 		GetOutput:   true,
 		TargetDir:   filepath.Dir(utils.JoinAndConvertPathToOSFormat(envVarsFile)),

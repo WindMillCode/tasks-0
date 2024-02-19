@@ -300,7 +300,7 @@ export let installGo = async (extensionRoot:string,goVersion=extensionDesiredVer
       await addToPath(path.normalize(`${goInstallDir}/bin/`))
     }
     return  {
-      executable,
+      executable:"go",
       alreadyInstalled:true
     }
   }

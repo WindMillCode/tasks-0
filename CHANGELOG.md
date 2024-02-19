@@ -129,3 +129,6 @@ instal and uninstall removes the package itself along with its dist-info folder
 
 ## [1.86.1012] -2-14-2024
 * [PATCH] - a few scripts were missing the go executable option
+
+## [1.86.1013] -2-19-2024
+* [PATCH] - patch update work with latest tasks to use go instead of windmillcode_go to install everything

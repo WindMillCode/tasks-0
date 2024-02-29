@@ -48,5 +48,29 @@ func main() {
 		}
 	}
 
-	utils.RunCommand("npx", []string{"ng", "serve", "-c", serveConfiguration, "--ssl=true", fmt.Sprintf("--ssl-key=%s", os.Getenv("WML_CERT_KEY0")), fmt.Sprintf("--ssl-cert=%s", os.Getenv("WML_CERT0"))})
+	cliInfo = utils.ShowMenuModel{
+		Prompt: "run concurently with the scss server",
+		Choices:[]string{"TRUE","FALSE"},
+	}
+	concurrentWithScss := utils.ShowMenu(cliInfo,nil)
+
+	if concurrentWithScss == "FALSE" {
+		utils.RunCommand("npx", []string{
+			"ng", "serve", "-c",
+			serveConfiguration, "--ssl=true", fmt.Sprintf("--ssl-key=%s", os.Getenv("WML_CERT_KEY0")),
+			fmt.Sprintf("--ssl-cert=%s", os.Getenv("WML_CERT0")),
+			"sass", "--watch", "src/assets/styles/turn_to_css/entry.scss:src/assets/styles/compiled.css",
+		})
+	} else {
+		utils.RunCommand("npm", []string{"run", "build:scss"})
+		utils.RunCommand("npx", []string{
+				"concurrently",
+				"ng serve -c " + serveConfiguration + " --ssl=true --ssl-key=" + os.Getenv("WML_CERT_KEY0") + " --ssl-cert=" + os.Getenv("WML_CERT0"),
+				fmt.Sprintf("chokidar \"%s\" -c \"%s\"",
+				"src/assets/styles/turn_to_css/**/*.{scss,css}",
+				"npm run build:scss",
+			),
+		})
+	}
+
 }

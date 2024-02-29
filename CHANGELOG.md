@@ -132,3 +132,6 @@ instal and uninstall removes the package itself along with its dist-info folder
 
 ## [1.86.1013] -2-19-2024
 * [PATCH] - patch update work with latest tasks to use go instead of windmillcode_go to install everything
+
+## [1.87.0] - 2-29-2024
+* [UPDATE] -angular frontend run now supports concurrently with scss so scss with expensive computations only run once

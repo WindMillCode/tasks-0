@@ -51,6 +51,7 @@ func main() {
 	cliInfo = utils.ShowMenuModel{
 		Prompt: "run concurently with the scss server",
 		Choices:[]string{"TRUE","FALSE"},
+		Default: "TRUE",
 	}
 	concurrentWithScss := utils.ShowMenu(cliInfo,nil)
 

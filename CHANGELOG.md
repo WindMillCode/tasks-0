@@ -136,8 +136,9 @@ instal and uninstall removes the package itself along with its dist-info folder
 ## [1.87.0] - 2-29-2024
 * [UPDATE] -angular frontend run now supports concurrently with scss so scss with expensive computations only run once
 
-## [1.87.1] - 2-29-2024
+## [1.87.1] - 3-1-2024
 * [BREAKING CHANGE] - sql_make_db_schema_update_entry now supports the new format for create schema entries
 it will take the path at "apps", "database", databaseToBackup, "schema_entries" and copy whatevr is in the template folder
 in that folder to make a new entry
-
+* [UPDATE] angular_frontend_test now tries to look in karma.conf.js for the coverage info and extract the subdir path
+from coverageReporter.dir if it cant find it it will run the test regardless and if it cant find karma.conf.js will run the test regardless

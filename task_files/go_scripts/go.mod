@@ -4,10 +4,10 @@ go 1.21
 
 require (
 	github.com/iancoleman/strcase v0.3.0
-	github.com/windmillcode/go_cli_scripts/v4 v4.4.3
+	github.com/windmillcode/go_cli_scripts/v4 v4.4.4
 )
 
-require github.com/fsnotify/fsnotify v1.7.0 // indirect
+require github.com/fsnotify/fsnotify v1.7.0
 
 require (
 	github.com/atotto/clipboard v0.1.4 // indirect

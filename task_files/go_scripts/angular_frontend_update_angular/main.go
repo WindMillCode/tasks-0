@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"main/shared"
 	"os"
 	"regexp"
 	"strings"
@@ -72,15 +73,13 @@ func updateAngular(project string, angularApp string) {
 	devDeps := []string{"@faker-js/faker", "@windmillcode/angular-templates", "webpack-bundle-analyzer", "browserify"}
 	addtl := utils.ShowMenu(cliInfo, nil)
 	if addtl == "TRUE" {
-		cliInfo := utils.ShowMenuModel{
-			Prompt:  "choose the package manager",
-			Choices: []string{"npm", "yarn"},
-			Default: "npm",
-		}
-		packageManager := utils.ShowMenu(cliInfo, nil)
+
+		packageManager := shared.ChooseNodePackageManager()
 		if packageManager == "yarn" {
 			utils.RunCommandInSpecificDirectory("yarn", append([]string{"upgrade"}, deps...), angularApp)
 			utils.RunCommandInSpecificDirectory("yarn", append([]string{"upgrade", "--dev"}, devDeps...), angularApp)
+		} else if (packageManager == "pnpm") {
+			utils.RunCommandInSpecificDirectory("pnpm", append([]string{"update"}, deps...), angularApp)
 		} else {
 			utils.RunCommandInSpecificDirectory("npm", append([]string{"update"}, deps...), angularApp)
 			utils.RunCommandInSpecificDirectory("npm", append([]string{"update", "--include=dev"}, devDeps...), angularApp)

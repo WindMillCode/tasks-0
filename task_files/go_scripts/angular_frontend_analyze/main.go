@@ -2,18 +2,14 @@ package main
 
 import (
 	"github.com/windmillcode/go_cli_scripts/v4/utils"
+	"main/shared"
 )
 
 func main() {
 
 	utils.CDToWorkspaceRoot()
+	exectuable := shared.ChooseNodePackageManager()
 	cliInfo := utils.ShowMenuModel{
-		Prompt: "choose the package manager",
-		Choices: []string{"npm","yarn","pnpm"},
-		Default :"npm",
-	}
-	exectuable := utils.ShowMenu(cliInfo,nil)
-	cliInfo = utils.ShowMenuModel{
 		Prompt:  "Choose an option:",
 		Choices: []string{"dev", "preview", "prod"},
 	}
@@ -27,3 +23,5 @@ func main() {
 		utils.RunCommand(exectuable, []string{"analyze:" + envType})
 	}
 }
+
+

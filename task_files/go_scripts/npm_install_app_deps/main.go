@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"main/shared"
 	"os"
 	"regexp"
 	"sync"
@@ -23,13 +24,9 @@ func main() {
 		},
 	)
 
+
+	packageManager := shared.ChooseNodePackageManager()
 	cliInfo := utils.ShowMenuModel{
-		Prompt:  "choose the package manager",
-		Choices: []string{"npm", "yarn"},
-		Default: "npm",
-	}
-	packageManager := utils.ShowMenu(cliInfo, nil)
-	cliInfo = utils.ShowMenuModel{
 		Other:  true,
 		Prompt: "Choose the node.js app",
 		Choices: []string{
@@ -63,27 +60,26 @@ func main() {
 			defer wg.Done()
 			if reinstall == "true" {
 				os.Remove(utils.JoinAndConvertPathToOSFormat(app, "package-lock.json"))
+
 				os.Remove(utils.JoinAndConvertPathToOSFormat(app, "yarn.lock"))
-				if packageManager == "yarn" {
-					utils.RunCommandInSpecificDirectory(packageManager, []string{"cache", "clean"}, app)
-				}
+				os.RemoveAll(utils.JoinAndConvertPathToOSFormat(app, ".yarn"))
+				os.Remove(utils.JoinAndConvertPathToOSFormat(app, ".pnp.js"))
+				os.Remove(utils.JoinAndConvertPathToOSFormat(app, ".pnp.cjs"))
+				os.Remove(utils.JoinAndConvertPathToOSFormat(app, ".pnp.loader.mjs"))
+
+				os.Remove(utils.JoinAndConvertPathToOSFormat(app, "pnpm-lock.yaml"))
+
 				os.RemoveAll(utils.JoinAndConvertPathToOSFormat(app, "node_modules"))
 			}
+			command := []string{"install"}
 			if packageManager == "npm" {
-				command := []string{"install", "-s"}
-				if force == "true" {
-					command = append(command, "--force")
-				}
-				command = append(command, "--verbose")
-				utils.RunCommandInSpecificDirectory(packageManager, command, app)
-			} else {
-				command := []string{"install"}
-				if force == "true" {
-					command = append(command, "--force")
-				}
-				command = append(command, "--verbose")
-				utils.RunCommandInSpecificDirectory(packageManager, command, app)
+				command = append(command, "-s")
 			}
+			if force == "true" {
+				command = append(command, "--force")
+			}
+			command = append(command, "--verbose")
+			utils.RunCommandInSpecificDirectory(packageManager, command, app)
 		}()
 	}
 	wg.Wait()

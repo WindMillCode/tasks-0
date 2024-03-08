@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"main/shared"
 	"os"
 	"sync"
 
@@ -22,13 +23,9 @@ func main() {
 		},
 	)
 
+
+	packageManager := shared.ChooseNodePackageManager()
 	cliInfo := utils.ShowMenuModel{
-		Prompt:  "choose the package manager",
-		Choices: []string{"npm", "yarn"},
-		Default: "npm",
-	}
-	packageManager := utils.ShowMenu(cliInfo, nil)
-	cliInfo = utils.ShowMenuModel{
 		Other:  true,
 		Prompt: "Choose the node.js app",
 		Choices: []string{
@@ -89,39 +86,44 @@ func main() {
 
 }
 
-func installPackages(
-	install string, packageManager string, depType string, force string, packagesList []string, app string) {
+func installPackages(install string, packageManager string, depType string, force string, packagesList []string, app string) {
 	if install == "true" {
+		var commands []string
 		if packageManager == "npm" {
-			commands := []string{"install", depType, "--verbose"}
-			if force == "true" {
-				commands = append(commands, "--force")
+			commands = []string{"install"}
+			if depType == "--save-dev" {
+				commands = append(commands, "--save-dev")
 			}
-			utils.RunCommandInSpecificDirectory(packageManager, append(commands, packagesList...), app)
-		} else {
-			commands := []string{"add", depType, "--verbose"}
-			if force == "true" {
-				commands = append(commands, "--force")
+		} else { // This applies to both yarn and pnpm
+			commands = []string{"add"}
+			if depType == "--save-dev" {
+				commands = append(commands, "--save-dev")
 			}
-			utils.RunCommandInSpecificDirectory(packageManager, append(commands, packagesList...), app)
 		}
+
+		if force == "true" {
+			commands = append(commands, "--force")
+		}
+
+		commands = append(commands, "--verbose")
+		commands = append(commands, packagesList...)
+		utils.RunCommandInSpecificDirectory(packageManager, commands, app)
 	}
 }
 
+
 func uninstallPackages(uninstall string, packageManager string, force string, packagesList []string, app string) {
 	if uninstall == "true" {
-		if packageManager == "npm" {
-			commands := []string{"uninstall"}
-			if force == "true" {
-				commands = append(commands, "--force")
-			}
-			utils.RunCommandInSpecificDirectory(packageManager, append(commands, packagesList...), app)
-		} else {
-			commands := []string{"remove"}
-			if force == "true" {
-				commands = append(commands, "--force")
-			}
-			utils.RunCommandInSpecificDirectory(packageManager, append([]string{"remove", "-f"}, packagesList...), app)
+		var commands []string
+		if packageManager == "npm" || packageManager == "pnpm" {
+			commands = []string{"uninstall"}
+		} else { // This applies to yarn
+			commands = []string{"remove"}
 		}
+		if force == "true" {
+			commands = append(commands, "--force")
+		}
+		commands = append(commands, packagesList...)
+		utils.RunCommandInSpecificDirectory(packageManager, commands, app)
 	}
 }

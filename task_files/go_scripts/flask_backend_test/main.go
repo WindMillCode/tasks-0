@@ -4,9 +4,6 @@ import (
 	"fmt"
 	"main/shared"
 	"net/http"
-	"os"
-	"path/filepath"
-	"strings"
 	"sync"
 
 	"github.com/windmillcode/go_cli_scripts/v4/utils"
@@ -14,63 +11,11 @@ import (
 
 func main() {
 
-	utils.CDToWorkspaceRoot()
-	workspaceFolder, err := os.Getwd()
+
+	flaskAppFolder, err := shared.SetupEnvironmentToRunFlaskApp()
 	if err != nil {
-		fmt.Println("there was an error while trying to receive the current dir")
-	}
-	settings, err := utils.GetSettingsJSON(workspaceFolder)
-	if err != nil {
+		fmt.Println("Error during setup:", err)
 		return
-	}
-	utils.CDToFlaskApp()
-	flaskAppFolder, err := os.Getwd()
-	if err != nil {
-		return
-	}
-	envVarsFile := utils.GetInputFromStdin(
-		utils.GetInputFromStdinStruct{
-			Prompt:  []string{"where are the env vars located"},
-			Default: utils.JoinAndConvertPathToOSFormat(workspaceFolder, settings.ExtensionPack.FlaskBackendTestHelperScript),
-		},
-	)
-	pythonVersion := utils.GetInputFromStdin(
-		utils.GetInputFromStdinStruct{
-			Prompt:  []string{"provide a python version for pyenv to use"},
-			Default: settings.ExtensionPack.PythonVersion0,
-		},
-	)
-	if pythonVersion != "" {
-		utils.RunCommand("pyenv", []string{"global", pythonVersion})
-	}
-	utils.CDToLocation(workspaceFolder)
-
-	envVarCommandOptions := utils.CommandOptions{
-		Command:      shared.GetGoExecutable(),
-		Args:         []string{"run", envVarsFile, filepath.Dir(utils.JoinAndConvertPathToOSFormat(envVarsFile)), workspaceFolder},
-		GetOutput:    true,
-		TargetDir:     filepath.Dir(utils.JoinAndConvertPathToOSFormat(envVarsFile)),
-	}
-	envVars,err := utils.RunCommandWithOptions(envVarCommandOptions)
-	if err != nil {
-		return
-	}
-	envVarsArray := strings.Split(envVars, ",")
-
-
-	for _, x := range envVarsArray {
-		// Splitting only on the first "="
-		keyPair := strings.SplitN(x, "=", 2)
-
-		if len(keyPair) != 2 {
-				fmt.Println("Invalid format in environment variable:", x)
-				continue
-		}
-
-		key := strings.TrimSpace(keyPair[0])
-		value := strings.TrimSpace(strings.ReplaceAll(keyPair[1], ",", ""))
-
-		os.Setenv(key, value)
 	}
 	flaskAppUnitTestFolder := utils.JoinAndConvertPathToOSFormat(
 		flaskAppFolder, "unit_tests",

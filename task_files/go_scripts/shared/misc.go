@@ -37,6 +37,9 @@ type Task struct {
 		RunOn         string `json:"runOn"`
 		InstanceLimit int    `json:"instanceLimit"`
 	} `json:"runOptions"`
+	Presentation struct {
+		Panel string `json:"panel"`
+	} `json:"presentation"`
 }
 
 type Input struct {
@@ -52,7 +55,7 @@ type TasksJSON struct {
 	Inputs  []Input `json:"inputs"`
 }
 
-func RebuildExecutables(proceed string, tasksJSON TasksJSON, goScriptsDestDirPath string, goExecutable string) {
+func RebuildExecutables(proceed string, tasksJSON TasksJSON, goScriptsDestDirPath string, goExecutable string,beforeActionPredicate func() ) {
 	var rebuild string
 	var cliInfo utils.ShowMenuModel
 	if proceed == "TRUE" {
@@ -72,6 +75,7 @@ func RebuildExecutables(proceed string, tasksJSON TasksJSON, goScriptsDestDirPat
 			Choices: []string{"ALL_AT_ONCE", "ONE_BY_ONE"},
 		}
 		inSync := utils.ShowMenu(cliInfo, nil)
+		beforeActionPredicate()
 
 		if inSync == "ALL_AT_ONCE" {
 			var wg sync.WaitGroup
@@ -110,6 +114,8 @@ func RebuildExecutables(proceed string, tasksJSON TasksJSON, goScriptsDestDirPat
 			}
 		}
 
+	} else{
+		beforeActionPredicate()
 	}
 }
 
@@ -142,46 +148,50 @@ func CreateTasksJson(tasksJsonFilePath string, triedCreateOnError bool) ([]byte,
 }
 
 func SetupEnvironmentToRunFlaskApp() (string, error) {
+	// Change to workspace root and get the current directory
 	utils.CDToWorkspaceRoot()
 	workspaceFolder, err := os.Getwd()
 	if err != nil {
 		return "", fmt.Errorf("error getting current directory: %w", err)
 	}
+
+	// Get settings from the workspace folder
 	settings, err := utils.GetSettingsJSON(workspaceFolder)
 	if err != nil {
 		return "", fmt.Errorf("error getting settings JSON: %w", err)
 	}
+
+	// Change to Flask app directory and get the current directory
 	utils.CDToFlaskApp()
 	flaskAppFolder, err := os.Getwd()
 	if err != nil {
 		return "", fmt.Errorf("error changing to Flask app directory: %w", err)
 	}
 
+	// Determine the helper script based on whether it's running in Docker
 	helperScript := settings.ExtensionPack.FlaskBackendDevHelperScript
 	if utils.IsRunningInDocker() {
 		helperScript = strings.Replace(helperScript, "dev", "docker_dev", 1)
 	}
 
+	// Prompt for the location of the environment variables file
 	cliInfo := utils.ShowMenuModel{
-		Prompt: "Where are the env vars located",
-		Choices: []string{
-			utils.JoinAndConvertPathToOSFormat(workspaceFolder, helperScript),
-		},
-		Other: true,
+		Prompt:  "Where are the env vars located",
+		Choices: []string{utils.JoinAndConvertPathToOSFormat(workspaceFolder, helperScript)},
+		Other:   true,
 	}
 	envVarsFile := utils.ShowMenu(cliInfo, nil)
 
-	pythonVersion := utils.GetInputFromStdin(
-		utils.GetInputFromStdinStruct{
-			Prompt:  []string{"Provide a Python version for pyenv to use"},
-			Default: settings.ExtensionPack.PythonVersion0,
-		},
-	)
+	// Get the Python version input
+	pythonVersion := utils.GetInputFromStdin(utils.GetInputFromStdinStruct{
+		Prompt:  []string{"Provide a Python version for pyenv to use"},
+		Default: settings.ExtensionPack.PythonVersion0,
+	})
 
-	if pythonVersion != "" {
-		utils.RunCommand("pyenv", []string{"global", pythonVersion})
-	}
+	// Set the Python version if provided
 
+
+	// Execute the helper script to set environment variables
 	utils.CDToLocation(workspaceFolder)
 	envVarCommandOptions := utils.CommandOptions{
 		Command:     GetGoExecutable(),
@@ -195,17 +205,20 @@ func SetupEnvironmentToRunFlaskApp() (string, error) {
 		return "", fmt.Errorf("error running command for env vars: %w", err)
 	}
 
+
+	// Parse and set the environment variables
 	envVarsArray := strings.Split(envVars, ",")
 	for _, x := range envVarsArray {
 		indexOfEqual := strings.Index(x, "=")
 		if indexOfEqual == -1 {
 			continue
 		}
-		key := x[:indexOfEqual]
-		value := x[indexOfEqual+1:]
-		key = strings.TrimSpace(key)
-		value = strings.TrimSpace(value)
+		key := strings.TrimSpace(x[:indexOfEqual])
+		value := strings.TrimSpace(x[indexOfEqual+1:])
 		os.Setenv(key, value)
+	}
+	if pythonVersion != "" {
+		utils.RunCommand("pyenv", []string{"global", pythonVersion})
 	}
 
 	return flaskAppFolder, nil
@@ -220,4 +233,14 @@ func GetGoExecutable() string {
 	}
 	goExecutable := utils.ShowMenu(cliInfo, nil)
 	return goExecutable
+}
+
+func ChooseNodePackageManager() ( string) {
+	cliInfo := utils.ShowMenuModel{
+		Prompt:  "choose the package manager",
+		Choices: []string{"npm", "yarn", "pnpm"},
+		Default: "npm",
+	}
+	exectuable := utils.ShowMenu(cliInfo, nil)
+	return exectuable
 }

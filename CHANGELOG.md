@@ -142,3 +142,12 @@ it will take the path at "apps", "database", databaseToBackup, "schema_entries" 
 in that folder to make a new entry
 * [UPDATE] angular_frontend_test now tries to look in karma.conf.js for the coverage info and extract the subdir path
 from coverageReporter.dir if it cant find it it will run the test regardless and if it cant find karma.conf.js will run the test regardless
+
+## [1.87.1000] - 3-8-2024
+* [PATCH] Implemented the shared `ChooseNodePackageManager` function to standardize package manager selection across various Go scripts, replacing redundant code blocks.
+* [PATCH] Removed manual package manager prompts in `angular_frontend_analyze/main.go`, `angular_frontend_update_angular/main.go`, `firebase_cloud_run_emulators/main.go`, `npm_install_app_deps/main.go`, and `npm_install_specific_packages/main.go`, now utilizing the shared `ChooseNodePackageManager`.
+* [PATCH] Updated the `npm_install_app_deps/main.go` script to handle dependency reinstallation and support `pnpm` along with existing package managers.
+* [PATCH] Modified `npm_install_specific_packages/main.go` to use the shared package manager selection and enhanced package installation/uninstallation logic.
+* [PATCH] Refined `flask_backend_test/main.go` to utilize a shared setup function, simplifying the test environment setup process.
+* [PATCH] Updated `go.mod` to adjust the order of required modules for proper dependency management.
+* [PATCH] Introduced changes in `tasks_update_workspace_with_latest_tasks/main.go` and `tasks_update_workspace_without_extension/main.go` to improve the tasks update process with new prompts and conditional logic.

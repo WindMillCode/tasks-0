@@ -2,8 +2,9 @@ package main
 
 import (
 	"fmt"
-	"github.com/windmillcode/go_cli_scripts/v4/utils"
 	"main/shared"
+
+	"github.com/windmillcode/go_cli_scripts/v4/utils"
 )
 
 func main() {
@@ -25,5 +26,3 @@ func main() {
 		utils.RunCommandWithOptions(runOptions)
 	}
 }
-
-

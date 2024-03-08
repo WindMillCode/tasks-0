@@ -33,7 +33,7 @@ func main() {
 	}
 	goScriptsDestDirPath := utils.JoinAndConvertPathToOSFormat(workSpaceFolder, "ignore/Windmillcode/go_scripts")
 
-	shared.RebuildExecutables("FALSE", tasksJSON, goScriptsDestDirPath, goExecutable)
+	shared.RebuildExecutables("FALSE", tasksJSON, goScriptsDestDirPath, goExecutable,func() {})
 
 }
 

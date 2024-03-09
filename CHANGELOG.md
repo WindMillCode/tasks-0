@@ -151,3 +151,10 @@ from coverageReporter.dir if it cant find it it will run the test regardless and
 * [PATCH] Refined `flask_backend_test/main.go` to utilize a shared setup function, simplifying the test environment setup process.
 * [PATCH] Updated `go.mod` to adjust the order of required modules for proper dependency management.
 * [PATCH] Introduced changes in `tasks_update_workspace_with_latest_tasks/main.go` and `tasks_update_workspace_without_extension/main.go` to improve the tasks update process with new prompts and conditional logic.
+
+## [1.87.1001] - 3-9-2024
+* [UPDATE] Modified `SetupEnvironmentToRunFlaskApp` in `shared/misc.go` to accept an `env` string parameter for different environment setups.
+* [UPDATE] Updated calls to `SetupEnvironmentToRunFlaskApp` in `main.go` files within `flask_backend_run`, `flask_backend_run_with_reloader`, and `flask_backend_test` directories to pass environment strings.
+* [BUG] Fixed an inconsistency in setting Python version in `SetupEnvironmentToRunFlaskApp` by moving the comment and ensuring the Python version is set after environment variables are set.
+* [FIX] Removed the file `old.go` in the `flask_backend_run_with_reloader` directory as part of cleanup or refactoring.
+* [PATCH] Adjusted helper script determination logic in `SetupEnvironmentToRunFlaskApp` to select the correct script based on the environment.

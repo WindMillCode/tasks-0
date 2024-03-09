@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	flaskAppFolder, err := shared.SetupEnvironmentToRunFlaskApp()
+	flaskAppFolder, err := shared.SetupEnvironmentToRunFlaskApp("dev")
 	if err != nil {
 		fmt.Println("Error during setup:", err)
 		return

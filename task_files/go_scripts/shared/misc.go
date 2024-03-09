@@ -147,7 +147,7 @@ func CreateTasksJson(tasksJsonFilePath string, triedCreateOnError bool) ([]byte,
 	return content, nil, false
 }
 
-func SetupEnvironmentToRunFlaskApp() (string, error) {
+func SetupEnvironmentToRunFlaskApp(env string) (string, error) {
 	// Change to workspace root and get the current directory
 	utils.CDToWorkspaceRoot()
 	workspaceFolder, err := os.Getwd()
@@ -170,6 +170,9 @@ func SetupEnvironmentToRunFlaskApp() (string, error) {
 
 	// Determine the helper script based on whether it's running in Docker
 	helperScript := settings.ExtensionPack.FlaskBackendDevHelperScript
+	if env == "test" {
+		helperScript = settings.ExtensionPack.FlaskBackendTestHelperScript
+	}
 	if utils.IsRunningInDocker() {
 		helperScript = strings.Replace(helperScript, "dev", "docker_dev", 1)
 	}
@@ -188,7 +191,7 @@ func SetupEnvironmentToRunFlaskApp() (string, error) {
 		Default: settings.ExtensionPack.PythonVersion0,
 	})
 
-	// Set the Python version if provided
+
 
 
 	// Execute the helper script to set environment variables
@@ -217,6 +220,7 @@ func SetupEnvironmentToRunFlaskApp() (string, error) {
 		value := strings.TrimSpace(x[indexOfEqual+1:])
 		os.Setenv(key, value)
 	}
+		// Set the Python version if provided
 	if pythonVersion != "" {
 		utils.RunCommand("pyenv", []string{"global", pythonVersion})
 	}

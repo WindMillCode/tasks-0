@@ -158,3 +158,9 @@ from coverageReporter.dir if it cant find it it will run the test regardless and
 * [BUG] Fixed an inconsistency in setting Python version in `SetupEnvironmentToRunFlaskApp` by moving the comment and ensuring the Python version is set after environment variables are set.
 * [FIX] Removed the file `old.go` in the `flask_backend_run_with_reloader` directory as part of cleanup or refactoring.
 * [PATCH] Adjusted helper script determination logic in `SetupEnvironmentToRunFlaskApp` to select the correct script based on the environment.
+
+## [1.87.1002] - 3-9-2024
+* [UPDATE] - Updated go.work.sum and task_files/go_scripts/go.sum to include new dependencies on github.com/ghodss/yaml and gopkg.in/yaml.v2.
+* [UPDATE] - Upgraded github.com/windmillcode/go_cli_scripts/v4 to v4.5.0 in task_files/go_scripts/go.mod and go.work.sum.
+* [REMOVE] - Removed direct requirements on github.com/fsnotify/fsnotify and github.com/windmillcode/go_cli_scripts/v4 in task_files/go_scripts/go.mod, now marked as indirect dependencies.
+* [CHANGE] - Binary difference detected in diff_output.txt without specific details due to the binary nature of the file change.

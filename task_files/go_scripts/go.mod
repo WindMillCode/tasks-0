@@ -4,10 +4,7 @@ go 1.21
 
 require github.com/iancoleman/strcase v0.3.0
 
-require (
-	github.com/fsnotify/fsnotify v1.7.0
-	github.com/windmillcode/go_cli_scripts/v4 v4.4.4
-)
+require github.com/windmillcode/go_cli_scripts/v4 v4.5.0
 
 require (
 	github.com/atotto/clipboard v0.1.4 // indirect
@@ -17,6 +14,8 @@ require (
 	github.com/charmbracelet/lipgloss v0.9.1 // indirect
 	github.com/chzyer/readline v1.5.1 // indirect
 	github.com/containerd/console v1.0.4-0.20230313162750-1ae8d489ac81 // indirect
+	github.com/fsnotify/fsnotify v1.7.0 // indirect
+	github.com/ghodss/yaml v1.0.0 // indirect
 	github.com/gobwas/glob v0.2.3 // indirect
 	github.com/lucasb-eyer/go-colorful v1.2.0 // indirect
 	github.com/mattn/go-isatty v0.0.20 // indirect
@@ -31,4 +30,5 @@ require (
 	golang.org/x/sys v0.16.0 // indirect
 	golang.org/x/term v0.16.0 // indirect
 	golang.org/x/text v0.14.0 // indirect
+	gopkg.in/yaml.v2 v2.4.0 // indirect
 )

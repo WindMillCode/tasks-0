@@ -172,5 +172,10 @@ from coverageReporter.dir if it cant find it it will run the test regardless and
 * [UPDATE] - Updated go.sum to include new checksums for github.com/tailscale/hujson and github.com/windmillcode/go_cli_scripts/v4 at their updated versions.
 
 ## [1.87.1004] - 3-10-2024
-* [FIX] - Fix issue with all tasks that uses json with comments.
+* [UPDATE] - Formatted struct alignment in task_files/go_scripts/shared/misc.go for Linux command options.
+* [UPDATE] - Removed whitespace and adjusted formatting in various functions in task_files/go_scripts/shared/misc.go.
+* [REFACTOR] - Enhanced SetupEnvironmentToRunFlaskApp function in task_files/go_scripts/shared/misc.go to better extract and parse environment variables using regex.
+* [UPDATE] - Moved the Python version setting logic in SetupEnvironmentToRunFlaskApp to after the environment variables are set.
+* [FORMAT] - Adjusted spacing and formatting in various parts of task_files/go_scripts/shared/misc.go for better readability.
+
 

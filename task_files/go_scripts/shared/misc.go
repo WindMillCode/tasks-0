@@ -27,8 +27,8 @@ type Task struct {
 		Command string `json:"command"`
 	} `json:"windows"`
 	Linux struct {
-    Command string       `json:"command"`
-    Options CommandOptions `json:"options"`
+		Command string         `json:"command"`
+		Options CommandOptions `json:"options"`
 	} `json:"linux"`
 	Osx struct {
 		Command string `json:"command"`
@@ -55,7 +55,7 @@ type TasksJSON struct {
 	Inputs  []Input `json:"inputs"`
 }
 
-func RebuildExecutables(proceed string, tasksJSON TasksJSON, goScriptsDestDirPath string, goExecutable string,beforeActionPredicate func() ) {
+func RebuildExecutables(proceed string, tasksJSON TasksJSON, goScriptsDestDirPath string, goExecutable string, beforeActionPredicate func()) {
 	var rebuild string
 	var cliInfo utils.ShowMenuModel
 	if proceed == "TRUE" {
@@ -97,7 +97,7 @@ func RebuildExecutables(proceed string, tasksJSON TasksJSON, goScriptsDestDirPat
 				}()
 			}
 			wg.Wait()
-		} else{
+		} else {
 			fmt.Print(len(tasksJSON.Tasks))
 			for _, task := range tasksJSON.Tasks {
 
@@ -114,7 +114,7 @@ func RebuildExecutables(proceed string, tasksJSON TasksJSON, goScriptsDestDirPat
 			}
 		}
 
-	} else{
+	} else {
 		beforeActionPredicate()
 	}
 }
@@ -128,7 +128,7 @@ func BuildGoCLIProgram(programLocation string, goExecutable string) {
 }
 
 func CreateTasksJson(tasksJsonFilePath string, triedCreateOnError bool) ([]byte, error, bool) {
-	
+
 	content, err := os.ReadFile(tasksJsonFilePath)
 	if err != nil {
 		if triedCreateOnError {
@@ -192,12 +192,6 @@ func SetupEnvironmentToRunFlaskApp(env string) (string, error) {
 		Default: settings.ExtensionPack.PythonVersion0,
 	})
 
-
-	// Set the Python version if provided
-	if pythonVersion != "" {
-		utils.RunCommand("pyenv", []string{"global", pythonVersion})
-	}
-
 	// Execute the helper script to set environment variables
 	utils.CDToLocation(workspaceFolder)
 	envVarCommandOptions := utils.CommandOptions{
@@ -212,9 +206,10 @@ func SetupEnvironmentToRunFlaskApp(env string) (string, error) {
 		return "", fmt.Errorf("error running command for env vars: %w", err)
 	}
 
-
 	// Parse and set the environment variables
-	envVarsArray := strings.Split(envVars, ",")
+	re := regexp.MustCompile(`(?s)<ENVVARS>(.*?)<\/ENVVARS>`)
+	matches := re.FindStringSubmatch(envVars)
+	envVarsArray := strings.Split(matches[1], ",")
 	for _, x := range envVarsArray {
 		indexOfEqual := strings.Index(x, "=")
 		if indexOfEqual == -1 {
@@ -225,10 +220,13 @@ func SetupEnvironmentToRunFlaskApp(env string) (string, error) {
 		os.Setenv(key, value)
 	}
 
+	// Set the Python version if provided
+	if pythonVersion != "" {
+		utils.RunCommand("pyenv", []string{"global", pythonVersion})
+	}
 
 	return flaskAppFolder, nil
 }
-
 
 func GetGoExecutable() string {
 	cliInfo := utils.ShowMenuModel{
@@ -240,7 +238,7 @@ func GetGoExecutable() string {
 	return goExecutable
 }
 
-func ChooseNodePackageManager() ( string) {
+func ChooseNodePackageManager() string {
 	cliInfo := utils.ShowMenuModel{
 		Prompt:  "choose the package manager",
 		Choices: []string{"npm", "yarn", "pnpm"},

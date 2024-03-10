@@ -164,3 +164,9 @@ from coverageReporter.dir if it cant find it it will run the test regardless and
 * [UPDATE] - Upgraded github.com/windmillcode/go_cli_scripts/v4 to v4.5.0 in task_files/go_scripts/go.mod and go.work.sum.
 * [REMOVE] - Removed direct requirements on github.com/fsnotify/fsnotify and github.com/windmillcode/go_cli_scripts/v4 in task_files/go_scripts/go.mod, now marked as indirect dependencies.
 * [CHANGE] - Binary difference detected in diff_output.txt without specific details due to the binary nature of the file change.
+
+## [1.87.1003] - 3-10-2024
+* [UPDATE] - Updated go.work.sum and task_files/go_scripts/go.mod to use version v4.5.1 of github.com/windmillcode/go_cli_scripts/v4.
+* [REMOVE] - Removed references to github.com/ghodss/yaml and gopkg.in/yaml.v2 from go.work.sum and task_files/go_scripts/go.mod.
+* [ADD] - Added github.com/tailscale/hujson to go.work.sum and task_files/go_scripts/go.sum as a new dependency.
+* [UPDATE] - Updated go.sum to include new checksums for github.com/tailscale/hujson and github.com/windmillcode/go_cli_scripts/v4 at their updated versions.

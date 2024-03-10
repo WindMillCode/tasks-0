@@ -11,6 +11,8 @@ import (
 	"github.com/windmillcode/go_cli_scripts/v4/utils"
 )
 
+
+
 func main() {
 	workSpaceFolder := os.Args[1]
 	extensionFolder := os.Args[2]
@@ -55,7 +57,8 @@ func main() {
 	}
 
 	var tasksJSON shared.TasksJSON
-	err = json.Unmarshal(content, &tasksJSON)
+	cleanJSON,err :=utils.RemoveComments(content)
+	err = json.Unmarshal([]byte(cleanJSON), &tasksJSON)
 	if err != nil {
 		fmt.Println("Error unmarshalling JSON:", err)
 		return

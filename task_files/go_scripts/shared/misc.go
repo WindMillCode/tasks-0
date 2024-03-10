@@ -128,6 +128,7 @@ func BuildGoCLIProgram(programLocation string, goExecutable string) {
 }
 
 func CreateTasksJson(tasksJsonFilePath string, triedCreateOnError bool) ([]byte, error, bool) {
+	
 	content, err := os.ReadFile(tasksJsonFilePath)
 	if err != nil {
 		if triedCreateOnError {
@@ -192,7 +193,10 @@ func SetupEnvironmentToRunFlaskApp(env string) (string, error) {
 	})
 
 
-
+	// Set the Python version if provided
+	if pythonVersion != "" {
+		utils.RunCommand("pyenv", []string{"global", pythonVersion})
+	}
 
 	// Execute the helper script to set environment variables
 	utils.CDToLocation(workspaceFolder)
@@ -220,10 +224,7 @@ func SetupEnvironmentToRunFlaskApp(env string) (string, error) {
 		value := strings.TrimSpace(x[indexOfEqual+1:])
 		os.Setenv(key, value)
 	}
-		// Set the Python version if provided
-	if pythonVersion != "" {
-		utils.RunCommand("pyenv", []string{"global", pythonVersion})
-	}
+
 
 	return flaskAppFolder, nil
 }

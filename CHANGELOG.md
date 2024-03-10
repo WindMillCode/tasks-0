@@ -170,3 +170,7 @@ from coverageReporter.dir if it cant find it it will run the test regardless and
 * [REMOVE] - Removed references to github.com/ghodss/yaml and gopkg.in/yaml.v2 from go.work.sum and task_files/go_scripts/go.mod.
 * [ADD] - Added github.com/tailscale/hujson to go.work.sum and task_files/go_scripts/go.sum as a new dependency.
 * [UPDATE] - Updated go.sum to include new checksums for github.com/tailscale/hujson and github.com/windmillcode/go_cli_scripts/v4 at their updated versions.
+
+## [1.87.1004] - 3-10-2024
+* [FIX] - Fix issue with all tasks that uses json with comments.
+

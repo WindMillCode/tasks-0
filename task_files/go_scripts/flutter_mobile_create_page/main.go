@@ -31,8 +31,8 @@ func main() {
 	entityName := pageName + "Page"
 	snakeCasePageName := strcase.ToSnake(pageName)
 	providerLocation := utils.JoinAndConvertPathToOSFormat(flutterApp, "lib", "pages", snakeCasePageName)
-	newTemplatePath := utils.JoinAndConvertPathToOSFormat(providerLocation, fmt.Sprintf("%s.dart", snakeCasePageName))
-	newRiverPodProviderPath := utils.JoinAndConvertPathToOSFormat(providerLocation, fmt.Sprintf("%s_riverpod_provider.dart", snakeCasePageName))
+	newTemplatePath := utils.JoinAndConvertPathToOSFormat(providerLocation, fmt.Sprintf("%s_page.dart", snakeCasePageName))
+	newRiverPodProviderPath := utils.JoinAndConvertPathToOSFormat(providerLocation, fmt.Sprintf("%s_page_riverpod_provider.dart", snakeCasePageName))
 	utils.CopyDir(templateLocation, providerLocation)
 	os.Rename(
 		utils.JoinAndConvertPathToOSFormat(providerLocation, "template_page.dart"),

@@ -179,3 +179,8 @@ from coverageReporter.dir if it cant find it it will run the test regardless and
 * [FORMAT] - Adjusted spacing and formatting in various parts of task_files/go_scripts/shared/misc.go for better readability.
 
 
+
+## [1.87.2000] - 3-11-2024
+* [UPDATE] In `flutter_mobile_create_page/main.go`, updated file naming for template and riverpod provider paths to include `_page` in their names for consistency.
+* [UPDATE] In `i18n_script_via_ai/requirements.txt`, added a new dependency `g4f[all]`.
+

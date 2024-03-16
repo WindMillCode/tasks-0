@@ -187,3 +187,7 @@ from coverageReporter.dir if it cant find it it will run the test regardless and
 ## [1.87.2001] - 3-16-2024
 * [UPDATE] Updated import statement in `template_page.dart` to use `template_page_riverpod_provider.dart` instead of `template_riverpod_provider.dart`.
 
+## [1.87.2002] - 3-16-2024
+* [UPDATE] Changed the location where the provider is stored in the Flutter application. The provider now resides in the 'lib/shared/widgets' directory instead of the 'lib/pages' directory, reflecting a move to a more appropriate location for shared widget resources.
+* [FIX] Modified the path generation logic for new template and RiverPod provider files to align with the updated provider location, ensuring that these resources are correctly stored within the new directory structure.
+

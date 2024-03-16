@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'template_riverpod_provider.dart';
+import 'template_page_riverpod_provider.dart';
 
 class WMLTemplateWidget extends ConsumerStatefulWidget {
   WMLTemplateWidget({super.key});

@@ -184,3 +184,6 @@ from coverageReporter.dir if it cant find it it will run the test regardless and
 * [UPDATE] In `flutter_mobile_create_page/main.go`, updated file naming for template and riverpod provider paths to include `_page` in their names for consistency.
 * [UPDATE] In `i18n_script_via_ai/requirements.txt`, added a new dependency `g4f[all]`.
 
+## [1.87.2001] - 3-16-2024
+* [UPDATE] Updated import statement in `template_page.dart` to use `template_page_riverpod_provider.dart` instead of `template_riverpod_provider.dart`.
+

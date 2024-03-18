@@ -191,3 +191,7 @@ from coverageReporter.dir if it cant find it it will run the test regardless and
 * [UPDATE] Changed the location where the provider is stored in the Flutter application. The provider now resides in the 'lib/shared/widgets' directory instead of the 'lib/pages' directory, reflecting a move to a more appropriate location for shared widget resources.
 * [FIX] Modified the path generation logic for new template and RiverPod provider files to align with the updated provider location, ensuring that these resources are correctly stored within the new directory structure.
 
+## [1.87.2003] - 3-17-2024
+* [UPDATE] Added new package imports for WMLColors, WMLFonts, WMLNav, and WMLSpacing in Flutter templates (template_page.dart, template_page.dart, template_widget.dart).
+* [UPDATE] Integrated WMLColorsRiverpodProvider, WMLFontsRiverpodProvider, WMLNavRiverpodProvider, and WMLSpacingRiverpodProvider into the build context of WMLTemplateWidget in Flutter templates.
+* [UPDATE] Added contextHeight and contextWidth variables to capture screen dimensions in the build context of WMLTemplateWidget in Flutter templates.

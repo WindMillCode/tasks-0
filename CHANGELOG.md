@@ -195,3 +195,8 @@ from coverageReporter.dir if it cant find it it will run the test regardless and
 * [UPDATE] Added new package imports for WMLColors, WMLFonts, WMLNav, and WMLSpacing in Flutter templates (template_page.dart, template_page.dart, template_widget.dart).
 * [UPDATE] Integrated WMLColorsRiverpodProvider, WMLFontsRiverpodProvider, WMLNavRiverpodProvider, and WMLSpacingRiverpodProvider into the build context of WMLTemplateWidget in Flutter templates.
 * [UPDATE] Added contextHeight and contextWidth variables to capture screen dimensions in the build context of WMLTemplateWidget in Flutter templates.
+
+## [1.87.2004] - 3-27-2024
+[UPDATE] Modified file naming in Go scripts for Flutter mobile to include '_riverpod_provider' in the filename, enhancing clarity and consistency in the provider naming convention. Changes made in 'flutter_mobile_create_riverpod_async_notifier_provider/main.go' and 'flutter_mobile_create_riverpod_provider/main.go'.
+
+[PATCH] Adjusted the path construction for template copying in Go scripts, ensuring the correct file names are used during the generation of Riverpod providers in Flutter applications.

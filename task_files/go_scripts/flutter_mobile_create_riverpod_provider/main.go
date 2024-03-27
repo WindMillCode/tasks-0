@@ -31,7 +31,7 @@ func main() {
 
 	snakeCaseProviderName := strcase.ToSnake(providerName)
 	providerLocation := utils.JoinAndConvertPathToOSFormat(flutterApp, "lib", "util", "riverpod_providers", snakeCaseProviderName)
-	newTemplatePath := utils.JoinAndConvertPathToOSFormat(providerLocation, fmt.Sprintf("%s.dart", snakeCaseProviderName))
+	newTemplatePath := utils.JoinAndConvertPathToOSFormat(providerLocation, fmt.Sprintf("%s_riverpod_provider.dart", snakeCaseProviderName))
 	utils.CopyDir(templateLocation, providerLocation)
 	os.Rename(
 		utils.JoinAndConvertPathToOSFormat(providerLocation, "template.dart"),

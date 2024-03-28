@@ -200,3 +200,6 @@ from coverageReporter.dir if it cant find it it will run the test regardless and
 [UPDATE] Modified file naming in Go scripts for Flutter mobile to include '_riverpod_provider' in the filename, enhancing clarity and consistency in the provider naming convention. Changes made in 'flutter_mobile_create_riverpod_async_notifier_provider/main.go' and 'flutter_mobile_create_riverpod_provider/main.go'.
 
 [PATCH] Adjusted the path construction for template copying in Go scripts, ensuring the correct file names are used during the generation of Riverpod providers in Flutter applications.
+
+## [1.87.2005] - 3-28-2024
+[UPDATE] Added a `copyWith` method to `WMLTemplateRiverpodProviderValue` class in various Dart template files to support more flexible state management in Flutter. Changes applied to `template_riverpod_provider.dart` files in `flutter_mobile_create_layout`, `flutter_mobile_create_page`, and `flutter_mobile_create_shared_widget` directories.

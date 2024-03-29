@@ -12,8 +12,8 @@ github.com/windmillcode/go_cli_scripts/v4 v3.3.1 h1:qzQUpDj0QkvhRduOrg8r2LkGaSkR
 github.com/windmillcode/go_cli_scripts/v4 v3.3.1/go.mod h1:Euyzjye7Y+EISPXWQ2cj/xibz1fjPkwxGC0zIddUwrY=
 github.com/windmillcode/go_cli_scripts/v4 v4.3.4 h1:pLetdXF4d1QQFKNvJphuNgZSSR0fW9wF2HSzmjIgMNs=
 github.com/windmillcode/go_cli_scripts/v4 v4.3.4/go.mod h1:Au8nO05QGtT2NMpGs3lZ3vWkpfyiOZHH/XIytYsKCrU=
-github.com/windmillcode/go_cli_scripts/v4 v4.5.4 h1:f+gCsovamCV4s00LHbCD+wR7LRJAPzqinGStmrTzRjY=
-github.com/windmillcode/go_cli_scripts/v4 v4.5.4/go.mod h1:wqusuW8+8Yl/hOijQc1Hwk916FfW9tqJb7ZG497fXi0=
+github.com/windmillcode/go_cli_scripts/v4 v4.5.5 h1:Xm06GXhk+1Fgb14pj0S1mnormi2inr6wflzuEqiVN8o=
+github.com/windmillcode/go_cli_scripts/v4 v4.5.5/go.mod h1:wqusuW8+8Yl/hOijQc1Hwk916FfW9tqJb7ZG497fXi0=
 golang.org/x/mod v0.8.0/go.mod h1:iBbtSCu2XBx23ZKBPSOrRkjjQPZFPuis4dIYUhu/chs=
 golang.org/x/sync v0.1.0/go.mod h1:RxMgew5VJxzue5/jJTE5uejpjVlOe/izrB70Jof72aM=
 golang.org/x/sys v0.5.0/go.mod h1:oPkhp1MJrh7nUepCBck5+mAzfO9JrbApNNgaTdGDITg=

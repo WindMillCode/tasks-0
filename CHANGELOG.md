@@ -203,3 +203,6 @@ from coverageReporter.dir if it cant find it it will run the test regardless and
 
 ## [1.87.2005] - 3-28-2024
 [UPDATE] Added a `copyWith` method to `WMLTemplateRiverpodProviderValue` class in various Dart template files to support more flexible state management in Flutter. Changes applied to `template_riverpod_provider.dart` files in `flutter_mobile_create_layout`, `flutter_mobile_create_page`, and `flutter_mobile_create_shared_widget` directories.
+
+## [1.87.2006] - 3-28-2024
+[FIX] ensured empty directoires are copied

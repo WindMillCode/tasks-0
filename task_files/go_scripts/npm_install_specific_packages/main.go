@@ -11,7 +11,7 @@ import (
 
 func main() {
 
-	utils.CDToWorkspaceRoot()
+	shared.CDToWorkspaceRoot()
 	workspaceRoot, err := os.Getwd()
 	if err != nil {
 		fmt.Println("there was an error while trying to receive the current dir")
@@ -22,7 +22,6 @@ func main() {
 			Default: workspaceRoot,
 		},
 	)
-
 
 	packageManager := shared.ChooseNodePackageManager()
 	cliInfo := utils.ShowMenuModel{
@@ -110,7 +109,6 @@ func installPackages(install string, packageManager string, depType string, forc
 		utils.RunCommandInSpecificDirectory(packageManager, commands, app)
 	}
 }
-
 
 func uninstallPackages(uninstall string, packageManager string, force string, packagesList []string, app string) {
 	if uninstall == "true" {

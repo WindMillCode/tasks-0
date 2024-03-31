@@ -3,20 +3,18 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"os"
 	"main/shared"
+	"os"
+
 	"github.com/windmillcode/go_cli_scripts/v4/utils"
+	
 )
 
-
-
 func main() {
-	utils.CDToWorkspaceRoot()
+	shared.CDToWorkspaceRoot()
 	workSpaceFolder, _ := os.Getwd()
 
 	goExecutable := shared.GetGoExecutable()
-
-
 
 	tasksJsonFilePath := utils.JoinAndConvertPathToOSFormat(workSpaceFolder, ".vscode/tasks.json")
 
@@ -31,13 +29,8 @@ func main() {
 		fmt.Println("Error unmarshalling JSON:", err)
 		return
 	}
-	goScriptsDestDirPath := utils.JoinAndConvertPathToOSFormat(workSpaceFolder, "ignore/Windmillcode/go_scripts")
+	goScriptsDestDirPath := utils.JoinAndConvertPathToOSFormat(workSpaceFolder, ".windmillcode/go_scripts")
 
-	shared.RebuildExecutables("FALSE", tasksJSON, goScriptsDestDirPath, goExecutable,func() {})
+	shared.RebuildExecutables("FALSE", tasksJSON, goScriptsDestDirPath, goExecutable, func() {})
 
 }
-
-
-
-
-

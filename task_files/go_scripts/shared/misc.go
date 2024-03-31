@@ -1,6 +1,7 @@
 package shared
 
 import (
+	"encoding/json"
 	"fmt"
 	"os"
 	"path/filepath"
@@ -40,6 +41,9 @@ type Task struct {
 	Presentation struct {
 		Panel string `json:"panel"`
 	} `json:"presentation"`
+	Metadata struct {
+		Name string `json:"name"`
+	} `json:"metadata"`
 }
 
 type Input struct {
@@ -47,12 +51,25 @@ type Input struct {
 	Description string `json:"description"`
 	Default     string `json:"default"`
 	Type        string `json:"type"`
+	Metadata struct {
+		Name string `json:"name"`
+	} `json:"metadata"`
 }
 
 type TasksJSON struct {
 	Version string  `json:"version"`
 	Tasks   []Task  `json:"tasks"`
 	Inputs  []Input `json:"inputs"`
+}
+
+type DynamicTasksJSON struct {
+	Version string  `json:"version"`
+	Tasks   []json.RawMessage  `json:"tasks"`
+	Inputs  []json.RawMessage `json:"inputs"`
+}
+
+func CDToWorkspaceRoot() {
+	utils.CDToLocation(filepath.Join("..", "..",".."))
 }
 
 func RebuildExecutables(proceed string, tasksJSON TasksJSON, goScriptsDestDirPath string, goExecutable string, beforeActionPredicate func()) {
@@ -150,7 +167,7 @@ func CreateTasksJson(tasksJsonFilePath string, triedCreateOnError bool) ([]byte,
 
 func SetupEnvironmentToRunFlaskApp(env string) (string, error) {
 	// Change to workspace root and get the current directory
-	utils.CDToWorkspaceRoot()
+	CDToWorkspaceRoot()
 	workspaceFolder, err := os.Getwd()
 	if err != nil {
 		return "", fmt.Errorf("error getting current directory: %w", err)

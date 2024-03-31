@@ -7,6 +7,7 @@ import (
 
 	"github.com/iancoleman/strcase"
 	"github.com/windmillcode/go_cli_scripts/v4/utils"
+	"main/shared"
 )
 
 func main() {
@@ -16,7 +17,7 @@ func main() {
 		return
 	}
 	templateLocation := utils.JoinAndConvertPathToOSFormat(scriptLocation, "template")
-	utils.CDToWorkspaceRoot()
+	shared.CDToWorkspaceRoot()
 	utils.CDToFlutterApp()
 	flutterApp, err := os.Getwd()
 	if err != nil {

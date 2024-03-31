@@ -4,7 +4,9 @@ import (
 	"fmt"
 	"os"
 	"strings"
+
 	"github.com/windmillcode/go_cli_scripts/v4/utils"
+	"main/shared"
 )
 
 func main() {
@@ -15,7 +17,7 @@ func main() {
 	}
 	templateLocation := utils.JoinAndConvertPathToOSFormat(scriptLocation, "template_manager")
 	testTemplateLocation := utils.JoinAndConvertPathToOSFormat(scriptLocation, "test_template_manager")
-	utils.CDToWorkspaceRoot()
+	shared.CDToWorkspaceRoot()
 	utils.CDToFlaskApp()
 	targetApp, err := os.Getwd()
 	if err != nil {
@@ -23,34 +25,34 @@ func main() {
 	}
 	cliInfo := utils.ShowMenuModel{
 		Prompt: "where is the managers folder located",
-		Choices:[]string{
-			utils.JoinAndConvertPathToOSFormat(".","managers"),
+		Choices: []string{
+			utils.JoinAndConvertPathToOSFormat(".", "managers"),
 		},
 		Other: true,
 	}
-	managersLocation := utils.JoinAndConvertPathToOSFormat(targetApp,utils.ShowMenu(cliInfo,nil))
+	managersLocation := utils.JoinAndConvertPathToOSFormat(targetApp, utils.ShowMenu(cliInfo, nil))
 	cliInfo = utils.ShowMenuModel{
 		Prompt: "where is the test managers folder located",
-		Choices:[]string{
-			utils.JoinAndConvertPathToOSFormat(".","unit_tests","FlaskTesting","managers"),
+		Choices: []string{
+			utils.JoinAndConvertPathToOSFormat(".", "unit_tests", "FlaskTesting", "managers"),
 		},
 		Other: true,
 	}
-	testManagersLocation := utils.JoinAndConvertPathToOSFormat(targetApp,utils.ShowMenu(cliInfo,nil))
+	testManagersLocation := utils.JoinAndConvertPathToOSFormat(targetApp, utils.ShowMenu(cliInfo, nil))
 	managerName := utils.GetInputFromStdin(
 		utils.GetInputFromStdinStruct{
 			Prompt: []string{"What is the name of the manager "},
 			ErrMsg: "You must provide the name of a manager",
 		},
 	)
-	managerNameString,err := utils.CreateStringObject(managerName,"")
-	snakeCaseManagerName :=managerNameString.Snakecase(false,"_manager")
-	managersLocation = utils.JoinAndConvertPathToOSFormat(managersLocation,snakeCaseManagerName)
-	testManagersLocation = utils.JoinAndConvertPathToOSFormat(testManagersLocation,snakeCaseManagerName)
+	managerNameString, err := utils.CreateStringObject(managerName, "")
+	snakeCaseManagerName := managerNameString.Snakecase(false, "_manager")
+	managersLocation = utils.JoinAndConvertPathToOSFormat(managersLocation, snakeCaseManagerName)
+	testManagersLocation = utils.JoinAndConvertPathToOSFormat(testManagersLocation, snakeCaseManagerName)
 	utils.CopyDir(templateLocation, managersLocation)
-	utils.CopyDir(testTemplateLocation,testManagersLocation)
-	managerFilePath := utils.JoinAndConvertPathToOSFormat(managersLocation, fmt.Sprintf("%s.py",snakeCaseManagerName))
-	testManagerFilePath :=utils.JoinAndConvertPathToOSFormat(testManagersLocation, fmt.Sprintf("test_%s.py",snakeCaseManagerName))
+	utils.CopyDir(testTemplateLocation, testManagersLocation)
+	managerFilePath := utils.JoinAndConvertPathToOSFormat(managersLocation, fmt.Sprintf("%s.py", snakeCaseManagerName))
+	testManagerFilePath := utils.JoinAndConvertPathToOSFormat(testManagersLocation, fmt.Sprintf("test_%s.py", snakeCaseManagerName))
 	os.Rename(
 		utils.JoinAndConvertPathToOSFormat(managersLocation, "template_manager.py"),
 		managerFilePath,
@@ -65,10 +67,9 @@ func main() {
 		if err != nil {
 			return
 		}
-		fileString = strings.ReplaceAll(fileString, "Template", managerNameString.Classify(false,""))
-		fileString = strings.ReplaceAll(fileString, "template", managerNameString.Snakecase(false,""))
+		fileString = strings.ReplaceAll(fileString, "Template", managerNameString.Classify(false, ""))
+		fileString = strings.ReplaceAll(fileString, "template", managerNameString.Snakecase(false, ""))
 		utils.OverwriteFile(path, fileString)
 	}
-
 
 }

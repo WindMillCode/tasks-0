@@ -2,19 +2,20 @@ package main
 
 import (
 	"fmt"
-	"path/filepath"
 	"main/shared"
+	"path/filepath"
+
 	"github.com/windmillcode/go_cli_scripts/v4/utils"
 )
 
 func main() {
 
-	utils.CDToWorkspaceRoot()
+	shared.CDToWorkspaceRoot()
 
 	initScript := utils.GetInputFromStdin(
 		utils.GetInputFromStdinStruct{
 			Prompt:  []string{"docker init script to run relative to workspace root "},
-			Default: utils.JoinAndConvertPathToOSFormat("ignore\\Local\\docker_init_container.go"),
+			Default: utils.JoinAndConvertPathToOSFormat(".windmillcode\\Local\\docker_init_container.go"),
 		},
 	)
 	initScriptArgsStruct := utils.TakeVariableArgs(
@@ -24,7 +25,6 @@ func main() {
 	initScriptLocation := filepath.Dir(initScript)
 	utils.CDToLocation(initScriptLocation)
 	initScript = filepath.Base(initScript)
-
 
 	utils.RunCommand(shared.GetGoExecutable(), []string{"run", initScript, initScriptArgs})
 }

@@ -4,11 +4,12 @@ import (
 	"regexp"
 
 	"github.com/windmillcode/go_cli_scripts/v4/utils"
+	"main/shared"
 )
 
 func main() {
 
-	utils.CDToWorkspaceRoot()
+	shared.CDToWorkspaceRoot()
 	sourceBranch := "dev"
 	currentBranch := utils.RunCommandAndGetOutput("git", []string{"rev-parse", "--abbrev-ref", "HEAD"})
 	pattern := `\s+|\n+`

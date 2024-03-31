@@ -5,11 +5,12 @@ import (
 	"regexp"
 
 	"github.com/windmillcode/go_cli_scripts/v4/utils"
+	"main/shared"
 )
 
 func main() {
 
-	utils.CDToWorkspaceRoot()
+	shared.CDToWorkspaceRoot()
 	cliInfo := utils.ShowMenuModel{
 		Prompt: "Choose an option:",
 		Choices: []string{

@@ -26,7 +26,7 @@ Angular Frontend: Run Compodoc
 
 This task runs Compodoc for the Angular frontend.
 
-Angular Frontend: Run Translate
+Misc: Translate JSON
 -------------------------------
 
 This task runs translation-related processes for the Angular frontend.

@@ -11,11 +11,12 @@ import (
 	"sync"
 
 	"github.com/windmillcode/go_cli_scripts/v4/utils"
+	"main/shared"
 )
 
 func main() {
 
-	utils.CDToWorkspaceRoot()
+	shared.CDToWorkspaceRoot()
 	workspaceRoot, err := os.Getwd()
 	settings, err := utils.GetSettingsJSON(workspaceRoot)
 	if err != nil {
@@ -119,5 +120,3 @@ func downloadDiodeCLI() (string, bool) {
 	}
 	return targetExecutable, false
 }
-
-

@@ -7,11 +7,12 @@ import (
 	"sync"
 
 	"github.com/windmillcode/go_cli_scripts/v4/utils"
+	"main/shared"
 )
 
 func main() {
 
-	utils.CDToWorkspaceRoot()
+	shared.CDToWorkspaceRoot()
 	workspaceRoot, err := os.Getwd()
 	if err != nil {
 		fmt.Println("there was an error while trying to receive the current dir")
@@ -85,6 +86,3 @@ func main() {
 	wg.Wait()
 
 }
-
-
-

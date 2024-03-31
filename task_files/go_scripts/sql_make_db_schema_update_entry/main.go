@@ -6,11 +6,12 @@ import (
 	"time"
 
 	"github.com/windmillcode/go_cli_scripts/v4/utils"
+	"main/shared"
 )
 
 func main() {
 
-	utils.CDToWorkspaceRoot()
+	shared.CDToWorkspaceRoot()
 	workspaceRoot, err := os.Getwd()
 	if err != nil {
 		return

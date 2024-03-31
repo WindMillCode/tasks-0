@@ -6,11 +6,12 @@ import (
 	"strings"
 
 	"github.com/windmillcode/go_cli_scripts/v4/utils"
+	"main/shared"
 )
 
 func main() {
 
-	utils.CDToWorkspaceRoot()
+	shared.CDToWorkspaceRoot()
 	workspaceRoot, err := os.Getwd()
 	settings, err := utils.GetSettingsJSON(workspaceRoot)
 	if err != nil {
@@ -49,11 +50,11 @@ func main() {
 	}
 
 	cliInfo = utils.ShowMenuModel{
-		Prompt: "run concurently with the scss server",
-		Choices:[]string{"TRUE","FALSE"},
+		Prompt:  "run concurently with the scss server",
+		Choices: []string{"TRUE", "FALSE"},
 		Default: "TRUE",
 	}
-	concurrentWithScss := utils.ShowMenu(cliInfo,nil)
+	concurrentWithScss := utils.ShowMenu(cliInfo, nil)
 
 	if concurrentWithScss == "FALSE" {
 		utils.RunCommand("npx", []string{
@@ -65,9 +66,9 @@ func main() {
 	} else {
 		utils.RunCommand("npm", []string{"run", "build:scss"})
 		utils.RunCommand("npx", []string{
-				"concurrently",
-				"ng serve -c " + serveConfiguration + " --ssl=true --ssl-key=" + os.Getenv("WML_CERT_KEY0") + " --ssl-cert=" + os.Getenv("WML_CERT0"),
-				fmt.Sprintf("chokidar \"%s\" -c \"%s\"",
+			"concurrently",
+			"ng serve -c " + serveConfiguration + " --ssl=true --ssl-key=" + os.Getenv("WML_CERT_KEY0") + " --ssl-cert=" + os.Getenv("WML_CERT0"),
+			fmt.Sprintf("chokidar \"%s\" -c \"%s\"",
 				"src/assets/styles/turn_to_css/**/*.{scss,css}",
 				"npm run build:scss",
 			),

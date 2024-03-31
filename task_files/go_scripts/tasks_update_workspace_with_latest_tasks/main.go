@@ -11,8 +11,6 @@ import (
 	"github.com/windmillcode/go_cli_scripts/v4/utils"
 )
 
-
-
 func main() {
 	workSpaceFolder := os.Args[1]
 	extensionFolder := os.Args[2]
@@ -23,13 +21,14 @@ func main() {
 		return
 	}
 
-	cliInfo := utils.ShowMenuModel{
-		Prompt:  "This will delete your vscode/tasks.json in your workspace folder. If you don't have a .vscode/tasks.json or you have not used this command before, it is safe to choose TRUE. Otherwise, consult with your manager before continuing",
-		Choices: []string{"TRUE", "FALSE"},
-	}
-	proceed := utils.ShowMenu(cliInfo, nil)
+	// cliInfo := utils.ShowMenuModel{
+	// 	Prompt:  "This will delete your vscode/tasks.json in your workspace folder. If you don't have a .vscode/tasks.json or you have not used this command before, it is safe to choose TRUE. Otherwise, consult with your manager before continuing",
+	// 	Choices: []string{"TRUE", "FALSE"},
+	// }
+	// proceed := utils.ShowMenu(cliInfo, nil)
+	proceed := "TRUE"
 
-	cliInfo = utils.ShowMenuModel{
+	cliInfo := utils.ShowMenuModel{
 		Prompt:  "delete dest dir to ensure proper update (if updates are not taking place choose YES)",
 		Choices: []string{"YES", "NO"},
 		Default: "YES",
@@ -43,35 +42,44 @@ func main() {
 	}
 	runMode := utils.ShowMenu(cliInfo, nil)
 
-	cliInfo = utils.ShowMenuModel{
-		Prompt:  "use default user (if unsure select NO)",
-		Choices: []string{"NO", "YES"},
-		Default: "NO",
-	}
-	customUserIsPresent := utils.ShowMenu(cliInfo, nil)
+	// TODO implement lataer
+	// cliInfo = utils.ShowMenuModel{
+	// 	Prompt:  "use default user (if unsure select NO)",
+	// 	Choices: []string{"NO", "YES"},
+	// 	Default: "NO",
+	// }
+	// customUserIsPresent := utils.ShowMenu(cliInfo, nil)
 
 	tasksJsonFilePath := utils.JoinAndConvertPathToOSFormat(extensionFolder, tasksJsonRelativeFilePath)
 	content, err, shouldReturn := shared.CreateTasksJson(tasksJsonFilePath, false)
+	if err != nil {
+		fmt.Println("Error creating tasks json file", err)
+		return
+	}
 	if shouldReturn {
 		return
 	}
 
 	var tasksJSON shared.TasksJSON
-	cleanJSON,err :=utils.RemoveComments(content)
+	cleanJSON, err := utils.RemoveComments(content)
+	if err != nil {
+		fmt.Println("Error removing comments:", err)
+		return
+	}
 	err = json.Unmarshal([]byte(cleanJSON), &tasksJSON)
 	if err != nil {
 		fmt.Println("Error unmarshalling JSON:", err)
 		return
 	}
 
+	fmt.Println("\n\n\n If you see an unexpected end of input one of the array in your JSON has a ',' for its last item. this is not valid json remove that LAST comma\n\n\n")
+
 	goExecutable := shared.GetGoExecutable()
 	goScriptsSourceDirPath := utils.JoinAndConvertPathToOSFormat(extensionFolder, "task_files/go_scripts")
-	goScriptsDestDirPath := utils.JoinAndConvertPathToOSFormat(workSpaceFolder, "ignore/Windmillcode/go_scripts")
-
-
-
+	goScriptsDestDirPath := utils.JoinAndConvertPathToOSFormat(workSpaceFolder, ".windmillcode/go_scripts")
 
 	if proceed == "TRUE" {
+
 		for index, task := range tasksJSON.Tasks {
 
 			pattern0 := ":"
@@ -81,10 +89,7 @@ func main() {
 			regex1 := regexp.MustCompile(pattern1)
 			programLocation1 := regex1.Split(strings.Join(programLocation0, ""), -1)
 			programLocation2 := strings.Join(programLocation1, "_")
-			programLocation3 := "ignore//${input:current_user_0}//go_scripts//" + programLocation2
-			if customUserIsPresent == "NO" {
-				programLocation3 = "ignore//Windmillcode//go_scripts//" + programLocation2
-			}
+			programLocation3 := ".windmillcode//go_scripts//" + programLocation2
 			taskExecutable := ".//main"
 			if runMode == "INTERPRETED" || programLocation2 == "tasks_update_workspace_without_extension" {
 				taskExecutable = fmt.Sprintf("%s %s", goExecutable, "run main.go")
@@ -100,18 +105,57 @@ func main() {
 					Args:       []string{"-ic"},
 				},
 			}
+			tasksJSON.Tasks[index].Metadata.Name = "windmillcode"
 			if utils.ArrayContainsAny([]string{task.Label}, settings.ExtensionPack.TasksToRunOnFolderOpen) {
 				tasksJSON.Tasks[index].RunOptions.RunOn = "folderOpen"
 			}
 		}
+		workspaceTasksJSONFilePath := utils.JoinAndConvertPathToOSFormat(workSpaceFolder, "/.vscode/tasks.json")
+		content, err, shouldReturn := shared.CreateTasksJson(workspaceTasksJSONFilePath, false)
+		if err != nil {
+			fmt.Println("Error creating tasks json file", err)
+			return
+		}
+		if shouldReturn {
+			return
+		}
+		var previousTasksJSON map[string]json.RawMessage
+		previousCleanJSON, err := utils.RemoveComments(content)
+		err = json.Unmarshal([]byte(previousCleanJSON), &previousTasksJSON)
+		if err != nil {
+			fmt.Println("Error unmarshalling JSON:", err)
+			return
+		}
 
-		tasksJSONData, err := json.MarshalIndent(tasksJSON, "", "  ")
+		err = json.Unmarshal([]byte(previousCleanJSON), &previousTasksJSON)
+		if err != nil {
+			fmt.Println("Error unmarshalling JSON:", err)
+			return
+		}
+
+		var previousTasks []json.RawMessage
+		err = json.Unmarshal(previousTasksJSON["tasks"], &previousTasks)
+		if err != nil {
+			fmt.Println("Error unmarshalling tasks:", err)
+			return
+		}
+		currentTasksRaw := turnToDynamicJSONArray(tasksJSON.Tasks)
+
+		var previousInputs []json.RawMessage
+		err = json.Unmarshal(previousTasksJSON["inputs"], &previousInputs)
+		currentInputsRaw := turnToDynamicJSONArray(tasksJSON.Inputs)
+		var newTasksJSON shared.DynamicTasksJSON
+		newTasksJSON.Version = tasksJSON.Version
+		newTasksJSON.Tasks = append(previousTasks, currentTasksRaw...)
+		newTasksJSON.Inputs = append(previousInputs, currentInputsRaw...)
+
+		// marker
+		tasksJSONData, err := json.MarshalIndent(newTasksJSON, "", "  ")
 		if err != nil {
 			fmt.Println("Error marshalling JSON:", err)
 			return
 		}
 
-		workspaceTasksJSONFilePath := utils.JoinAndConvertPathToOSFormat(workSpaceFolder, "/.vscode/tasks.json")
 		workspaceTasksJSONFile, err := os.OpenFile(workspaceTasksJSONFilePath, os.O_WRONLY|os.O_TRUNC, 0644)
 		if err != nil {
 			fmt.Println("Error opening file:", err)
@@ -125,13 +169,24 @@ func main() {
 		}
 	}
 
-
-
-	shared.RebuildExecutables(proceed, tasksJSON, goScriptsDestDirPath, goExecutable,preActions(deleteDestDir,goScriptsSourceDirPath, goScriptsDestDirPath))
+	shared.RebuildExecutables(proceed, tasksJSON, goScriptsDestDirPath, goExecutable, preActions(deleteDestDir, goScriptsSourceDirPath, goScriptsDestDirPath))
 }
 
-func preActions(deleteDestDir,goScriptsSourceDirPath , goScriptsDestDirPath string) func() {
-	return func ()  {
+func turnToDynamicJSONArray[T any](mySource []T) []json.RawMessage {
+	var rawItems []json.RawMessage
+	for _, item := range mySource {
+		rawItem, err := json.Marshal(item)
+		if err != nil {
+			fmt.Println("Error marshalling:", err)
+			continue
+		}
+		rawItems = append(rawItems, rawItem)
+	}
+	return rawItems
+}
+
+func preActions(deleteDestDir, goScriptsSourceDirPath, goScriptsDestDirPath string) func() {
+	return func() {
 		if deleteDestDir == "YES" {
 			fmt.Println("Deleting Dest dir ...")
 			if err := os.RemoveAll(goScriptsDestDirPath); err != nil {

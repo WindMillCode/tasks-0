@@ -7,6 +7,7 @@ import (
 
 	"github.com/iancoleman/strcase"
 	"github.com/windmillcode/go_cli_scripts/v4/utils"
+	"main/shared"
 )
 
 func main() {
@@ -18,7 +19,7 @@ func main() {
 	templateLocation := utils.JoinAndConvertPathToOSFormat(scriptLocation, "template")
 	templateEndpointFile := utils.JoinAndConvertPathToOSFormat(templateLocation, "template_endpoint.py")
 	templateHandlerFile := utils.JoinAndConvertPathToOSFormat(templateLocation, "template_handler.py")
-	utils.CDToWorkspaceRoot()
+	shared.CDToWorkspaceRoot()
 	utils.CDToFlaskApp()
 	targetApp, err := os.Getwd()
 	if err != nil {

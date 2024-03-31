@@ -5,12 +5,14 @@ import (
 	"os"
 	"path/filepath"
 	"regexp"
+
 	"github.com/windmillcode/go_cli_scripts/v4/utils"
+	"main/shared"
 )
 
 func main() {
 
-	utils.CDToWorkspaceRoot()
+	shared.CDToWorkspaceRoot()
 	rootDir, err := os.Getwd()
 	if err != nil {
 		return
@@ -30,7 +32,6 @@ func main() {
 	// 	},
 	// )
 
-
 	// insertPos := utils.ShowMenu(cliInfo,nil)
 
 	pattern := utils.GetInputFromStdin(
@@ -46,16 +47,14 @@ func main() {
 		},
 	)
 
-
-
 	fileLinesPredicateFn := func(fullPath string) {
 		oldFileName := filepath.Base(fullPath)
 		re := regexp.MustCompile(pattern)
-		newFileName := re.ReplaceAllString(oldFileName,overwriteString)
+		newFileName := re.ReplaceAllString(oldFileName, overwriteString)
 		os.Rename(
 			fullPath,
 			utils.JoinAndConvertPathToOSFormat(
-				filepath.Dir(fullPath),newFileName,
+				filepath.Dir(fullPath), newFileName,
 			),
 		)
 	}

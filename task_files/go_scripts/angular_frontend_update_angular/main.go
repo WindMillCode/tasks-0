@@ -13,7 +13,7 @@ import (
 
 func main() {
 
-	utils.CDToWorkspaceRoot()
+	shared.CDToWorkspaceRoot()
 	workspaceRoot, err := os.Getwd()
 	if err != nil {
 		fmt.Println("there was an error while trying to receive the current dir")
@@ -78,7 +78,7 @@ func updateAngular(project string, angularApp string) {
 		if packageManager == "yarn" {
 			utils.RunCommandInSpecificDirectory("yarn", append([]string{"upgrade"}, deps...), angularApp)
 			utils.RunCommandInSpecificDirectory("yarn", append([]string{"upgrade", "--dev"}, devDeps...), angularApp)
-		} else if (packageManager == "pnpm") {
+		} else if packageManager == "pnpm" {
 			utils.RunCommandInSpecificDirectory("pnpm", append([]string{"update"}, deps...), angularApp)
 		} else {
 			utils.RunCommandInSpecificDirectory("npm", append([]string{"update"}, deps...), angularApp)

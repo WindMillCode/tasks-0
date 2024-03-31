@@ -10,10 +10,11 @@ import (
 	"sync"
 
 	"github.com/windmillcode/go_cli_scripts/v4/utils"
+	"main/shared"
 )
 
 func main() {
-	utils.CDToWorkspaceRoot()
+	shared.CDToWorkspaceRoot()
 	utils.CDToAngularApp()
 	absAngularAppPath, err := os.Getwd()
 	if err != nil {
@@ -25,10 +26,9 @@ func main() {
 	if err != nil {
 		fmt.Printf("Unable to find finding karma.conf.js: %s\n", err)
 
-	}else {
+	} else {
 		fmt.Printf("Found karma.conf.js at: %s\n", karmaConfigPath)
 	}
-
 
 	subDir := ""
 	if karmaConfigPath != "" {

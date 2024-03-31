@@ -2,11 +2,12 @@ package main
 
 import (
 	"github.com/windmillcode/go_cli_scripts/v4/utils"
+	"main/shared"
 )
 
 func main() {
 
-	utils.CDToWorkspaceRoot()
+	shared.CDToWorkspaceRoot()
 	utils.CDToFlutterApp()
 
 	utils.RunCommand("flutter", []string{"channel", "stable"})

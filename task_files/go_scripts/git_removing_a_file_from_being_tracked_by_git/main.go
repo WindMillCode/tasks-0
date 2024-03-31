@@ -5,11 +5,12 @@ import (
 	"strings"
 
 	"github.com/windmillcode/go_cli_scripts/v4/utils"
+	"main/shared"
 )
 
 func main() {
 
-	utils.CDToWorkspaceRoot()
+	shared.CDToWorkspaceRoot()
 	cliInfo := utils.ShowMenuModel{
 		Prompt:  "Is it a file or directory:",
 		Choices: []string{"file", "directory"},

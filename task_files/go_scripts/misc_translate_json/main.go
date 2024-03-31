@@ -5,19 +5,28 @@ import (
 	"os"
 	"runtime"
 
+	"main/shared"
+
 	"github.com/windmillcode/go_cli_scripts/v4/utils"
 )
 
 func main() {
 
-	utils.CDToWorkspaceRoot()
+	shared.CDToWorkspaceRoot()
 	workspaceRoot, _ := os.Getwd()
-	i18nLocation := utils.JoinAndConvertPathToOSFormat(workspaceRoot, "apps", "frontend", "AngularApp", "src", "assets", "i18n")
 	settings, err := utils.GetSettingsJSON(workspaceRoot)
 	if err != nil {
 		return
 	}
 
+	cliInfo := utils.ShowMenuModel{
+		Prompt: "choose the location of the i18n folder",
+		Choices: []string{
+			utils.JoinAndConvertPathToOSFormat(workspaceRoot, "apps", "frontend", "AngularApp", "src", "assets", "i18n"),
+			utils.JoinAndConvertPathToOSFormat(workspaceRoot, "apps", "mobile", "FlutterApp", "assets", "i18n"),
+		},
+	}
+	i18nLocation := utils.ShowMenu(cliInfo, nil)
 	openAIAPIKey := utils.GetInputFromStdin(
 		utils.GetInputFromStdinStruct{
 			Prompt:  []string{"provide the open ai api key"},
@@ -44,7 +53,7 @@ func main() {
 
 	os.Setenv("OPENAI_API_BASE", openAIBase)
 	os.Setenv("OPENAI_API_KEY_0", openAIAPIKey)
-	utils.CDToLocation(utils.JoinAndConvertPathToOSFormat(workspaceRoot, "ignore", "Windmillcode", "go_scripts", "i18n_script_via_ai"))
+	utils.CDToLocation(utils.JoinAndConvertPathToOSFormat(workspaceRoot, ".windmillcode", "go_scripts", "i18n_script_via_ai"))
 	// pathSeparator := string(filepath.Separator)
 	i18nScriptLocation, _ := os.Getwd()
 	switch os := runtime.GOOS; os {

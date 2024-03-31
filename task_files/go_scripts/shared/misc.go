@@ -25,6 +25,11 @@ type 	Metadata struct {
 	Name string `json:"name"`
 }
 
+type RunOptions struct {
+	RunOn         string `json:"runOn"`
+	InstanceLimit int    `json:"instanceLimit"`
+}
+
 type Task struct {
 	Label   string `json:"label"`
 	Type    string `json:"type"`
@@ -38,10 +43,7 @@ type Task struct {
 	Osx struct {
 		Command string `json:"command"`
 	} `json:"osx"`
-	RunOptions struct {
-		RunOn         string `json:"runOn"`
-		InstanceLimit int    `json:"instanceLimit"`
-	} `json:"runOptions"`
+	RunOptions RunOptions `json:"runOptions"`
 	Presentation struct {
 		Panel string `json:"panel"`
 	} `json:"presentation"`

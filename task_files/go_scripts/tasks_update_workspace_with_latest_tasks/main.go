@@ -95,7 +95,7 @@ func main() {
 				taskExecutable = fmt.Sprintf("%s %s", goExecutable, "run main.go")
 			}
 			linuxCommand0 := "cd " + programLocation3 + " ; " + taskExecutable
-			windowsCommand0 := "cd " + strings.Replace(programLocation3, "//", "\\", -1) + " ; " + strings.Replace(taskExecutable, "//", "\\", -1)
+			windowsCommand0 := "cd " + strings.Replace(programLocation3, "//", "\\", -1) + " ; " + strings.Replace(taskExecutable+".exe", "//", "\\", -1)
 			tasksJSON.Tasks[index].Windows.Command = windowsCommand0
 			tasksJSON.Tasks[index].Osx.Command = linuxCommand0
 			tasksJSON.Tasks[index].Linux.Command = linuxCommand0
@@ -139,6 +139,40 @@ func main() {
 			fmt.Println("Error unmarshalling tasks:", err)
 			return
 		}
+		for i, taskRaw := range previousTasks {
+			// Unmarshal the task into a map to access its properties
+			var task map[string]interface{}
+			if err := json.Unmarshal(taskRaw, &task); err != nil {
+				fmt.Println("Error unmarshalling task:", err)
+				continue
+			}
+
+			// Check if the task's label is in the TasksToRunOnFolderOpen list
+			label, ok := task["label"].(string)
+			if !ok {
+				fmt.Println("Error: label is not a string")
+				continue
+			}
+			if utils.ArrayContainsAny([]string{label}, settings.ExtensionPack.TasksToRunOnFolderOpen) {
+				runOptions, exists := task["runOptions"].(map[string]interface{})
+				if !exists {
+					runOptions = make(map[string]interface{})
+					task["runOptions"] = runOptions
+				}
+				runOptions["runOn"] = "folderOpen"
+			}
+
+			// Marshal the task back into json.RawMessage
+			modifiedTaskRaw, err := json.Marshal(task)
+			if err != nil {
+				fmt.Println("Error marshalling task:", err)
+				continue
+			}
+
+			// Update the previousTasks slice with the modified task
+			previousTasks[i] = modifiedTaskRaw
+		}
+
 		currentTasksRaw := turnToDynamicJSONArray(tasksJSON.Tasks)
 
 		var previousInputs []json.RawMessage
@@ -146,7 +180,7 @@ func main() {
 		currentInputsRaw := turnToDynamicJSONArray(tasksJSON.Inputs)
 		var newTasksJSON shared.DynamicTasksJSON
 		newTasksJSON.Version = tasksJSON.Version
-		newTasksJSON.Tasks = append( filterJSONForOwnItems(previousTasks), currentTasksRaw...)
+		newTasksJSON.Tasks = append(filterJSONForOwnItems(previousTasks), currentTasksRaw...)
 		newTasksJSON.Inputs = append(filterJSONForOwnItems(previousInputs), currentInputsRaw...)
 
 		// marker
@@ -190,9 +224,6 @@ func filterJSONForOwnItems(items []json.RawMessage) []json.RawMessage {
 	}
 	return filteredItems
 }
-
-
-
 
 func turnToDynamicJSONArray[T any](mySource []T) []json.RawMessage {
 	var rawItems []json.RawMessage

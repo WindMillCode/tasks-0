@@ -21,6 +21,10 @@ type CommandOptions struct {
 	Shell ShellOptions `json:"shell"`
 }
 
+type 	Metadata struct {
+	Name string `json:"name"`
+}
+
 type Task struct {
 	Label   string `json:"label"`
 	Type    string `json:"type"`
@@ -41,19 +45,16 @@ type Task struct {
 	Presentation struct {
 		Panel string `json:"panel"`
 	} `json:"presentation"`
-	Metadata struct {
-		Name string `json:"name"`
-	} `json:"metadata"`
+	Metadata     Metadata  `json:"metadata"`
 }
 
+
 type Input struct {
-	ID          string `json:"id"`
-	Description string `json:"description"`
-	Default     string `json:"default"`
-	Type        string `json:"type"`
-	Metadata struct {
-		Name string `json:"name"`
-	} `json:"metadata"`
+	ID          string     `json:"id"`
+	Description string     `json:"description"`
+	Default     string     `json:"default"`
+	Type        string     `json:"type"`
+	Metadata     Metadata  `json:"metadata"`
 }
 
 type TasksJSON struct {

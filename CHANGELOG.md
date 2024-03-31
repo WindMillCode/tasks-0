@@ -206,3 +206,11 @@ from coverageReporter.dir if it cant find it it will run the test regardless and
 
 ## [1.87.2006] - 3-28-2024
 [FIX] ensured empty directoires are copied
+
+## [1.87.2007] 03-31-2024
+
+[UPDATE] Introduced a new `Metadata` struct in `misc.go`, refactoring the `Task` and `Input` structures for improved maintainability.
+
+[PATCH] Added a `filterJSONForOwnItems` function in `main.go` to preserve user's original task JSON while merging with the extension's own tasks JSON, ensuring user data integrity during updates.
+
+[BUG] Corrected data merging logic in `main.go` to prevent overwriting user's tasks with extension's tasks, ensuring user's original task configurations are maintained.

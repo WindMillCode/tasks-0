@@ -146,8 +146,8 @@ func main() {
 		currentInputsRaw := turnToDynamicJSONArray(tasksJSON.Inputs)
 		var newTasksJSON shared.DynamicTasksJSON
 		newTasksJSON.Version = tasksJSON.Version
-		newTasksJSON.Tasks = append(previousTasks, currentTasksRaw...)
-		newTasksJSON.Inputs = append(previousInputs, currentInputsRaw...)
+		newTasksJSON.Tasks = append( filterJSONForOwnItems(previousTasks), currentTasksRaw...)
+		newTasksJSON.Inputs = append(filterJSONForOwnItems(previousInputs), currentInputsRaw...)
 
 		// marker
 		tasksJSONData, err := json.MarshalIndent(newTasksJSON, "", "  ")
@@ -171,6 +171,28 @@ func main() {
 
 	shared.RebuildExecutables(proceed, tasksJSON, goScriptsDestDirPath, goExecutable, preActions(deleteDestDir, goScriptsSourceDirPath, goScriptsDestDirPath))
 }
+
+func filterJSONForOwnItems(items []json.RawMessage) []json.RawMessage {
+	var filteredItems []json.RawMessage
+	for _, item := range items {
+		var itemWithMetadata struct {
+			Metadata shared.Metadata `json:"metadata"`
+		}
+
+		if err := json.Unmarshal(item, &itemWithMetadata); err != nil {
+			fmt.Println("Error unmarshalling item:", err)
+			continue
+		}
+
+		if itemWithMetadata.Metadata.Name != "windmillcode" {
+			filteredItems = append(filteredItems, item)
+		}
+	}
+	return filteredItems
+}
+
+
+
 
 func turnToDynamicJSONArray[T any](mySource []T) []json.RawMessage {
 	var rawItems []json.RawMessage

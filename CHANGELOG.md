@@ -208,12 +208,15 @@ from coverageReporter.dir if it cant find it it will run the test regardless and
 [FIX] ensured empty directoires are copied
 
 ## [1.87.2100] 03-31-2024
+
 [BREAKING CHANGE]- ignore folder now becomes .windmillcode folder all projects need to rename ignore to .windmillcode
-
-
 [UPDATE] Introduced a new `Metadata` struct in `misc.go`, refactoring the `Task` and `Input` structures for improved maintainability.
-
 [PATCH] Added a `filterJSONForOwnItems` function in `main.go` to preserve user's original task JSON while merging with the extension's own tasks JSON, ensuring user data integrity during updates.
-
 [BUG] Corrected data merging logic in `main.go` to prevent overwriting user's tasks with extension's tasks, ensuring user's original task configurations are maintained.
 
+
+## [1.87.2101] 3-31-2024
+
+[UPDATE] Refactored the RunOptions structure in misc.go, extracting it into a separate type for improved code clarity and reuse.
+[PATCH] Adjusted the Windows command construction in tasks_update_workspace_with_latest_tasks/main.go to append ".exe" to the executable, ensuring correct execution path on Windows systems.
+[COMPLEX MERGE] Enhanced task processing logic in tasks_update_workspace_with_latest_tasks/main.go to dynamically assign runOn settings based on task labels, facilitating more flexible task execution control.

@@ -440,14 +440,6 @@
     }
   ],
   "inputs": [
-    {
-      "id": "current_user_0",
-      "description": "the user to run their env scripts",
-      "default": "Windmillcode",
-      "type": "promptString",
-      "metadata": {
-        "name": "windmillcode"
-      }
-    }
+
   ]
 }

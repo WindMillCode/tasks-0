@@ -153,14 +153,16 @@ func main() {
 				fmt.Println("Error: label is not a string")
 				continue
 			}
+			var runOnValue = ""
 			if utils.ArrayContainsAny([]string{label}, settings.ExtensionPack.TasksToRunOnFolderOpen) {
-				runOptions, exists := task["runOptions"].(map[string]interface{})
-				if !exists {
-					runOptions = make(map[string]interface{})
-					task["runOptions"] = runOptions
-				}
-				runOptions["runOn"] = "folderOpen"
+				runOnValue = "folderOpen"
 			}
+			runOptions, exists := task["runOptions"].(map[string]interface{})
+			if !exists {
+				runOptions = make(map[string]interface{})
+				task["runOptions"] = runOptions
+			}
+			runOptions["runOn"] = runOnValue
 
 			// Marshal the task back into json.RawMessage
 			modifiedTaskRaw, err := json.Marshal(task)

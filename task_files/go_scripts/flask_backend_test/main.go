@@ -6,11 +6,10 @@ import (
 	"net/http"
 	"sync"
 
-	"github.com/windmillcode/go_cli_scripts/v4/utils"
+	"github.com/windmillcode/go_cli_scripts/v5/utils"
 )
 
 func main() {
-
 
 	flaskAppFolder, err := shared.SetupEnvironmentToRunFlaskApp("test")
 	if err != nil {
@@ -36,7 +35,6 @@ func main() {
 		}
 	}()
 
-
 	wg.Add(1)
 	go func() {
 		defer wg.Done()
@@ -44,9 +42,9 @@ func main() {
 		for {
 			utils.RunCommandWithOptions(
 				utils.CommandOptions{
-					Command: "python",
-					Args: []string{"run_tests.py"},
-					TargetDir:  flaskAppUnitTestFolder,
+					Command:         "python",
+					Args:            []string{"run_tests.py"},
+					TargetDir:       flaskAppUnitTestFolder,
 					PrintOutputOnly: true,
 				},
 			)
@@ -56,6 +54,3 @@ func main() {
 	wg.Wait()
 
 }
-
-
-

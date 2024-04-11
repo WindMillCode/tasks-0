@@ -4,7 +4,7 @@ go 1.21
 
 require github.com/iancoleman/strcase v0.3.0
 
-require github.com/windmillcode/go_cli_scripts/v4 v4.5.5
+require github.com/windmillcode/go_cli_scripts/v5 v5.0.3
 
 require (
 	github.com/atotto/clipboard v0.1.4 // indirect

@@ -41,8 +41,8 @@ github.com/rivo/uniseg v0.1.0/go.mod h1:J6wj4VEh+S6ZtnVlnTBMWIodfgj8LQOQFoIToxlJ
 github.com/rivo/uniseg v0.2.0/go.mod h1:J6wj4VEh+S6ZtnVlnTBMWIodfgj8LQOQFoIToxlJtxc=
 github.com/rivo/uniseg v0.4.7 h1:WUdvkW8uEhrYfLC4ZzdpI2ztxP1I582+49Oc5Mq64VQ=
 github.com/rivo/uniseg v0.4.7/go.mod h1:FN3SvrM+Zdj16jyLfmOkMNblXMcoc8DfTHruCPUcx88=
-github.com/windmillcode/go_cli_scripts/v4 v4.5.5 h1:Xm06GXhk+1Fgb14pj0S1mnormi2inr6wflzuEqiVN8o=
-github.com/windmillcode/go_cli_scripts/v4 v4.5.5/go.mod h1:wqusuW8+8Yl/hOijQc1Hwk916FfW9tqJb7ZG497fXi0=
+github.com/windmillcode/go_cli_scripts/v5 v5.0.3 h1:ibIj9qeUDpBVaG+Sha+6zNbrfGgSvl8gO+rFei+ocrg=
+github.com/windmillcode/go_cli_scripts/v5 v5.0.3/go.mod h1:Rz+nrILSb6OssF6y1GQaI/e44WxAwt6tFxfZnsanp5E=
 golang.org/x/sync v0.6.0 h1:5BMeUDZ7vkXGfEr1x9B4bRcTH4lpkTkpdh0T/J+qjbQ=
 golang.org/x/sync v0.6.0/go.mod h1:Czt+wKu1gCyEFDUtn0jG5QVvpJ6rzVqr5aXyt9drQfk=
 golang.org/x/sys v0.0.0-20220310020820-b874c991c1a5/go.mod h1:oPkhp1MJrh7nUepCBck5+mAzfO9JrbApNNgaTdGDITg=

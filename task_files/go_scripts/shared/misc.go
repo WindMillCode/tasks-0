@@ -9,7 +9,7 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/windmillcode/go_cli_scripts/v4/utils"
+	"github.com/windmillcode/go_cli_scripts/v5/utils"
 )
 
 type ShellOptions struct {
@@ -21,7 +21,7 @@ type CommandOptions struct {
 	Shell ShellOptions `json:"shell"`
 }
 
-type 	Metadata struct {
+type Metadata struct {
 	Name string `json:"name"`
 }
 
@@ -43,20 +43,19 @@ type Task struct {
 	Osx struct {
 		Command string `json:"command"`
 	} `json:"osx"`
-	RunOptions RunOptions `json:"runOptions"`
+	RunOptions   RunOptions `json:"runOptions"`
 	Presentation struct {
 		Panel string `json:"panel"`
 	} `json:"presentation"`
-	Metadata     Metadata  `json:"metadata"`
+	Metadata Metadata `json:"metadata"`
 }
 
-
 type Input struct {
-	ID          string     `json:"id"`
-	Description string     `json:"description"`
-	Default     string     `json:"default"`
-	Type        string     `json:"type"`
-	Metadata     Metadata  `json:"metadata"`
+	ID          string   `json:"id"`
+	Description string   `json:"description"`
+	Default     string   `json:"default"`
+	Type        string   `json:"type"`
+	Metadata    Metadata `json:"metadata"`
 }
 
 type TasksJSON struct {
@@ -66,13 +65,13 @@ type TasksJSON struct {
 }
 
 type DynamicTasksJSON struct {
-	Version string  `json:"version"`
-	Tasks   []json.RawMessage  `json:"tasks"`
+	Version string            `json:"version"`
+	Tasks   []json.RawMessage `json:"tasks"`
 	Inputs  []json.RawMessage `json:"inputs"`
 }
 
 func CDToWorkspaceRoot() {
-	utils.CDToLocation(filepath.Join("..", "..",".."))
+	utils.CDToLocation(filepath.Join("..", "..", ".."))
 }
 
 func RebuildExecutables(proceed string, tasksJSON TasksJSON, goScriptsDestDirPath string, goExecutable string, beforeActionPredicate func()) {

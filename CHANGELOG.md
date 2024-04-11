@@ -223,3 +223,13 @@ from coverageReporter.dir if it cant find it it will run the test regardless and
 
 ## [1.87.2102] 3-31-2024 8:24:38 PM EST
 [UPDATE] We made the 'runOptions' in 'tasks_update_workspace_with_latest_tasks/main.go' smarter. Now, it directly sets 'runOn' to 'folderOpen' when needed, no extra steps. It's like we gave it a shortcut, making things faster and the code cleaner.
+
+## [1.87.2200] 4/11/2024 7:29:00 PM EST
+
+- [UPDATE] Hey there, we just upgraded our utility scripts to use version 5 of `go_cli_scripts`! It's like updating your phone's OS to make sure everything runs smoothly.
+
+- [CHECKPOINT] We've added a cool feature in the `flutter_mobile_build` script. Now, when you're building your app, you can pick an environment and provide a Sentry DSN. It's like telling your app where to send those sneaky bugs!
+
+- [UPDATE] In `flutter_mobile_build`, there's now a neat step that bundles up your debug symbols into a zip file. It's like packing your suitcase before a trip, making sure you've got everything you need.
+
+- [UPDATE] Oh, and when you're done building your Flutter app, the script will open the .aab file

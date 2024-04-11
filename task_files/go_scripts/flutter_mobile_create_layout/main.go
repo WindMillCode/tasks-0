@@ -5,9 +5,10 @@ import (
 	"os"
 	"strings"
 
-	"github.com/iancoleman/strcase"
-	"github.com/windmillcode/go_cli_scripts/v4/utils"
 	"main/shared"
+
+	"github.com/iancoleman/strcase"
+	"github.com/windmillcode/go_cli_scripts/v5/utils"
 )
 
 func main() {

@@ -10,8 +10,9 @@ import (
 	"os"
 	"sync"
 
-	"github.com/windmillcode/go_cli_scripts/v4/utils"
 	"main/shared"
+
+	"github.com/windmillcode/go_cli_scripts/v5/utils"
 )
 
 func main() {

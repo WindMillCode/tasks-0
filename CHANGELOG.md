@@ -233,3 +233,6 @@ from coverageReporter.dir if it cant find it it will run the test regardless and
 - [UPDATE] In `flutter_mobile_build`, there's now a neat step that bundles up your debug symbols into a zip file. It's like packing your suitcase before a trip, making sure you've got everything you need.
 
 - [UPDATE] Oh, and when you're done building your Flutter app, the script will open the .aab file
+
+## [1.88.0] [4/12/2024 2:59:00 PM EST]
+[UPDATE] In flutter_mobile_build/main.go, we streamlined how environment variables are managed and how the Flutter app bundle is built. Plus, we changed the zipping part to use a simpler command, making the process quicker and less prone to errors.

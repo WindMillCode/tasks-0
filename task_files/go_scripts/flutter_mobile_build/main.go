@@ -1,13 +1,10 @@
 package main
 
 import (
-	"archive/zip"
 	"fmt"
-	"io"
 	"main/shared"
 	"os"
 	"path/filepath"
-
 	"github.com/windmillcode/go_cli_scripts/v5/utils"
 )
 
@@ -23,32 +20,29 @@ func main() {
 		return
 	}
 	utils.CDToFlutterApp()
-
-
-	cliInfo := utils.ShowMenuModel{
-		Prompt: "Choose an environment",
-		Choices:settings.ExtensionPack.Environments,
-		Default:"PROD",
+	flutterRoot, err := os.Getwd()
+	if err != nil {
+		return
 	}
- 	environment := utils.ShowMenu(cliInfo,nil)
 
-	sentryDSN := utils.GetInputFromStdin(
-		utils.GetInputFromStdinStruct{
-			Prompt: []string{"Provide the sentry dsn"},
-			Default: settings.ExtensionPack.SentryDSN,
-		},
-	)
+
+	dartDefineArray := []string{}
+	for _,val := range settings.ExtensionPack.FlutterMobileBuild.EnvVars{
+		dartDefineArray = append(dartDefineArray, "--dart-define",val )
+	}
+
 	utils.RunCommand("dart", []string{"fix", "--apply"})
-	utils.RunCommand("flutter", []string{"build", "appbundle","--dart-define",fmt.Sprintf("FLUTTER_MOBILE_ENV=%s",environment),"--dart-define",fmt.Sprintf("SENTRY_DSN=%s",sentryDSN)})
-	releaseLocation := utils.ConvertPathToOSFormat("build\\app\\outputs\\bundle\\release")
-	debugSymbolsFolder := utils.ConvertPathToOSFormat("build\\app\\intermediates\\merged_native_libs\\release\\out\\lib")
-	zipFileName := "debugSymbols.zip"
+	utils.RunCommand("flutter", append([]string{"build", "appbundle"}, dartDefineArray...))
+	releaseLocation := utils.JoinAndConvertPathToOSFormat(flutterRoot,"build\\app\\outputs\\bundle\\release")
+	debugSymbolsFolder := utils.JoinAndConvertPathToOSFormat(flutterRoot,"build\\app\\intermediates\\merged_native_libs\\release\\out\\lib")
+	zipFileName := "lib.zip"
 	if err := zipFolder(debugSymbolsFolder, zipFileName); err != nil {
 		fmt.Println("Error zipping folder:", err)
 		return
 	}
+	srcPath := utils.JoinAndConvertPathToOSFormat(debugSymbolsFolder,zipFileName)
 	destPath := utils.JoinAndConvertPathToOSFormat(releaseLocation, zipFileName)
-	if err := os.Rename(zipFileName, destPath); err != nil {
+	if err := os.Rename(srcPath, destPath); err != nil {
 		fmt.Println("Error moving zip file:", err)
 		return
 	}
@@ -61,43 +55,26 @@ func main() {
 }
 
 func zipFolder(srcFolder, destZip string) error {
-	zipfile, err := os.Create(destZip)
-	if err != nil {
-		return err
+	// Ensure the destination zip file has the .zip extension
+	if filepath.Ext(destZip) != ".zip" {
+		destZip += ".zip"
 	}
-	defer zipfile.Close()
 
-	archive := zip.NewWriter(zipfile)
-	defer archive.Close()
+	// Construct the command arguments for 7z
+	args := []string{"a", destZip, srcFolder + "\\*"} // a for add, include all files from srcFolder
 
-	err = filepath.Walk(srcFolder, func(path string, info os.FileInfo, err error) error {
-		if err != nil {
-			return err
-		}
-
-		if info.IsDir() {
-			return nil
-		}
-
-		relPath, err := filepath.Rel(srcFolder, path)
-		if err != nil {
-			return err
-		}
-
-		zipFile, err := archive.Create(relPath)
-		if err != nil {
-			return err
-		}
-
-		srcFile, err := os.Open(path)
-		if err != nil {
-			return err
-		}
-		defer srcFile.Close()
-
-		_, err = io.Copy(zipFile, srcFile)
-		return err
+	// Run the 7z command
+	_, err := utils.RunCommandWithOptions(utils.CommandOptions{
+		Command: "7z",
+		Args:    args,
+		TargetDir: srcFolder,
 	})
 
-	return err
+	if err != nil {
+		fmt.Printf("Failed to zip folder: %s\n", err)
+		return err
+	}
+
+	fmt.Println("Folder zipped successfully:", destZip)
+	return nil
 }

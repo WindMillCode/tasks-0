@@ -213,7 +213,7 @@
       }
     },
     {
-      "label": "flutter mobile: build",
+      "label": "flutter mobile: build deploy",
       "type": "shell",
 
 

@@ -236,3 +236,14 @@ from coverageReporter.dir if it cant find it it will run the test regardless and
 
 ## [1.88.0] [4/12/2024 2:59:00 PM EST]
 [UPDATE] In flutter_mobile_build/main.go, we streamlined how environment variables are managed and how the Flutter app bundle is built. Plus, we changed the zipping part to use a simpler command, making the process quicker and less prone to errors.
+
+## [1.88.1] 4/15/2024 10:12:36 PM EST
+
+
+[COMPLEX MERGE] Major overhaul in flutter mobile build its now flutter mobile build deploy We’ve reworked how we handle deploying to the Play Store. Now, there’s a bunch of steps to get inputs from you (like key files and package names), and depending on your choices, we either zip up some stuff or kick off deployment right from the terminal. Plus, we’ve added multi-threading with sync.WaitGroup to manage tasks like opening directories or deploying packages concurrently. It’s a big mix of updates all in one place, so be sure to test this out.
+
+
+[NEW FEATURE] We're now supporting automated APK and AAB deployments to Google Play! With functions like deployAppbundle and deployAPK, you can automate uploading directly to various Play Store tracks. Set up your credentials, specify your track, and let it roll out automatically. Just be ready with that keyFile and the right trackName.
+
+[PATCH] Improved error handling across the board, especially with file operations and API interactions. We've tightened up the way we handle failures, like zipping folders or moving files, so expect more robust error messages instead of just crashing out.
+

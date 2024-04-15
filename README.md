@@ -128,10 +128,10 @@ Flutter Mobile: Create Riverpod Provider
 
 This task creates a Riverpod provider for the Flutter mobile app.
 
-Flutter Mobile: Build
+Flutter Mobile: Build Deploy
 ---------------------
 
-This task builds the Flutter mobile app.
+This task builds the Flutter mobile app and optionally deploys the flutter app
 
 Flutter Mobile: Test
 --------------------

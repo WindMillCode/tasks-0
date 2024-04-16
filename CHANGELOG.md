@@ -247,3 +247,8 @@ from coverageReporter.dir if it cant find it it will run the test regardless and
 
 [PATCH] Improved error handling across the board, especially with file operations and API interactions. We've tightened up the way we handle failures, like zipping folders or moving files, so expect more robust error messages instead of just crashing out.
 
+## [1.88.2] 4/16/2024 12:42:17 PM EST
+
+[UPDATE] Added options to run 'flutter clean' and './gradlew --refresh-dependencies' in `flutter_mobile_build_deploy/main.go`. Now developers can choose to clean up the build environment or refresh dependencies before deploying to the Play Store. Make sure to set these options to "TRUE" if needed!
+
+[PATCH] Updated the `main()` function in `flutter_mobile_build_deploy/main.go` to include conditional commands based on new menu options. This change means you can better manage your build process directly from the menu prompts without manual tweaks.

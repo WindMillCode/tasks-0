@@ -39,12 +39,28 @@ func main() {
 	}
 	openResultLocation := utils.ShowMenu(cliInfo,nil)
 	cliInfo = utils.ShowMenuModel{
+		Prompt: "run flutter clean",
+		Choices:[]string{"TRUE","FALSE"},
+		Default: "FALSE",
+	}
+	runFlutterClean := utils.ShowMenu(cliInfo,nil)
+	cliInfo = utils.ShowMenuModel{
+		Prompt: "run ./gradlew --refresh-dependencies",
+		Choices:[]string{"TRUE","FALSE"},
+		Default: "FALSE",
+
+	}
+	runRefreshDeps := utils.ShowMenu(cliInfo,nil)
+	cliInfo = utils.ShowMenuModel{
 		Prompt: "Deploy to play store",
 		Choices:[]string{"TRUE","FALSE"},
 		Default: "TRUE",
 	}
 	deployToPlayStore := utils.ShowMenu(cliInfo,nil)
+
+
 	var keyFile, packageName, trackName,publishTarget string
+
 	if deployToPlayStore == "TRUE"{
 		keyFile = utils.GetInputFromStdin(
 			utils.GetInputFromStdinStruct{
@@ -87,6 +103,19 @@ func main() {
 		toolArgs = append(toolArgs, "--dart-define", val)
 	}
 
+	if runFlutterClean == "TRUE" {
+		utils.RunCommand("flutter",[]string{"clean"})
+	}
+	if runRefreshDeps == "TRUE" {
+		options := utils.CommandOptions{
+			Command: utils.JoinAndConvertPathToOSFormat(flutterRoot,"android","gradlew"),
+			Args: []string{"--refresh-dependencies"},
+			TargetDir: utils.JoinAndConvertPathToOSFormat(flutterRoot,"android"),
+			PrintOutput:true,
+
+		}
+		utils.RunCommandWithOptions(options)
+	}
 	utils.RunCommand("flutter", append(append(append([]string{"build"}, args...), vmAdditionalArgs...), toolArgs...))
 
 	flavorValue, _ := utils.FindRelativeToTarget(args, "--flavor", 1)

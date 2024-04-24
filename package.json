@@ -2,7 +2,7 @@
   "name": "windmillcode-tasks-zero",
   "displayName": "Windmillcode Tasks Zero",
   "description": "All tasks used at Windmillcode",
-  "version": "1.88.1000",
+  "version": "1.88.1010",
   "publisher": "windmillcode-publisher-0",
   "icon": "images/logo.png",
   "repository": {
@@ -40,7 +40,7 @@
     "compile": "tsc -b",
     "watch": "tsc -b -w"
   },
-  "shell":true,
+  "shell": true,
   "devDependencies": {
     "@types/node": "^20.12.7",
     "@types/vscode": "^1.88.0",

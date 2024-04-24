@@ -37,8 +37,8 @@
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
-    "compile": "tsc -b",
-    "watch": "tsc -b -w"
+    "compile": "tsc ",
+    "watch": "tsc  -w"
   },
   "devDependencies": {
     "@types/node": "^16.18.34",

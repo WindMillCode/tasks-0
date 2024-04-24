@@ -252,3 +252,7 @@ from coverageReporter.dir if it cant find it it will run the test regardless and
 [UPDATE] Added options to run 'flutter clean' and './gradlew --refresh-dependencies' in `flutter_mobile_build_deploy/main.go`. Now developers can choose to clean up the build environment or refresh dependencies before deploying to the Play Store. Make sure to set these options to "TRUE" if needed!
 
 [PATCH] Updated the `main()` function in `flutter_mobile_build_deploy/main.go` to include conditional commands based on new menu options. This change means you can better manage your build process directly from the menu prompts without manual tweaks.
+
+## [1.88.1000] 4/24/2024 10:30 AM EST
+
+[UPDATE] update angular_frontend run to remove .nx cache from application to clear cache

@@ -48,6 +48,10 @@ func main() {
 			fmt.Println("Error:", err)
 			return
 		}
+		if err := os.RemoveAll(utils.JoinAndConvertPathToOSFormat(".", ".nx")); err != nil {
+			fmt.Println("Error:", err)
+			return
+		}
 	}
 
 	cliInfo = utils.ShowMenuModel{

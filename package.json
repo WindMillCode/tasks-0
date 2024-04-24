@@ -40,6 +40,7 @@
     "compile": "npx tsc -b",
     "watch": "npx tsc -b -w"
   },
+  "shell":true,
   "devDependencies": {
     "@types/node": "^20.12.7",
     "@types/vscode": "^1.88.0",

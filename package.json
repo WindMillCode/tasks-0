@@ -9,7 +9,7 @@
     "url": "https://github.com/WindMillCode/tasks-0"
   },
   "engines": {
-    "vscode": "^1.79.0"
+    "vscode": "^1.88.0"
   },
   "categories": [
     "Other"

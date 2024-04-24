@@ -4,7 +4,7 @@ go 1.21
 
 require (
 	github.com/iancoleman/strcase v0.3.0
-	github.com/windmillcode/go_cli_scripts/v5 v5.1.2
+	github.com/windmillcode/go_cli_scripts/v5 v5.1.3
 	golang.org/x/oauth2 v0.19.0 // indirect
 	google.golang.org/api v0.169.0 // adjust the version correctly
 )

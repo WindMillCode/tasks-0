@@ -256,3 +256,17 @@ from coverageReporter.dir if it cant find it it will run the test regardless and
 ## [1.88.1000] 4/24/2024 10:30 AM EST
 
 [UPDATE] update angular_frontend run to remove .nx cache from application to clear cache
+
+## [1.88.1010] 4/24/2024 1:10:00 PM EST
+
+[UPDATE] Updated Go version from 1.21.0 to 1.22.2 in the `go.work` and Go module files. This might require developers to adjust their environment to the new version.
+
+[PATCH] Updated the desired extension version for Go from 1.21.6 to 1.22.2 in `src/installGo.ts`. Developers need to ensure compatibility with the new version in their projects.
+
+[UPDATE] Added a function call to set the Node.js environment based on a predefined version in `task_files/go_scripts/angular_frontend_run/main.go`. Developers using this script should verify that Node.js is configured correctly.
+
+[PATCH] Updated dependency from `github.com/windmillcode/go_cli_scripts/v5` version 5.1.2 to 5.1.3 in `go.mod` and `go.sum`. Developers should update their local dependencies to avoid potential conflicts.
+
+[UPDATE] Improved error handling in Python environment setup in `task_files/go_scripts/shared/misc.go`. Now checks if `pyenv` is installed before attempting to use it, providing a fallback message otherwise.
+
+[NEW FEATURE] Added functionality to prompt for and use a specific Node.js version in `task_files/go_scripts/shared/misc.go`. This affects developers needing to switch Node.js versions frequently.

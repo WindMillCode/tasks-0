@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
+	"os/exec"
 	"path/filepath"
 	"regexp"
 	"strings"
@@ -241,10 +242,30 @@ func SetupEnvironmentToRunFlaskApp(env string) (string, error) {
 
 	// Set the Python version if provided
 	if pythonVersion != "" {
-		utils.RunCommand("pyenv", []string{"global", pythonVersion})
+		_, err := exec.LookPath("pyenv")
+		if err == nil{
+			utils.RunCommand("pyenv", []string{"global", pythonVersion})
+		} else{
+			fmt.Println("pyenv seems not to be install in your system please install or set manually")
+		}
 	}
 
 	return flaskAppFolder, nil
+}
+
+func SetNodeJSEnvironment(myDefault string){
+	nodeJSVersion := utils.GetInputFromStdin(
+		utils.GetInputFromStdinStruct{
+			Prompt: []string{"provide the nodejs version"},
+			Default: myDefault,
+		},
+	)
+	_, err := exec.LookPath("nvm")
+	if err == nil{
+		utils.RunCommand("nvm",[]string{"use",nodeJSVersion})
+	} else{
+		fmt.Println("nvm seems not to be install in your system please install or set manually")
+	}
 }
 
 func GetGoExecutable() string {

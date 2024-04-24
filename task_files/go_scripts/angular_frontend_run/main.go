@@ -54,6 +54,7 @@ func main() {
 		}
 	}
 
+
 	cliInfo = utils.ShowMenuModel{
 		Prompt:  "run concurently with the scss server",
 		Choices: []string{"TRUE", "FALSE"},
@@ -61,6 +62,8 @@ func main() {
 	}
 	concurrentWithScss := utils.ShowMenu(cliInfo, nil)
 
+
+	shared.SetNodeJSEnvironment(settings.ExtensionPack.NodeJSVersion0)
 	if concurrentWithScss == "FALSE" {
 		utils.RunCommand("npx", []string{
 			"ng", "serve", "-c",

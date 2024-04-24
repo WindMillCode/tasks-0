@@ -37,8 +37,8 @@
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
-    "compile": "npx tsc -b",
-    "watch": "npx tsc -b -w"
+    "compile": "tsc -b",
+    "watch": "tsc -b -w"
   },
   "shell":true,
   "devDependencies": {

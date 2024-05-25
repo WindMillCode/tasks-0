@@ -282,3 +282,21 @@ from coverageReporter.dir if it cant find it it will run the test regardless and
 - **File:** `task_files/go_scripts/flutter_mobile_build_deploy/main.go`
 - **Change:** Added options to remove unused imports and executed the commands concurrently.
 - **Detail:** Added prompts to remove unused imports and used goroutines to run the command for both `lib` and `test` directories.
+
+## [1.88.1013] [5/25/2024 4:32:10 PM EST]
+
+[UPDATE] Added ignore rules for unused local variables and unused catch stack traces in multiple template files: `template_page.dart`, `template_riverpod_provider.dart`, `template_widget.dart`.
+
+Files impacted:
+- `flutter_mobile_create_layout/template/template_page.dart`
+- `flutter_mobile_create_layout/template/template_riverpod_provider.dart`
+- `flutter_mobile_create_page/template/template_page.dart`
+- `flutter_mobile_create_page/template/template_riverpod_provider.dart`
+- `flutter_mobile_create_riverpod_async_notifier_provider/template/template.dart`
+- `flutter_mobile_create_riverpod_provider/template/template.dart`
+- `flutter_mobile_create_shared_widget/template/template_riverpod_provider.dart`
+- `flutter_mobile_create_shared_widget/template/template_widget.dart`
+
+Changes:
+- Ignore unused local variables
+- Ignore unused catch stack traces

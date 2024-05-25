@@ -124,11 +124,9 @@ func main() {
         defer wg.Done()
         utils.RunCommand("dart", []string{"run", "unused_import_remover", flutterTestLocation})
     }()
-}
-
-	if runFlutterClean == "TRUE" {
-		utils.RunCommand("flutter",[]string{"clean"})
 	}
+
+
 	if runRefreshDeps == "TRUE" {
 		options := utils.CommandOptions{
 			Command: utils.JoinAndConvertPathToOSFormat(flutterRoot,"android","gradlew"),
@@ -140,6 +138,10 @@ func main() {
 		utils.RunCommandWithOptions(options)
 	}
 	wg.Wait()
+
+	if runFlutterClean == "TRUE" {
+		utils.RunCommand("flutter",[]string{"clean"})
+	}
 	utils.RunCommand("flutter", append(append(append([]string{"build"}, args...), vmAdditionalArgs...), toolArgs...))
 
 	flavorValue, _ := utils.FindRelativeToTarget(args, "--flavor", 1)

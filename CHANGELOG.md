@@ -271,7 +271,7 @@ from coverageReporter.dir if it cant find it it will run the test regardless and
 
 [NEW FEATURE] Added functionality to prompt for and use a specific Node.js version in `task_files/go_scripts/shared/misc.go`. This affects developers needing to switch Node.js versions frequently.
 
-## [1.88.1011] [5/25/2024 6:57:00 PM EST]
+## [1.88.1012] [5/25/2024 6:57:00 PM EST]
 
 **[UPDATE]**
 - **File:** `task_files/go_scripts/firebase_cloud_run_emulators/main.go`

@@ -4,14 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class TemplateRiverpodProviderValue {
-
   TemplateRiverpodProviderValue copyWith() {
     return TemplateRiverpodProviderValue();
   }
 }
 
-var TemplateRiverpodProviderInstance =
-    TemplateRiverpodProviderValue();
+var TemplateRiverpodProviderInstance = TemplateRiverpodProviderValue();
 
 class TemplateRiverpodNotifier
     extends AutoDisposeAsyncNotifier<TemplateRiverpodProviderValue> {
@@ -19,12 +17,9 @@ class TemplateRiverpodNotifier
   TemplateRiverpodProviderValue build() {
     return TemplateRiverpodProviderInstance;
   }
-
-
 }
+
 final TemplateProvider = AsyncNotifierProvider.autoDispose<
     TemplateRiverpodNotifier, TemplateRiverpodProviderValue>(() {
   return TemplateRiverpodNotifier();
 });
-
-

@@ -283,7 +283,7 @@ from coverageReporter.dir if it cant find it it will run the test regardless and
 - **Change:** Added options to remove unused imports and executed the commands concurrently.
 - **Detail:** Added prompts to remove unused imports and used goroutines to run the command for both `lib` and `test` directories.
 
-## [1.88.1013] [5/25/2024 4:32:10 PM EST]
+## [1.88.1014] [5/25/2024 4:32:10 PM EST]
 
 [UPDATE] Added ignore rules for unused local variables and unused catch stack traces in multiple template files: `template_page.dart`, `template_riverpod_provider.dart`, `template_widget.dart`.
 

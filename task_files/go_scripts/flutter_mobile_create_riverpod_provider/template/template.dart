@@ -9,21 +9,17 @@ class TemplateRiverpodProviderValue {
   }
 }
 
-var TemplateRiverpodProviderInstance =
-    TemplateRiverpodProviderValue();
+var TemplateRiverpodProviderInstance = TemplateRiverpodProviderValue();
 
-class TemplateRiverpodNotifier  extends Notifier<TemplateRiverpodProviderValue>{
-
-
+class TemplateRiverpodNotifier extends Notifier<TemplateRiverpodProviderValue> {
   @override
   TemplateRiverpodProviderValue build() {
     return TemplateRiverpodProviderInstance;
   }
 }
 
-final TemplateRiverpodProvider = NotifierProvider<
-    TemplateRiverpodNotifier,
-    TemplateRiverpodProviderValue>(() {
+final TemplateRiverpodProvider =
+    NotifierProvider<TemplateRiverpodNotifier, TemplateRiverpodProviderValue>(
+        () {
   return TemplateRiverpodNotifier();
 });
-

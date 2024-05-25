@@ -9,12 +9,10 @@ class WMLTemplateRiverpodProviderValue {
   }
 }
 
-var WMLTemplateRiverpodProviderInstance =
-    WMLTemplateRiverpodProviderValue();
+var WMLTemplateRiverpodProviderInstance = WMLTemplateRiverpodProviderValue();
 
-class WMLTemplateRiverpodNotifier  extends Notifier<WMLTemplateRiverpodProviderValue>{
-
-
+class WMLTemplateRiverpodNotifier
+    extends Notifier<WMLTemplateRiverpodProviderValue> {
   @override
   WMLTemplateRiverpodProviderValue build() {
     return WMLTemplateRiverpodProviderInstance;
@@ -22,8 +20,6 @@ class WMLTemplateRiverpodNotifier  extends Notifier<WMLTemplateRiverpodProviderV
 }
 
 final WMLTemplateRiverpodProvider = NotifierProvider<
-    WMLTemplateRiverpodNotifier,
-    WMLTemplateRiverpodProviderValue>(() {
+    WMLTemplateRiverpodNotifier, WMLTemplateRiverpodProviderValue>(() {
   return WMLTemplateRiverpodNotifier();
 });
-

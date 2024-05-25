@@ -126,6 +126,11 @@ func main() {
     }()
 	}
 
+	wg.Wait()
+
+	if runFlutterClean == "TRUE" {
+		utils.RunCommand("flutter",[]string{"clean"})
+	}
 
 	if runRefreshDeps == "TRUE" {
 		options := utils.CommandOptions{
@@ -136,11 +141,6 @@ func main() {
 
 		}
 		utils.RunCommandWithOptions(options)
-	}
-	wg.Wait()
-
-	if runFlutterClean == "TRUE" {
-		utils.RunCommand("flutter",[]string{"clean"})
 	}
 	utils.RunCommand("flutter", append(append(append([]string{"build"}, args...), vmAdditionalArgs...), toolArgs...))
 

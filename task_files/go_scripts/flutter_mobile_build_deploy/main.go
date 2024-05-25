@@ -6,6 +6,7 @@ import (
 	"main/shared"
 	"os"
 	"path/filepath"
+	"strings"
 	"sync"
 
 	"github.com/windmillcode/go_cli_scripts/v5/utils"
@@ -112,6 +113,8 @@ func main() {
 
 	var wg sync.WaitGroup
 	if removeUnusedImports == "YES" {
+		flutterLibLocation = strings.ReplaceAll(flutterLibLocation, "\\", "\\\\")
+		flutterTestLocation = strings.ReplaceAll(flutterTestLocation, "\\", "\\\\")
     wg.Add(2)
     go func() {
         defer wg.Done()

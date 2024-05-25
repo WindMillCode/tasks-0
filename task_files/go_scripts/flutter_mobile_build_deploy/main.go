@@ -27,12 +27,19 @@ func main() {
 	}
 	utils.CDToFlutterApp()
 	flutterRoot, err := os.Getwd()
+	flutterLibLocation := utils.JoinAndConvertPathToOSFormat(flutterRoot,"lib")
+	flutterTestLocation := utils.JoinAndConvertPathToOSFormat(flutterRoot,"test")
 	if err != nil {
 
 		return
 	}
 
 	cliInfo := utils.ShowMenuModel{
+		Prompt: "Remove unused imports (this may take a while)",
+		Choices:[]string{"YES","NO"},
+	}
+	removeUnusedImports := utils.ShowMenu(cliInfo,nil)
+	cliInfo = utils.ShowMenuModel{
 		Prompt: "Open result location",
 		Choices:[]string{"TRUE","FALSE"},
 		Default: "TRUE",
@@ -103,6 +110,19 @@ func main() {
 		toolArgs = append(toolArgs, "--dart-define", val)
 	}
 
+	var wg sync.WaitGroup
+	if removeUnusedImports == "YES" {
+    wg.Add(2)
+    go func() {
+        defer wg.Done()
+        utils.RunCommand("dart", []string{"run", "unused_import_remover", flutterLibLocation})
+    }()
+    go func() {
+        defer wg.Done()
+        utils.RunCommand("dart", []string{"run", "unused_import_remover", flutterTestLocation})
+    }()
+}
+
 	if runFlutterClean == "TRUE" {
 		utils.RunCommand("flutter",[]string{"clean"})
 	}
@@ -116,6 +136,7 @@ func main() {
 		}
 		utils.RunCommandWithOptions(options)
 	}
+	wg.Wait()
 	utils.RunCommand("flutter", append(append(append([]string{"build"}, args...), vmAdditionalArgs...), toolArgs...))
 
 	flavorValue, _ := utils.FindRelativeToTarget(args, "--flavor", 1)

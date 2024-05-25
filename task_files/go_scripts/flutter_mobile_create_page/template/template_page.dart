@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, must_be_immutable, unused_local_variable, unused_catch_stack
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, must_be_immutable, unused_local_variable, unused_catch_stack, unused_local_variable, unused_catch_stack
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -13,14 +13,12 @@ class WMLTemplateWidget extends ConsumerStatefulWidget {
   WMLTemplateWidget({super.key});
 
   @override
-  ConsumerState<WMLTemplateWidget> createState() =>
-      _WMLTemplateState();
+  ConsumerState<WMLTemplateWidget> createState() => _WMLTemplateState();
 }
 
 class _WMLTemplateState extends ConsumerState<WMLTemplateWidget> {
   @override
   Widget build(BuildContext context) {
-
     final rp = ref.watch(WMLTemplateRiverpodProvider);
     final wmlColors = ref.watch(WMLColorsRiverpodProvider);
     final wmlSpacing = ref.watch(WMLSpacingRiverpodProvider);
@@ -29,10 +27,7 @@ class _WMLTemplateState extends ConsumerState<WMLTemplateWidget> {
     final contextHeight = MediaQuery.of(context).size.height;
     final contextWidth = MediaQuery.of(context).size.width;
 
-
     return SizedBox(
         width: MediaQuery.of(context).size.width, child: Text("Hello Word"));
   }
-
-
 }

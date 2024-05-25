@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, must_be_immutable, unused_local_variable, unused_catch_stack
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, must_be_immutable, unused_local_variable, unused_catch_stack, unused_local_variable, unused_catch_stack
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -10,18 +10,16 @@ import 'package:eneobia/util/riverpod_providers/wml_nav/wml_nav.dart';
 import 'package:eneobia/util/riverpod_providers/wml_spacing/wml_spacing.dart';
 
 class WMLTemplateWidget extends ConsumerStatefulWidget {
-  WMLTemplateWidget({super.key,required this.pageWidget});
+  WMLTemplateWidget({super.key, required this.pageWidget});
 
-   Widget pageWidget;
+  Widget pageWidget;
   @override
-  ConsumerState<WMLTemplateWidget> createState() =>
-      _WMLTemplateState();
+  ConsumerState<WMLTemplateWidget> createState() => _WMLTemplateState();
 }
 
 class _WMLTemplateState extends ConsumerState<WMLTemplateWidget> {
   @override
   Widget build(BuildContext context) {
-
     final rp = ref.watch(WMLTemplateRiverpodProvider);
     final wmlColors = ref.watch(WMLColorsRiverpodProvider);
     final wmlSpacing = ref.watch(WMLSpacingRiverpodProvider);
@@ -31,11 +29,9 @@ class _WMLTemplateState extends ConsumerState<WMLTemplateWidget> {
     final contextWidth = MediaQuery.of(context).size.width;
 
     return SafeArea(
-        child:Scaffold(
-          appBar:AppBar(),
-        body: widget.pageWidget,
-        ));
+        child: Scaffold(
+      appBar: AppBar(),
+      body: widget.pageWidget,
+    ));
   }
-
-
 }

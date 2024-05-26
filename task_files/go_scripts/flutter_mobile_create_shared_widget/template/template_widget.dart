@@ -14,10 +14,10 @@ class WMLTemplateWidget extends ConsumerStatefulWidget {
 
   @override
   ConsumerState<WMLTemplateWidget> createState() =>
-      _WMLTemplateState();
+      _WMLTemplateWidgetState();
 }
 
-class _WMLTemplateState extends ConsumerState<WMLTemplateWidget> {
+class _WMLTemplateWidgetState extends ConsumerState<WMLTemplateWidget> {
   @override
   Widget build(BuildContext context) {
 

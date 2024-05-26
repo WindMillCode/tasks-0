@@ -13,10 +13,10 @@ class WMLTemplatePage extends ConsumerStatefulWidget {
   WMLTemplatePage({super.key});
 
   @override
-  ConsumerState<WMLTemplatePage> createState() => _WMLTemplateState();
+  ConsumerState<WMLTemplatePage> createState() => _WMLTemplatePageState();
 }
 
-class _WMLTemplateState extends ConsumerState<WMLTemplatePage> {
+class _WMLTemplatePageState extends ConsumerState<WMLTemplatePage> {
   @override
   Widget build(BuildContext context) {
     final rp = ref.watch(WMLTemplateRiverpodProvider);

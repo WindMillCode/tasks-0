@@ -317,3 +317,17 @@ Changes:
 - Renamed `WMLTemplateRiverpodProviderValue` to `WMLTemplateLayoutRiverpodProviderValue`
 - Updated related variables and provider instances to reflect new names
 - Adjusted references in the code to use new class and variable names
+
+## [1.88.1016] [5/25/2024 4:40:50 PM EST]
+
+[FIX] Renamed state class names to match widget names in template files: `template_page.dart`, `template_widget.dart`.
+
+Files impacted:
+- `flutter_mobile_create_layout/template/template_page.dart`
+- `flutter_mobile_create_page/template/template_page.dart`
+- `flutter_mobile_create_shared_widget/template/template_widget.dart`
+
+Changes:
+- Renamed `ConsumerState` class from `_WMLTemplateState` to `_WMLTemplateLayoutState` in `template_page.dart`.
+- Renamed `ConsumerState` class from `_WMLTemplateState` to `_WMLTemplatePageState` in `template_page.dart`.
+- Renamed `ConsumerState` class from `_WMLTemplateState` to `_WMLTemplateWidgetState` in `template_widget.dart`.

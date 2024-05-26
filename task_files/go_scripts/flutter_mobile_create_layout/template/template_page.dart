@@ -14,10 +14,10 @@ class WMLTemplateLayout extends ConsumerStatefulWidget {
 
   Widget pageWidget;
   @override
-  ConsumerState<WMLTemplateLayout> createState() => _WMLTemplateState();
+  ConsumerState<WMLTemplateLayout> createState() => _WMLTemplateLayoutState();
 }
 
-class _WMLTemplateState extends ConsumerState<WMLTemplateLayout> {
+class _WMLTemplateLayoutState extends ConsumerState<WMLTemplateLayout> {
   @override
   Widget build(BuildContext context) {
     final rp = ref.watch(WMLTemplateRiverpodProvider);

@@ -19,7 +19,7 @@ class WMLTemplatePage extends ConsumerStatefulWidget {
 class _WMLTemplatePageState extends ConsumerState<WMLTemplatePage> {
   @override
   Widget build(BuildContext context) {
-    final rp = ref.watch(WMLTemplateRiverpodProvider);
+    final rp = ref.watch(WMLTemplatePageRiverpodProvider);
     final wmlColors = ref.watch(WMLColorsRiverpodProvider);
     final wmlSpacing = ref.watch(WMLSpacingRiverpodProvider);
     final wmlFonts = ref.watch(WMLFontsRiverpodProvider);

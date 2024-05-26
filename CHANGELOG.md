@@ -331,3 +331,17 @@ Changes:
 - Renamed `ConsumerState` class from `_WMLTemplateState` to `_WMLTemplateLayoutState` in `template_page.dart`.
 - Renamed `ConsumerState` class from `_WMLTemplateState` to `_WMLTemplatePageState` in `template_page.dart`.
 - Renamed `ConsumerState` class from `_WMLTemplateState` to `_WMLTemplateWidgetState` in `template_widget.dart`.
+
+## [1.88.1017] [5/25/2024 4:45:10 PM EST]
+
+[FIX] Updated provider names in template files: `template_page.dart`, `template_widget.dart`.
+
+Files impacted:
+- `flutter_mobile_create_layout/template/template_page.dart`
+- `flutter_mobile_create_page/template/template_page.dart`
+- `flutter_mobile_create_shared_widget/template/template_widget.dart`
+
+Changes:
+- Changed provider from `WMLTemplateRiverpodProvider` to `WMLTemplateLayoutRiverpodProvider` in `template_page.dart`.
+- Changed provider from `WMLTemplateRiverpodProvider` to `WMLTemplatePageRiverpodProvider` in `template_page.dart`.
+- Changed provider from `WMLTemplateRiverpodProvider` to `WMLTemplateWidgetRiverpodProvider` in `template_widget.dart`.

@@ -21,7 +21,7 @@ class _WMLTemplateWidgetState extends ConsumerState<WMLTemplateWidget> {
   @override
   Widget build(BuildContext context) {
 
-    final rp = ref.watch(WMLTemplateRiverpodProvider);
+    final rp = ref.watch(WMLTemplateWidgetRiverpodProvider);
     final wmlColors = ref.watch(WMLColorsRiverpodProvider);
     final wmlSpacing = ref.watch(WMLSpacingRiverpodProvider);
     final wmlFonts = ref.watch(WMLFontsRiverpodProvider);

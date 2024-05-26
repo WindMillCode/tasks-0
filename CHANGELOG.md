@@ -300,3 +300,20 @@ Files impacted:
 Changes:
 - Ignore unused local variables
 - Ignore unused catch stack traces
+
+## [1.88.1015] [5/25/2024 4:40:33 PM EST]
+
+[UPDATE] Renamed classes and variables for better clarity and consistency in multiple template files.
+
+Files impacted:
+- `flutter_mobile_create_layout/template/template_page.dart`
+- `flutter_mobile_create_layout/template/template_riverpod_provider.dart`
+- `flutter_mobile_create_page/template/template_page.dart`
+- `flutter_mobile_create_page/template/template_riverpod_provider.dart`
+- `flutter_mobile_create_shared_widget/template/template_riverpod_provider.dart`
+
+Changes:
+- Renamed `WMLTemplateWidget` to `WMLTemplateLayout`
+- Renamed `WMLTemplateRiverpodProviderValue` to `WMLTemplateLayoutRiverpodProviderValue`
+- Updated related variables and provider instances to reflect new names
+- Adjusted references in the code to use new class and variable names

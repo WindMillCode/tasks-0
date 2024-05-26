@@ -9,14 +9,14 @@ import 'package:eneobia/util/riverpod_providers/wml_fonts/wml_fonts.dart';
 import 'package:eneobia/util/riverpod_providers/wml_nav/wml_nav.dart';
 import 'package:eneobia/util/riverpod_providers/wml_spacing/wml_spacing.dart';
 
-class WMLTemplateWidget extends ConsumerStatefulWidget {
-  WMLTemplateWidget({super.key});
+class WMLTemplatePage extends ConsumerStatefulWidget {
+  WMLTemplatePage({super.key});
 
   @override
-  ConsumerState<WMLTemplateWidget> createState() => _WMLTemplateState();
+  ConsumerState<WMLTemplatePage> createState() => _WMLTemplateState();
 }
 
-class _WMLTemplateState extends ConsumerState<WMLTemplateWidget> {
+class _WMLTemplateState extends ConsumerState<WMLTemplatePage> {
   @override
   Widget build(BuildContext context) {
     final rp = ref.watch(WMLTemplateRiverpodProvider);

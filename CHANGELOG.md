@@ -345,3 +345,12 @@ Changes:
 - Changed provider from `WMLTemplateRiverpodProvider` to `WMLTemplateLayoutRiverpodProvider` in `template_page.dart`.
 - Changed provider from `WMLTemplateRiverpodProvider` to `WMLTemplatePageRiverpodProvider` in `template_page.dart`.
 - Changed provider from `WMLTemplateRiverpodProvider` to `WMLTemplateWidgetRiverpodProvider` in `template_widget.dart`.
+
+
+## [1.88.1018] [5/28/2024 02:15:30 PM EST]
+
+[UPDATE] In `installGo.ts`, the `extensionDesiredVersion` is now `"1.22.3"` instead of `"1.22.2"`. Just a tiny version bump.
+
+[UPDATE] In `main.go`, added `useForce` variable. It's set to `"TRUE"` by default and has a menu prompt to choose between `"TRUE"` and `"FALSE"`.
+
+[FIX] In `main.go`, added `--force` to `updateArgs` if `useForce` is `"TRUE"`. This means the `npx` command will now use `--force` if chosen.

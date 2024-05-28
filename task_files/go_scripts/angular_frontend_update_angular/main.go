@@ -11,6 +11,10 @@ import (
 	"github.com/windmillcode/go_cli_scripts/v5/utils"
 )
 
+var(
+	useForce = "TRUE"
+)
+
 func main() {
 
 	shared.CDToWorkspaceRoot()
@@ -30,6 +34,12 @@ func main() {
 			Default: "apps/frontend/AngularApp",
 		},
 	)
+	cliInfo := utils.ShowMenuModel{
+		Prompt: "use --force",
+		Choices:[]string{"TRUE","FALSE"},
+		Default:"TRUE",
+	}
+	useForce = utils.ShowMenu(cliInfo,nil)
 
 	var wg sync.WaitGroup
 	regex0 := regexp.MustCompile(" ")
@@ -64,25 +74,13 @@ func updateAngular(project string, angularApp string) {
 		packageName := strings.TrimSpace(strings.Split(packageGroup, " ")[0])
 		updateCommand += " " + packageName
 	}
-	utils.RunCommandInSpecificDirectory("npx", strings.Split(updateCommand, " "), angularApp)
-	cliInfo := utils.ShowMenuModel{
-		Prompt:  "auto update additional packages",
-		Choices: []string{"TRUE", "FALSE"},
-	}
-	deps := []string{"@windmillcode/angular-wml-components-base", "@rxweb/reactive-form-validators", "@fortawesome/fontawesome-free", "@compodoc/compodoc", "@sentry/angular-ivy", "@sentry/tracing"}
-	devDeps := []string{"@faker-js/faker", "@windmillcode/angular-templates", "webpack-bundle-analyzer", "browserify"}
-	addtl := utils.ShowMenu(cliInfo, nil)
-	if addtl == "TRUE" {
 
-		packageManager := shared.ChooseNodePackageManager()
-		if packageManager == "yarn" {
-			utils.RunCommandInSpecificDirectory("yarn", append([]string{"upgrade"}, deps...), angularApp)
-			utils.RunCommandInSpecificDirectory("yarn", append([]string{"upgrade", "--dev"}, devDeps...), angularApp)
-		} else if packageManager == "pnpm" {
-			utils.RunCommandInSpecificDirectory("pnpm", append([]string{"update"}, deps...), angularApp)
-		} else {
-			utils.RunCommandInSpecificDirectory("npm", append([]string{"update"}, deps...), angularApp)
-			utils.RunCommandInSpecificDirectory("npm", append([]string{"update", "--include=dev"}, devDeps...), angularApp)
-		}
+	updateArgs := strings.Split(updateCommand, " ")
+	if useForce == "TRUE"{
+		updateArgs = append(updateArgs,"--force")
 	}
+	utils.RunCommandInSpecificDirectory("npx", updateArgs, angularApp)
+
+
+
 }

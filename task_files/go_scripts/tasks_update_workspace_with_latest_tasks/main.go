@@ -76,36 +76,46 @@ func preActions(deleteDestDir, goScriptsSourceDirPath, goScriptsDestDirPath stri
 }
 
 func updateGitignore(gitignorePath string) {
-  linesToAdd := []string{
-    ".windmillcode/go_scripts/*/diode.exe*",
-    ".windmillcode/go_scripts/*/diode*",
-    ".windmillcode/go_scripts/*/main.exe*",
-    ".windmillcode/go_scripts/*/main*",
-    "!.windmillcode/go_scripts/*/main.go",
-  }
+	linesToAdd := []string{
+		".windmillcode/go_scripts/*/diode.exe*",
+		".windmillcode/go_scripts/*/diode*",
+		".windmillcode/go_scripts/*/main.exe*",
+		".windmillcode/go_scripts/*/main*",
+		"!.windmillcode/go_scripts/*/main.go",
+	}
 
-  // Check if .gitignore exists, if not create it
-  if _, err := os.Stat(gitignorePath); os.IsNotExist(err) {
-    file, err := os.Create(gitignorePath)
-    if err != nil {
-      utils.LogErrorWithTraceBack("Error creating .gitignore file:", err)
-      return
-    }
-    file.Close()
-  }
+	// Check if .gitignore exists, if not create it
+	if !utils.FolderExists(gitignorePath) {
+		file, err := os.Create(gitignorePath)
+		if err != nil {
+			utils.LogErrorWithTraceBack("Error creating .gitignore file:", err)
+			return
+		}
+		file.Close()
+	}
 
-  for _, line := range linesToAdd {
-    err := utils.AddContentToEachLineInFile(gitignorePath, func(existingLine string) string {
-      if existingLine == line {
-        return existingLine
-      }
-      return existingLine + "\n" + line
-    })
-    if err != nil {
-      utils.LogErrorWithTraceBack("Error updating .gitignore file:", err)
-      return
-    }
-  }
+	// Read existing lines in .gitignore
+	existingLinesMap, err := utils.ReadLines(gitignorePath)
+	if err != nil {
+		utils.LogErrorWithTraceBack("Error reading .gitignore file:", err)
+		return
+	}
+
+	// Convert map keys to a slice
+	var existingLines []string
+	for line := range existingLinesMap {
+		existingLines = append(existingLines, line)
+	}
+
+	// Filter out lines that are already in the .gitignore
+	linesToAdd = utils.RemoveElementsNotInSource(existingLines, linesToAdd)
+
+	// Append new lines to .gitignore
+	err = utils.AddContentToFile(gitignorePath, strings.Join(linesToAdd, "\n"), "suffix")
+	if err != nil {
+		utils.LogErrorWithTraceBack("Error writing to .gitignore file:", err)
+		return
+	}
 }
 
 
@@ -142,6 +152,12 @@ func main() {
 	}
 	runMode := utils.ShowMenu(cliInfo, nil)
 
+	cliInfo = utils.ShowMenuModel{
+		Prompt: "Should the .gitignore be modifed (this is harmless select NO IF sure)",
+		Choices:[]string{"YES","NO"},
+		Default: "YES",
+	}
+	modifyGitignore := utils.ShowMenu(cliInfo,nil)
 	// TODO implement later
 	// cliInfo = utils.ShowMenuModel{
 	// 	Prompt:  "use default user (if unsure select NO)",
@@ -154,7 +170,9 @@ func main() {
 
 	workspaceTasksJSONFilePath := utils.JoinAndConvertPathToOSFormat(workSpaceFolder, "/.vscode/tasks.json")
 	gitignorePath :=utils.JoinAndConvertPathToOSFormat(workSpaceFolder,".gitignore")
-	updateGitignore(gitignorePath)
+	if modifyGitignore == "YES" {
+		updateGitignore(gitignorePath)
+	}
 
 	if _, err := os.Stat(workspaceTasksJSONFilePath); os.IsNotExist(err) {
 		if err := os.MkdirAll(workSpaceFolder+"/.vscode", os.ModePerm); err != nil {

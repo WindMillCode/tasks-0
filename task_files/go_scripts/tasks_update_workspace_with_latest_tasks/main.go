@@ -11,21 +11,37 @@ import (
 	"github.com/windmillcode/go_cli_scripts/v5/utils"
 )
 
+func DefaultSettings() utils.VSCodeSettings {
+  return utils.VSCodeSettings{
+    ExtensionPack: utils.WindmillcodeExtensionPack{
+      TasksToRunOnFolderOpen: []string{},
+    },
+  }
+}
+func MergeSettings(settings utils.VSCodeSettings, defaultSettings utils.VSCodeSettings) utils.VSCodeSettings {
+  if len(settings.ExtensionPack.TasksToRunOnFolderOpen) == 0 {
+    settings.ExtensionPack.TasksToRunOnFolderOpen = defaultSettings.ExtensionPack.TasksToRunOnFolderOpen
+  }
+  // Add checks for other properties as needed
+  return settings
+}
+
 func main() {
+
+
 	workSpaceFolder := os.Args[1]
 	extensionFolder := os.Args[2]
 	tasksJsonRelativeFilePath := os.Args[3]
 
 	settings, err := utils.GetSettingsJSON(workSpaceFolder)
 	if err != nil {
-		return
+		settings = DefaultSettings() // Use the default settings if GetSettingsJSON fails
+	} else {
+		defaultSettings := DefaultSettings()
+		settings = MergeSettings(settings, defaultSettings) // Merge with default settings for missing properties
 	}
 
-	// cliInfo := utils.ShowMenuModel{
-	// 	Prompt:  "This will delete your vscode/tasks.json in your workspace folder. If you don't have a .vscode/tasks.json or you have not used this command before, it is safe to choose TRUE. Otherwise, consult with your manager before continuing",
-	// 	Choices: []string{"TRUE", "FALSE"},
-	// }
-	// proceed := utils.ShowMenu(cliInfo, nil)
+
 	proceed := "TRUE"
 
 	cliInfo := utils.ShowMenuModel{
@@ -42,7 +58,7 @@ func main() {
 	}
 	runMode := utils.ShowMenu(cliInfo, nil)
 
-	// TODO implement lataer
+	// TODO implement later
 	// cliInfo = utils.ShowMenuModel{
 	// 	Prompt:  "use default user (if unsure select NO)",
 	// 	Choices: []string{"NO", "YES"},
@@ -53,7 +69,7 @@ func main() {
 	tasksJsonFilePath := utils.JoinAndConvertPathToOSFormat(extensionFolder, tasksJsonRelativeFilePath)
 	content, err, shouldReturn := shared.CreateTasksJson(tasksJsonFilePath, false)
 	if err != nil {
-		fmt.Println("Error creating tasks json file", err)
+		utils.LogErrorWithTraceBack("Error creating tasks json file", err)
 		return
 	}
 	if shouldReturn {
@@ -63,12 +79,12 @@ func main() {
 	var tasksJSON shared.TasksJSON
 	cleanJSON, err := utils.RemoveComments(content)
 	if err != nil {
-		fmt.Println("Error removing comments:", err)
+		utils.LogErrorWithTraceBack("Error removing comments:", err)
 		return
 	}
 	err = json.Unmarshal([]byte(cleanJSON), &tasksJSON)
 	if err != nil {
-		fmt.Println("Error unmarshalling JSON:", err)
+		utils.LogErrorWithTraceBack("Error unmarshalling JSON:", err)
 		return
 	}
 
@@ -113,30 +129,30 @@ func main() {
 		workspaceTasksJSONFilePath := utils.JoinAndConvertPathToOSFormat(workSpaceFolder, "/.vscode/tasks.json")
 		content, err, shouldReturn := shared.CreateTasksJson(workspaceTasksJSONFilePath, false)
 		if err != nil {
-			fmt.Println("Error creating tasks json file", err)
+			utils.LogErrorWithTraceBack("Error creating tasks json file", err)
 			return
 		}
 		if shouldReturn {
 			return
 		}
 		var previousTasksJSON map[string]json.RawMessage
-		previousCleanJSON, err := utils.RemoveComments(content)
+		previousCleanJSON, _ := utils.RemoveComments(content)
 		err = json.Unmarshal([]byte(previousCleanJSON), &previousTasksJSON)
 		if err != nil {
-			fmt.Println("Error unmarshalling JSON:", err)
+			utils.LogErrorWithTraceBack("Error unmarshalling JSON:", err)
 			return
 		}
 
 		err = json.Unmarshal([]byte(previousCleanJSON), &previousTasksJSON)
 		if err != nil {
-			fmt.Println("Error unmarshalling JSON:", err)
+			utils.LogErrorWithTraceBack("Error unmarshalling JSON:", err)
 			return
 		}
 
 		var previousTasks []json.RawMessage
 		err = json.Unmarshal(previousTasksJSON["tasks"], &previousTasks)
 		if err != nil {
-			fmt.Println("Error unmarshalling tasks:", err)
+			utils.LogErrorWithTraceBack("Error unmarshalling tasks:", err)
 			return
 		}
 		for i, taskRaw := range previousTasks {
@@ -167,7 +183,7 @@ func main() {
 			// Marshal the task back into json.RawMessage
 			modifiedTaskRaw, err := json.Marshal(task)
 			if err != nil {
-				fmt.Println("Error marshalling task:", err)
+				utils.LogErrorWithTraceBack("Error marshalling task:", err)
 				continue
 			}
 
@@ -188,19 +204,19 @@ func main() {
 		// marker
 		tasksJSONData, err := json.MarshalIndent(newTasksJSON, "", "  ")
 		if err != nil {
-			fmt.Println("Error marshalling JSON:", err)
+			utils.LogErrorWithTraceBack("Error marshalling JSON:", err)
 			return
 		}
 
 		workspaceTasksJSONFile, err := os.OpenFile(workspaceTasksJSONFilePath, os.O_WRONLY|os.O_TRUNC, 0644)
 		if err != nil {
-			fmt.Println("Error opening file:", err)
+			utils.LogErrorWithTraceBack("Error opening file:", err)
 			return
 		}
 		defer workspaceTasksJSONFile.Close()
 		_, err = workspaceTasksJSONFile.Write(tasksJSONData)
 		if err != nil {
-			fmt.Println("Error writing to file:", err)
+			utils.LogErrorWithTraceBack("Error writing to file:", err)
 			return
 		}
 	}
@@ -232,7 +248,7 @@ func turnToDynamicJSONArray[T any](mySource []T) []json.RawMessage {
 	for _, item := range mySource {
 		rawItem, err := json.Marshal(item)
 		if err != nil {
-			fmt.Println("Error marshalling:", err)
+			utils.LogErrorWithTraceBack("Error marshalling:", err)
 			continue
 		}
 		rawItems = append(rawItems, rawItem)

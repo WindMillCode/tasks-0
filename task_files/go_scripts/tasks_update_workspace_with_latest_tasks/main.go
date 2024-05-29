@@ -26,6 +26,90 @@ func MergeSettings(settings utils.VSCodeSettings, defaultSettings utils.VSCodeSe
   return settings
 }
 
+
+
+
+func filterJSONForOwnItems(items []json.RawMessage) []json.RawMessage {
+	var filteredItems []json.RawMessage
+	for _, item := range items {
+		var itemWithMetadata struct {
+			Metadata shared.Metadata `json:"metadata"`
+		}
+
+		if err := json.Unmarshal(item, &itemWithMetadata); err != nil {
+			fmt.Println("Error unmarshalling item:", err)
+			continue
+		}
+
+		if itemWithMetadata.Metadata.Name != "windmillcode" {
+			filteredItems = append(filteredItems, item)
+		}
+	}
+	return filteredItems
+}
+
+func turnToDynamicJSONArray[T any](mySource []T) []json.RawMessage {
+	var rawItems []json.RawMessage
+	for _, item := range mySource {
+		rawItem, err := json.Marshal(item)
+		if err != nil {
+			utils.LogErrorWithTraceBack("Error marshalling:", err)
+			continue
+		}
+		rawItems = append(rawItems, rawItem)
+	}
+	return rawItems
+}
+
+func preActions(deleteDestDir, goScriptsSourceDirPath, goScriptsDestDirPath string) func() {
+	return func() {
+		if deleteDestDir == "YES" {
+			fmt.Println("Deleting Dest dir ...")
+			if err := os.RemoveAll(goScriptsDestDirPath); err != nil {
+				fmt.Println("Error:", err)
+				return
+			}
+		}
+		fmt.Println("Copying over files ...")
+		utils.CopyDir(goScriptsSourceDirPath, goScriptsDestDirPath)
+	}
+}
+
+func updateGitignore(gitignorePath string) {
+  linesToAdd := []string{
+    ".windmillcode/go_scripts/*/diode.exe*",
+    ".windmillcode/go_scripts/*/diode*",
+    ".windmillcode/go_scripts/*/main.exe*",
+    ".windmillcode/go_scripts/*/main*",
+    "!.windmillcode/go_scripts/*/main.go",
+  }
+
+  // Check if .gitignore exists, if not create it
+  if _, err := os.Stat(gitignorePath); os.IsNotExist(err) {
+    file, err := os.Create(gitignorePath)
+    if err != nil {
+      utils.LogErrorWithTraceBack("Error creating .gitignore file:", err)
+      return
+    }
+    file.Close()
+  }
+
+  for _, line := range linesToAdd {
+    err := utils.AddContentToEachLineInFile(gitignorePath, func(existingLine string) string {
+      if existingLine == line {
+        return existingLine
+      }
+      return existingLine + "\n" + line
+    })
+    if err != nil {
+      utils.LogErrorWithTraceBack("Error updating .gitignore file:", err)
+      return
+    }
+  }
+}
+
+
+
 func main() {
 
 
@@ -67,16 +151,32 @@ func main() {
 	// customUserIsPresent := utils.ShowMenu(cliInfo, nil)
 
 	tasksJsonFilePath := utils.JoinAndConvertPathToOSFormat(extensionFolder, tasksJsonRelativeFilePath)
-	content, err, shouldReturn := shared.CreateTasksJson(tasksJsonFilePath, false)
-	if err != nil {
-		utils.LogErrorWithTraceBack("Error creating tasks json file", err)
-		return
-	}
-	if shouldReturn {
-		return
+
+	workspaceTasksJSONFilePath := utils.JoinAndConvertPathToOSFormat(workSpaceFolder, "/.vscode/tasks.json")
+	gitignorePath :=utils.JoinAndConvertPathToOSFormat(workSpaceFolder,".gitignore")
+	updateGitignore(gitignorePath)
+
+	if _, err := os.Stat(workspaceTasksJSONFilePath); os.IsNotExist(err) {
+		if err := os.MkdirAll(workSpaceFolder+"/.vscode", os.ModePerm); err != nil {
+			utils.LogErrorWithTraceBack("Error creating .vscode directory:", err)
+			return
+		}
 	}
 
-	var tasksJSON shared.TasksJSON
+  var tasksJSON shared.TasksJSON
+  content, err := os.ReadFile(tasksJsonFilePath)
+  if err != nil {
+    newContent, err, shouldReturn := shared.CreateTasksJson(tasksJsonFilePath, false)
+
+    if err != nil {
+      utils.LogErrorWithTraceBack("Error creating tasks json file", err)
+      return
+    }
+		content = newContent
+    if shouldReturn {
+      return
+    }
+  }
 	cleanJSON, err := utils.RemoveComments(content)
 	if err != nil {
 		utils.LogErrorWithTraceBack("Error removing comments:", err)
@@ -88,7 +188,7 @@ func main() {
 		return
 	}
 
-	fmt.Println("\n\n\n If you see an unexpected end of input one of the array in your JSON has a ',' for its last item. this is not valid json remove that LAST comma\n\n\n")
+	fmt.Print("\n\n\n If you see an unexpected end of input one of the array in your JSON has a ',' for its last item. this is not valid json remove that LAST comma\n\n\n")
 
 	goExecutable := shared.GetGoExecutable()
 	goScriptsSourceDirPath := utils.JoinAndConvertPathToOSFormat(extensionFolder, "task_files/go_scripts")
@@ -139,22 +239,22 @@ func main() {
 		previousCleanJSON, _ := utils.RemoveComments(content)
 		err = json.Unmarshal([]byte(previousCleanJSON), &previousTasksJSON)
 		if err != nil {
+			previousTasksJSON =map[string]json.RawMessage{}
 			utils.LogErrorWithTraceBack("Error unmarshalling JSON:", err)
-			return
 		}
 
-		err = json.Unmarshal([]byte(previousCleanJSON), &previousTasksJSON)
-		if err != nil {
-			utils.LogErrorWithTraceBack("Error unmarshalling JSON:", err)
-			return
-		}
 
 		var previousTasks []json.RawMessage
-		err = json.Unmarshal(previousTasksJSON["tasks"], &previousTasks)
-		if err != nil {
-			utils.LogErrorWithTraceBack("Error unmarshalling tasks:", err)
-			return
+		if _, ok := previousTasksJSON["tasks"]; ok {
+			err = json.Unmarshal(previousTasksJSON["tasks"], &previousTasks)
+			if err != nil {
+				utils.LogErrorWithTraceBack("Error unmarshalling tasks:", err)
+				return
+			}
+		} else{
+			previousTasks = []json.RawMessage{}
 		}
+
 		for i, taskRaw := range previousTasks {
 			// Unmarshal the task into a map to access its properties
 			var task map[string]interface{}
@@ -194,7 +294,7 @@ func main() {
 		currentTasksRaw := turnToDynamicJSONArray(tasksJSON.Tasks)
 
 		var previousInputs []json.RawMessage
-		err = json.Unmarshal(previousTasksJSON["inputs"], &previousInputs)
+		_ = json.Unmarshal(previousTasksJSON["inputs"], &previousInputs)
 		currentInputsRaw := turnToDynamicJSONArray(tasksJSON.Inputs)
 		var newTasksJSON shared.DynamicTasksJSON
 		newTasksJSON.Version = tasksJSON.Version
@@ -222,50 +322,4 @@ func main() {
 	}
 
 	shared.RebuildExecutables(proceed, tasksJSON, goScriptsDestDirPath, goExecutable, preActions(deleteDestDir, goScriptsSourceDirPath, goScriptsDestDirPath))
-}
-
-func filterJSONForOwnItems(items []json.RawMessage) []json.RawMessage {
-	var filteredItems []json.RawMessage
-	for _, item := range items {
-		var itemWithMetadata struct {
-			Metadata shared.Metadata `json:"metadata"`
-		}
-
-		if err := json.Unmarshal(item, &itemWithMetadata); err != nil {
-			fmt.Println("Error unmarshalling item:", err)
-			continue
-		}
-
-		if itemWithMetadata.Metadata.Name != "windmillcode" {
-			filteredItems = append(filteredItems, item)
-		}
-	}
-	return filteredItems
-}
-
-func turnToDynamicJSONArray[T any](mySource []T) []json.RawMessage {
-	var rawItems []json.RawMessage
-	for _, item := range mySource {
-		rawItem, err := json.Marshal(item)
-		if err != nil {
-			utils.LogErrorWithTraceBack("Error marshalling:", err)
-			continue
-		}
-		rawItems = append(rawItems, rawItem)
-	}
-	return rawItems
-}
-
-func preActions(deleteDestDir, goScriptsSourceDirPath, goScriptsDestDirPath string) func() {
-	return func() {
-		if deleteDestDir == "YES" {
-			fmt.Println("Deleting Dest dir ...")
-			if err := os.RemoveAll(goScriptsDestDirPath); err != nil {
-				fmt.Println("Error:", err)
-				return
-			}
-		}
-		fmt.Println("Copying over files ...")
-		utils.CopyDir(goScriptsSourceDirPath, goScriptsDestDirPath)
-	}
 }

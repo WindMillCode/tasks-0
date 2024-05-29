@@ -354,3 +354,13 @@ Changes:
 [UPDATE] In `main.go`, added `useForce` variable. It's set to `"TRUE"` by default and has a menu prompt to choose between `"TRUE"` and `"FALSE"`.
 
 [FIX] In `main.go`, added `--force` to `updateArgs` if `useForce` is `"TRUE"`. This means the `npx` command will now use `--force` if chosen.
+
+## [1.88.1020] [5/29/2024 12:05:00 PM EST]
+
+[FIX] task_files/go_scripts/tasks_update_workspace_with_latest_tasks/main.go: Fixed error handling in main function to properly check for and handle errors when reading JSON files.
+
+[PATCH] task_files/go_scripts/tasks_update_workspace_with_latest_tasks/main.go: Added error handling for JSON unmarshalling and file operations.
+
+[PATCH] task_files/go_scripts/tasks_update_workspace_with_latest_tasks/main.go: Simplified preActions function for copying files.
+
+[UPDATE] its not necessary to have a tasks.json or settings.json when intializing the extension in your workspace it will create it for you along with the upsert .gitingore so large executables dont end up in github.com or your remote VCS

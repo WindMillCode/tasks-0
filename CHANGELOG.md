@@ -364,3 +364,21 @@ Changes:
 [PATCH] task_files/go_scripts/tasks_update_workspace_with_latest_tasks/main.go: Simplified preActions function for copying files.
 
 [UPDATE] its not necessary to have a tasks.json or settings.json when intializing the extension in your workspace it will create it for you along with the upsert .gitingore so large executables dont end up in github.com or your remote VCS
+
+## [1.88.1021] [6/94/2024 12:05:00 PM EST]
+
+[UPDATE] pushing working to git remote allows you to specify any relative and absoluate paths
+in settings.json
+```ts
+{
+  ...
+  "windmillcode-extension-pack-0":{
+...
+    "gitPushingWorkingToGitRemote":{
+      "relativePaths":["."],
+      "absolutePaths":["C:\\Users\\User\\My_Project"]
+    }
+  },
+  ...
+}
+```

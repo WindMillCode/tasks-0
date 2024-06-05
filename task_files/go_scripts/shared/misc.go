@@ -277,6 +277,7 @@ func SetJavaEnvironment(){
 
 	} else{
 		fmt.Println("jvms seems not to be installed in your system please install or set manually")
+		return;
 	}
 	output, _ := utils.RunCommandWithOptions(utils.CommandOptions{
 		Command:   "jvms",

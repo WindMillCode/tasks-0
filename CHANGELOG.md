@@ -402,3 +402,6 @@ in settings.json
 - **Change:** Added new function `SetJavaEnvironment`.
 - **Impact:** Developers can now set the Java environment using `jvms` command. They must ensure `jvms` is installed.
 
+## [1.88.1024] [6/5/2024 7:20:34 PM EST]
+* [UPDATE] allowed the use to choose jdk via jvms command if installed on the system
+also ensured if jvms was not on system to handle appropriately

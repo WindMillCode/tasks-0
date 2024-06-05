@@ -387,4 +387,18 @@ in settings.json
 
 [UPDATE] A new script `main.go` was added to the `android_replace_all_emulators` directory. This script helps you manage Android Virtual Devices (AVDs). You can list, delete, and create AVDs using this script.
 
-[UPDATE] The `tasks.json` file was updated with a new task labeled "android: replace all emulators". This task runs a shell command to replace all Android emulators. 
+[UPDATE] The `tasks.json` file was updated with a new task labeled "android: replace all emulators". This task runs a shell command to replace all Android emulators.
+
+## [1.88.1023] [6/5/2024 10:20:34 AM EST]
+
+**[UPDATE]**
+- **File:** `android_replace_all_emulators`
+- **Change:** Added `shared.SetJavaEnvironment()` call at the beginning of `main` function.
+- **Impact:** Ensures Java environment is set before showing the main menu. Developers must ensure `jvms` is installed.
+
+**[UPDATE]**
+- **File:** `misc.go`
+- **Function:** `SetJavaEnvironment`
+- **Change:** Added new function `SetJavaEnvironment`.
+- **Impact:** Developers can now set the Java environment using `jvms` command. They must ensure `jvms` is installed.
+

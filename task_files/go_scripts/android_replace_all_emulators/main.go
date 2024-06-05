@@ -3,11 +3,13 @@ package main
 import (
 	"fmt"
 	"strings"
-
+	"main/shared"
 	"github.com/windmillcode/go_cli_scripts/v5/utils"
 )
 
 func listAVDs() ([]string, error) {
+
+
 	output, err := utils.RunCommandWithOptions(utils.CommandOptions{
 		Command:   "avdmanager",
 		Args:      []string{"list", "avd"},
@@ -53,6 +55,7 @@ func createAVDs(avds []string) {
 
 func main() {
 
+	shared.SetJavaEnvironment()
 	cliInfo := utils.ShowMenuModel{
 		Prompt:   "What would you like to do?",
 		Choices:  []string{"Add AVDs", "Delete AVDs", "Both"},

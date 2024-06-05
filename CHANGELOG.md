@@ -365,7 +365,7 @@ Changes:
 
 [UPDATE] its not necessary to have a tasks.json or settings.json when intializing the extension in your workspace it will create it for you along with the upsert .gitingore so large executables dont end up in github.com or your remote VCS
 
-## [1.88.1021] [6/94/2024 12:05:00 PM EST]
+## [1.88.1021] [6/4/2024 12:05:00 PM EST]
 
 [UPDATE] pushing working to git remote allows you to specify any relative and absoluate paths
 in settings.json
@@ -382,3 +382,9 @@ in settings.json
   ...
 }
 ```
+
+## [1.88.1022] [6/5/2024 11:42:00 AM EST]
+
+[UPDATE] A new script `main.go` was added to the `android_replace_all_emulators` directory. This script helps you manage Android Virtual Devices (AVDs). You can list, delete, and create AVDs using this script.
+
+[UPDATE] The `tasks.json` file was updated with a new task labeled "android: replace all emulators". This task runs a shell command to replace all Android emulators. 

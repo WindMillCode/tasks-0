@@ -2,13 +2,16 @@
   "version": "2.0.0",
   "tasks": [
     {
+      "label": "android: replace all emulators",
+      "type": "shell",
+      "runOptions": {
+        "instanceLimit": 1
+      }
+    },
+    {
       "label": "angular frontend: analyze",
       "type": "shell",
-
-
-
       "runOptions": {
-
         "instanceLimit": 1
       }
     },

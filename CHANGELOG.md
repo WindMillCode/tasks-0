@@ -405,3 +405,8 @@ in settings.json
 ## [1.88.1024] [6/5/2024 7:20:34 PM EST]
 * [UPDATE] allowed the use to choose jdk via jvms command if installed on the system
 also ensured if jvms was not on system to handle appropriately
+
+## [1.88.1025] 6/6/2024 10:32:45 AM EST
+
+
+[PATCH] added SetJavaEnvironment function in main.go at task_files/go_scripts/flutter_mobile_build_deploy/main.go to set Java environment for building and deploying Flutter mobile apps

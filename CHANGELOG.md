@@ -410,3 +410,12 @@ also ensured if jvms was not on system to handle appropriately
 
 
 [PATCH] added SetJavaEnvironment function in main.go at task_files/go_scripts/flutter_mobile_build_deploy/main.go to set Java environment for building and deploying Flutter mobile apps
+
+## [1.90.1000] [6/19/2024 10:15:00 AM EST]
+
+[FIX]
+fixed widget naming issues with  flutter_mobile_create_layout and flutter_mobile_create_page
+
+[UPDATE]
+added a feature to translate_json to remove-json-keys to help the script better fully translate the file
+

@@ -30,7 +30,7 @@ func main() {
 			ErrMsg: "You must provide a value",
 		},
 	)
-	entityName := pageName + "LayoutWidget"
+	entityName := pageName 
 	snakeCasePageName := strcase.ToSnake(pageName)
 	snakeCaseFileName := strcase.ToSnake(pageName + "Layout")
 	providerLocation := utils.JoinAndConvertPathToOSFormat(flutterApp, "lib", "layouts", snakeCasePageName)
@@ -53,7 +53,7 @@ func main() {
 		}
 		fileString = strings.ReplaceAll(fileString, "WMLTemplate", strcase.ToCamel(entityName))
 		fileString = strings.ReplaceAll(fileString, "Wml", "WML")
-		fileString = strings.ReplaceAll(fileString, "template", snakeCaseFileName)
+		fileString = strings.ReplaceAll(fileString, "template", snakeCasePageName)
 		utils.OverwriteFile(path, fileString)
 	}
 

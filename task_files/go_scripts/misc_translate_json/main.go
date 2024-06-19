@@ -51,9 +51,15 @@ func main() {
 		},
 	)
 
+	cliInfo = utils.ShowMenuModel{
+		Prompt:  "Randomly remove key value json to better translate unmodifed key sections",
+		Choices: []string{"TRUE", "FALSE"},
+	}
+	random_remove_json := utils.ShowMenu(cliInfo, nil)
+
 	os.Setenv("OPENAI_API_BASE", openAIBase)
 	os.Setenv("OPENAI_API_KEY_0", openAIAPIKey)
-	utils.CDToLocation(utils.JoinAndConvertPathToOSFormat(workspaceRoot, ".windmillcode", "go_scripts", "i18n_script_via_ai"))
+	utils.CDToLocation(utils.JoinAndConvertPathToOSFormat(workspaceRoot, ".windmillcode", "go_scripts","misc_translate_json", "i18n_script_via_ai"))
 	// pathSeparator := string(filepath.Separator)
 	i18nScriptLocation, _ := os.Getwd()
 	switch os := runtime.GOOS; os {
@@ -74,9 +80,10 @@ func main() {
 	default:
 		fmt.Println("Unknown Operating System:", os)
 	}
+	myCommand := []string{"index.py", "-c", langCodes, "--location", i18nLocation, "--source-file", "en.json"}
+	if random_remove_json == "TRUE" {
+		myCommand = append(myCommand, []string{"-r", "TRUE"}...)
+	}
 
-	utils.RunCommand("python", []string{
-		"index.py",
-		"-c", langCodes, "--location", i18nLocation, "--source-file", "en.json",
-	})
+	utils.RunCommand("python", myCommand)
 }

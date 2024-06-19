@@ -30,7 +30,7 @@ func main() {
 			ErrMsg: "You must provide a value",
 		},
 	)
-	entityName := pageName + "Page"
+	entityName := pageName + "PageWidget"
 	snakeCasePageName := strcase.ToSnake(pageName)
 	providerLocation := utils.JoinAndConvertPathToOSFormat(flutterApp, "lib", "pages", snakeCasePageName)
 	newTemplatePath := utils.JoinAndConvertPathToOSFormat(providerLocation, fmt.Sprintf("%s_page.dart", snakeCasePageName))

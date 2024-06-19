@@ -30,7 +30,7 @@ func main() {
 			ErrMsg: "You must provide a value",
 		},
 	)
-	entityName := pageName + "Layout"
+	entityName := pageName + "LayoutWidget"
 	snakeCasePageName := strcase.ToSnake(pageName)
 	snakeCaseFileName := strcase.ToSnake(pageName + "Layout")
 	providerLocation := utils.JoinAndConvertPathToOSFormat(flutterApp, "lib", "layouts", snakeCasePageName)

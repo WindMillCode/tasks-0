@@ -7,6 +7,7 @@ The dest_json has the same key paths as the source_json but not in the same orde
 worry about the order of the keys
 """
 
+import random
 import shutil
 import sys
 import tempfile
@@ -41,6 +42,22 @@ def translate_list(source_array, source_lang, dest_lang,translate = lambda x,y,z
 def was_translation_successful(failure,dest_array):
     failure = any(is_from_source_lang(item) for item in dest_array)
     return failure
+
+def remove_random_item(json_obj, key_prob=0.3, list_prob=0.3):
+  if isinstance(json_obj, dict):
+    keys = list(json_obj.keys())
+    if keys and random.random() < key_prob:
+      random_key = random.choice(keys)
+      json_obj.pop(random_key)
+    for key in list(json_obj.keys()):  # Use list to avoid RuntimeError due to changing dict size during iteration
+      remove_random_item(json_obj[key], key_prob, list_prob)
+  elif isinstance(json_obj, list):
+    if json_obj and random.random() < list_prob:
+      random_index = random.choice(range(len(json_obj)))
+      json_obj.pop(random_index)
+    for item in json_obj:
+      remove_random_item(item, key_prob, list_prob)
+  return json_obj
 
 class OpenAIModelChatCompletionEnum(Enum):
   GPT_35_TURBO_16K ={
@@ -395,6 +412,8 @@ class OpenAIManager():
     source_lang = self.language_codes.get(source_file.split(".")[0])
     with open(abs_path_source_file, encoding="utf-8") as f:
       source_json = json.load(f)
+    print(dev_obj["remove_json_keys"])
+
 
     threads = []
     with tqdm(total=len(lang_codes), desc="Updating Translations") as pbar:
@@ -409,6 +428,12 @@ class OpenAIManager():
             e.write("{}")
         with open(abs_path_dest_file, encoding="utf-8") as g:
           dest_json = json.load(g)
+
+        if dev_obj["remove_json_keys"] == "TRUE":
+
+          dest_json = remove_random_item(dest_json)
+          with open(abs_path_dest_file, encoding="utf-8",mode="w") as f:
+            json.dump(dest_json,f)
 
         self.update_dest_language(source_json, dest_json, source_lang, dest_lang, abs_path_dest_file)
         # thread = threading.Thread(target=self.update_dest_language, args=(source_json, dest_json, source_lang, dest_lang, abs_path_dest_file))
@@ -433,6 +458,7 @@ if __name__ == "__main__":
     parser.add_argument('-s','--source-file')
     parser.add_argument('-d','--dest-file',default="{}.json")
     parser.add_argument('-c','--lang-codes')
+    parser.add_argument('-r','--remove-json-keys')
     args = parser.parse_args()
     abs_path_source_file = os.path.join(os.getcwd(),args.location,args.source_file)
 
@@ -441,6 +467,7 @@ if __name__ == "__main__":
         "lang_codes":lang_codes,
         "source_file":args.source_file,
         "dest_file":args.dest_file,
+        "remove_json_keys":args.remove_json_keys,
         "abs_path_source_file":abs_path_source_file
     }
     mngr = OpenAIManager(os.environ.get("OPENAI_API_KEY_0"))

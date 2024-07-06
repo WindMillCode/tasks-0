@@ -419,3 +419,6 @@ fixed widget naming issues with  flutter_mobile_create_layout and flutter_mobile
 [UPDATE]
 added a feature to translate_json to remove-json-keys to help the script better fully translate the file
 
+
+## [1.90.1001] [7/5/2024 12:15:30 PM EST]
+* [FIX] fixed an issue with docker init container on mac os

@@ -34,6 +34,11 @@ func main() {
 		Default: "mysql",
 	}
 	databaseToBackup := utils.ShowMenu(cliInfo, nil)
+	cliInfo = utils.ShowMenuModel{
+		Prompt:  "open the update.sql file",
+		Choices: []string{"YES", "NO"},
+	}
+	openUpdateFile := utils.ShowMenu(cliInfo, nil)
 	databaseBackupLocation := utils.JoinAndConvertPathToOSFormat("apps", "database", databaseToBackup, "schema_entries")
 
 	utils.CDToLocation(workspaceRoot)
@@ -46,5 +51,8 @@ func main() {
 	utils.CopyDir(
 		"template", currentDay,
 	)
+	if openUpdateFile == "YES" {
+		utils.RunCommand("code", []string{utils.JoinAndConvertPathToOSFormat(currentDay, "update.sql")})
+	}
 
 }

@@ -422,3 +422,7 @@ added a feature to translate_json to remove-json-keys to help the script better 
 
 ## [1.90.1001] [7/5/2024 12:15:30 PM EST]
 * [FIX] fixed an issue with docker init container on mac os
+
+## [1.91.1] [7/7/2024 10:45:12 AM EST]
+
+* [UPDATE] for commands that ask to set the language software version you can say skip

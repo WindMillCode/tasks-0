@@ -426,3 +426,11 @@ added a feature to translate_json to remove-json-keys to help the script better 
 ## [1.91.1] [7/7/2024 10:45:12 AM EST]
 
 * [UPDATE] for commands that ask to set the language software version you can say skip
+
+## [1.91.2] 7/7/2024 10:23:45 AM EST
+
+[UPDATE]
+* notify user that they cany type Skip to not set python and nodejs version
+
+[FIX]
+- **Description:** Fixed Windows command to conditionally append `.exe` based on the task when updating the workspace without the extension.

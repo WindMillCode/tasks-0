@@ -229,7 +229,10 @@ func main() {
 				taskExecutable = fmt.Sprintf("%s %s", goExecutable, "run main.go")
 			}
 			linuxCommand0 := "cd " + programLocation3 + " ; " + taskExecutable
-			windowsCommand0 := "cd " + strings.Replace(programLocation3, "//", "\\", -1) + " ; " + strings.Replace(taskExecutable+".exe", "//", "\\", -1)
+			windowsCommand0 := "cd " + strings.Replace(programLocation3, "//", "\\", -1) + " ; "
+			if programLocation2 != "tasks_update_workspace_without_extension" {
+				windowsCommand0 += strings.Replace(taskExecutable+".exe", "//", "\\", -1);
+			}
 			tasksJSON.Tasks[index].Windows.Command = windowsCommand0
 			tasksJSON.Tasks[index].Osx.Command = linuxCommand0
 			tasksJSON.Tasks[index].Linux.Command = linuxCommand0

@@ -54,5 +54,3 @@ require (
 	google.golang.org/grpc v1.62.1 // indirect
 	google.golang.org/protobuf v1.33.0 // indirect
 )
-
-require golang.org/x/exp v0.0.0-20240613232115-7f521ea00fb8 // indirect

@@ -211,7 +211,7 @@ func SetupEnvironmentToRunFlaskApp(env string) (string, error) {
 
 	// Get the Python version input
 	pythonVersion := utils.GetInputFromStdin(utils.GetInputFromStdinStruct{
-		Prompt:  []string{"Provide a Python version for pyenv to use"},
+		Prompt:  []string{"Provide a Python version for pyenv to use type 'Skip' to stay with the existing version"},
 		Default: settings.ExtensionPack.PythonVersion0,
 	})
 
@@ -259,7 +259,7 @@ func SetupEnvironmentToRunFlaskApp(env string) (string, error) {
 func SetNodeJSEnvironment(myDefault string){
 	nodeJSVersion := utils.GetInputFromStdin(
 		utils.GetInputFromStdinStruct{
-			Prompt: []string{"provide the nodejs version"},
+			Prompt: []string{"provide the nodejs version is type 'Skip' to stay with the existing version"},
 			Default: myDefault,
 		},
 	)

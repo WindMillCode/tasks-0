@@ -7,6 +7,7 @@ import (
 	"os/exec"
 	"path/filepath"
 	"regexp"
+	"slices"
 	"strings"
 	"sync"
 
@@ -243,7 +244,7 @@ func SetupEnvironmentToRunFlaskApp(env string) (string, error) {
 	}
 
 	// Set the Python version if provided
-	if pythonVersion != "" {
+	if  !slices.Contains([]string{"", "Skip"}, pythonVersion){
 		_, err := exec.LookPath("pyenv")
 		if err == nil{
 			utils.RunCommand("pyenv", []string{"global", pythonVersion})
@@ -264,7 +265,9 @@ func SetNodeJSEnvironment(myDefault string){
 	)
 	_, err := exec.LookPath("nvm")
 	if err == nil{
-		utils.RunCommand("nvm",[]string{"use",nodeJSVersion})
+		if(nodeJSVersion != "Skip"){
+			utils.RunCommand("nvm",[]string{"use",nodeJSVersion})
+		}
 	} else{
 		fmt.Println("nvm seems not to be installed in your system please install or set manually")
 	}
@@ -304,10 +307,12 @@ func SetJavaEnvironment(){
 	}
 	cliInfo := utils.ShowMenuModel{
 		Prompt: "select the java version to use",
-		Choices:jdks,
+		Choices:append(jdks,"Skip"),
 	}
 	javaVersion := utils.ShowMenu(cliInfo,nil)
-	utils.RunElevatedCommand("jvms",[]string{"switch",javaVersion})
+	if(javaVersion != "Skip"){
+		utils.RunElevatedCommand("jvms",[]string{"switch",javaVersion})
+	}
 
 }
 

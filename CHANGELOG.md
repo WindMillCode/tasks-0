@@ -436,4 +436,8 @@ added a feature to translate_json to remove-json-keys to help the script better 
 - **Description:** Fixed Windows command to conditionally append `.exe` based on the task when updating the workspace without the extension.
 
 ## [1.91.3] [7/7/2024 12:34:56 PM EST]
-* minor updates 
+* minor updates
+
+
+## [1.91.4] [7/9/2024 12:34:56 PM EST]
+* [MAJOR UPDATE] improved the translate script

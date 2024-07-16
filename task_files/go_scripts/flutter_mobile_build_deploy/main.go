@@ -8,7 +8,6 @@ import (
 	"path/filepath"
 	"strings"
 	"sync"
-
 	"github.com/windmillcode/go_cli_scripts/v5/utils"
 	"google.golang.org/api/androidpublisher/v3"
 	"google.golang.org/api/googleapi"
@@ -35,6 +34,7 @@ func main() {
 
 		return
 	}
+	args := settings.ExtensionPack.FlutterMobileBuild.Args
 
 	cliInfo := utils.ShowMenuModel{
 		Prompt: "Remove unused imports (this may take a while)",
@@ -53,13 +53,26 @@ func main() {
 		Default: "FALSE",
 	}
 	runFlutterClean := utils.ShowMenu(cliInfo,nil)
-	cliInfo = utils.ShowMenuModel{
-		Prompt: "run ./gradlew --refresh-dependencies",
-		Choices:[]string{"TRUE","FALSE"},
-		Default: "FALSE",
+	var runRefreshDeps = "FALSE";
+	var runCleanXCode = "FALSE";
+	if !utils.ArrayContainsAny(args, []string{"appbundle"}){
+		cliInfo = utils.ShowMenuModel{
+			Prompt: "run ./gradlew --refresh-dependencies",
+			Choices:[]string{"TRUE","FALSE"},
+			Default: "FALSE",
+		}
 
+		runRefreshDeps = utils.ShowMenu(cliInfo,nil)
+	} else {
+		cliInfo = utils.ShowMenuModel{
+			Prompt: "clean xcode workspace",
+			Choices:[]string{"TRUE","FALSE"},
+			Default: "FALSE",
+		}
+
+		runCleanXCode = utils.ShowMenu(cliInfo,nil)
 	}
-	runRefreshDeps := utils.ShowMenu(cliInfo,nil)
+
 	cliInfo = utils.ShowMenuModel{
 		Prompt: "Deploy to play store",
 		Choices:[]string{"FALSE","TRUE"},
@@ -70,7 +83,7 @@ func main() {
 
 	var keyFile, packageName, trackName,publishTarget string
 
-	if deployToPlayStore == "TRUE"{
+	if deployToPlayStore == "TRUE" {
 		keyFile = utils.GetInputFromStdin(
 			utils.GetInputFromStdinStruct{
 				Prompt: []string{"Provide the path to the key file"},
@@ -103,7 +116,7 @@ func main() {
 
 	}
 
-	args := settings.ExtensionPack.FlutterMobileBuild.Args
+
 
 	vmAdditionalArgs := settings.ExtensionPack.FlutterMobileBuild.VmAdditionalArgs
 
@@ -140,6 +153,18 @@ func main() {
 			TargetDir: utils.JoinAndConvertPathToOSFormat(flutterRoot,"android"),
 			PrintOutput:true,
 
+		}
+		utils.RunCommandWithOptions(options)
+	}
+
+	if runCleanXCode == "TRUE" {
+
+		os.Remove(utils.JoinAndConvertPathToOSFormat(flutterRoot,"ios","Podfile.lock"))
+		options := utils.CommandOptions{
+			Command: utils.JoinAndConvertPathToOSFormat("pod"),
+			Args: []string{"repo","update"},
+			TargetDir: utils.JoinAndConvertPathToOSFormat(flutterRoot,"ios"),
+			PrintOutput:true,
 		}
 		utils.RunCommandWithOptions(options)
 	}

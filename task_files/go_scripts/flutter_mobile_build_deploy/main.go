@@ -55,7 +55,7 @@ func main() {
 	runFlutterClean := utils.ShowMenu(cliInfo,nil)
 	var runRefreshDeps = "FALSE";
 	var runCleanXCode = "FALSE";
-	if !utils.ArrayContainsAny(args, []string{"appbundle"}){
+	if !utils.ArrayContainsAny(args, []string{"ipa"}){
 		cliInfo = utils.ShowMenuModel{
 			Prompt: "run ./gradlew --refresh-dependencies",
 			Choices:[]string{"TRUE","FALSE"},
@@ -83,7 +83,7 @@ func main() {
 
 	var keyFile, packageName, trackName,publishTarget string
 
-	if deployToPlayStore == "TRUE" {
+	if deployToPlayStore == "TRUE" && !utils.ArrayContainsAny(args, []string{"ipa"}){
 		keyFile = utils.GetInputFromStdin(
 			utils.GetInputFromStdinStruct{
 				Prompt: []string{"Provide the path to the key file"},
@@ -115,8 +115,6 @@ func main() {
 		}
 
 	}
-
-
 
 	vmAdditionalArgs := settings.ExtensionPack.FlutterMobileBuild.VmAdditionalArgs
 
@@ -161,12 +159,13 @@ func main() {
 
 		os.Remove(utils.JoinAndConvertPathToOSFormat(flutterRoot,"ios","Podfile.lock"))
 		options := utils.CommandOptions{
-			Command: utils.JoinAndConvertPathToOSFormat("pod"),
+			Command: "pod",
 			Args: []string{"repo","update"},
 			TargetDir: utils.JoinAndConvertPathToOSFormat(flutterRoot,"ios"),
 			PrintOutput:true,
 		}
 		utils.RunCommandWithOptions(options)
+
 	}
 	utils.RunCommand("flutter", append(append(append([]string{"build"}, args...), vmAdditionalArgs...), toolArgs...))
 
@@ -242,6 +241,17 @@ func main() {
 		}
 		wg.Wait()
 
+	} else if  utils.ArrayContainsAny(args, []string{"ipa"}){
+		if openResultLocation == "TRUE"{
+
+			releaseLocation := utils.JoinAndConvertPathToOSFormat(flutterRoot, "build","ios","ipa")
+			wg.Add(1)
+			go func() {
+				defer wg.Done()
+				utils.RunCommand("code", []string{releaseLocation})
+			}()
+			wg.Wait()
+		}
 	}
 
 }

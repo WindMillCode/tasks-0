@@ -39,13 +39,8 @@ func main() {
 	}
 	appLocation := utils.ShowMenu(cliInfo, nil)
 
-	pythonVersion := utils.GetInputFromStdin(
-		utils.GetInputFromStdinStruct{
-			Prompt:  []string{"provide a python version for pyenv to use"},
-			Default: settings.ExtensionPack.PythonVersion0,
-		},
-	)
-	utils.RunCommand("pyenv", []string{"global", pythonVersion})
+	shared.SetPythonEnvironment(settings.ExtensionPack.PythonVersion0)
+
 	cliInfo = utils.ShowMenuModel{
 		Prompt:  "reinstall?",
 		Choices: []string{"true", "false"},

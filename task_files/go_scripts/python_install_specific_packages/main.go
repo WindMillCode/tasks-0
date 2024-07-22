@@ -36,13 +36,7 @@ func main() {
 	appLocation := utils.ShowMenu(cliInfo, nil)
 	appLocation = utils.JoinAndConvertPathToOSFormat(workspaceFolder, appLocation)
 
-	pythonVersion := utils.GetInputFromStdin(
-		utils.GetInputFromStdinStruct{
-			Prompt:  []string{"provide a python version for pyenv to use"},
-			Default: settings.ExtensionPack.PythonVersion0,
-		},
-	)
-	utils.RunCommand("pyenv", []string{"global", pythonVersion})
+	shared.SetPythonEnvironment(settings.ExtensionPack.PythonVersion0)
 
 	packageList := utils.TakeVariableArgs(
 		utils.TakeVariableArgsStruct{

@@ -441,3 +441,11 @@ added a feature to translate_json to remove-json-keys to help the script better 
 
 ## [1.91.4] [7/9/2024 12:34:56 PM EST]
 * [MAJOR UPDATE] improved the translate script
+
+## [1.91.1000]  [7/21/2024 12:43:00 PM EST]
+
+* [UPDATE] support for IOS  builds
+
+* [PATCH] Changed the `main.go` script in `python_install_app_deps` to use `SetPythonEnvironment` for setting the Python version instead of manual input.
+
+* [PATCH] Modified the `main.go` script in `python_install_specific_packages` to use `SetPythonEnvironment` for setting the Python version instead of manual input.

@@ -46,6 +46,7 @@ func main() {
 	opts := utils.CommandOptions{
 		Command: "npm",
 		Args:    []string{"run","dev"},
+		PrintOutput: true,
 	}
 	utils.RunCommandWithOptions(opts)
 }

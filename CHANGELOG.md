@@ -449,3 +449,19 @@ added a feature to translate_json to remove-json-keys to help the script better 
 * [PATCH] Changed the `main.go` script in `python_install_app_deps` to use `SetPythonEnvironment` for setting the Python version instead of manual input.
 
 * [PATCH] Modified the `main.go` script in `python_install_specific_packages` to use `SetPythonEnvironment` for setting the Python version instead of manual input.
+
+## [1.91.1010]  [7/25/2024 3:14:56 PM EST]
+[PATCH]
+Fixed `deployToPlayStore` logic in `task_files/go_scripts/flutter_mobile_build_deploy/main.go`
+  - `deployToPlayStore` variable is set based on a new condition to check for 'ipa' in args
+
+
+[PATCH]
+Fixed commands for Windows in `task_files/go_scripts/tasks_update_workspace_with_latest_tasks/main.go`
+  - Added a check for `tasks_update_workspace_without_extension` before appending `.exe`
+
+[PATCH]
+Added new task `shopify: run` in `task_files/tasks.json`
+
+[UPDATE]
+increased merge capabilites from previous tasks.json so if you have a tasks that you want the instanceLimit to be different than the default instance limit your settings are preserved

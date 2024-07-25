@@ -48,7 +48,8 @@
 
 
       "runOptions": {
-        "instanceLimit": 1
+        // amount of laugages including dialects in the world
+        "instanceLimit": 10000
       }
     },
     {
@@ -358,6 +359,15 @@
 
       "runOptions": {
         "instanceLimit": 10
+      }
+    },
+    {
+      "label": "shopify: run",
+      "type": "shell",
+
+
+      "runOptions": {
+        "instanceLimit": 50
       }
     },
     {

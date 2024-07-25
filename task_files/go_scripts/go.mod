@@ -1,13 +1,15 @@
 module main
 
-go 1.21
+go 1.22
 
 require (
 	github.com/iancoleman/strcase v0.3.0
-	github.com/windmillcode/go_cli_scripts/v5 v5.4.0
+	github.com/windmillcode/go_cli_scripts/v5 v5.4.2
 	golang.org/x/oauth2 v0.21.0 // indirect
 	google.golang.org/api v0.187.0 // adjust the version correctly
 )
+
+// replace github.com/windmillcode/go_cli_scripts/v5 => C:\Users\Restop-1294\My_Apps\go-libs\go_cli_scripts\package
 
 require (
 	cloud.google.com/go/compute/metadata v0.3.0 // indirect

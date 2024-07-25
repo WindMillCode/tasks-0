@@ -73,17 +73,20 @@ func main() {
 		runCleanXCode = utils.ShowMenu(cliInfo,nil)
 	}
 
-	cliInfo = utils.ShowMenuModel{
-		Prompt: "Deploy to play store",
-		Choices:[]string{"FALSE","TRUE"},
-		Default: "FALSE",
+	deployToPlayStore := "FALSE"
+	if!utils.ArrayContainsAny(args, []string{"ipa"}){
+		cliInfo = utils.ShowMenuModel{
+			Prompt: "Deploy to play store",
+			Choices:[]string{"FALSE","TRUE"},
+			Default: "FALSE",
+		}
+		deployToPlayStore = utils.ShowMenu(cliInfo,nil)
 	}
-	deployToPlayStore := utils.ShowMenu(cliInfo,nil)
 
 
 	var keyFile, packageName, trackName,publishTarget string
 
-	if deployToPlayStore == "TRUE" && !utils.ArrayContainsAny(args, []string{"ipa"}){
+	if deployToPlayStore == "TRUE" {
 		keyFile = utils.GetInputFromStdin(
 			utils.GetInputFromStdinStruct{
 				Prompt: []string{"Provide the path to the key file"},

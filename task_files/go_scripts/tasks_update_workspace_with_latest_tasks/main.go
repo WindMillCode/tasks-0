@@ -26,9 +26,6 @@ func MergeSettings(settings utils.VSCodeSettings, defaultSettings utils.VSCodeSe
   return settings
 }
 
-
-
-
 func filterJSONForOwnItems(items []json.RawMessage) []json.RawMessage {
 	var filteredItems []json.RawMessage
 	for _, item := range items {
@@ -232,6 +229,8 @@ func main() {
 			windowsCommand0 := "cd " + strings.Replace(programLocation3, "//", "\\", -1) + " ; "
 			if programLocation2 != "tasks_update_workspace_without_extension" {
 				windowsCommand0 += strings.Replace(taskExecutable+".exe", "//", "\\", -1);
+			} else{
+				windowsCommand0 += taskExecutable
 			}
 			tasksJSON.Tasks[index].Windows.Command = windowsCommand0
 			tasksJSON.Tasks[index].Osx.Command = linuxCommand0
@@ -290,6 +289,11 @@ func main() {
 				fmt.Println("Error: label is not a string")
 				continue
 			}
+
+
+
+
+			// TODO is this not needed / its not doing  anything
 			var runOnValue = ""
 			if utils.ArrayContainsAny([]string{label}, settings.ExtensionPack.TasksToRunOnFolderOpen) {
 				runOnValue = "folderOpen"
@@ -300,7 +304,16 @@ func main() {
 				task["runOptions"] = runOptions
 			}
 			runOptions["runOn"] = runOnValue
+			//
 
+			isRespectiveTask := func(myTask shared.Task) bool {
+				return myTask.Label ==label
+			}
+			index,targetTask,err := utils.FindElement(tasksJSON.Tasks,isRespectiveTask)
+			if err == nil {
+				targetTask.RunOptions.InstanceLimit = int(runOptions["instanceLimit"].(float64))
+				tasksJSON.Tasks[index] = targetTask
+			}
 			// Marshal the task back into json.RawMessage
 			modifiedTaskRaw, err := json.Marshal(task)
 			if err != nil {
@@ -344,3 +357,5 @@ func main() {
 
 	shared.RebuildExecutables(proceed, tasksJSON, goScriptsDestDirPath, goExecutable, preActions(deleteDestDir, goScriptsSourceDirPath, goScriptsDestDirPath))
 }
+
+

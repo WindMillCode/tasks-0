@@ -9,7 +9,7 @@ require (
 	google.golang.org/api v0.187.0 // adjust the version correctly
 )
 
-// replace github.com/windmillcode/go_cli_scripts/v5 => C:\Users\Restop-1294\My_Apps\go-libs\go_cli_scripts\package
+replace github.com/windmillcode/go_cli_scripts/v5 => C:\Users\Restop-1294\My_Apps\go-libs\go_cli_scripts\package
 
 require (
 	cloud.google.com/go/compute/metadata v0.3.0 // indirect

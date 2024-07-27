@@ -4,13 +4,28 @@ import (
 	"fmt"
 	"main/shared"
 	"net/http"
+	"os"
 	"sync"
-
 	"github.com/windmillcode/go_cli_scripts/v5/utils"
 )
 
 func main() {
 
+	scriptRoot, err := os.Getwd()
+	if err != nil {
+		return
+	}
+	shared.CDToWorkspaceRoot()
+	workspaceRoot, err := os.Getwd()
+	if err != nil {
+		return
+	}
+	settings, err := utils.GetSettingsJSON(workspaceRoot)
+	if err != nil {
+		return
+	}
+	testingPort := settings.ExtensionPack.Ports.FlaskTest0
+	utils.CDToLocation(scriptRoot)
 	flaskAppFolder, err := shared.SetupEnvironmentToRunFlaskApp("test")
 	if err != nil {
 		fmt.Println("Error during setup:", err)
@@ -19,14 +34,16 @@ func main() {
 	flaskAppUnitTestFolder := utils.JoinAndConvertPathToOSFormat(
 		flaskAppFolder, "unit_tests",
 	)
+
+
 	utils.CDToLocation(flaskAppUnitTestFolder)
 	var wg sync.WaitGroup
 
 	wg.Add(1)
 	go func() {
 		defer wg.Done()
-		port := 8004
-		utils.CDToLocation(utils.JoinAndConvertPathToOSFormat("covhtml"))
+		port := testingPort
+		utils.CDToLocation(utils.JoinAndConvertPathToOSFormat("covhtml"),true)
 		http.Handle("/", http.FileServer(http.Dir(".")))
 		fmt.Println(fmt.Sprintf("Coverage info accesible at localhost:%d", port))
 		err = http.ListenAndServe(fmt.Sprintf(":%d", port), nil)

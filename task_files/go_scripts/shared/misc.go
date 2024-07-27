@@ -8,6 +8,7 @@ import (
 	"path/filepath"
 	"regexp"
 	"slices"
+	"strconv"
 	"strings"
 	"sync"
 
@@ -310,7 +311,7 @@ func SetJavaEnvironment(){
 	}
 	cliInfo := utils.ShowMenuModel{
 		Prompt: "select the java version to use",
-		Choices:append(jdks,"Skip"),
+		Choices:append([]string{"Skip"}, jdks...),
 	}
 	javaVersion := utils.ShowMenu(cliInfo,nil)
 	if(javaVersion != "Skip"){
@@ -338,4 +339,8 @@ func ChooseNodePackageManager() string {
 	}
 	exectuable := utils.ShowMenu(cliInfo, nil)
 	return exectuable
+}
+
+func IntToStr(val int) string {
+  return strconv.Itoa(val)
 }

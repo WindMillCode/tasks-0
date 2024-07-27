@@ -18,20 +18,23 @@ func main() {
 	}
 	angularFrontend := settings.ExtensionPack.AngularFrontend
 
-	shared.SetNodeJSEnvironment(settings.ExtensionPack.NodeJSVersion0)
-
 	cliInfo := utils.ShowMenuModel{
+		Prompt:  "run with cache?",
+		Choices: []string{"TRUE", "false"},
+		Default: "TRUE",
+	}
+	runWithCache := utils.ShowMenu(cliInfo, nil)
+
+	cliInfo = utils.ShowMenuModel{
 		Prompt:  "run concurently with the scss server",
 		Choices: []string{"TRUE", "FALSE"},
 		Default: "TRUE",
 	}
 	concurrentWithScss := utils.ShowMenu(cliInfo, nil)
 
-	cliInfo = utils.ShowMenuModel{
-		Prompt:  "run with cache?",
-		Choices: []string{"true", "false"},
-	}
-	runWithCache := utils.ShowMenu(cliInfo, nil)
+	shared.SetNodeJSEnvironment(settings.ExtensionPack.NodeJSVersion0)
+
+
 
 	defaultConfig := "development"
 	if utils.IsRunningInDocker() {
@@ -51,7 +54,7 @@ func main() {
 
 
 	utils.CDToAngularApp()
-	if runWithCache == "false" {
+	if runWithCache == "FALSE" {
 		if err := os.RemoveAll(utils.JoinAndConvertPathToOSFormat(".", ".angular")); err != nil {
 			fmt.Println("Error:", err)
 			return

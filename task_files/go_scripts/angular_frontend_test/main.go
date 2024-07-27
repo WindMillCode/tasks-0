@@ -16,6 +16,16 @@ import (
 
 func main() {
 	shared.CDToWorkspaceRoot()
+	workspaceRoot, err := os.Getwd()
+	if err != nil {
+		return
+	}
+	settings, err := utils.GetSettingsJSON(workspaceRoot)
+	if err != nil {
+		return
+	}
+	testingPort := settings.ExtensionPack.Ports.AngularTest0
+	coveragePort := settings.ExtensionPack.Ports.AngularCoverageTest0
 	utils.CDToAngularApp()
 	absAngularAppPath, err := os.Getwd()
 	if err != nil {
@@ -45,6 +55,8 @@ func main() {
 	wg.Add(1)
 	go func() {
 		defer wg.Done()
+		os.Setenv("KARMA_PORT", shared.IntToStr(testingPort))
+		os.Setenv("JEST_PORT", shared.IntToStr(testingPort))
 		utils.RunCommand("npm", []string{"run", "test"})
 	}()
 
@@ -52,7 +64,7 @@ func main() {
 		wg.Add(1)
 		go func() {
 			defer wg.Done()
-			port := 8003
+			port := coveragePort
 			subDirPath := utils.ConvertPathToOSFormat(subDir)
 			utils.CDToLocation(subDirPath, true)
 

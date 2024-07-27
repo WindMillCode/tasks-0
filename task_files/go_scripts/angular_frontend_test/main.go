@@ -55,8 +55,8 @@ func main() {
 	wg.Add(1)
 	go func() {
 		defer wg.Done()
-		os.Setenv("KARMA_PORT", shared.IntToStr(testingPort))
-		os.Setenv("JEST_PORT", shared.IntToStr(testingPort))
+		os.Setenv("KARMA_PORT", utils.IntToStr(testingPort))
+		os.Setenv("JEST_PORT", utils.IntToStr(testingPort))
 		utils.RunCommand("npm", []string{"run", "test"})
 	}()
 

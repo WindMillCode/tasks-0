@@ -20,7 +20,7 @@ func main() {
 
 	cliInfo := utils.ShowMenuModel{
 		Prompt:  "run with cache?",
-		Choices: []string{"TRUE", "false"},
+		Choices: []string{"TRUE", "FALSE"},
 		Default: "TRUE",
 	}
 	runWithCache := utils.ShowMenu(cliInfo, nil)

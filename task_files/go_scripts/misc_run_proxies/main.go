@@ -39,7 +39,7 @@ func main() {
 	ports := utils.TakeVariableArgs(
 		utils.TakeVariableArgsStruct{
 			Prompt:  "The ports to run the proxy on in order respective to proxy URLs",
-			Default: shared.IntToStr(settings.ExtensionPack.Ports.DiodeProxies0),
+			Default: utils.IntToStr(settings.ExtensionPack.Ports.DiodeProxies0),
 		},
 	)
 

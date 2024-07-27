@@ -28,10 +28,15 @@ let downloadFile =async (url: string, destinationPath: string): Promise<void> =>
       let downloadedBytes = 0;
       let totalBytes = parseInt(response.headers['content-length'] || '0', 10);
       notifyDeveloper(null,`Downloading Go`);
+      let lastPrintedProgress = 0;
+
       response.on('data', (chunk) => {
         downloadedBytes += chunk.length;
         let progress = (downloadedBytes / totalBytes) * 100;
-        notifyDeveloper(null,`Downloading... ${progress.toFixed(2)}%`);
+        if (progress - lastPrintedProgress >= 5) {
+          notifyDeveloper(null, `Downloading... ${progress.toFixed(2)}%`);
+          lastPrintedProgress = progress;
+        }
       });
 
 
@@ -126,6 +131,8 @@ const checkGoInstalled = (installDir:string,desiredVersion=extensionDesiredVersi
       } else {
         let versionMatch = stdout.match(/go(\d+\.\d+\.\d+)/);
         let installedVersion = versionMatch ? versionMatch[1] : null;
+        notifyDeveloper(installedVersion)
+        notifyDeveloper(desiredVersion)
         if(!semver.gt(desiredVersion,installedVersion)){
           notifyDeveloper(null,`Go is installed and the correct version is on the system.${stdout.trim()}`);
           resolve("go");

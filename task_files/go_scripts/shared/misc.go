@@ -8,7 +8,6 @@ import (
 	"path/filepath"
 	"regexp"
 	"slices"
-	"strconv"
 	"strings"
 	"sync"
 
@@ -341,6 +340,4 @@ func ChooseNodePackageManager() string {
 	return exectuable
 }
 
-func IntToStr(val int) string {
-  return strconv.Itoa(val)
-}
+

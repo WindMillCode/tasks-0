@@ -69,7 +69,7 @@ func main() {
 	for i, port := range firebasePorts {
 		firebaseInterfacePorts[i] = port
 	}
-	utils.KillPort(utils.ConvertToStringArray(firebaseInterfacePorts))
-	fmt.Println(getDomain(jobConfig.AuthDomain0, globalDomain))
+
+	utils.KillPorts(utils.ConvertToStringArray(firebaseInterfacePorts))
 	utils.RunCommand("npx", []string{"firebase", "emulators:start", "--import=devData", "--export-on-exit"})
 }

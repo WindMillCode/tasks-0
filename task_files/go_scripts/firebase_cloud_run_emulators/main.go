@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"main/shared"
 	"os"
@@ -8,12 +9,97 @@ import (
 	"github.com/windmillcode/go_cli_scripts/v5/utils"
 )
 
+type FirebaseConfig struct {
+	Hosting struct {
+		Public       string   `json:"public"`
+		Ignore       []string `json:"ignore"`
+		CleanUrls    bool     `json:"cleanUrls"`
+		TrailingSlash bool    `json:"trailingSlash"`
+		Rewrites     []struct {
+			Source      string `json:"source"`
+			Destination string `json:"destination"`
+		} `json:"rewrites"`
+	} `json:"hosting"`
+	Storage struct {
+		Rules string `json:"rules"`
+	} `json:"storage"`
+	Firestore struct {
+		Rules   string `json:"rules"`
+		Indexes string `json:"indexes"`
+	} `json:"firestore"`
+	Emulators struct {
+		Hosting struct {
+			Enabled bool `json:"enabled"`
+			Port    int  `json:"port"`
+		} `json:"hosting"`
+		Auth struct {
+			Host string `json:"host"`
+			Port int    `json:"port"`
+		} `json:"auth"`
+		Storage struct {
+			Port int `json:"port"`
+		} `json:"storage"`
+		UI struct {
+			Enabled bool `json:"enabled"`
+			Port    int  `json:"port"`
+		} `json:"ui"`
+		Firestore struct {
+			Port int `json:"port"`
+		} `json:"firestore"`
+		SingleProjectMode bool `json:"singleProjectMode"`
+	} `json:"emulators"`
+}
+
+func updateFirebaseConfig(configPath string, envVars map[string]struct {
+	Domain string
+	Port   int
+}) error {
+	// Read the existing Firebase config file
+	content, err := utils.ReadFile(configPath)
+	if err != nil {
+		return err
+	}
+
+	var config FirebaseConfig
+	err = json.Unmarshal([]byte(content), &config)
+	if err != nil {
+		return err
+	}
+
+	// Update the Firebase config with envVars values
+	config.Emulators.Hosting.Enabled = true
+	config.Emulators.Hosting.Port = envVars["HOSTING_EMULATOR_HOST"].Port
+	config.Emulators.Auth.Host = envVars["AUTH_EMULATOR_HOST"].Domain
+	config.Emulators.Auth.Port = envVars["AUTH_EMULATOR_HOST"].Port
+	config.Emulators.Storage.Port = envVars["STORAGE_EMULATOR_HOST"].Port
+	config.Emulators.UI.Enabled = true
+	config.Emulators.UI.Port = envVars["EMULATOR_HOST"].Port
+	config.Emulators.Firestore.Port = envVars["FIRESTORE_EMULATOR_HOST"].Port
+
+	// Marshal the updated config back to JSON
+	updatedContent, err := json.MarshalIndent(config, "", "  ")
+	if err != nil {
+		return err
+	}
+
+	// Overwrite the Firebase config file with updated content
+	err = utils.OverwriteFile(configPath, string(updatedContent))
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+
 func getDomain(primary, fallback string) string {
 	if primary != "" {
 		return primary
 	}
 	return fallback
 }
+
+
 
 func main() {
 
@@ -28,6 +114,10 @@ func main() {
 	}
 	utils.CDToFirebaseApp()
 	shared.SetJavaEnvironment()
+	firebaseApp, err := os.Getwd()
+	if err != nil {
+		return
+	}
 	// cliInfo := utils.ShowMenuModel{
 	// 	Prompt: "Debug Mode",
 	// 	Choices:[]string{"TRUE","FALSE"},
@@ -42,13 +132,15 @@ func main() {
 			Default: utils.ConvertPathToOSFormat(settings.ExtensionPack.FirebaseCloudRunEmulators.KillPortOutputFile),
 		},
 	)
+	// outputFile :=  utils.ConvertPathToOSFormat(settings.ExtensionPack.FirebaseCloudRunEmulators.KillPortOutputFile)
 
 	cliInfo := utils.ShowMenuModel{
 		Prompt: "kill port dry run",
-		Choices:[]string{"TRUE","FALSE"},
+		Choices:[]string{"FALSE","TRUE"},
 		Default: "FALSE",
 	}
 	dryRun := utils.ShowMenu(cliInfo,nil)
+	// dryRun := "TRUE"
 	jobConfig := settings.ExtensionPack.FirebaseCloudRunEmulators
 	globalDomain := settings.ExtensionPack.FirebaseCloudRunEmulators.GlobalDomain
 	ports := settings.ExtensionPack.Ports
@@ -66,6 +158,7 @@ func main() {
 		"FUNCTIONS_EMULATOR_HOST": {getDomain(jobConfig.FunctionsDomain0, globalDomain), ports.FirebaseEmulatorFunctions0},
 		"PUBSUB_EMULATOR_HOST":    {getDomain(jobConfig.PubSubDomain0, globalDomain), ports.FirebaseEmulatorPubSub0},
 	}
+	updateFirebaseConfig(utils.JoinAndConvertPathToOSFormat(firebaseApp,"firebase.json"),envVars)
 
 	envMap := make(map[string]string)
 	for env, config := range envVars {
@@ -75,15 +168,15 @@ func main() {
 			envMap[fmt.Sprintf("FIREBASE_%s", env)] = host
 		}
 	}
-	for key,val := range envMap{
-		os.Setenv(key,val)
-	}
+
 
 	firebasePorts := ports.GetFirebasePorts()
 	firebasePorts = append(firebasePorts,jobConfig.AdditonalPortsToKill...)
 	firebaseInterfacePorts := make([]interface{}, len(firebasePorts))
 	for i, port := range firebasePorts {
-		firebaseInterfacePorts[i] = port
+		if(port != 0){
+			firebaseInterfacePorts[i] = port
+		}
 	}
 
 	options := utils.KillPortsOptions{
@@ -101,7 +194,6 @@ func main() {
 		Args:     []string{"firebase", "emulators:start", "--import=devData", "--export-on-exit"},
 		GetOutput:   true,
 		PrintOutput: true,
-		// PrintOutputOnly: true,
 		EnvVars: envMap,
 	}
 	utils.RunCommandWithOptions(commandOptions)

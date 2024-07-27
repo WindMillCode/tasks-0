@@ -4,9 +4,7 @@ import (
 	"fmt"
 	"os"
 	"strings"
-
 	"main/shared"
-
 	"github.com/windmillcode/go_cli_scripts/v5/utils"
 )
 
@@ -20,7 +18,16 @@ func main() {
 	}
 	angularFrontend := settings.ExtensionPack.AngularFrontend
 
+	shared.SetNodeJSEnvironment(settings.ExtensionPack.NodeJSVersion0)
+
 	cliInfo := utils.ShowMenuModel{
+		Prompt:  "run concurently with the scss server",
+		Choices: []string{"TRUE", "FALSE"},
+		Default: "TRUE",
+	}
+	concurrentWithScss := utils.ShowMenu(cliInfo, nil)
+
+	cliInfo = utils.ShowMenuModel{
 		Prompt:  "run with cache?",
 		Choices: []string{"true", "false"},
 	}
@@ -42,6 +49,7 @@ func main() {
 	}
 	serveConfiguration := utils.ShowMenu(cliInfo, nil)
 
+
 	utils.CDToAngularApp()
 	if runWithCache == "false" {
 		if err := os.RemoveAll(utils.JoinAndConvertPathToOSFormat(".", ".angular")); err != nil {
@@ -54,16 +62,6 @@ func main() {
 		}
 	}
 
-
-	cliInfo = utils.ShowMenuModel{
-		Prompt:  "run concurently with the scss server",
-		Choices: []string{"TRUE", "FALSE"},
-		Default: "TRUE",
-	}
-	concurrentWithScss := utils.ShowMenu(cliInfo, nil)
-
-
-	shared.SetNodeJSEnvironment(settings.ExtensionPack.NodeJSVersion0)
 	if concurrentWithScss == "FALSE" {
 		utils.RunCommand("npx", []string{
 			"ng", "serve", "-c",

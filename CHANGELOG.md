@@ -465,3 +465,8 @@ Added new task `shopify: run` in `task_files/tasks.json`
 
 [UPDATE]
 increased merge capabilites from previous tasks.json so if you have a tasks that you want the instanceLimit to be different than the default instance limit your settings are preserved
+
+
+## [1.91.1011] [7/27/2024 2:15:30 PM EST]
+[UPDATE]
+Fixed the order of operations in main.go in task_files/go_scripts/angular_frontend_run. Now, setting the NodeJS environment happens before asking if the server should run concurrently with SCSS. this helps with scripts that will run in your shell paralle to the tasks

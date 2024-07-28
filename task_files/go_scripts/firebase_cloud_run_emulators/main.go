@@ -9,6 +9,11 @@ import (
 	"github.com/windmillcode/go_cli_scripts/v5/utils"
 )
 
+type FirebaseEmulatorEntry struct {
+	Enabled bool `json:"enabled"`
+	Host string `json:"host"`
+	Port int    `json:"port"`
+}
 type FirebaseConfig struct {
 	Hosting struct {
 		Public       string   `json:"public"`
@@ -28,29 +33,20 @@ type FirebaseConfig struct {
 		Indexes string `json:"indexes"`
 	} `json:"firestore"`
 	Emulators struct {
-		Hosting struct {
-			Enabled bool `json:"enabled"`
-			Port    int  `json:"port"`
-		} `json:"hosting"`
-		Auth struct {
-			Host string `json:"host"`
-			Port int    `json:"port"`
-		} `json:"auth"`
-		Storage struct {
-			Port int `json:"port"`
-		} `json:"storage"`
-		UI struct {
-			Enabled bool `json:"enabled"`
-			Port    int  `json:"port"`
-		} `json:"ui"`
-		Firestore struct {
-			Port int `json:"port"`
-		} `json:"firestore"`
-		SingleProjectMode bool `json:"singleProjectMode"`
+		Hosting           FirebaseEmulatorEntry `json:"hosting"`
+		Auth              FirebaseEmulatorEntry `json:"auth"`
+		Storage           FirebaseEmulatorEntry `json:"storage"`
+		UI                FirebaseEmulatorEntry `json:"ui"`
+		Firestore         FirebaseEmulatorEntry `json:"firestore"`
+		Database          FirebaseEmulatorEntry `json:"database"`
+		Functions         FirebaseEmulatorEntry `json:"functions"`
+		PubSub            FirebaseEmulatorEntry `json:"pubsub"`
+		SingleProjectMode bool                  `json:"singleProjectMode"`
 	} `json:"emulators"`
 }
 
-func updateFirebaseConfig(configPath string, envVars map[string]struct {
+func updateFirebaseConfig(
+	configPath string, envVars map[string]struct {
 	Domain string
 	Port   int
 }) error {
@@ -66,15 +62,71 @@ func updateFirebaseConfig(configPath string, envVars map[string]struct {
 		return err
 	}
 
-	// Update the Firebase config with envVars values
-	config.Emulators.Hosting.Enabled = true
-	config.Emulators.Hosting.Port = envVars["HOSTING_EMULATOR_HOST"].Port
-	config.Emulators.Auth.Host = envVars["AUTH_EMULATOR_HOST"].Domain
-	config.Emulators.Auth.Port = envVars["AUTH_EMULATOR_HOST"].Port
-	config.Emulators.Storage.Port = envVars["STORAGE_EMULATOR_HOST"].Port
-	config.Emulators.UI.Enabled = true
-	config.Emulators.UI.Port = envVars["EMULATOR_HOST"].Port
-	config.Emulators.Firestore.Port = envVars["FIRESTORE_EMULATOR_HOST"].Port
+  // Update the Firebase config with envVars values
+  if envVars["HOSTING_EMULATOR_HOST"].Port != 0 {
+    config.Emulators.Hosting.Port = envVars["HOSTING_EMULATOR_HOST"].Port
+    config.Emulators.Hosting.Host = envVars["HOSTING_EMULATOR_HOST"].Domain
+    config.Emulators.Hosting.Enabled = true
+  } else {
+    config.Emulators.Hosting.Enabled = false
+  }
+
+  if envVars["AUTH_EMULATOR_HOST"].Port != 0 {
+    config.Emulators.Auth.Port = envVars["AUTH_EMULATOR_HOST"].Port
+    config.Emulators.Auth.Host = envVars["AUTH_EMULATOR_HOST"].Domain
+    config.Emulators.Auth.Enabled = true
+  } else {
+    config.Emulators.Auth.Enabled = false
+  }
+
+  if envVars["STORAGE_EMULATOR_HOST"].Port != 0 {
+    config.Emulators.Storage.Port = envVars["STORAGE_EMULATOR_HOST"].Port
+    config.Emulators.Storage.Host = envVars["STORAGE_EMULATOR_HOST"].Domain
+    config.Emulators.Storage.Enabled = true
+  } else {
+    config.Emulators.Storage.Enabled = false
+  }
+
+  if envVars["EMULATOR_HOST"].Port != 0 {
+    config.Emulators.UI.Port = envVars["EMULATOR_HOST"].Port
+    config.Emulators.UI.Host = envVars["EMULATOR_HOST"].Domain
+    config.Emulators.UI.Enabled = true
+  } else {
+    config.Emulators.UI.Enabled = false
+  }
+
+  if envVars["FIRESTORE_EMULATOR_HOST"].Port != 0 {
+    config.Emulators.Firestore.Port = envVars["FIRESTORE_EMULATOR_HOST"].Port
+    config.Emulators.Firestore.Host = envVars["FIRESTORE_EMULATOR_HOST"].Domain
+    config.Emulators.Firestore.Enabled = true
+  } else {
+    config.Emulators.Firestore.Enabled = false
+  }
+
+  if envVars["DATABASE_EMULATOR_HOST"].Port != 0 {
+    config.Emulators.Database.Port = envVars["DATABASE_EMULATOR_HOST"].Port
+    config.Emulators.Database.Host = envVars["DATABASE_EMULATOR_HOST"].Domain
+    config.Emulators.Database.Enabled = true
+  } else {
+    config.Emulators.Database.Enabled = false
+  }
+
+  if envVars["FUNCTIONS_EMULATOR_HOST"].Port != 0 {
+    config.Emulators.Functions.Port = envVars["FUNCTIONS_EMULATOR_HOST"].Port
+    config.Emulators.Functions.Host = envVars["FUNCTIONS_EMULATOR_HOST"].Domain
+    config.Emulators.Functions.Enabled = true
+  } else {
+    config.Emulators.Functions.Enabled = false
+  }
+
+  if envVars["PUBSUB_EMULATOR_HOST"].Port != 0 {
+    config.Emulators.PubSub.Port = envVars["PUBSUB_EMULATOR_HOST"].Port
+    config.Emulators.PubSub.Host = envVars["PUBSUB_EMULATOR_HOST"].Domain
+    config.Emulators.PubSub.Enabled = true
+  } else {
+    config.Emulators.PubSub.Enabled = false
+  }
+
 
 	// Marshal the updated config back to JSON
 	updatedContent, err := json.MarshalIndent(config, "", "  ")
@@ -126,6 +178,7 @@ func main() {
 	// if debugMode=="TRUE"{
 	// 	os.Setenv("FIREBASE_DEBUG", "true")
 	// }
+
 	outputFile := utils.GetInputFromStdin(
 		utils.GetInputFromStdinStruct{
 			Prompt: []string{"The output file to see the results"},
@@ -181,7 +234,7 @@ func main() {
 
 	options := utils.KillPortsOptions{
 		Ports :utils.ConvertToStringArray(firebaseInterfacePorts),
-		ProgramName: "firebase",
+		ProgramNames: []string{"node.exe", "java.exe", "System Idle"},
 		OutputFile: outputFile,
 		OpenOutputFile: outputFile != "",
 		DryRun: dryRun =="TRUE",

@@ -490,6 +490,6 @@ firebase cloud run emulators will update the firebase.json with the appropiate p
 
 ## [1.91.1201] 7/29/2024 03:15:45 PM EST
 
-[UPDATE] Made some JSON fields optional in FirebaseConfig in main.go
+[PATCH] unwanted fields are not added to firebase.json
 
 

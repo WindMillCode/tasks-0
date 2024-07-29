@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"main/shared"
 	"os"
-
 	"github.com/windmillcode/go_cli_scripts/v5/utils"
 )
 
@@ -33,14 +32,14 @@ type FirebaseConfig struct {
 		Indexes string `json:"indexes"`
 	} `json:"firestore"`
 	Emulators struct {
-		Hosting           FirebaseEmulatorEntry `json:"hosting"`
-		Auth              FirebaseEmulatorEntry `json:"auth"`
-		Storage           FirebaseEmulatorEntry `json:"storage"`
-		UI                FirebaseEmulatorEntry `json:"ui"`
-		Firestore         FirebaseEmulatorEntry `json:"firestore"`
-		Database          FirebaseEmulatorEntry `json:"database"`
-		Functions         FirebaseEmulatorEntry `json:"functions"`
-		PubSub            FirebaseEmulatorEntry `json:"pubsub"`
+		Hosting           *FirebaseEmulatorEntry `json:"hosting,omitempty"`
+		Auth              *FirebaseEmulatorEntry `json:"auth,omitempty"`
+		Storage           *FirebaseEmulatorEntry `json:"storage,omitempty"`
+		UI                *FirebaseEmulatorEntry `json:"ui,omitempty"`
+		Firestore         *FirebaseEmulatorEntry `json:"firestore,omitempty"`
+		Database          *FirebaseEmulatorEntry `json:"database,omitempty"`
+		Functions         *FirebaseEmulatorEntry `json:"functions,omitempty"`
+		PubSub            *FirebaseEmulatorEntry `json:"pubsub,omitempty"`
 		SingleProjectMode bool                  `json:"singleProjectMode"`
 	} `json:"emulators"`
 }
@@ -67,64 +66,48 @@ func updateFirebaseConfig(
     config.Emulators.Hosting.Port = envVars["HOSTING_EMULATOR_HOST"].Port
     config.Emulators.Hosting.Host = envVars["HOSTING_EMULATOR_HOST"].Domain
     config.Emulators.Hosting.Enabled = true
-  } else {
-    config.Emulators.Hosting.Enabled = false
   }
 
   if envVars["AUTH_EMULATOR_HOST"].Port != 0 {
     config.Emulators.Auth.Port = envVars["AUTH_EMULATOR_HOST"].Port
     config.Emulators.Auth.Host = envVars["AUTH_EMULATOR_HOST"].Domain
     config.Emulators.Auth.Enabled = true
-  } else {
-    config.Emulators.Auth.Enabled = false
   }
 
   if envVars["STORAGE_EMULATOR_HOST"].Port != 0 {
     config.Emulators.Storage.Port = envVars["STORAGE_EMULATOR_HOST"].Port
     config.Emulators.Storage.Host = envVars["STORAGE_EMULATOR_HOST"].Domain
     config.Emulators.Storage.Enabled = true
-  } else {
-    config.Emulators.Storage.Enabled = false
   }
 
   if envVars["EMULATOR_HOST"].Port != 0 {
     config.Emulators.UI.Port = envVars["EMULATOR_HOST"].Port
     config.Emulators.UI.Host = envVars["EMULATOR_HOST"].Domain
     config.Emulators.UI.Enabled = true
-  } else {
-    config.Emulators.UI.Enabled = false
   }
 
   if envVars["FIRESTORE_EMULATOR_HOST"].Port != 0 {
     config.Emulators.Firestore.Port = envVars["FIRESTORE_EMULATOR_HOST"].Port
     config.Emulators.Firestore.Host = envVars["FIRESTORE_EMULATOR_HOST"].Domain
     config.Emulators.Firestore.Enabled = true
-  } else {
-    config.Emulators.Firestore.Enabled = false
   }
 
   if envVars["DATABASE_EMULATOR_HOST"].Port != 0 {
     config.Emulators.Database.Port = envVars["DATABASE_EMULATOR_HOST"].Port
     config.Emulators.Database.Host = envVars["DATABASE_EMULATOR_HOST"].Domain
     config.Emulators.Database.Enabled = true
-  } else {
-    config.Emulators.Database.Enabled = false
   }
 
   if envVars["FUNCTIONS_EMULATOR_HOST"].Port != 0 {
     config.Emulators.Functions.Port = envVars["FUNCTIONS_EMULATOR_HOST"].Port
     config.Emulators.Functions.Host = envVars["FUNCTIONS_EMULATOR_HOST"].Domain
     config.Emulators.Functions.Enabled = true
-  } else {
-    config.Emulators.Functions.Enabled = false
   }
 
   if envVars["PUBSUB_EMULATOR_HOST"].Port != 0 {
     config.Emulators.PubSub.Port = envVars["PUBSUB_EMULATOR_HOST"].Port
     config.Emulators.PubSub.Host = envVars["PUBSUB_EMULATOR_HOST"].Domain
     config.Emulators.PubSub.Enabled = true
-  } else {
-    config.Emulators.PubSub.Enabled = false
   }
 
 
@@ -155,6 +138,10 @@ func getDomain(primary, fallback string) string {
 
 func main() {
 
+	scriptRoot, err := os.Getwd()
+	if err != nil {
+		return
+	}
 	shared.CDToWorkspaceRoot()
 	workspaceRoot, err := os.Getwd()
 	if err != nil {
@@ -165,7 +152,7 @@ func main() {
 		return
 	}
 	utils.CDToFirebaseApp()
-	shared.SetJavaEnvironment()
+	// shared.SetJavaEnvironment()
 	firebaseApp, err := os.Getwd()
 	if err != nil {
 		return
@@ -181,19 +168,24 @@ func main() {
 
 	outputFile := utils.GetInputFromStdin(
 		utils.GetInputFromStdinStruct{
-			Prompt: []string{"The output file to see the results"},
+			Prompt: []string{"The output file to see the results (Default will write kill-port.csv to script directory)"},
 			Default: utils.ConvertPathToOSFormat(settings.ExtensionPack.FirebaseCloudRunEmulators.KillPortOutputFile),
 		},
 	)
 	// outputFile :=  utils.ConvertPathToOSFormat(settings.ExtensionPack.FirebaseCloudRunEmulators.KillPortOutputFile)
-
 	cliInfo := utils.ShowMenuModel{
+		Prompt: "Open Output File",
+		Choices:[]string{"FALSE","TRUE"},
+		Default: "FALSE",
+	}
+	openOutputFile := utils.ShowMenu(cliInfo,nil)
+	cliInfo = utils.ShowMenuModel{
 		Prompt: "kill port dry run",
 		Choices:[]string{"FALSE","TRUE"},
 		Default: "FALSE",
 	}
 	dryRun := utils.ShowMenu(cliInfo,nil)
-	// dryRun := "TRUE"
+	// dryRun := "FALSE"
 	jobConfig := settings.ExtensionPack.FirebaseCloudRunEmulators
 	globalDomain := settings.ExtensionPack.FirebaseCloudRunEmulators.GlobalDomain
 	ports := settings.ExtensionPack.Ports
@@ -232,11 +224,14 @@ func main() {
 		}
 	}
 
+	if outputFile == ""{
+		outputFile = utils.JoinAndConvertPathToOSFormat(scriptRoot, "kill-port.csv")
+	}
 	options := utils.KillPortsOptions{
 		Ports :utils.ConvertToStringArray(firebaseInterfacePorts),
-		ProgramNames: []string{"node.exe", "java.exe", "System Idle"},
+		// ProgramNames: []string{"node", "java", "System Idle"},
 		OutputFile: outputFile,
-		OpenOutputFile: outputFile != "",
+		OpenOutputFile: openOutputFile == "TRUE",
 		DryRun: dryRun =="TRUE",
 	}
 	fmt.Println(options.Ports)

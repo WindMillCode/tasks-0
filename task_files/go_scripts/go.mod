@@ -4,7 +4,7 @@ go 1.22
 
 require (
 	github.com/iancoleman/strcase v0.3.0
-	github.com/windmillcode/go_cli_scripts/v5 v5.4.2
+	github.com/windmillcode/go_cli_scripts/v5 v5.5.0
 	golang.org/x/oauth2 v0.21.0 // indirect
 	google.golang.org/api v0.187.0 // adjust the version correctly
 )
@@ -63,4 +63,5 @@ require (
 	github.com/erikgeiser/coninput v0.0.0-20211004153227-1c3628e74d0f // indirect
 	github.com/stretchr/testify v1.9.0 // indirect
 	github.com/xo/terminfo v0.0.0-20220910002029-abceb7e1c41e // indirect
+	golang.org/x/exp v0.0.0-20220909182711-5c715a9e8561 // indirect
 )

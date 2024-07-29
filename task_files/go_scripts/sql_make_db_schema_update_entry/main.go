@@ -14,13 +14,15 @@ func main() {
 
 	shared.CDToWorkspaceRoot()
 	workspaceRoot, err := os.Getwd()
-	if err != nil {
-		return
-	}
 	settings, err := utils.GetSettingsJSON(workspaceRoot)
 	if err != nil {
 		return
 	}
+	utils.SetGlobalVars(
+		utils.SetGlobalVarsOptions{
+			NonInteractive :settings.ExtensionPack.ProcessIfDefaultIsPresent,
+		},
+	)
 	var defaultDatabaseOptions = []string{"postgres", "mysql", "mssql", "oraclesql", "mariadb", "firestore"}
 	var databaseOptions []string
 	if settings.ExtensionPack.DatabaseOptions != nil && len(settings.ExtensionPack.DatabaseOptions) > 0 {

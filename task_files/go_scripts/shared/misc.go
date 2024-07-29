@@ -178,13 +178,15 @@ func SetFlaskAppPort() bool {
 	}
 	CDToWorkspaceRoot()
 	workspaceRoot, err := os.Getwd()
-	if err != nil {
-		return true
-	}
 	settings, err := utils.GetSettingsJSON(workspaceRoot)
 	if err != nil {
 		return true
 	}
+	utils.SetGlobalVars(
+		utils.SetGlobalVarsOptions{
+			NonInteractive :settings.ExtensionPack.ProcessIfDefaultIsPresent,
+		},
+	)
 
 	var appPort string
 	settingsAppPort := utils.IntToStr(settings.ExtensionPack.Ports.FlaskRun0)
@@ -317,7 +319,7 @@ func SetNodeJSEnvironment(myDefault string){
 	}
 }
 
-func SetJavaEnvironment(){
+func SetJavaEnvironment(settings utils.VSCodeSettings){
 
 	_, err := exec.LookPath("jvms")
 	if err == nil{
@@ -352,6 +354,7 @@ func SetJavaEnvironment(){
 	cliInfo := utils.ShowMenuModel{
 		Prompt: "select the java version to use",
 		Choices:append([]string{"Skip"}, jdks...),
+		Default: settings.ExtensionPack.JavaVersion0,
 	}
 	javaVersion := utils.ShowMenu(cliInfo,nil)
 	if(javaVersion != "Skip"){

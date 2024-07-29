@@ -17,14 +17,17 @@ func main() {
 		fmt.Println("there was an error while trying to receive the script dir")
 	}
 	shared.CDToWorkspaceRoot()
-	workspaceFolder, err := os.Getwd()
-	if err != nil {
-		fmt.Println("there was an error while trying to receive the current dir")
-	}
-	settings, err := utils.GetSettingsJSON(workspaceFolder)
+	workspaceRoot, err := os.Getwd()
+	settings, err := utils.GetSettingsJSON(workspaceRoot)
 	if err != nil {
 		return
 	}
+	utils.SetGlobalVars(
+		utils.SetGlobalVarsOptions{
+			NonInteractive :settings.ExtensionPack.ProcessIfDefaultIsPresent,
+		},
+	)
+
 	cliInfo := utils.ShowMenuModel{
 		Other:  true,
 		Prompt: "Choose an option:",
@@ -34,7 +37,7 @@ func main() {
 		},
 	}
 	appLocation := utils.ShowMenu(cliInfo, nil)
-	appLocation = utils.JoinAndConvertPathToOSFormat(workspaceFolder, appLocation)
+	appLocation = utils.JoinAndConvertPathToOSFormat(workspaceRoot, appLocation)
 
 	shared.SetPythonEnvironment(settings.ExtensionPack.PythonVersion0)
 

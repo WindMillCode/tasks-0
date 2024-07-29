@@ -11,11 +11,20 @@ import (
 
 func main() {
 	shared.CDToWorkspaceRoot()
-	workSpaceFolder, _ := os.Getwd()
+	workspaceRoot, err := os.Getwd()
+	settings, err := utils.GetSettingsJSON(workspaceRoot)
+	if err != nil {
+		return
+	}
+	utils.SetGlobalVars(
+		utils.SetGlobalVarsOptions{
+			NonInteractive :settings.ExtensionPack.ProcessIfDefaultIsPresent,
+		},
+	)
 
 	goExecutable := shared.GetGoExecutable()
 
-	tasksJsonFilePath := utils.JoinAndConvertPathToOSFormat(workSpaceFolder, ".vscode/tasks.json")
+	tasksJsonFilePath := utils.JoinAndConvertPathToOSFormat(workspaceRoot, ".vscode/tasks.json")
 
 	content, err, shouldReturn := shared.CreateTasksJson(tasksJsonFilePath, false)
 	if shouldReturn {
@@ -28,7 +37,7 @@ func main() {
 		fmt.Println("Error unmarshalling JSON:", err)
 		return
 	}
-	goScriptsDestDirPath := utils.JoinAndConvertPathToOSFormat(workSpaceFolder, ".windmillcode/go_scripts")
+	goScriptsDestDirPath := utils.JoinAndConvertPathToOSFormat(workspaceRoot, ".windmillcode/go_scripts")
 
 	shared.RebuildExecutables("FALSE", tasksJSON, goScriptsDestDirPath, goExecutable, func() {})
 

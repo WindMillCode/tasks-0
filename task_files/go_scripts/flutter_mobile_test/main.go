@@ -1,6 +1,7 @@
 package main
 
 import (
+	"os"
 	"time"
 
 	"main/shared"
@@ -11,6 +12,16 @@ import (
 func main() {
 
 	shared.CDToWorkspaceRoot()
+	workspaceRoot, err := os.Getwd()
+	settings, err := utils.GetSettingsJSON(workspaceRoot)
+	if err != nil {
+		return
+	}
+	utils.SetGlobalVars(
+		utils.SetGlobalVarsOptions{
+			NonInteractive :settings.ExtensionPack.ProcessIfDefaultIsPresent,
+		},
+	)
 	utils.CDToFlutterApp()
 
 	targetPath := utils.GetInputFromStdin(

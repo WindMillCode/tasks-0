@@ -14,6 +14,16 @@ import (
 func main() {
 
 	shared.CDToWorkspaceRoot()
+	workspaceRoot, err := os.Getwd()
+	settings, err := utils.GetSettingsJSON(workspaceRoot)
+	if err != nil {
+		return
+	}
+	utils.SetGlobalVars(
+		utils.SetGlobalVarsOptions{
+			NonInteractive :settings.ExtensionPack.ProcessIfDefaultIsPresent,
+		},
+	)
 	rootDir, err := os.Getwd()
 	if err != nil {
 		return

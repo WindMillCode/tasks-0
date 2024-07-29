@@ -17,6 +17,17 @@ func main() {
 	if err != nil {
 		return
 	}
+	shared.CDToWorkspaceRoot()
+	workspaceRoot, err := os.Getwd()
+	settings, err := utils.GetSettingsJSON(workspaceRoot)
+	if err != nil {
+		return
+	}
+	utils.SetGlobalVars(
+		utils.SetGlobalVarsOptions{
+			NonInteractive :settings.ExtensionPack.ProcessIfDefaultIsPresent,
+		},
+	)
 	templateLocation := utils.JoinAndConvertPathToOSFormat(scriptLocation, "template")
 	templateEndpointFile := utils.JoinAndConvertPathToOSFormat(templateLocation, "template_endpoint.py")
 	templateHandlerFile := utils.JoinAndConvertPathToOSFormat(templateLocation, "template_handler.py")

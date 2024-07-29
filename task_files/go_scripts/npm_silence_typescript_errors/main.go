@@ -12,10 +12,18 @@ import (
 func main() {
 
 	shared.CDToWorkspaceRoot()
-	rootDir, err := os.Getwd()
+	workspaceRoot, err := os.Getwd()
+	settings, err := utils.GetSettingsJSON(workspaceRoot)
 	if err != nil {
 		return
 	}
+	utils.SetGlobalVars(
+		utils.SetGlobalVarsOptions{
+			NonInteractive :settings.ExtensionPack.ProcessIfDefaultIsPresent,
+		},
+	)
+
+
 	utils.CDToAngularApp()
 	cliInfo := utils.ShowMenuModel{
 		Prompt:  "select the location",
@@ -23,7 +31,7 @@ func main() {
 		Other:   true,
 	}
 	targetDir := utils.ShowMenu(cliInfo, nil)
-	targetDir = utils.JoinAndConvertPathToOSFormat(rootDir, targetDir)
+	targetDir = utils.JoinAndConvertPathToOSFormat(workspaceRoot, targetDir)
 
 	// insertVal := utils.GetInputFromStdin(
 	// 	utils.GetInputFromStdinStruct{

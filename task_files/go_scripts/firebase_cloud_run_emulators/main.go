@@ -144,15 +144,17 @@ func main() {
 	}
 	shared.CDToWorkspaceRoot()
 	workspaceRoot, err := os.Getwd()
-	if err != nil {
-		return
-	}
 	settings, err := utils.GetSettingsJSON(workspaceRoot)
 	if err != nil {
 		return
 	}
+	utils.SetGlobalVars(
+		utils.SetGlobalVarsOptions{
+			NonInteractive :settings.ExtensionPack.ProcessIfDefaultIsPresent,
+		},
+	)
 	utils.CDToFirebaseApp()
-	// shared.SetJavaEnvironment()
+	shared.SetJavaEnvironment(settings)
 	firebaseApp, err := os.Getwd()
 	if err != nil {
 		return
@@ -166,13 +168,16 @@ func main() {
 	// 	os.Setenv("FIREBASE_DEBUG", "true")
 	// }
 
-	outputFile := utils.GetInputFromStdin(
-		utils.GetInputFromStdinStruct{
-			Prompt: []string{"The output file to see the results (Default will write kill-port.csv to script directory)"},
-			Default: utils.ConvertPathToOSFormat(settings.ExtensionPack.FirebaseCloudRunEmulators.KillPortOutputFile),
-		},
-	)
-	// outputFile :=  utils.ConvertPathToOSFormat(settings.ExtensionPack.FirebaseCloudRunEmulators.KillPortOutputFile)
+	outputFile :=""
+	if settings.ExtensionPack.FirebaseCloudRunEmulators.KillPortOutputFileAcceptDefault == false{
+		outputFile = utils.GetInputFromStdin(
+			utils.GetInputFromStdinStruct{
+				Prompt: []string{"The output file to see the results (Default will write kill-port.csv to script directory)"},
+				Default: utils.ConvertPathToOSFormat(settings.ExtensionPack.FirebaseCloudRunEmulators.KillPortOutputFile),
+			},
+		)
+	}
+
 	cliInfo := utils.ShowMenuModel{
 		Prompt: "Open Output File",
 		Choices:[]string{"FALSE","TRUE"},

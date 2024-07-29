@@ -15,13 +15,18 @@ func main() {
 
 	shared.CDToWorkspaceRoot()
 	workspaceRoot, err := os.Getwd()
-	if err != nil {
-		fmt.Println("there was an error while trying to receive the current dir")
-	}
 	settings, err := utils.GetSettingsJSON(workspaceRoot)
 	if err != nil {
 		return
 	}
+	utils.SetGlobalVars(
+		utils.SetGlobalVarsOptions{
+			NonInteractive :settings.ExtensionPack.ProcessIfDefaultIsPresent,
+		},
+	)
+
+
+
 	projectsCLI := utils.TakeVariableArgs(
 		utils.TakeVariableArgsStruct{
 			Prompt:  "Provide the paths of all the projects where you want the actions to take place",

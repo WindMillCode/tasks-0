@@ -11,6 +11,16 @@ import (
 func main() {
 
 	shared.CDToWorkspaceRoot()
+	workspaceRoot, err := os.Getwd()
+	settings, err := utils.GetSettingsJSON(workspaceRoot)
+	if err != nil {
+		return
+	}
+	utils.SetGlobalVars(
+		utils.SetGlobalVarsOptions{
+			NonInteractive :settings.ExtensionPack.ProcessIfDefaultIsPresent,
+		},
+	)
 	utils.CDToShopifyApp()
 	shopifyFolder, err := os.Getwd()
 	if err != nil {
@@ -38,6 +48,7 @@ func main() {
 	cliInfo := utils.ShowMenuModel{
 		Prompt: "select the shopify app",
 		Choices:apps,
+		Default: settings.ExtensionPack.ShopifyRun.ProjectName,
 	}
 	targetApp := utils.ShowMenu(cliInfo,nil)
 	utils.CDToLocation(targetApp)

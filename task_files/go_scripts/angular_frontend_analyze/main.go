@@ -14,6 +14,11 @@ func main() {
 	if err != nil {
 		return
 	}
+	utils.SetGlobalVars(
+		utils.SetGlobalVarsOptions{
+			NonInteractive :settings.ExtensionPack.ProcessIfDefaultIsPresent,
+		},
+	)
 	var appPort string
 	settingsAppPort := utils.IntToStr(settings.ExtensionPack.Ports.AngularAnalyzer0)
 	if settingsAppPort != "0" {

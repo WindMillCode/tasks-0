@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"os"
 
 	"main/shared"
 
@@ -11,6 +12,16 @@ import (
 func main() {
 
 	shared.CDToWorkspaceRoot()
+	workspaceRoot, err := os.Getwd()
+	settings, err := utils.GetSettingsJSON(workspaceRoot)
+	if err != nil {
+		return
+	}
+	utils.SetGlobalVars(
+		utils.SetGlobalVarsOptions{
+			NonInteractive :settings.ExtensionPack.ProcessIfDefaultIsPresent,
+		},
+	)
 	cliInfo := utils.ShowMenuModel{
 		Prompt: "Choose an option:",
 		Choices: []string{

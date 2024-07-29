@@ -16,6 +16,14 @@ func main() {
 	shared.CDToWorkspaceRoot()
 	workspaceRoot, err := os.Getwd()
 	settings, err := utils.GetSettingsJSON(workspaceRoot)
+	if err != nil {
+		return
+	}
+	utils.SetGlobalVars(
+		utils.SetGlobalVarsOptions{
+			NonInteractive :settings.ExtensionPack.ProcessIfDefaultIsPresent,
+		},
+	)
 	var gitCloneSubDirs utils.GitCloneSubdirsStruct
 	if err == nil {
 		gitCloneSubDirs = settings.ExtensionPack.GitCloneSubdirs

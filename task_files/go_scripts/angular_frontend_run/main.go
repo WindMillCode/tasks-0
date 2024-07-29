@@ -16,6 +16,11 @@ func main() {
 	if err != nil {
 		return
 	}
+	utils.SetGlobalVars(
+		utils.SetGlobalVarsOptions{
+			NonInteractive :settings.ExtensionPack.ProcessIfDefaultIsPresent,
+		},
+	)
 	angularFrontend := settings.ExtensionPack.AngularFrontend
 	var appPort string
 	settingsAppPort := utils.IntToStr(settings.ExtensionPack.Ports.AngularRun0)

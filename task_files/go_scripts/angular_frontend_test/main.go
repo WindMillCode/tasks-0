@@ -17,13 +17,15 @@ import (
 func main() {
 	shared.CDToWorkspaceRoot()
 	workspaceRoot, err := os.Getwd()
-	if err != nil {
-		return
-	}
 	settings, err := utils.GetSettingsJSON(workspaceRoot)
 	if err != nil {
 		return
 	}
+	utils.SetGlobalVars(
+		utils.SetGlobalVarsOptions{
+			NonInteractive :settings.ExtensionPack.ProcessIfDefaultIsPresent,
+		},
+	)
 	testingPort := settings.ExtensionPack.Ports.AngularTest0
 	coveragePort := settings.ExtensionPack.Ports.AngularCoverageTest0
 	utils.CDToAngularApp()

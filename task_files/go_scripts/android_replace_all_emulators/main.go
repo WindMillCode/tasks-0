@@ -2,8 +2,10 @@ package main
 
 import (
 	"fmt"
-	"strings"
 	"main/shared"
+	"os"
+	"strings"
+
 	"github.com/windmillcode/go_cli_scripts/v5/utils"
 )
 
@@ -55,7 +57,20 @@ func createAVDs(avds []string) {
 
 func main() {
 
-	shared.SetJavaEnvironment()
+	workspaceRoot, err := os.Getwd()
+	if err != nil {
+		return
+	}
+	settings, err := utils.GetSettingsJSON(workspaceRoot)
+	if err != nil {
+		return
+	}
+	utils.SetGlobalVars(
+		utils.SetGlobalVarsOptions{
+			NonInteractive :settings.ExtensionPack.ProcessIfDefaultIsPresent,
+		},
+	)
+	shared.SetJavaEnvironment(settings)
 	cliInfo := utils.ShowMenuModel{
 		Prompt:   "What would you like to do?",
 		Choices:  []string{"Add AVDs", "Delete AVDs", "Both"},

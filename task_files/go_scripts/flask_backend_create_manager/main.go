@@ -16,6 +16,17 @@ func main() {
 	if err != nil {
 		return
 	}
+	shared.CDToWorkspaceRoot()
+	workspaceRoot, err := os.Getwd()
+	settings, err := utils.GetSettingsJSON(workspaceRoot)
+	if err != nil {
+		return
+	}
+	utils.SetGlobalVars(
+		utils.SetGlobalVarsOptions{
+			NonInteractive :settings.ExtensionPack.ProcessIfDefaultIsPresent,
+		},
+	)
 	templateLocation := utils.JoinAndConvertPathToOSFormat(scriptLocation, "template_manager")
 	testTemplateLocation := utils.JoinAndConvertPathToOSFormat(scriptLocation, "test_template_manager")
 	shared.CDToWorkspaceRoot()

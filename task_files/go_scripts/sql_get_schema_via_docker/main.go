@@ -13,13 +13,15 @@ func main() {
 
 	shared.CDToWorkspaceRoot()
 	workspaceRoot, err := os.Getwd()
-	if err != nil {
-		return
-	}
 	settings, err := utils.GetSettingsJSON(workspaceRoot)
 	if err != nil {
 		return
 	}
+	utils.SetGlobalVars(
+		utils.SetGlobalVarsOptions{
+			NonInteractive :settings.ExtensionPack.ProcessIfDefaultIsPresent,
+		},
+	)
 	dockerContainerName := utils.GetInputFromStdin(
 		utils.GetInputFromStdinStruct{
 			Prompt:  []string{"the name of the docker container"},

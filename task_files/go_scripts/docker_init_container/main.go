@@ -12,9 +12,15 @@ func main() {
 
 	shared.CDToWorkspaceRoot()
 	workspaceRoot, err := os.Getwd()
+	settings, err := utils.GetSettingsJSON(workspaceRoot)
 	if err != nil {
-		fmt.Println("there was an error while trying to receive the current dir")
+		return
 	}
+	utils.SetGlobalVars(
+		utils.SetGlobalVarsOptions{
+			NonInteractive :settings.ExtensionPack.ProcessIfDefaultIsPresent,
+		},
+	)
 
 	initScript := utils.GetInputFromStdin(
 		utils.GetInputFromStdinStruct{

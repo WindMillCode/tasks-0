@@ -23,7 +23,11 @@ func main() {
 	if err != nil {
 		return
 	}
-
+	utils.SetGlobalVars(
+		utils.SetGlobalVarsOptions{
+			NonInteractive :settings.ExtensionPack.ProcessIfDefaultIsPresent,
+		},
+	)
 	targetExecutable, shouldReturn := downloadDiodeCLI()
 	if shouldReturn {
 		return

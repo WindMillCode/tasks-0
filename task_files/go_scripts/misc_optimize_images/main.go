@@ -17,13 +17,15 @@ func main() {
 
 	shared.CDToWorkspaceRoot()
 	workspaceRoot, err := os.Getwd()
-	if err != nil {
-		fmt.Println("there was an error while trying to receive the current dir")
-	}
 	settings, err := utils.GetSettingsJSON(workspaceRoot)
 	if err != nil {
 		return
 	}
+	utils.SetGlobalVars(
+		utils.SetGlobalVarsOptions{
+			NonInteractive :settings.ExtensionPack.ProcessIfDefaultIsPresent,
+		},
+	)
 	miscOptimizeImages := settings.ExtensionPack.MiscOptimizeImages
 
 	projectsCLI := utils.TakeVariableArgs(

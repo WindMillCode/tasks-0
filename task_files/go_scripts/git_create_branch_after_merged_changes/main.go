@@ -1,6 +1,7 @@
 package main
 
 import (
+	"os"
 	"regexp"
 
 	"main/shared"
@@ -11,6 +12,16 @@ import (
 func main() {
 
 	shared.CDToWorkspaceRoot()
+	workspaceRoot, err := os.Getwd()
+	settings, err := utils.GetSettingsJSON(workspaceRoot)
+	if err != nil {
+		return
+	}
+	utils.SetGlobalVars(
+		utils.SetGlobalVarsOptions{
+			NonInteractive :settings.ExtensionPack.ProcessIfDefaultIsPresent,
+		},
+	)
 	sourceBranch := "dev"
 	currentBranch := utils.RunCommandAndGetOutput("git", []string{"rev-parse", "--abbrev-ref", "HEAD"})
 	pattern := `\s+|\n+`

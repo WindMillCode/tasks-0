@@ -2,6 +2,8 @@ package main
 
 import (
 	"fmt"
+	"main/shared"
+	"os"
 	"regexp"
 	"strings"
 
@@ -13,6 +15,18 @@ import (
 
 func main() {
 
+
+	shared.CDToWorkspaceRoot()
+	workspaceRoot, err := os.Getwd()
+	settings, err := utils.GetSettingsJSON(workspaceRoot)
+	if err != nil {
+		return
+	}
+	utils.SetGlobalVars(
+		utils.SetGlobalVarsOptions{
+			NonInteractive :settings.ExtensionPack.ProcessIfDefaultIsPresent,
+		},
+	)
 	dockerImgPath := utils.GetInputFromStdin(
 		utils.GetInputFromStdinStruct{
 			Prompt:  []string{"Please enter a path for the docker image backup"},

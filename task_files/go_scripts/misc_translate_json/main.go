@@ -11,11 +11,16 @@ import (
 func main() {
 
 	shared.CDToWorkspaceRoot()
-	workspaceRoot, _ := os.Getwd()
+	workspaceRoot, err := os.Getwd()
 	settings, err := utils.GetSettingsJSON(workspaceRoot)
 	if err != nil {
 		return
 	}
+	utils.SetGlobalVars(
+		utils.SetGlobalVarsOptions{
+			NonInteractive :settings.ExtensionPack.ProcessIfDefaultIsPresent,
+		},
+	)
 
 	cliInfo := utils.ShowMenuModel{
 		Prompt: "choose the location of the i18n folder",

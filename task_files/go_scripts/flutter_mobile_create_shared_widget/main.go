@@ -19,6 +19,16 @@ func main() {
 	}
 	templateLocation := utils.JoinAndConvertPathToOSFormat(scriptLocation, "template")
 	shared.CDToWorkspaceRoot()
+	workspaceRoot, err := os.Getwd()
+	settings, err := utils.GetSettingsJSON(workspaceRoot)
+	if err != nil {
+		return
+	}
+	utils.SetGlobalVars(
+		utils.SetGlobalVarsOptions{
+			NonInteractive :settings.ExtensionPack.ProcessIfDefaultIsPresent,
+		},
+	)
 	utils.CDToFlutterApp()
 	flutterApp, err := os.Getwd()
 	if err != nil {

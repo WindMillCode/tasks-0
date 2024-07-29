@@ -13,13 +13,15 @@ func main() {
 
 	shared.CDToWorkspaceRoot()
 	workspaceRoot, err := os.Getwd()
+	settings, err := utils.GetSettingsJSON(workspaceRoot)
 	if err != nil {
 		return
 	}
-	settings, err := utils.GetSettingsJSON(workspaceRoot)
-	if err != nil {
-		settings = utils.VSCodeSettings{}
-	}
+	utils.SetGlobalVars(
+		utils.SetGlobalVarsOptions{
+			NonInteractive :settings.ExtensionPack.ProcessIfDefaultIsPresent,
+		},
+	)
 	choicePaths := append(settings.ExtensionPack.GitPushingWorkToGitRemote.RelativePaths,settings.ExtensionPack.GitPushingWorkToGitRemote.AbsolutePaths...)
 	normalizedChoicePaths := []string{}
 	for _, path := range choicePaths {

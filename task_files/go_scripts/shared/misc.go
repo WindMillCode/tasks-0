@@ -171,6 +171,47 @@ func CreateTasksJson(tasksJsonFilePath string, triedCreateOnError bool) ([]byte,
 	return content, nil, false
 }
 
+func SetFlaskAppPort() bool {
+	scriptRoot, err := os.Getwd()
+	if err != nil {
+		return true
+	}
+	CDToWorkspaceRoot()
+	workspaceRoot, err := os.Getwd()
+	if err != nil {
+		return true
+	}
+	settings, err := utils.GetSettingsJSON(workspaceRoot)
+	if err != nil {
+		return true
+	}
+
+	var appPort string
+	settingsAppPort := utils.IntToStr(settings.ExtensionPack.Ports.FlaskRun0)
+	if settingsAppPort != "0" {
+		appPort = settingsAppPort
+	} else {
+		appPort = utils.IntToStr(5000)
+	}
+	os.Setenv("FLASK_BACKEND_PORT", appPort)
+
+	cliInfo := utils.ShowMenuModel{
+		Prompt: "Kill the app running on the port before starting? (If you know what you are doing choose TRUE)",
+		Choices:[]string{"FALSE","TRUE"},
+		Default: "FALSE",
+	}
+	killPort := utils.ShowMenu(cliInfo,nil)
+	if killPort =="TRUE"{
+		utils.KillPorts(utils.KillPortsOptions  {
+			Ports:          []string{"appPort"},
+		})
+	}
+
+
+	utils.CDToLocation(scriptRoot)
+	return false
+}
+
 func SetupEnvironmentToRunFlaskApp(env string) (string, error) {
 	// Change to workspace root and get the current directory
 	CDToWorkspaceRoot()

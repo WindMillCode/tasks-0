@@ -179,13 +179,13 @@ func main() {
 		Default: "FALSE",
 	}
 	openOutputFile := utils.ShowMenu(cliInfo,nil)
-	
+
 	cliInfo = utils.ShowMenuModel{
-		Prompt: "kill port dry run",
-		Choices:[]string{"FALSE","TRUE"},
-		Default: "FALSE",
+		Prompt: "kill ports",
+		Choices:[]string{"TRUE","FALSE"},
+		Default: "TRUE",
 	}
-	dryRun := utils.ShowMenu(cliInfo,nil)
+	killPorts := utils.ShowMenu(cliInfo,nil)
 	// dryRun := "FALSE"
 	jobConfig := settings.ExtensionPack.FirebaseCloudRunEmulators
 	globalDomain := settings.ExtensionPack.FirebaseCloudRunEmulators.GlobalDomain
@@ -233,7 +233,7 @@ func main() {
 		// ProgramNames: []string{"node", "java", "System Idle"},
 		OutputFile: outputFile,
 		OpenOutputFile: openOutputFile == "TRUE",
-		DryRun: dryRun =="TRUE",
+		DryRun: killPorts =="FALSE",
 	}
 	fmt.Println(options.Ports)
 	utils.KillPorts(options)

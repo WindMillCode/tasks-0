@@ -477,3 +477,7 @@ Fixed the order of operations in main.go in task_files/go_scripts/angular_fronte
 settings.["windmillcode-extension-pack-0"].ports to specify all the different ports so when you working on  a new project there are no conflicting ports
 use the port variables in your local scripts for all your applications
 firebase cloud run emulators will update the firebase.json with the appropiate ports so you dont have to
+
+## [1.91.1101] [7/29/2024 11:45:00 AM EST]
+* [DONT USE] 1.91.1100
+*[UPDATE] bug fixes and improvements

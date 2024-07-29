@@ -179,6 +179,7 @@ func main() {
 		Default: "FALSE",
 	}
 	openOutputFile := utils.ShowMenu(cliInfo,nil)
+	
 	cliInfo = utils.ShowMenuModel{
 		Prompt: "kill port dry run",
 		Choices:[]string{"FALSE","TRUE"},

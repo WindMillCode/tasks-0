@@ -26,11 +26,11 @@ type FirebaseConfig struct {
 	} `json:"hosting"`
 	Storage struct {
 		Rules string `json:"rules"`
-	} `json:"storage"`
+	} `json:"storage,omitempty"`
 	Firestore struct {
-		Rules   string `json:"rules"`
-		Indexes string `json:"indexes"`
-	} `json:"firestore"`
+		Rules   string `json:"rules,omitempty"`
+		Indexes string `json:"indexes,omitempty"`
+	} `json:"firestore,omitempty"`
 	Emulators struct {
 		Hosting           *FirebaseEmulatorEntry `json:"hosting,omitempty"`
 		Auth              *FirebaseEmulatorEntry `json:"auth,omitempty"`

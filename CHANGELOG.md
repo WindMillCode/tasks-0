@@ -481,3 +481,9 @@ firebase cloud run emulators will update the firebase.json with the appropiate p
 ## [1.91.1101] [7/29/2024 11:45:00 AM EST]
 * [DONT USE] 1.91.1100
 *[UPDATE] bug fixes and improvements
+
+
+
+## [1.91.1200]  [7/29/2024 3:25:00 PM EST]
+
+[UPDATE] Changed main.go files to set global vars non-interactively based on settings.

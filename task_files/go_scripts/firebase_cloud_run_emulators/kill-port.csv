@@ -1,0 +1,401 @@
+Proto,Local Address,Foreign Address,State,Name,Session#,Mem Usage,PID
+-----,-------------,---------------,-----,----,--------,---------,---
+TCP,:::64526,:::0,Bound,obs64,1,102,904 K,51672
+TCP,:::64523,:::0,Bound,obs64,1,102,904 K,51672
+TCP,:::59686,:::0,Bound,chrome,1,91,996 K,14808
+TCP,:::59446,:::0,Bound,chrome,1,91,996 K,14808
+TCP,:::56988,:::0,Bound,chrome,1,91,996 K,14808
+TCP,:::55840,:::0,Bound,chrome,1,91,996 K,14808
+TCP,:::55232,:::0,Bound,chrome,1,91,996 K,14808
+TCP,:::55229,:::0,Bound,chrome,1,91,996 K,14808
+TCP,:::55189,:::0,Bound,Code,1,24,676 K,15052
+TCP,:::55026,:::0,Bound,SearchHost,1,71,760 K,13468
+TCP,:::55023,:::0,Bound,SearchHost,1,71,760 K,13468
+TCP,:::54675,:::0,Bound,chrome,1,91,996 K,14808
+TCP,:::54558,:::0,Bound,java,1,193,296 K,53708
+TCP,:::54557,:::0,Bound,java,1,193,296 K,53708
+TCP,:::53906,:::0,Bound,chrome,1,91,996 K,14808
+TCP,:::53814,:::0,Bound,chrome,1,91,996 K,14808
+TCP,:::53411,:::0,Bound,Nahimic3,1,192 K,27340
+TCP,:::53410,:::0,Bound,Nahimic3,1,192 K,27340
+TCP,:::49678,:::0,Bound,CoordService,0,6,124 K,8940
+TCP,:::49410,:::0,Bound,svchost,0,6,128 K,5004
+TCP,2603:7001:76f0:8e70:d0... 2607:5300:60:1567:a585... CloseWait,,,obs64,1,102,904 K,51672
+TCP,2603:7001:76f0:8e70:d0... 2607:5300:60:1567:a585... CloseWait,,,obs64,1,102,904 K,51672
+TCP,2603:7001:76f0:8e70:d0... 2607:f8b0:4004:c19::bc... Established,,,chrome,1,91,996 K,14808
+TCP,2603:7001:76f0:8e70:d0... 2606:4700:20::ac43:46f... Established,,,chrome,1,91,996 K,14808
+TCP,2603:7001:76f0:8e70:d0... 2607:f8b0:4004:c1f::bc... Established,,,chrome,1,91,996 K,14808
+TCP,2603:7001:76f0:8e70:d0... 2607:f8b0:4004:c1f::bc... Established,,,chrome,1,91,996 K,14808
+TCP,2603:7001:76f0:8e70:d0... 2603:7001:76f0:8e70::1:53 TimeWait,,,Idle,0,8 K,0
+TCP,2603:7001:76f0:8e70:d0... 2603:7001:76f0:8e70::1:53 TimeWait,,,Idle,0,8 K,0
+TCP,2603:7001:76f0:8e70:d0... 2603:7001:76f0:8e70::1:53 TimeWait,,,Idle,0,8 K,0
+TCP,2603:7001:76f0:8e70:d0... 2603:7001:76f0:8e70::1:53 TimeWait,,,Idle,0,8 K,0
+TCP,2603:7001:76f0:8e70:d0... 2603:7001:76f0:8e70::1:53 TimeWait,,,Idle,0,8 K,0
+TCP,2603:7001:76f0:8e70:d0... 2603:7001:76f0:8e70::1:53 TimeWait,,,Idle,0,8 K,0
+TCP,2603:7001:76f0:8e70:d0... 2603:7001:76f0:8e70::1:53 TimeWait,,,Idle,0,8 K,0
+TCP,2603:7001:76f0:8e70:d0... 2603:7001:76f0:8e70::1:53 TimeWait,,,Idle,0,8 K,0
+TCP,2603:7001:76f0:8e70:d0... 2603:7001:76f0:8e70::1:53 TimeWait,,,Idle,0,8 K,0
+TCP,2603:7001:76f0:8e70:d0... 2603:7001:76f0:8e70::1:53 TimeWait,,,Idle,0,8 K,0
+TCP,2603:7001:76f0:8e70:d0... 2603:7001:76f0:8e70::1:53 TimeWait,,,Idle,0,8 K,0
+TCP,2603:7001:76f0:8e70:d0... 2603:7001:76f0:8e70::1:53 TimeWait,,,Idle,0,8 K,0
+TCP,2603:7001:76f0:8e70:d0... 2603:7001:76f0:8e70::1:53 TimeWait,,,Idle,0,8 K,0
+TCP,2603:7001:76f0:8e70:d0... 2603:7001:76f0:8e70::1:53 TimeWait,,,Idle,0,8 K,0
+TCP,2603:7001:76f0:8e70:d0... 2603:7001:76f0:8e70::1:53 TimeWait,,,Idle,0,8 K,0
+TCP,2603:7001:76f0:8e70:d0... 2603:7001:76f0:8e70::1:53 TimeWait,,,Idle,0,8 K,0
+TCP,2603:7001:76f0:8e70:d0... 2603:7001:76f0:8e70::1:53 TimeWait,,,Idle,0,8 K,0
+TCP,2603:7001:76f0:8e70:d0... 2603:7001:76f0:8e70::1:53 TimeWait,,,Idle,0,8 K,0
+TCP,2603:7001:76f0:8e70:d0... 2603:7001:76f0:8e70::1:53 TimeWait,,,Idle,0,8 K,0
+TCP,2603:7001:76f0:8e70:d0... 2603:7001:76f0:8e70::1:53 TimeWait,,,Idle,0,8 K,0
+TCP,2603:7001:76f0:8e70:d0... 2603:7001:76f0:8e70::1:53 TimeWait,,,Idle,0,8 K,0
+TCP,2603:7001:76f0:8e70:d0... 2603:7001:76f0:8e70::1:53 TimeWait,,,Idle,0,8 K,0
+TCP,2603:7001:76f0:8e70:d0... 2603:7001:76f0:8e70::1:53 TimeWait,,,Idle,0,8 K,0
+TCP,2603:7001:76f0:8e70:d0... 2603:7001:76f0:8e70::1:53 TimeWait,,,Idle,0,8 K,0
+TCP,2603:7001:76f0:8e70:d0... 2603:7001:76f0:8e70::1:53 TimeWait,,,Idle,0,8 K,0
+TCP,2603:7001:76f0:8e70:d0... 2603:7001:76f0:8e70::1:53 TimeWait,,,Idle,0,8 K,0
+TCP,2603:7001:76f0:8e70:d0... 2606:2800:21f:5b71:3e2... Established,,,chrome,1,91,996 K,14808
+TCP,2603:7001:76f0:8e70:d0... 2606:2800:21f:5b71:3e2... Established,,,chrome,1,91,996 K,14808
+TCP,2603:7001:76f0:8e70:d0... 2603:7001:76f0:8e70::1:53 TimeWait,,,Idle,0,8 K,0
+TCP,2603:7001:76f0:8e70:d0... 2603:7001:76f0:8e70::1:53 TimeWait,,,Idle,0,8 K,0
+TCP,2603:7001:76f0:8e70:d0... 2603:7001:76f0:8e70::1:53 TimeWait,,,Idle,0,8 K,0
+TCP,2603:7001:76f0:8e70:d0... 2603:7001:76f0:8e70::1:53 TimeWait,,,Idle,0,8 K,0
+TCP,2603:7001:76f0:8e70:d0... 2603:7001:76f0:8e70::1:53 TimeWait,,,Idle,0,8 K,0
+TCP,2603:7001:76f0:8e70:d0... 2603:7001:76f0:8e70::1:53 TimeWait,,,Idle,0,8 K,0
+TCP,2603:7001:76f0:8e70:d0... 2620:1ec:a92::175:443,Established,,Code,1,24,676 K,15052
+TCP,2603:7001:76f0:8e70:d0... 2607:f8b0:4006:81f::20... TimeWait,,,Idle,0,8 K,0
+TCP,2603:7001:76f0:8e70:d0... 2001:4860:4864:4:8000:... Established,,,chrome,1,91,996 K,14808
+TCP,2603:7001:76f0:8e70:d0... 2606:4700::6812:863:443,CloseWait,,Nahimic3,1,192 K,27340
+TCP,2603:7001:76f0:8e70:d0... 2606:4700::6812:1566:443,CloseWait,,Nahimic3,1,192 K,27340
+TCP,::1:50052,::1:49678,Established,LicenseService,0,3,216 K,7100
+TCP,:::50052,:::0,Listen,LicenseService,0,3,216 K,7100
+TCP,::1:49678,::1:50052,Established,CoordService,0,6,124 K,8940
+TCP,:::49675,:::0,Listen,services,0,6,752 K,1748
+TCP,::1:49673,:::0,Listen,jhi_service,0,840 K,7056
+TCP,:::49672,:::0,Listen,spoolsv,0,128 K,6264
+TCP,:::49669,:::0,Listen,svchost,0,13,988 K,4248
+TCP,:::49668,:::0,Listen,svchost,0,8,856 K,3764
+TCP,:::49665,:::0,Listen,wininit,0,40 K,1676
+TCP,:::49664,:::0,Listen,lsass,0,13,284 K,1784
+TCP,2603:7001:76f0:8e70:d0... 2603:1030:608:7::400:443,Established,,svchost,0,6,128 K,5004
+TCP,::1:9100,:::0,Listen,dart,1,98,376 K,46216
+TCP,:::8000,:::0,Listen,httpd,0,1,628 K,6916
+TCP,:::7680,:::0,Listen,svchost,0,10,464 K,17964
+TCP,::1:5435,:::0,Listen,wslrelay,1,1,880 K,17932
+TCP,:::5435,:::0,Listen,com.docker.backend,1,53,032 K,16372
+TCP,::1:4003,:::0,Listen,node,1,48,340 K,46320
+TCP,:::2179,:::0,Listen,vmms,0,15,044 K,4060
+TCP,:::445,:::0,Listen,System,0,104 K,4
+TCP,:::135,:::0,Listen,svchost,0,13,860 K,2000
+TCP,0.0.0.0:63943,0.0.0.0:0,Bound,chrome,1,91,996 K,14808
+TCP,0.0.0.0:59255,0.0.0.0:0,Bound,chrome,1,91,996 K,14808
+TCP,0.0.0.0:55542,0.0.0.0:0,Bound,adb,1,4,564 K,42176
+TCP,0.0.0.0:55295,0.0.0.0:0,Bound,chrome,1,91,996 K,14808
+TCP,0.0.0.0:55243,0.0.0.0:0,Bound,Code,1,262,688 K,34172
+TCP,0.0.0.0:55225,0.0.0.0:0,Bound,chrome,1,91,996 K,14808
+TCP,0.0.0.0:55221,0.0.0.0:0,Bound,Code,1,125,448 K,17512
+TCP,0.0.0.0:55164,0.0.0.0:0,Bound,Code,1,24,676 K,15052
+TCP,0.0.0.0:55107,0.0.0.0:0,Bound,com.docker.backend,1,53,032 K,16372
+TCP,0.0.0.0:55031,0.0.0.0:0,Bound,SearchHost,1,71,760 K,13468
+TCP,0.0.0.0:55027,0.0.0.0:0,Bound,SearchHost,1,71,760 K,13468
+TCP,0.0.0.0:55024,0.0.0.0:0,Bound,SearchHost,1,71,760 K,13468
+TCP,0.0.0.0:55007,0.0.0.0:0,Bound,chrome,1,91,996 K,14808
+TCP,0.0.0.0:54674,0.0.0.0:0,Bound,chrome,1,91,996 K,14808
+TCP,0.0.0.0:54204,0.0.0.0:0,Bound,SteelSeriesEngine,1,81,080 K,19048
+TCP,0.0.0.0:53681,0.0.0.0:0,Bound,chrome,1,91,996 K,14808
+TCP,0.0.0.0:53418,0.0.0.0:0,Bound,chrome,1,91,996 K,14808
+TCP,0.0.0.0:53416,0.0.0.0:0,Bound,chrome,1,91,996 K,14808
+TCP,0.0.0.0:53396,0.0.0.0:0,Bound,msedge,1,35,328 K,58332
+TCP,0.0.0.0:51825,0.0.0.0:0,Bound,SteelSeriesEngine,1,81,080 K,19048
+TCP,0.0.0.0:51824,0.0.0.0:0,Bound,SteelSeriesEngine,1,81,080 K,19048
+TCP,0.0.0.0:51805,0.0.0.0:0,Bound,SteelSeriesPrism,1,13,276 K,23436
+TCP,0.0.0.0:51804,0.0.0.0:0,Bound,SteelSeriesPrism,1,13,276 K,23436
+TCP,0.0.0.0:51802,0.0.0.0:0,Bound,SteelSeriesPrism,1,13,276 K,23436
+TCP,0.0.0.0:51791,0.0.0.0:0,Bound,SteelSeriesPrism,1,13,276 K,23436
+TCP,0.0.0.0:51642,0.0.0.0:0,Bound,SteelSeriesEngine,1,81,080 K,19048
+TCP,0.0.0.0:51464,0.0.0.0:0,Bound,chrome,1,91,996 K,14808
+TCP,0.0.0.0:51462,0.0.0.0:0,Bound,chrome,1,91,996 K,14808
+TCP,0.0.0.0:51303,0.0.0.0:0,Bound,chrome,1,91,996 K,14808
+TCP,0.0.0.0:51287,0.0.0.0:0,Bound,chrome,1,91,996 K,14808
+TCP,0.0.0.0:51130,0.0.0.0:0,Bound,SteelSeriesEngine,1,81,080 K,19048
+TCP,0.0.0.0:51125,0.0.0.0:0,Bound,SteelSeriesEngine,1,81,080 K,19048
+TCP,0.0.0.0:51124,0.0.0.0:0,Bound,SteelSeriesEngine,1,81,080 K,19048
+TCP,0.0.0.0:50741,0.0.0.0:0,Bound,SteelSeriesEngine,1,81,080 K,19048
+TCP,0.0.0.0:49737,0.0.0.0:0,Bound,ipfsvc,0,800 K,6940
+TCP,0.0.0.0:49735,0.0.0.0:0,Bound,NVDisplay.Container,0,14,740 K,4128
+TCP,0.0.0.0:49733,0.0.0.0:0,Bound,WUDFHost,0,4,224 K,2068
+TCP,0.0.0.0:49731,0.0.0.0:0,Bound,WUDFHost,0,5,860 K,1824
+TCP,0.0.0.0:49681,0.0.0.0:0,Bound,RestService,0,7,772 K,6156
+TCP,0.0.0.0:49674,0.0.0.0:0,Bound,RestService,0,7,772 K,6156
+TCP,192.168.1.89:63943,34.224.147.117:443,Established,chrome,1,91,996 K,14808
+TCP,192.168.1.89:59255,192.168.1.29:8009,Established,chrome,1,91,996 K,14808
+TCP,127.0.0.1:55542,127.0.0.1:55541,Established,adb,1,4,564 K,42176
+TCP,127.0.0.1:55541,127.0.0.1:55542,Established,adb,1,4,564 K,42176
+TCP,192.168.1.89:55336,140.82.114.3:22,TimeWait,Idle,0,8 K,0
+TCP,192.168.1.89:55330,140.82.114.3:22,TimeWait,Idle,0,8 K,0
+TCP,192.168.1.89:55324,140.82.114.3:22,TimeWait,Idle,0,8 K,0
+TCP,192.168.1.89:55319,140.82.114.3:22,TimeWait,Idle,0,8 K,0
+TCP,192.168.1.89:55318,140.82.114.3:22,TimeWait,Idle,0,8 K,0
+TCP,192.168.1.89:55311,140.82.114.4:22,TimeWait,Idle,0,8 K,0
+TCP,192.168.1.89:55306,140.82.114.4:22,TimeWait,Idle,0,8 K,0
+TCP,192.168.1.89:55295,34.205.195.66:443,Established,chrome,1,91,996 K,14808
+TCP,192.168.1.89:55284,140.82.112.4:22,TimeWait,Idle,0,8 K,0
+TCP,192.168.1.89:55281,140.82.112.4:22,TimeWait,Idle,0,8 K,0
+TCP,192.168.1.89:55272,140.82.112.4:22,TimeWait,Idle,0,8 K,0
+TCP,127.0.0.1:55259,127.0.0.1:53396,TimeWait,Idle,0,8 K,0
+TCP,192.168.1.89:55256,140.82.112.4:22,TimeWait,Idle,0,8 K,0
+TCP,192.168.1.89:55250,140.82.112.4:22,TimeWait,Idle,0,8 K,0
+TCP,127.0.0.1:55243,127.0.0.1:55240,Established,Code,1,262,688 K,34172
+TCP,192.168.1.89:55241,140.82.112.4:22,TimeWait,Idle,0,8 K,0
+TCP,127.0.0.1:55240,127.0.0.1:55243,Established,dart,1,113,548 K,66896
+TCP,127.0.0.1:55240,0.0.0.0:0,Listen,dart,1,113,548 K,66896
+TCP,192.168.1.89:55236,140.82.112.4:22,TimeWait,Idle,0,8 K,0
+TCP,127.0.0.1:55233,127.0.0.1:53396,TimeWait,Idle,0,8 K,0
+TCP,127.0.0.1:55230,127.0.0.1:53396,TimeWait,Idle,0,8 K,0
+TCP,192.168.1.89:55225,104.244.42.65:443,Established,chrome,1,91,996 K,14808
+TCP,127.0.0.1:55221,127.0.0.1:53396,Established,Code,1,125,448 K,17512
+TCP,127.0.0.1:55220,127.0.0.1:53396,TimeWait,Idle,0,8 K,0
+TCP,127.0.0.1:55219,127.0.0.1:53396,TimeWait,Idle,0,8 K,0
+TCP,192.168.1.89:55164,152.199.4.33:443,Established,Code,1,24,676 K,15052
+TCP,192.168.1.89:55107,13.226.34.107:443,Established,com.docker.backend,1,53,032 K,16372
+TCP,192.168.1.89:55007,140.82.112.25:443,Established,chrome,1,91,996 K,14808
+TCP,192.168.1.89:54674,74.125.247.128:3478,Established,chrome,1,91,996 K,14808
+TCP,127.0.0.1:54558,127.0.0.1:54237,Established,java,1,193,296 K,53708
+TCP,127.0.0.1:54557,127.0.0.1:8083,Established,java,1,193,296 K,53708
+TCP,127.0.0.1:54237,127.0.0.1:54558,Established,java,1,193,296 K,53708
+TCP,127.0.0.1:54237,0.0.0.0:0,Listen,java,1,193,296 K,53708
+TCP,127.0.0.1:54234,0.0.0.0:0,Listen,java,1,193,296 K,53708
+TCP,127.0.0.1:54204,127.0.0.1:6327,Established,SteelSeriesEngine,1,81,080 K,19048
+TCP,192.168.1.89:53681,18.238.49.86:443,Established,chrome,1,91,996 K,14808
+TCP,192.168.1.89:53418,20.119.8.51:443,Established,chrome,1,91,996 K,14808
+TCP,192.168.1.89:53416,20.119.8.51:443,Established,chrome,1,91,996 K,14808
+TCP,192.168.1.89:53396,192.168.1.29:8009,Established,msedge,1,35,328 K,58332
+TCP,127.0.0.1:53396,127.0.0.1:55234,TimeWait,Idle,0,8 K,0
+TCP,127.0.0.1:53396,127.0.0.1:55221,Established,Code,1,262,688 K,34172
+TCP,127.0.0.1:53396,127.0.0.1:55231,TimeWait,Idle,0,8 K,0
+TCP,127.0.0.1:53396,127.0.0.1:55260,TimeWait,Idle,0,8 K,0
+TCP,127.0.0.1:53396,0.0.0.0:0,Listen,Code,1,262,688 K,34172
+TCP,127.0.0.1:51825,127.0.0.1:51789,Established,SteelSeriesEngine,1,81,080 K,19048
+TCP,127.0.0.1:51824,127.0.0.1:51123,Established,SteelSeriesEngine,1,81,080 K,19048
+TCP,127.0.0.1:51805,127.0.0.1:6327,Established,SteelSeriesPrism,1,13,276 K,23436
+TCP,127.0.0.1:51804,127.0.0.1:51123,Established,SteelSeriesPrism,1,13,276 K,23436
+TCP,127.0.0.1:51802,127.0.0.1:6327,Established,SteelSeriesPrism,1,13,276 K,23436
+TCP,127.0.0.1:51791,127.0.0.1:51123,Established,SteelSeriesPrism,1,13,276 K,23436
+TCP,127.0.0.1:51789,127.0.0.1:51825,Established,SteelSeriesPrism,1,13,276 K,23436
+TCP,127.0.0.1:51789,0.0.0.0:0,Listen,SteelSeriesPrism,1,13,276 K,23436
+TCP,127.0.0.1:51642,127.0.0.1:6327,Established,SteelSeriesEngine,1,81,080 K,19048
+TCP,192.168.1.89:51464,20.119.8.51:443,Established,chrome,1,91,996 K,14808
+TCP,192.168.1.89:51462,20.119.8.51:443,Established,chrome,1,91,996 K,14808
+TCP,192.168.1.89:51303,162.159.135.234:443,Established,chrome,1,91,996 K,14808
+TCP,192.168.1.89:51287,18.173.132.44:443,Established,chrome,1,91,996 K,14808
+TCP,127.0.0.1:51130,127.0.0.1:6327,Established,SteelSeriesEngine,1,81,080 K,19048
+TCP,127.0.0.1:51125,127.0.0.1:6327,Established,SteelSeriesEngine,1,81,080 K,19048
+TCP,127.0.0.1:51124,127.0.0.1:6327,Established,SteelSeriesEngine,1,81,080 K,19048
+TCP,127.0.0.1:51123,127.0.0.1:51824,Established,SteelSeriesEngine,1,81,080 K,19048
+TCP,127.0.0.1:51123,127.0.0.1:51791,Established,SteelSeriesEngine,1,81,080 K,19048
+TCP,127.0.0.1:51123,127.0.0.1:51804,Established,SteelSeriesEngine,1,81,080 K,19048
+TCP,127.0.0.1:51123,0.0.0.0:0,Listen,SteelSeriesEngine,1,81,080 K,19048
+TCP,127.0.0.1:51109,0.0.0.0:0,Listen,SteelSeriesGG,1,28,340 K,7424
+TCP,127.0.0.1:50741,127.0.0.1:6327,Established,SteelSeriesEngine,1,81,080 K,19048
+TCP,127.0.0.1:49737,127.0.0.1:49736,Established,ipfsvc,0,800 K,6940
+TCP,127.0.0.1:49736,127.0.0.1:49737,Established,ipfsvc,0,800 K,6940
+TCP,127.0.0.1:49735,127.0.0.1:49734,Established,NVDisplay.Container,0,14,740 K,4128
+TCP,127.0.0.1:49734,127.0.0.1:49735,Established,NVDisplay.Container,0,14,740 K,4128
+TCP,127.0.0.1:49733,127.0.0.1:49732,Established,WUDFHost,0,4,224 K,2068
+TCP,127.0.0.1:49732,127.0.0.1:49733,Established,WUDFHost,0,4,224 K,2068
+TCP,127.0.0.1:49731,127.0.0.1:49730,Established,WUDFHost,0,5,860 K,1824
+TCP,127.0.0.1:49730,127.0.0.1:49731,Established,WUDFHost,0,5,860 K,1824
+TCP,127.0.0.1:49681,127.0.0.1:31104,Established,RestService,0,7,772 K,6156
+TCP,0.0.0.0:49675,0.0.0.0:0,Listen,services,0,6,752 K,1748
+TCP,127.0.0.1:49674,127.0.0.1:31104,Established,RestService,0,7,772 K,6156
+TCP,0.0.0.0:49672,0.0.0.0:0,Listen,spoolsv,0,128 K,6264
+TCP,0.0.0.0:49669,0.0.0.0:0,Listen,svchost,0,13,988 K,4248
+TCP,0.0.0.0:49668,0.0.0.0:0,Listen,svchost,0,8,856 K,3764
+TCP,0.0.0.0:49665,0.0.0.0:0,Listen,wininit,0,40 K,1676
+TCP,0.0.0.0:49664,0.0.0.0:0,Listen,lsass,0,13,284 K,1784
+TCP,127.0.0.1:32683,0.0.0.0:0,Listen,MSI.CentralServer,0,196,696 K,9592
+TCP,0.0.0.0:31105,0.0.0.0:0,Listen,BuildService,0,7,448 K,8904
+TCP,127.0.0.1:31104,127.0.0.1:49674,Established,CoordService,0,6,124 K,8940
+TCP,127.0.0.1:31104,127.0.0.1:49681,Established,CoordService,0,6,124 K,8940
+TCP,0.0.0.0:31104,0.0.0.0:0,Listen,CoordService,0,6,124 K,8940
+TCP,127.0.0.1:31100,0.0.0.0:0,Listen,RestService,0,7,772 K,6156
+TCP,127.0.0.1:26822,0.0.0.0:0,Listen,MSI.TerminalServer,1,3,004 K,15864
+TCP,127.0.0.1:14622,0.0.0.0:0,Listen,VoiceControl_Engine,1,5,660 K,16172
+TCP,127.0.0.1:9150,0.0.0.0:0,Listen,java,1,193,296 K,53708
+TCP,127.0.0.1:9100,0.0.0.0:0,Listen,dart,1,98,376 K,46216
+TCP,127.0.0.1:9080,0.0.0.0:0,Listen,NahimicService,0,15,208 K,7000
+TCP,127.0.0.1:8083,127.0.0.1:54557,Established,java,1,193,296 K,53708
+TCP,127.0.0.1:8083,0.0.0.0:0,Listen,java,1,193,296 K,53708
+TCP,0.0.0.0:8000,0.0.0.0:0,Listen,httpd,0,1,628 K,6916
+TCP,127.0.0.1:6328,0.0.0.0:0,Listen,SteelSeriesGG,1,28,340 K,7424
+TCP,127.0.0.1:6327,127.0.0.1:51130,Established,SteelSeriesGG,1,28,340 K,7424
+TCP,127.0.0.1:6327,127.0.0.1:51642,Established,SteelSeriesGG,1,28,340 K,7424
+TCP,127.0.0.1:6327,127.0.0.1:51802,Established,SteelSeriesGG,1,28,340 K,7424
+TCP,127.0.0.1:6327,127.0.0.1:51805,Established,SteelSeriesGG,1,28,340 K,7424
+TCP,127.0.0.1:6327,127.0.0.1:51125,Established,SteelSeriesGG,1,28,340 K,7424
+TCP,127.0.0.1:6327,127.0.0.1:50741,Established,SteelSeriesGG,1,28,340 K,7424
+TCP,127.0.0.1:6327,127.0.0.1:51124,Established,SteelSeriesGG,1,28,340 K,7424
+TCP,127.0.0.1:6327,127.0.0.1:54204,Established,SteelSeriesGG,1,28,340 K,7424
+TCP,127.0.0.1:6327,0.0.0.0:0,Listen,SteelSeriesGG,1,28,340 K,7424
+TCP,127.0.0.1:6050,0.0.0.0:0,Listen,Code,1,101,972 K,43260
+TCP,127.0.0.1:6009,0.0.0.0:0,Listen,Code,1,114,180 K,66404
+TCP,0.0.0.0:5040,0.0.0.0:0,Listen,svchost,0,7,924 K,12392
+TCP,127.0.0.1:5037,127.0.0.1:55258,TimeWait,Idle,0,8 K,0
+TCP,127.0.0.1:5037,127.0.0.1:55338,TimeWait,Idle,0,8 K,0
+TCP,127.0.0.1:5037,127.0.0.1:55328,TimeWait,Idle,0,8 K,0
+TCP,127.0.0.1:5037,127.0.0.1:55276,TimeWait,Idle,0,8 K,0
+TCP,127.0.0.1:5037,127.0.0.1:55305,TimeWait,Idle,0,8 K,0
+TCP,127.0.0.1:5037,127.0.0.1:55332,TimeWait,Idle,0,8 K,0
+TCP,127.0.0.1:5037,127.0.0.1:55316,TimeWait,Idle,0,8 K,0
+TCP,127.0.0.1:5037,127.0.0.1:55282,TimeWait,Idle,0,8 K,0
+TCP,127.0.0.1:5037,127.0.0.1:55269,TimeWait,Idle,0,8 K,0
+TCP,127.0.0.1:5037,127.0.0.1:55288,TimeWait,Idle,0,8 K,0
+TCP,127.0.0.1:5037,127.0.0.1:55255,TimeWait,Idle,0,8 K,0
+TCP,127.0.0.1:5037,127.0.0.1:55317,TimeWait,Idle,0,8 K,0
+TCP,127.0.0.1:5037,127.0.0.1:55268,TimeWait,Idle,0,8 K,0
+TCP,127.0.0.1:5037,127.0.0.1:55303,TimeWait,Idle,0,8 K,0
+TCP,127.0.0.1:5037,127.0.0.1:55247,TimeWait,Idle,0,8 K,0
+TCP,127.0.0.1:5037,127.0.0.1:55277,TimeWait,Idle,0,8 K,0
+TCP,127.0.0.1:5037,127.0.0.1:55267,TimeWait,Idle,0,8 K,0
+TCP,127.0.0.1:5037,127.0.0.1:55313,TimeWait,Idle,0,8 K,0
+TCP,127.0.0.1:5037,127.0.0.1:55331,TimeWait,Idle,0,8 K,0
+TCP,127.0.0.1:5037,127.0.0.1:55254,TimeWait,Idle,0,8 K,0
+TCP,127.0.0.1:5037,127.0.0.1:55289,TimeWait,Idle,0,8 K,0
+TCP,127.0.0.1:5037,127.0.0.1:55309,TimeWait,Idle,0,8 K,0
+TCP,127.0.0.1:5037,127.0.0.1:55304,TimeWait,Idle,0,8 K,0
+TCP,127.0.0.1:5037,127.0.0.1:55308,TimeWait,Idle,0,8 K,0
+TCP,127.0.0.1:5037,127.0.0.1:55314,TimeWait,Idle,0,8 K,0
+TCP,127.0.0.1:5037,127.0.0.1:55321,TimeWait,Idle,0,8 K,0
+TCP,127.0.0.1:5037,127.0.0.1:55307,TimeWait,Idle,0,8 K,0
+TCP,127.0.0.1:5037,127.0.0.1:55323,TimeWait,Idle,0,8 K,0
+TCP,127.0.0.1:5037,127.0.0.1:55261,TimeWait,Idle,0,8 K,0
+TCP,127.0.0.1:5037,127.0.0.1:55302,TimeWait,Idle,0,8 K,0
+TCP,127.0.0.1:5037,127.0.0.1:55283,TimeWait,Idle,0,8 K,0
+TCP,127.0.0.1:5037,127.0.0.1:55310,TimeWait,Idle,0,8 K,0
+TCP,127.0.0.1:5037,127.0.0.1:55320,TimeWait,Idle,0,8 K,0
+TCP,127.0.0.1:5037,127.0.0.1:55271,TimeWait,Idle,0,8 K,0
+TCP,127.0.0.1:5037,127.0.0.1:55266,TimeWait,Idle,0,8 K,0
+TCP,127.0.0.1:5037,127.0.0.1:55290,TimeWait,Idle,0,8 K,0
+TCP,127.0.0.1:5037,127.0.0.1:55312,TimeWait,Idle,0,8 K,0
+TCP,127.0.0.1:5037,127.0.0.1:55257,TimeWait,Idle,0,8 K,0
+TCP,127.0.0.1:5037,127.0.0.1:55262,TimeWait,Idle,0,8 K,0
+TCP,127.0.0.1:5037,127.0.0.1:55315,TimeWait,Idle,0,8 K,0
+TCP,127.0.0.1:5037,127.0.0.1:55291,TimeWait,Idle,0,8 K,0
+TCP,127.0.0.1:5037,127.0.0.1:55337,TimeWait,Idle,0,8 K,0
+TCP,127.0.0.1:5037,127.0.0.1:55248,TimeWait,Idle,0,8 K,0
+TCP,127.0.0.1:5037,127.0.0.1:55270,TimeWait,Idle,0,8 K,0
+TCP,127.0.0.1:5037,127.0.0.1:55322,TimeWait,Idle,0,8 K,0
+TCP,127.0.0.1:5037,127.0.0.1:55329,TimeWait,Idle,0,8 K,0
+TCP,127.0.0.1:5037,0.0.0.0:0,Listen,adb,1,4,564 K,42176
+TCP,127.0.0.1:4003,0.0.0.0:0,Listen,node,1,48,340 K,46320
+TCP,0.0.0.0:2179,0.0.0.0:0,Listen,vmms,0,15,044 K,4060
+TCP,192.168.56.1:139,0.0.0.0:0,Listen,System,0,104 K,4
+TCP,192.168.32.1:139,0.0.0.0:0,Listen,System,0,104 K,4
+TCP,192.168.1.89:139,0.0.0.0:0,Listen,System,0,104 K,4
+TCP,172.26.208.1:139,0.0.0.0:0,Listen,System,0,104 K,4
+TCP,0.0.0.0:135,0.0.0.0:0,Listen,svchost,0,13,860 K,2000
+UDP,:::65034,*:*,*,svchost,0,5,512 K,2912
+UDP,:::64881,*:*,*,chrome,1,91,996 K,14808
+UDP,:::64332,*:*,*,chrome,1,91,996 K,14808
+UDP,:::63974,*:*,*,chrome,1,91,996 K,14808
+UDP,:::61572,*:*,*,svchost,0,5,512 K,2912
+UDP,:::60951,*:*,*,chrome,1,91,996 K,14808
+UDP,:::60371,*:*,*,chrome,1,91,996 K,14808
+UDP,:::58605,*:*,*,chrome,1,91,996 K,14808
+UDP,:::57507,*:*,*,svchost,0,1,760 K,4648
+UDP,:::56225,*:*,*,chrome,1,91,996 K,14808
+UDP,:::54267,*:*,*,chrome,1,91,996 K,14808
+UDP,fe80::59a7:785d:efa0:d... *:*,*,,svchost,0,1,684 K,26672
+UDP,fe80::1036:222b:4ef3:b... *:*,*,,svchost,0,1,684 K,26672
+UDP,::1:53617,*:*,*,svchost,0,1,684 K,26672
+UDP,fe80::77db:4b2a:5ea5:1... *:*,*,,svchost,0,1,684 K,26672
+UDP,fe80::c4a7:3450:a48a:f... *:*,*,,svchost,0,1,684 K,26672
+UDP,:::53189,*:*,*,chrome,1,91,996 K,14808
+UDP,:::50523,*:*,*,chrome,1,91,996 K,14808
+UDP,:::49853,*:*,*,remoting_host,0,11,728 K,8928
+UDP,:::49406,*:*,*,svchost,0,1,760 K,4648
+UDP,:::5355,*:*,*,svchost,0,5,512 K,2912
+UDP,:::5353,*:*,*,chrome,1,91,996 K,14808
+UDP,:::5353,*:*,*,chrome,1,91,996 K,14808
+UDP,:::4500,*:*,*,svchost,0,2,236 K,6956
+UDP,fe80::c4a7:3450:a48a:f... *:*,*,,svchost,0,2,408 K,3084
+UDP,fe80::77db:4b2a:5ea5:1... *:*,*,,svchost,0,2,408 K,3084
+UDP,fe80::59a7:785d:efa0:d... *:*,*,,svchost,0,2,408 K,3084
+UDP,fe80::1036:222b:4ef3:b... *:*,*,,svchost,0,2,408 K,3084
+UDP,2603:7001:76f0:8e70:d0... *:*,*,,svchost,0,2,408 K,3084
+UDP,2603:7001:76f0:8e70:99... *:*,*,,svchost,0,2,408 K,3084
+UDP,2603:7001:76f0:8e70::1... *:*,*,,svchost,0,2,408 K,3084
+UDP,fe80::c4a7:3450:a48a:f... *:*,*,,svchost,0,1,684 K,26672
+UDP,fe80::77db:4b2a:5ea5:1... *:*,*,,svchost,0,1,684 K,26672
+UDP,fe80::59a7:785d:efa0:d... *:*,*,,svchost,0,1,684 K,26672
+UDP,fe80::1036:222b:4ef3:b... *:*,*,,svchost,0,1,684 K,26672
+UDP,::1:1900,*:*,*,svchost,0,1,684 K,26672
+UDP,:::500,*:*,*,svchost,0,2,236 K,6956
+UDP,0.0.0.0:64468,*:*,*,MSI.CentralServer,0,196,696 K,9592
+UDP,0.0.0.0:64467,*:*,*,MSI.CentralServer,0,196,696 K,9592
+UDP,0.0.0.0:64466,*:*,*,MSI.CentralServer,0,196,696 K,9592
+UDP,0.0.0.0:64464,*:*,*,MSI.CentralServer,0,196,696 K,9592
+UDP,0.0.0.0:64462,*:*,*,MSI.CentralServer,0,196,696 K,9592
+UDP,127.0.0.1:63323,*:*,*,svchost,0,2,604 K,7048
+UDP,0.0.0.0:58604,*:*,*,chrome,1,91,996 K,14808
+UDP,0.0.0.0:57506,*:*,*,svchost,0,1,760 K,4648
+UDP,0.0.0.0:57070,*:*,*,MSI.CentralServer,0,196,696 K,9592
+UDP,0.0.0.0:57067,*:*,*,MSI.CentralServer,0,196,696 K,9592
+UDP,0.0.0.0:57065,*:*,*,MSI.CentralServer,0,196,696 K,9592
+UDP,0.0.0.0:55237,*:*,*,MSI.CentralServer,0,196,696 K,9592
+UDP,0.0.0.0:55236,*:*,*,MSI.CentralServer,0,196,696 K,9592
+UDP,0.0.0.0:55235,*:*,*,MSI.CentralServer,0,196,696 K,9592
+UDP,0.0.0.0:55234,*:*,*,MSI.CentralServer,0,196,696 K,9592
+UDP,0.0.0.0:55233,*:*,*,MSI.CentralServer,0,196,696 K,9592
+UDP,0.0.0.0:55232,*:*,*,MSI.CentralServer,0,196,696 K,9592
+UDP,0.0.0.0:55231,*:*,*,MSI.CentralServer,0,196,696 K,9592
+UDP,0.0.0.0:55230,*:*,*,MSI.CentralServer,0,196,696 K,9592
+UDP,0.0.0.0:55229,*:*,*,MSI.CentralServer,0,196,696 K,9592
+UDP,0.0.0.0:55227,*:*,*,MSI.CentralServer,0,196,696 K,9592
+UDP,192.168.32.1:53624,*:*,*,svchost,0,1,684 K,26672
+UDP,172.26.208.1:53623,*:*,*,svchost,0,1,684 K,26672
+UDP,127.0.0.1:53622,*:*,*,svchost,0,1,684 K,26672
+UDP,192.168.1.89:53621,*:*,*,svchost,0,1,684 K,26672
+UDP,192.168.56.1:53620,*:*,*,svchost,0,1,684 K,26672
+UDP,0.0.0.0:49405,*:*,*,svchost,0,1,760 K,4648
+UDP,0.0.0.0:49404,*:*,*,svchost,0,1,760 K,4648
+UDP,0.0.0.0:5355,*:*,*,svchost,0,5,512 K,2912
+UDP,0.0.0.0:5353,*:*,*,chrome,1,91,996 K,14808
+UDP,0.0.0.0:5050,*:*,*,svchost,0,7,924 K,12392
+UDP,0.0.0.0:4500,*:*,*,svchost,0,2,236 K,6956
+UDP,192.168.56.1:2177,*:*,*,svchost,0,2,408 K,3084
+UDP,192.168.32.1:2177,*:*,*,svchost,0,2,408 K,3084
+UDP,192.168.1.89:2177,*:*,*,svchost,0,2,408 K,3084
+UDP,172.26.208.1:2177,*:*,*,svchost,0,2,408 K,3084
+UDP,192.168.56.1:1900,*:*,*,svchost,0,1,684 K,26672
+UDP,192.168.32.1:1900,*:*,*,svchost,0,1,684 K,26672
+UDP,192.168.1.89:1900,*:*,*,svchost,0,1,684 K,26672
+UDP,172.26.208.1:1900,*:*,*,svchost,0,1,684 K,26672
+UDP,127.0.0.1:1900,*:*,*,svchost,0,1,684 K,26672
+UDP,0.0.0.0:500,*:*,*,svchost,0,2,236 K,6956
+UDP,192.168.56.1:138,*:*,*,System,0,104 K,4
+UDP,192.168.32.1:138,*:*,*,System,0,104 K,4
+UDP,192.168.1.89:138,*:*,*,System,0,104 K,4
+UDP,172.26.208.1:138,*:*,*,System,0,104 K,4
+UDP,192.168.56.1:137,*:*,*,System,0,104 K,4
+UDP,192.168.32.1:137,*:*,*,System,0,104 K,4
+UDP,192.168.1.89:137,*:*,*,System,0,104 K,4
+UDP,172.26.208.1:137,*:*,*,System,0,104 K,4
+UDP,172.26.208.1:68,*:*,*,svchost,0,1,760 K,4648
+UDP,172.26.208.1:67,*:*,*,svchost,0,1,760 K,4648
+UDP,0.0.0.0:53,*:*,*,svchost,0,1,760 K,4648
+,,,,,,,
+,,,,,,,
+,,,,,,,
+Processes,to,Delete:,====,====,====,====,====,====,====,
+Proto,Local Address,Foreign Address,State,Name,Session#,Mem Usage,PID
+TCP,:::54558,:::0,Bound,java,1,193,296 K,53708
+TCP,:::54557,:::0,Bound,java,1,193,296 K,53708
+TCP,::1:4003,:::0,Listen,node,1,48,340 K,46320
+TCP,127.0.0.1:54558,127.0.0.1:54237,Established,java,1,193,296 K,53708
+TCP,127.0.0.1:54557,127.0.0.1:8083,Established,java,1,193,296 K,53708
+TCP,127.0.0.1:54237,127.0.0.1:54558,Established,java,1,193,296 K,53708
+TCP,127.0.0.1:54237,0.0.0.0:0,Listen,java,1,193,296 K,53708
+TCP,127.0.0.1:54234,0.0.0.0:0,Listen,java,1,193,296 K,53708
+TCP,127.0.0.1:9150,0.0.0.0:0,Listen,java,1,193,296 K,53708
+TCP,127.0.0.1:8083,127.0.0.1:54557,Established,java,1,193,296 K,53708
+TCP,127.0.0.1:8083,0.0.0.0:0,Listen,java,1,193,296 K,53708
+TCP,127.0.0.1:4003,0.0.0.0:0,Listen,node,1,48,340 K,46320

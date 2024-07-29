@@ -17,6 +17,20 @@ func main() {
 		return
 	}
 	angularFrontend := settings.ExtensionPack.AngularFrontend
+	var appPort string
+	settingsAppPort := utils.IntToStr(settings.ExtensionPack.Ports.AngularRun0)
+	if settingsAppPort != "0" {
+		appPort = settingsAppPort
+	} else {
+		appPort = utils.IntToStr(4200)
+	}
+
+	appPort = utils.GetInputFromStdin(
+		utils.GetInputFromStdinStruct{
+			Prompt: []string{"The port to use"},
+			Default: appPort,
+		},
+	)
 
 	cliInfo := utils.ShowMenuModel{
 		Prompt:  "run with cache?",
@@ -33,8 +47,6 @@ func main() {
 	concurrentWithScss := utils.ShowMenu(cliInfo, nil)
 
 	shared.SetNodeJSEnvironment(settings.ExtensionPack.NodeJSVersion0)
-
-
 
 	defaultConfig := "development"
 	if utils.IsRunningInDocker() {
@@ -69,14 +81,14 @@ func main() {
 		utils.RunCommand("npx", []string{
 			"ng", "serve", "-c",
 			serveConfiguration, "--ssl=true", fmt.Sprintf("--ssl-key=%s", os.Getenv("WML_CERT_KEY0")),
-			fmt.Sprintf("--ssl-cert=%s", os.Getenv("WML_CERT0")),
+			fmt.Sprintf("--ssl-cert=%s", os.Getenv("WML_CERT0")) + " --port " + appPort,
 			"sass", "--watch", "src/assets/styles/turn_to_css/entry.scss:src/assets/styles/compiled.css",
 		})
 	} else {
 		utils.RunCommand("npm", []string{"run", "build:scss"})
 		utils.RunCommand("npx", []string{
 			"concurrently",
-			"ng serve -c " + serveConfiguration + " --ssl=true --ssl-key=" + os.Getenv("WML_CERT_KEY0") + " --ssl-cert=" + os.Getenv("WML_CERT0"),
+			"ng serve -c " + serveConfiguration + " --ssl=true --ssl-key=" + os.Getenv("WML_CERT_KEY0") + " --ssl-cert=" + os.Getenv("WML_CERT0") + " --port " + appPort,
 			fmt.Sprintf("chokidar \"%s\" -c \"%s\"",
 				"src/assets/styles/turn_to_css/**/*.{scss,css}",
 				"npm run build:scss",

@@ -290,9 +290,6 @@ func main() {
 				continue
 			}
 
-
-
-
 			// TODO is this not needed / its not doing  anything
 			var runOnValue = ""
 			if utils.ArrayContainsAny([]string{label}, settings.ExtensionPack.TasksToRunOnFolderOpen) {

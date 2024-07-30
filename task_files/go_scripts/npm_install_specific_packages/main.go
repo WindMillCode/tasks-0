@@ -51,11 +51,7 @@ func main() {
 		},
 	)
 
-	cliInfo = utils.ShowMenuModel{
-		Prompt:  "chose whether its a dev dependency (-D) or dependency (-s)",
-		Choices: []string{"-D", "-s"},
-	}
-	depType := utils.ShowMenu(cliInfo, nil)
+
 
 	cliInfo = utils.ShowMenuModel{
 		Prompt:  "uninstall?",
@@ -67,6 +63,16 @@ func main() {
 		Choices: []string{"true", "false"},
 	}
 	install := utils.ShowMenu(cliInfo, nil)
+
+	var depType string
+	if install == "true"{
+		cliInfo = utils.ShowMenuModel{
+			Prompt:  "chose whether its a dev dependency (-D) or dependency (-s)",
+			Choices: []string{"-D", "-s"},
+		}
+		depType = utils.ShowMenu(cliInfo, nil)
+	}
+
 
 	cliInfo = utils.ShowMenuModel{
 		Prompt:  "force",

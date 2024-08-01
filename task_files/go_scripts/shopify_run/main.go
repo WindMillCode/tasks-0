@@ -1,7 +1,7 @@
 package main
 
 import (
-	"log"
+	"fmt"
 	"main/shared"
 	"os"
 
@@ -18,18 +18,18 @@ func main() {
 	}
 	utils.SetGlobalVars(
 		utils.SetGlobalVarsOptions{
-			NonInteractive :settings.ExtensionPack.ProcessIfDefaultIsPresent,
+			NonInteractive: settings.ExtensionPack.ProcessIfDefaultIsPresent,
 		},
 	)
 	utils.CDToShopifyApp()
 	shopifyFolder, err := os.Getwd()
 	if err != nil {
-		log.Fatalf("Error getting shopify directory: %v", err)
-		return;
+		fmt.Printf("Error getting shopify directory: %v", err)
+		return
 	}
 	files, err := utils.GetItemsInFolder(shopifyFolder)
 	if err != nil {
-		log.Fatalf("Error getting shopify items: %v", err)
+		fmt.Printf("Error getting shopify items: %v", err)
 		return
 	}
 
@@ -38,7 +38,7 @@ func main() {
 		itemPath := shopifyFolder + "/" + file
 		fileInfo, err := os.Stat(itemPath)
 		if err != nil {
-			log.Printf("Error getting info for %s: %v", itemPath, err)
+			fmt.Printf("Error getting info for %s: %v", itemPath, err)
 			continue
 		}
 		if fileInfo.IsDir() {
@@ -46,17 +46,16 @@ func main() {
 		}
 	}
 	cliInfo := utils.ShowMenuModel{
-		Prompt: "select the shopify app",
-		Choices:apps,
+		Prompt:  "select the shopify app",
+		Choices: apps,
 		Default: settings.ExtensionPack.ShopifyRun.ProjectName,
 	}
-	targetApp := utils.ShowMenu(cliInfo,nil)
+	targetApp := utils.ShowMenu(cliInfo, nil)
 	utils.CDToLocation(targetApp)
 
-
 	opts := utils.CommandOptions{
-		Command: "npm",
-		Args:    []string{"run","dev"},
+		Command:     "npm",
+		Args:        []string{"run", "dev"},
 		PrintOutput: true,
 	}
 	utils.RunCommandWithOptions(opts)

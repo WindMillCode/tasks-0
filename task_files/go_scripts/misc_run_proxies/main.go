@@ -3,13 +3,11 @@ package main
 import (
 	"crypto/tls"
 	"fmt"
-	"log"
 	"net/http"
 	"net/http/httputil"
 	"net/url"
 	"os"
 	"sync"
-
 	"main/shared"
 
 	"github.com/windmillcode/go_cli_scripts/v5/utils"
@@ -25,7 +23,7 @@ func main() {
 	}
 	utils.SetGlobalVars(
 		utils.SetGlobalVarsOptions{
-			NonInteractive :settings.ExtensionPack.ProcessIfDefaultIsPresent,
+			NonInteractive: settings.ExtensionPack.ProcessIfDefaultIsPresent,
 		},
 	)
 	targetExecutable, shouldReturn := downloadDiodeCLI()
@@ -52,7 +50,7 @@ func main() {
 		port := ports.InputArray[index]
 		url, err := url.Parse(proxyURL)
 		if err != nil {
-			log.Fatal("Error parsing URL:", err)
+			fmt.Println("Error parsing URL:", err)
 		}
 		transport := &http.Transport{
 			TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
@@ -88,9 +86,9 @@ func main() {
 		wg.Add(1)
 		go func() {
 			defer wg.Done()
-			log.Println(fmt.Sprintf("HTTP proxy server listening on port %s forwarding all request data to %s", port, proxyURL))
+			fmt.Println(fmt.Sprintf("HTTP proxy server listening on port %s forwarding all request data to %s", port, proxyURL))
 			if err := http.ListenAndServe(fmt.Sprintf(":%s", port), nil); err != nil {
-				log.Fatal("ListenAndServe: ", err)
+				fmt.Println("ListenAndServe: ", err)
 			}
 
 		}()

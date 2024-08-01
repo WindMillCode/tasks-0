@@ -492,4 +492,13 @@ firebase cloud run emulators will update the firebase.json with the appropiate p
 
 [PATCH] unwanted fields are not added to firebase.json
 
+## [1.91.1202] [7/31/2024 10:15:00 AM EST]
+
+[UPDATE]
+File: task_files/go_scripts/angular_frontend_run/main.go
+Changed the default cache setting from TRUE to FALSE. Now the script will prompt with FALSE as the default choice. If auto run is set this will automaitcally delete the .angular folder
+
+[UPDATE]
+File: task_files/go_scripts/npm_install_specific_packages/main.go
+Moved the prompt for choosing dependency type (`-D` or `-s`) to after the uninstall prompt and only if the user selects to install. This change affects the npm package installation flow.
 

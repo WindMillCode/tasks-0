@@ -443,6 +443,15 @@
       }
     },
     {
+      "label": "npm: switch to new version",
+      "type": "shell",
+
+
+      "runOptions": {
+        "instanceLimit": 10
+      }
+    },
+    {
       "label": "tasks: update workspace without extension",
       "type": "shell",
 

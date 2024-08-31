@@ -502,3 +502,10 @@ Changed the default cache setting from TRUE to FALSE. Now the script will prompt
 File: task_files/go_scripts/npm_install_specific_packages/main.go
 Moved the prompt for choosing dependency type (`-D` or `-s`) to after the uninstall prompt and only if the user selects to install. This change affects the npm package installation flow.
 
+
+## [1.91.2000]  [8/31/2024 03:45:27 PM EST]
+
+[PATCH] Changed the `task_files/tasks.json` to add a new shell task labeled `npm: switch to new version`. This allows running npm commands with version switching. If you're running tasks, make sure to check out this new option.
+
+
+

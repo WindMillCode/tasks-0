@@ -507,5 +507,7 @@ Moved the prompt for choosing dependency type (`-D` or `-s`) to after the uninst
 
 [PATCH] Changed the `task_files/tasks.json` to add a new shell task labeled `npm: switch to new version`. This allows running npm commands with version switching. If you're running tasks, make sure to check out this new option.
 
+## [1.93.0] [9/8/24]
 
+[FIX] fixed a bug with android_replace_all_emulators
 

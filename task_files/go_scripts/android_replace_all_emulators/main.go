@@ -56,7 +56,7 @@ func createAVDs(avds []string) {
 
 
 func main() {
-
+	utils.CDToWorkspaceRoot()
 	workspaceRoot, err := os.Getwd()
 	if err != nil {
 		return

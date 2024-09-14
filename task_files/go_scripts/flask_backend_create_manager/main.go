@@ -29,7 +29,7 @@ func main() {
 	)
 	templateLocation := utils.JoinAndConvertPathToOSFormat(scriptLocation, "template_manager")
 	testTemplateLocation := utils.JoinAndConvertPathToOSFormat(scriptLocation, "test_template_manager")
-	shared.CDToWorkspaceRoot()
+
 	utils.CDToFlaskApp()
 	targetApp, err := os.Getwd()
 	if err != nil {

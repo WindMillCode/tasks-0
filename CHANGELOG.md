@@ -511,3 +511,12 @@ Moved the prompt for choosing dependency type (`-D` or `-s`) to after the uninst
 
 [FIX] fixed a bug with android_replace_all_emulators
 
+## [1.93.1000] [9/13/2024 9:42:00 AM EST]
+
+[FIX]
+- **File**: `task_files/go_scripts/flask_backend_create_manager/main.go`
+- **Change**: Removed the `shared.CDToWorkspaceRoot()` line
+- **Why it matters**: It no longer switches directories to the workspace root. You should now be sure you're in the correct folder manually before running the script. The command that changed is located in the main function that initializes the flask backend creation.
+
+[FIX]
+flutter_mobile_build_deploy updaated so all commands are processed before running unused import remover

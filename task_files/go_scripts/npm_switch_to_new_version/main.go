@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-
 	"main/shared"
 	"os"
 	"path/filepath"
@@ -27,10 +26,21 @@ func main() {
 		},
 	)
 
+
+
+	cliInfo := utils.ShowMenuModel{
+		Prompt: "Handle special packages",
+		Choices:[]string{"YES","NO"},
+		Default: "YES",
+	}
+	handleSpecialPackages := utils.ShowMenu(cliInfo,nil)
+
+
 	// Prompt for new Node.js version
 	newNodeVersion := utils.GetInputFromStdin(utils.GetInputFromStdinStruct{
-		Prompt:  []string{"Enter the new Node.js version to install:"},
+		Prompt: []string{"Enter the new Node.js version to install:"},
 	})
+	// newNodeVersion := "20.18.0"
 
 	currentNodeVersionCmd := utils.CommandOptions{
 		Command:   "node",
@@ -44,17 +54,19 @@ func main() {
 	}
 	currentNodeVersion = strings.TrimSpace(currentNodeVersion)
 
+	executablePath, _ := os.Executable()
+	scriptDir := filepath.Dir(executablePath)
 	listGlobalPackagesCmd := utils.CommandOptions{
 		Command:   "npm",
-		Args:      []string{"ls", "-g", "--depth=0", "--json"},
+		Args:      []string{"ls", "-g", "--depth=0", "--long", "--json"},
 		GetOutput: true,
+		TargetDir: scriptDir,
 	}
 	globalPackagesJson, err := utils.RunCommandWithOptions(listGlobalPackagesCmd)
 	if err != nil {
 		fmt.Println("Error listing global packages:", err)
 		return
 	}
-	fmt.Println(globalPackagesJson)
 
 	// Parse the JSON output to extract package names
 	var globalPackages map[string]interface{}
@@ -108,32 +120,44 @@ func main() {
 		utils.RunCommandWithOptions(nvmInstallCmd)
 	}
 
+
 	nvmUseCmd := utils.CommandOptions{
-		Command: nvmPath,
-		Args:    []string{"use", newNodeVersion},
+		Command: "nvm",
+		Args:    []string{ "use", newNodeVersion},
 	}
 	utils.RunCommandWithOptions(nvmUseCmd)
-	// // Reinstall global packages
+	// Reinstall global packages
 
 	if dependencies, ok := globalPackages["dependencies"].(map[string]interface{}); ok {
 		for name, pkg := range dependencies {
 			fmt.Println(name)
 			if pkgMap, ok := pkg.(map[string]interface{}); ok {
-				if resolved, ok := pkgMap["resolved"].(string); ok && resolved != "" {
-					relativePath := strings.TrimPrefix(resolved, "file:")
-					executablePath,_ := os.Executable()
-					scriptDir := filepath.Dir(executablePath)
-					absolutePath := filepath.Join(scriptDir, relativePath)
 
-
-
-					npmLinkCmd := utils.CommandOptions{
-						Command: "npm",
-						Args:    []string{"link"},
-						TargetDir: utils.ConvertPathToOSFormat(absolutePath),
+				if handleSpecialPackages =="YES" && utils.ArrayContainsAny([]string{name}, []string{"pnpm","corepack"}) {
+					if name == "pnpm" {
+						corePackEnableCommand := utils.CommandOptions{
+							Command: "corepack",
+							Args:    []string{"enable"},
+						}
+						utils.RunCommandWithOptions(corePackEnableCommand)
 					}
-					utils.RunCommandWithOptions(npmLinkCmd)
-				} else {
+				} else if resolved, ok := pkgMap["resolved"].(string); ok && resolved != "" {
+					if linkAbsPath, ok := pkgMap["path"].(string); ok && linkAbsPath != "" {
+
+						resolvedPath, err := os.Readlink(linkAbsPath)
+						if err != nil {
+							fmt.Printf("Error resolving symlink: %v", err)
+						} else{
+							npmLinkCmd := utils.CommandOptions{
+								Command:   "npm",
+								Args:      []string{"link"},
+								TargetDir: utils.ConvertPathToOSFormat(resolvedPath),
+							}
+							utils.RunCommandWithOptions(npmLinkCmd)
+						}
+
+					}
+				}else {
 					npmInstallCmd := utils.CommandOptions{
 						Command: "npm",
 						Args:    []string{"install", "-g", name},
@@ -161,10 +185,16 @@ func findCommandPath(commandName string) (string, error) {
 		// En Windows, usamos `Get-Command` en PowerShell para localizar el comando
 		commandCheck = "powershell"
 		commandArgs = []string{"-Command", fmt.Sprintf("Get-Command %s | Select-Object -ExpandProperty Definition", commandName)}
-	case "linux", "darwin":
+	case "linux":
 		// En sistemas Unix-like, usamos `command -v` o `which`
 		commandCheck = "sh"
 		commandArgs = []string{"-c", fmt.Sprintf("command -v %s || which %s", commandName, commandName)}
+
+	// TODO cant get mac os to work
+	// case "darwin":
+	// 	commandCheck = "zsh"
+	// 	commandArgs = []string{"-c",fmt.Sprintf("(type -a %s | tail -n 1 | awk '{print $NF}')",commandName)}
+
 	default:
 		return "", fmt.Errorf("unsupported platform")
 	}

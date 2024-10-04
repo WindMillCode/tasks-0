@@ -527,3 +527,14 @@ flutter_mobile_build_deploy updaated so all commands are processed before runnin
 [FIX] Removed an extra line that changed directories in flask_backend_create_controller/main.go. This should fix path issues.
 [UPDATE] Added support for WxtApp locales in misc_translate_json/main.go. Now you can translate WxtApp files.
 [UPDATE] Added WxtApp to npm_install_app_deps/main.go. Now dependencies will install for WxtApp.
+
+
+
+## [1.94.1] [10/4/2024 2:15:30 PM EST]
+
+[UPDATE] The main script `npm_switch_to_new_version/main.go` now includes handling for special packages like `pnpm` and `corepack`. New menu prompt `handleSpecialPackages` asks the user if they want to enable special handling.
+
+[FIX] Fixed the reinstallation process for global npm packages by resolving symlinks and linking them properly.
+
+[BUG] Adjusted command lookup logic in `findCommandPath` to handle Linux systems more accurately, though macOS logic remains unresolved and commented out for future fixes.
+

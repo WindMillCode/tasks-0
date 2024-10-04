@@ -40,6 +40,7 @@ func main() {
 		Choices: []string{
 			utils.JoinAndConvertPathToOSFormat("./apps/frontend/AngularApp"),
 			utils.JoinAndConvertPathToOSFormat("./apps/cloud/FirebaseApp"),
+			utils.JoinAndConvertPathToOSFormat("./apps/extensions/WxtApp"),
 			utils.JoinAndConvertPathToOSFormat("."),
 		},
 	}
@@ -68,15 +69,12 @@ func main() {
 			defer wg.Done()
 			if reinstall == "true" {
 				os.Remove(utils.JoinAndConvertPathToOSFormat(app, "package-lock.json"))
-
 				os.Remove(utils.JoinAndConvertPathToOSFormat(app, "yarn.lock"))
 				os.RemoveAll(utils.JoinAndConvertPathToOSFormat(app, ".yarn"))
 				os.Remove(utils.JoinAndConvertPathToOSFormat(app, ".pnp.js"))
 				os.Remove(utils.JoinAndConvertPathToOSFormat(app, ".pnp.cjs"))
 				os.Remove(utils.JoinAndConvertPathToOSFormat(app, ".pnp.loader.mjs"))
-
 				os.Remove(utils.JoinAndConvertPathToOSFormat(app, "pnpm-lock.yaml"))
-
 				os.RemoveAll(utils.JoinAndConvertPathToOSFormat(app, "node_modules"))
 			}
 			command := []string{"install"}

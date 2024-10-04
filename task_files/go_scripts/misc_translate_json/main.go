@@ -27,6 +27,7 @@ func main() {
 		Choices: []string{
 			utils.JoinAndConvertPathToOSFormat(workspaceRoot, "apps", "frontend", "AngularApp", "src", "assets", "i18n"),
 			utils.JoinAndConvertPathToOSFormat(workspaceRoot, "apps", "mobile", "FlutterApp", "assets", "i18n"),
+			utils.JoinAndConvertPathToOSFormat(workspaceRoot, "apps", "extensions", "WxtApp", "locales"),
 		},
 	}
 	i18nLocation := utils.ShowMenu(cliInfo, nil)

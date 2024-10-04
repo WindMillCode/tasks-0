@@ -520,3 +520,10 @@ Moved the prompt for choosing dependency type (`-D` or `-s`) to after the uninst
 
 [FIX]
 flutter_mobile_build_deploy updaated so all commands are processed before running unused import remover
+
+## [1.94.0] [10/4/2024 11:00:00 AM EST]
+
+[UPDATE] We changed the Go extension version to 1.23.2 in src/installGo.ts. Now you'll get the latest features.
+[FIX] Removed an extra line that changed directories in flask_backend_create_controller/main.go. This should fix path issues.
+[UPDATE] Added support for WxtApp locales in misc_translate_json/main.go. Now you can translate WxtApp files.
+[UPDATE] Added WxtApp to npm_install_app_deps/main.go. Now dependencies will install for WxtApp.

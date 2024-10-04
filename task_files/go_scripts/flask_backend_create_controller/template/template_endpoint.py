@@ -1,6 +1,4 @@
-import time
 from configs import CONFIGS
-import requests;
 from flask import Blueprint,request
 from urllib.parse import urlparse
 

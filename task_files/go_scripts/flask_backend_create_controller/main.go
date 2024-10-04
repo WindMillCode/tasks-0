@@ -31,7 +31,7 @@ func main() {
 	templateLocation := utils.JoinAndConvertPathToOSFormat(scriptLocation, "template")
 	templateEndpointFile := utils.JoinAndConvertPathToOSFormat(templateLocation, "template_endpoint.py")
 	templateHandlerFile := utils.JoinAndConvertPathToOSFormat(templateLocation, "template_handler.py")
-	shared.CDToWorkspaceRoot()
+
 	utils.CDToFlaskApp()
 	targetApp, err := os.Getwd()
 	if err != nil {

@@ -39,6 +39,7 @@ func main() {
 		Choices: []string{
 			utils.JoinAndConvertPathToOSFormat("./apps/frontend/AngularApp"),
 			utils.JoinAndConvertPathToOSFormat("./apps/cloud/FirebaseApp"),
+			utils.JoinAndConvertPathToOSFormat("./apps/extensions/WxtApp"),
 			utils.JoinAndConvertPathToOSFormat("."),
 		},
 	}

@@ -79,11 +79,16 @@ func main() {
 		}
 	}
 
-	nvmPath, err := findCommandPath("nvm")
-	if err != nil {
-		fmt.Println("Error finding NVM path:", err)
-		return
+	// nvmPath, err := findCommandPath("nvm")
+	// if err != nil {
+	// 	fmt.Println("Error finding NVM path:", err)
+	// 	return
+	// }
+	nvmPath := utils.JoinAndConvertPathToOSFormat("..","..","executables",runtime.GOOS,"nvm")
+	if runtime.GOOS == "windows"{
+		nvmPath = strings.Replace(nvmPath,"nvm","nvm.exe",1)
 	}
+
 
 	nodeVersionsPath := utils.JoinAndConvertPathToOSFormat(filepath.Dir(nvmPath))
 	if runtime.GOOS != "windows" {

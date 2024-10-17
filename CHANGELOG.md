@@ -538,3 +538,16 @@ flutter_mobile_build_deploy updaated so all commands are processed before runnin
 
 [BUG] Adjusted command lookup logic in `findCommandPath` to handle Linux systems more accurately, though macOS logic remains unresolved and commented out for future fixes.
 
+## [1.94.2000]  [10/17/2024 03:25:00 PM]
+
+[UPDATE] The flask_backend_create_controller script now updates app.py automatically. It adds the import and registration for your new endpoint in app.py.
+
+[UPDATE] Added test_template_endpoint.py and test_template_handler.py to the controller template. When you create a new controller, test files are created too.
+
+[FIX] Changed import in template_endpoint.py to import post_endpoint directly from handlers.wml_template_handler. This means your endpoint calls post_endpoint directly.
+
+[UPDATE] The flask_backend_create_manager script now updates configs.py for you. It adds your new manager to configs.py automatically.
+
+[UPDATE] Added WxtApp to the options in npm_install_specific_packages script. You can now install packages for WxtApp.
+
+[FIX] Updated npm_switch_to_new_version script to find nvm in the executables folder. This fixes path issues on Windows.

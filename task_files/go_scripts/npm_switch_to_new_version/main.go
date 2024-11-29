@@ -40,7 +40,6 @@ func main() {
 	newNodeVersion := utils.GetInputFromStdin(utils.GetInputFromStdinStruct{
 		Prompt: []string{"Enter the new Node.js version to install:"},
 	})
-	// newNodeVersion := "20.18.0"
 
 	currentNodeVersionCmd := utils.CommandOptions{
 		Command:   "node",
@@ -84,6 +83,7 @@ func main() {
 	// 	fmt.Println("Error finding NVM path:", err)
 	// 	return
 	// }
+	// TODO just ask for the path
 	nvmPath := utils.JoinAndConvertPathToOSFormat("..","..","executables",runtime.GOOS,"nvm")
 	if runtime.GOOS == "windows"{
 		nvmPath = strings.Replace(nvmPath,"nvm","nvm.exe",1)
@@ -132,7 +132,7 @@ func main() {
 	}
 	utils.RunCommandWithOptions(nvmUseCmd)
 	// Reinstall global packages
-
+	regularInstallArray := []string{}
 	if dependencies, ok := globalPackages["dependencies"].(map[string]interface{}); ok {
 		for name, pkg := range dependencies {
 			fmt.Println(name)
@@ -163,15 +163,17 @@ func main() {
 
 					}
 				}else {
-					npmInstallCmd := utils.CommandOptions{
-						Command: "npm",
-						Args:    []string{"install", "-g", name},
-					}
-					utils.RunCommandWithOptions(npmInstallCmd)
+					regularInstallArray = append(regularInstallArray, name)
 				}
 			}
-
 		}
+
+
+		npmInstallCmd := utils.CommandOptions{
+			Command: "npm",
+			Args: append([]string{"install", "-g"}, regularInstallArray...),
+		}
+		utils.RunCommandWithOptions(npmInstallCmd)
 
 	}
 

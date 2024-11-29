@@ -18,8 +18,6 @@
     {
       "label": "angular frontend: check for angular updates",
       "type": "shell",
-
-
       "runOptions": {
         "instanceLimit": 1
       }
@@ -27,8 +25,6 @@
     {
       "label": "angular frontend: run",
       "type": "shell",
-
-
       "runOptions": {
         "instanceLimit": 1
       }
@@ -36,8 +32,6 @@
     {
       "label": "angular frontend: run compodoc",
       "type": "shell",
-
-
       "runOptions": {
         "instanceLimit": 1
       }
@@ -45,8 +39,6 @@
     {
       "label": "misc: translate json",
       "type": "shell",
-
-
       "runOptions": {
         // amount of laugages including dialects in the world
         "instanceLimit": 10000
@@ -55,8 +47,6 @@
     {
       "label": "angular frontend: test",
       "type": "shell",
-
-
       "runOptions": {
         "instanceLimit": 1
       }
@@ -64,8 +54,6 @@
     {
       "label": "angular frontend: update angular",
       "type": "shell",
-
-
       "runOptions": {
         "instanceLimit": 1
       }
@@ -73,8 +61,6 @@
     {
       "label": "docker: init container",
       "type": "shell",
-
-
       "runOptions": {
         "instanceLimit": 10
       }
@@ -82,8 +68,6 @@
     {
       "label": "docker: backup all images",
       "type": "shell",
-
-
       "runOptions": {
         "instanceLimit": 1
       }
@@ -91,8 +75,6 @@
     {
       "label": "docker: restore all images",
       "type": "shell",
-
-
       "runOptions": {
         "instanceLimit": 1
       }
@@ -100,8 +82,6 @@
     {
       "label": "docker: run",
       "type": "shell",
-
-
       "runOptions": {
 
         "instanceLimit": 10
@@ -110,8 +90,6 @@
     {
       "label": "docker: ssh into container",
       "type": "shell",
-
-
       "runOptions": {
         "instanceLimit": 10
       }
@@ -119,8 +97,6 @@
     {
       "label": "flask backend: run",
       "type": "shell",
-
-
       "runOptions": {
 
         "instanceLimit": 1
@@ -129,8 +105,6 @@
     {
       "label": "flask backend: run with reloader",
       "type": "shell",
-
-
       "runOptions": {
 
         "instanceLimit": 1
@@ -138,17 +112,13 @@
     },
     {
       "label": "flask backend: test",
-      "type": "shell",
-
-      "runOptions": {
+      "type": "shell",      "runOptions": {
         "instanceLimit": 1
       }
     },
     {
       "label": "flask backend: create controller",
       "type": "shell",
-
-
       "runOptions": {
         "instanceLimit": 1
       }
@@ -156,8 +126,6 @@
     {
       "label": "flask backend: create manager",
       "type": "shell",
-
-
       "runOptions": {
         "instanceLimit": 1
       }
@@ -165,8 +133,6 @@
     {
       "label": "flutter mobile: create page",
       "type": "shell",
-
-
       "runOptions": {
         "instanceLimit": 1
       }
@@ -174,8 +140,6 @@
     {
       "label": "flutter mobile: install specific packages",
       "type": "shell",
-
-
       "runOptions": {
         "instanceLimit": 1
       }
@@ -183,8 +147,6 @@
     {
       "label": "flutter mobile: create layout",
       "type": "shell",
-
-
       "runOptions": {
         "instanceLimit": 1
       }
@@ -192,8 +154,6 @@
     {
       "label": "flutter mobile: create shared widget",
       "type": "shell",
-
-
       "runOptions": {
         "instanceLimit": 1
       }
@@ -201,8 +161,6 @@
     {
       "label": "flutter mobile: create riverpod async notifier provider",
       "type": "shell",
-
-
       "runOptions": {
         "instanceLimit": 1
       }
@@ -210,8 +168,6 @@
     {
       "label": "flutter mobile: create riverpod provider",
       "type": "shell",
-
-
       "runOptions": {
         "instanceLimit": 1
       }
@@ -219,8 +175,6 @@
     {
       "label": "flutter mobile: build deploy",
       "type": "shell",
-
-
       "runOptions": {
         "instanceLimit": 1
       }
@@ -228,8 +182,6 @@
     {
       "label": "flutter mobile: test",
       "type": "shell",
-
-
       "runOptions": {
         "instanceLimit": 1
       }
@@ -237,8 +189,6 @@
     {
       "label": "firebase cloud: run emulators",
       "type": "shell",
-
-
       "runOptions": {
 
         "instanceLimit": 1
@@ -247,8 +197,6 @@
     {
       "label": "git: create branch after merged changes",
       "type": "shell",
-
-
       "runOptions": {
         "instanceLimit": 1
       }
@@ -256,8 +204,6 @@
     {
       "label": "git: clone subdirs",
       "type": "shell",
-
-
       "runOptions": {
         "instanceLimit": 1
       }
@@ -265,8 +211,6 @@
     {
       "label": "git: merge changes from current dev branch",
       "type": "shell",
-
-
       "runOptions": {
         "instanceLimit": 1
       }
@@ -274,8 +218,6 @@
     {
       "label": "git: pushing work to git remote",
       "type": "shell",
-
-
       "runOptions": {
         "instanceLimit": 1
       }
@@ -283,8 +225,6 @@
     {
       "label": "git: removing a file from being tracked by git",
       "type": "shell",
-
-
       "runOptions": {
         "instanceLimit": 1
       }
@@ -292,8 +232,6 @@
     {
       "label": "misc: optimize images",
       "type": "shell",
-
-
       "runOptions": {
         "instanceLimit": 1
       }
@@ -301,8 +239,6 @@
     {
       "label": "misc: run proxies",
       "type": "shell",
-
-
       "runOptions": {
         "instanceLimit": 1000
       }
@@ -310,8 +246,6 @@
     {
       "label": "misc: rename files",
       "type": "shell",
-
-
       "runOptions": {
         "instanceLimit": 1
       }
@@ -319,8 +253,6 @@
     {
       "label": "misc: make a new doc item",
       "type": "shell",
-
-
       "runOptions": {
         "instanceLimit": 1
       }
@@ -328,8 +260,6 @@
     {
       "label": "misc: open doc item in vscode",
       "type": "shell",
-
-
       "runOptions": {
         "instanceLimit": 1
       }
@@ -337,8 +267,6 @@
     {
       "label": "misc: copy to keep projects in sync",
       "type": "shell",
-
-
       "runOptions": {
         "instanceLimit": 1
       }
@@ -346,8 +274,6 @@
     {
       "label": "python: install app deps",
       "type": "shell",
-
-
       "runOptions": {
         "instanceLimit": 10
       }
@@ -355,8 +281,6 @@
     {
       "label": "python: install specific packages",
       "type": "shell",
-
-
       "runOptions": {
         "instanceLimit": 10
       }
@@ -364,8 +288,6 @@
     {
       "label": "shopify: run",
       "type": "shell",
-
-
       "runOptions": {
         "instanceLimit": 50
       }
@@ -373,8 +295,6 @@
     {
       "label": "sql: get schema via docker",
       "type": "shell",
-
-
       "runOptions": {
         "instanceLimit": 1
       }
@@ -382,8 +302,6 @@
     {
       "label": "sql: make db schema update entry",
       "type": "shell",
-
-
       "runOptions": {
         "instanceLimit": 1
       }
@@ -391,8 +309,6 @@
     {
       "label": "testng: e2e create testng page",
       "type": "shell",
-
-
       "runOptions": {
         "instanceLimit": 1
       }
@@ -400,8 +316,6 @@
     {
       "label": "testng: e2e run",
       "type": "shell",
-
-
       "runOptions": {
         "instanceLimit": 1
       }
@@ -409,8 +323,6 @@
     {
       "label": "testng: e2e setup vscode extension",
       "type": "shell",
-
-
       "runOptions": {
         "instanceLimit": 1
       }
@@ -418,8 +330,6 @@
     {
       "label": "npm: install app deps",
       "type": "shell",
-
-
       "runOptions": {
         "instanceLimit": 10
       }
@@ -427,8 +337,6 @@
     {
       "label": "npm: install specific packages",
       "type": "shell",
-
-
       "runOptions": {
         "instanceLimit": 10
       }
@@ -436,8 +344,6 @@
     {
       "label": "npm: silence typescript errors",
       "type": "shell",
-
-
       "runOptions": {
         "instanceLimit": 10
       }
@@ -445,8 +351,6 @@
     {
       "label": "npm: switch to new version",
       "type": "shell",
-
-
       "runOptions": {
         "instanceLimit": 10
       }
@@ -454,10 +358,29 @@
     {
       "label": "tasks: update workspace without extension",
       "type": "shell",
-
-
       "runOptions": {
         "instanceLimit": 10
+      }
+    },
+    {
+      "label": "wxt: run",
+      "type": "shell",
+      "runOptions": {
+        "instanceLimit": 1
+      }
+    },
+    {
+      "label": "wxt: build",
+      "type": "shell",
+      "runOptions": {
+        "instanceLimit": 1
+      }
+    },
+    {
+      "label": "wxt: build safari",
+      "type": "shell",
+      "runOptions": {
+        "instanceLimit": 1
       }
     }
   ],

@@ -30,7 +30,7 @@ type Metadata struct {
 }
 
 type RunOptions struct {
-	RunOn         string `json:"runOn"`
+	RunOn         string `json:"runOn,omitempty"`
 	InstanceLimit int    `json:"instanceLimit"`
 }
 
@@ -45,11 +45,12 @@ type Task struct {
 		Options CommandOptions `json:"options"`
 	} `json:"linux"`
 	Osx struct {
-		Command string `json:"command"`
+		Command string        `json:"command"`
+		Args    []string      `json:"args"`
 	} `json:"osx"`
 	RunOptions   RunOptions `json:"runOptions"`
 	Presentation struct {
-		Panel string `json:"panel"`
+		Panel string `json:"panel,omitempty"`
 	} `json:"presentation"`
 	Metadata Metadata `json:"metadata"`
 }

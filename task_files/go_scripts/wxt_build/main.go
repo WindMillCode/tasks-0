@@ -24,6 +24,8 @@ func main() {
 	opts := utils.CommandOptions{
 		Command: "npm",
 		Args:    []string{"run","zip:all"},
+		GetOutput:       false,
+		PrintOutputOnly: true,
 	}
 	utils.RunCommandWithOptions(opts)
 }

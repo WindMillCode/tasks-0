@@ -23,6 +23,13 @@
       }
     },
     {
+      "label": "angular frontend: deploy to firebase",
+      "type": "shell",
+      "runOptions": {
+        "instanceLimit": 1
+      }
+    },
+    {
       "label": "angular frontend: run",
       "type": "shell",
       "runOptions": {

@@ -22,18 +22,20 @@ func main() {
 	)
 	utils.CDToWxtApp()
 
+
 	opts := utils.CommandOptions{
-		Command: "npx ",
+		Command: "npx",
 		Args:    []string{"wxt", "build", "-b", "safari", "--mv3"},
+		GetOutput:       false,
+		PrintOutputOnly: true,
 	}
 	utils.RunCommandWithOptions(opts)
 
 	commandOptions := utils.CommandOptions{
 		Command:     "xcrun",
 		Args:        []string{"safari-web-extension-converter", ".output/safari-mv3", "--bundle-identifier", settings.ExtensionPack.WxtBuildSafari.BundleIdentifier},
-		GetOutput:   true,
-		TargetDir:   "",
-		PrintOutput: false,
+		GetOutput:       false,
+		PrintOutputOnly: true,
 	}
 	utils.RunCommandWithOptions(commandOptions)
 }

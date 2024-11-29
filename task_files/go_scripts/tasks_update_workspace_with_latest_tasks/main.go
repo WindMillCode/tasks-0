@@ -241,6 +241,8 @@ func main() {
 					Args:       []string{"-ic"},
 				},
 			}
+			tasksJSON.Tasks[index].Osx.Command = "zsh"
+			tasksJSON.Tasks[index].Osx.Args = []string{"-ic",linuxCommand0}
 			tasksJSON.Tasks[index].Metadata.Name = "windmillcode"
 			if utils.ArrayContainsAny([]string{task.Label}, settings.ExtensionPack.TasksToRunOnFolderOpen) {
 				tasksJSON.Tasks[index].RunOptions.RunOn = "folderOpen"
@@ -331,6 +333,9 @@ func main() {
 		newTasksJSON.Version = tasksJSON.Version
 		newTasksJSON.Tasks = append(filterJSONForOwnItems(previousTasks), currentTasksRaw...)
 		newTasksJSON.Inputs = append(filterJSONForOwnItems(previousInputs), currentInputsRaw...)
+		if newTasksJSON.Inputs == nil{
+			newTasksJSON.Inputs = []json.RawMessage{}
+		}
 
 		// marker
 		tasksJSONData, err := json.MarshalIndent(newTasksJSON, "", "  ")

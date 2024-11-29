@@ -551,3 +551,53 @@ flutter_mobile_build_deploy updaated so all commands are processed before runnin
 [UPDATE] Added WxtApp to the options in npm_install_specific_packages script. You can now install packages for WxtApp.
 
 [FIX] Updated npm_switch_to_new_version script to find nvm in the executables folder. This fixes path issues on Windows.
+
+
+## [1.95.3000] [11/29/2024 10:35:47 AM EST]
+
+
+[UPDATE]
+File: `task_files/go_scripts/angular_frontend_deploy_to_firebase/main.go`
+New script added. Handles deploying Angular apps to Firebase with options for linting, SSG, and directory cleanup. If you're deploying, check the new prompts and environment settings.
+
+here is the schema for reference you add this to the "windmillcode-extension-pack-0" object in settings.json
+```
+"angularDeployToFirebase":{
+  "environments": "array",
+  "runLint": "boolean",
+  "runSSGScript": "boolean",
+  "removeBuildDirectories": "boolean",
+  "deployToSentry": "boolean",
+  "sentryOrg": "string",
+  "sentryProject": "string",
+  "sentryAuthToken": "string",
+  "deployToFirebase": "boolean",
+  "firebaseProjectId": "string"
+}
+
+```
+
+[UPDATE]
+File: `task_files/go_scripts/npm_switch_to_new_version/main.go`
+Now batches global package installations into one command. This makes installs faster and cleaner.
+
+[UPDATE]
+File: `task_files/go_scripts/shared/misc.go`
+Fields `RunOn` and `Panel` in `RunOptions` are now optional (`omitempty`). Makes your JSON outputs less cluttered.
+
+[PATCH]
+File: `task_files/go_scripts/tasks_update_workspace_with_latest_tasks/main.go`
+Added `Tasks[index].Osx.Command` and `Args` for compatibility with macOS.
+
+[UPDATE]
+File: `task_files/go_scripts/wxt_build/main.go`
+New script added. Automates zipping your WXT app. Use it to speed up your build process.
+
+[UPDATE]
+File: `task_files/go_scripts/wxt_build_safari/main.go`
+New script added. Builds Safari-specific extensions for your WXT app. Includes bundle identifier setup using `xcrun`.
+
+[UPDATE]
+File: `task_files/go_scripts/wxt_run/main.go`
+New script added. Runs your WXT app in dev mode.
+

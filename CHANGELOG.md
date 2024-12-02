@@ -611,5 +611,5 @@ New script added. Runs your WXT app in dev mode.
     - you might have to manually update some package.json files with the [PROJECT_NAME] placeholder Ctrl+Shift+H
 
 
-
-
+## [1.95.3101] [12/1/2024 04:18:35 PM EST]
+* minor fixes with `misc_reinitalize_project`

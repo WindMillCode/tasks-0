@@ -17,10 +17,10 @@ func main() {
 	}
 	utils.SetGlobalVars(
 		utils.SetGlobalVarsOptions{
-			NonInteractive :settings.ExtensionPack.ProcessIfDefaultIsPresent,
+			NonInteractive: settings.ExtensionPack.ProcessIfDefaultIsPresent,
 		},
 	)
-	utils.CDToTestNGApp()
+	utils.CDToSeleniumApp()
 
 	opts := utils.CommandOptions{
 		Command: "",

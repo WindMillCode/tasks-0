@@ -1,0 +1,19 @@
+FROM python:3.12.2
+
+WORKDIR /root/target/FlaskApp
+
+COPY apps/backend/FlaskApp /root/target/FlaskApp
+COPY apps/.secrets/[PROJECT_NAME]-preview-gae.json /root/target/FlaskApp
+COPY apps/.secrets/[PROJECT_NAME]-preview-client_secret.json /root/target/FlaskApp
+COPY apps/.secrets/[PROJECT_NAME]-preview-ca-2021.crt /root/target/FlaskApp
+RUN  cd /root/target/FlaskApp; pip install -r linux-requirements.txt ; pip install --pre yt-dlp
+
+
+RUN apt-get -y update && DEBIAN_FRONTEND=noninteractive \
+    apt-get -y install  mlocate vim dos2unix tmux;
+
+
+# CMD ["gunicorn", "--worker-class", "eventlet", "-w", "1","--timeout","600","--log-level","debug","app:app"]
+CMD ["gunicorn", "--worker-class", "gevent", "-w", "1", "--timeout", "600", "--log-level", "debug", "app:app"]
+
+

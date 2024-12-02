@@ -19,7 +19,7 @@ func main() {
 			NonInteractive :settings.ExtensionPack.ProcessIfDefaultIsPresent,
 		},
 	)
-	utils.CDToTestNGApp()
+	utils.CDToSeleniumApp()
 
 	opts := utils.CommandOptions{
 		Command: "",

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://js.hcaptcha.com/1/api.js?onload=onLoadCallback&render=explicit" async defer></script>
+<style>
+  html,body{
+    background-color:rgb(24,26,27)
+  }
+</style>
+</head>
+<body>
+  <div id="hcaptcha"></div>
+  <br/>
+<script>
+  function handleCaptcha() {
+    var response = hcaptcha.getResponse();
+    if(response) {
+      window.CAPTCHA.postMessage('success');
+    } else {
+      window.CAPTCHA.postMessage('failure');
+    }
+  }
+  var onLoadCallback = function() {
+    const options = {
+      sitekey: "7dee141b-7877-4153-bef2-b4e04ef037e1",
+      callback: (res) => {
+        window.CAPTCHA.postMessage('success');
+      },
+      'expired-callback': () => {
+        window.CAPTCHA.postMessage('expired');
+      },
+      'error-callback': (err) => {
+        window.CAPTCHA.postMessage('failure');
+      },
+    };
+    hcaptcha.render('hcaptcha', options);
+  };
+</script>
+</body>
+</html>

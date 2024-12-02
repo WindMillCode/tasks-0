@@ -1,0 +1,14 @@
+<a class="skip-link" href="#mainContent">Skip to main content</a>
+<router-outlet ></router-outlet>
+<wml-notify-one id="NotifyBanner" [class]="classPrefix('MainNotify0')"></wml-notify-one>
+<div
+*ngIf="baseService.toggleOverlayLoadingSubj$ | async"
+ [class]="classPrefix('Pod1')">
+  <overlay-loading [class]="classPrefix('MainLoading0')" ></overlay-loading>
+</div>
+
+
+
+<div *ngIf="baseService.popupProps.togglePopupSubj | async" [class]="classPrefix('Pod0')">
+  <wml-popup-zero [props]="baseService.popupProps"></wml-popup-zero>
+</div>

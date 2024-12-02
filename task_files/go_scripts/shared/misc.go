@@ -10,11 +10,8 @@ import (
 	"slices"
 	"strings"
 	"sync"
-
 	"github.com/windmillcode/go_cli_scripts/v5/utils"
 )
-
-
 
 type ShellOptions struct {
 	Executable string   `json:"executable"`
@@ -363,7 +360,6 @@ func SetJavaEnvironment(settings utils.VSCodeSettings){
 	}
 
 }
-
 
 func GetGoExecutable() string {
 	cliInfo := utils.ShowMenuModel{

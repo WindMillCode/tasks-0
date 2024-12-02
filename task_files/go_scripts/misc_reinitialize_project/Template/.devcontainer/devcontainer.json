@@ -1,0 +1,17 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/ubuntu
+{
+	"name": "[PROJECT_NAME_CAPITAL]",
+  "build": {
+    "dockerfile": "../apps/.docker/Dockerfile",
+    "context": "../"
+  },
+  "workspaceFolder": "/root/[PROJECT_NAME_CAPITAL]",
+  "postStartCommand": "bash run_script",
+  "customizations": {
+    "vscode": {
+      "extensions": []
+    }
+  },
+	"remoteUser": "root"
+}

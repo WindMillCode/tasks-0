@@ -12,18 +12,18 @@ import (
 )
 
 func DefaultSettings() utils.VSCodeSettings {
-  return utils.VSCodeSettings{
-    ExtensionPack: utils.WindmillcodeExtensionPack{
-      TasksToRunOnFolderOpen: []string{},
-    },
-  }
+	return utils.VSCodeSettings{
+		ExtensionPack: utils.WindmillcodeExtensionPack{
+			TasksToRunOnFolderOpen: []string{},
+		},
+	}
 }
 func MergeSettings(settings utils.VSCodeSettings, defaultSettings utils.VSCodeSettings) utils.VSCodeSettings {
-  if len(settings.ExtensionPack.TasksToRunOnFolderOpen) == 0 {
-    settings.ExtensionPack.TasksToRunOnFolderOpen = defaultSettings.ExtensionPack.TasksToRunOnFolderOpen
-  }
-  // Add checks for other properties as needed
-  return settings
+	if len(settings.ExtensionPack.TasksToRunOnFolderOpen) == 0 {
+		settings.ExtensionPack.TasksToRunOnFolderOpen = defaultSettings.ExtensionPack.TasksToRunOnFolderOpen
+	}
+	// Add checks for other properties as needed
+	return settings
 }
 
 func filterJSONForOwnItems(items []json.RawMessage) []json.RawMessage {
@@ -115,10 +115,7 @@ func updateGitignore(gitignorePath string) {
 	}
 }
 
-
-
 func main() {
-
 
 	workSpaceFolder := os.Args[1]
 	extensionFolder := os.Args[2]
@@ -131,7 +128,6 @@ func main() {
 		defaultSettings := DefaultSettings()
 		settings = MergeSettings(settings, defaultSettings) // Merge with default settings for missing properties
 	}
-
 
 	proceed := "TRUE"
 
@@ -150,23 +146,16 @@ func main() {
 	runMode := utils.ShowMenu(cliInfo, nil)
 
 	cliInfo = utils.ShowMenuModel{
-		Prompt: "Should the .gitignore be modifed (this is harmless select NO IF sure)",
-		Choices:[]string{"YES","NO"},
+		Prompt:  "Should the .gitignore be modifed (this is harmless select NO IF sure)",
+		Choices: []string{"YES", "NO"},
 		Default: "YES",
 	}
-	modifyGitignore := utils.ShowMenu(cliInfo,nil)
-	// TODO implement later
-	// cliInfo = utils.ShowMenuModel{
-	// 	Prompt:  "use default user (if unsure select NO)",
-	// 	Choices: []string{"NO", "YES"},
-	// 	Default: "NO",
-	// }
-	// customUserIsPresent := utils.ShowMenu(cliInfo, nil)
+	modifyGitignore := utils.ShowMenu(cliInfo, nil)
 
 	tasksJsonFilePath := utils.JoinAndConvertPathToOSFormat(extensionFolder, tasksJsonRelativeFilePath)
 
 	workspaceTasksJSONFilePath := utils.JoinAndConvertPathToOSFormat(workSpaceFolder, "/.vscode/tasks.json")
-	gitignorePath :=utils.JoinAndConvertPathToOSFormat(workSpaceFolder,".gitignore")
+	gitignorePath := utils.JoinAndConvertPathToOSFormat(workSpaceFolder, ".gitignore")
 	if modifyGitignore == "YES" {
 		updateGitignore(gitignorePath)
 	}
@@ -178,21 +167,21 @@ func main() {
 		}
 	}
 
-  var tasksJSON shared.TasksJSON
-  content, err := os.ReadFile(tasksJsonFilePath)
-  if err != nil {
-    newContent, err, shouldReturn := shared.CreateTasksJson(tasksJsonFilePath, false)
+	var tasksJSON shared.TasksJSON
+	content, err := os.ReadFile(tasksJsonFilePath)
+	if err != nil {
+		newContent, err, shouldReturn := shared.CreateTasksJson(tasksJsonFilePath, false)
 
-    if err != nil {
-      utils.LogErrorWithTraceBack("Error creating tasks json file", err)
-      return
-    }
+		if err != nil {
+			utils.LogErrorWithTraceBack("Error creating tasks json file", err)
+			return
+		}
 		content = newContent
-    if shouldReturn {
-      return
-    }
-  }
-	cleanJSON, err := utils.RemoveComments(content)
+		if shouldReturn {
+			return
+		}
+	}
+	cleanJSON, err := utils.CleanJSON(content)
 	if err != nil {
 		utils.LogErrorWithTraceBack("Error removing comments:", err)
 		return
@@ -228,8 +217,8 @@ func main() {
 			linuxCommand0 := "cd " + programLocation3 + " ; " + taskExecutable
 			windowsCommand0 := "cd " + strings.Replace(programLocation3, "//", "\\", -1) + " ; "
 			if programLocation2 != "tasks_update_workspace_without_extension" {
-				windowsCommand0 += strings.Replace(taskExecutable+".exe", "//", "\\", -1);
-			} else{
+				windowsCommand0 += strings.Replace(taskExecutable+".exe", "//", "\\", -1)
+			} else {
 				windowsCommand0 += taskExecutable
 			}
 			tasksJSON.Tasks[index].Windows.Command = windowsCommand0
@@ -242,7 +231,7 @@ func main() {
 				},
 			}
 			tasksJSON.Tasks[index].Osx.Command = "zsh"
-			tasksJSON.Tasks[index].Osx.Args = []string{"-ic",linuxCommand0}
+			tasksJSON.Tasks[index].Osx.Args = []string{"-ic", linuxCommand0}
 			tasksJSON.Tasks[index].Metadata.Name = "windmillcode"
 			if utils.ArrayContainsAny([]string{task.Label}, settings.ExtensionPack.TasksToRunOnFolderOpen) {
 				tasksJSON.Tasks[index].RunOptions.RunOn = "folderOpen"
@@ -258,13 +247,12 @@ func main() {
 			return
 		}
 		var previousTasksJSON map[string]json.RawMessage
-		previousCleanJSON, _ := utils.RemoveComments(content)
+		previousCleanJSON, _ := utils.CleanJSON(content)
 		err = json.Unmarshal([]byte(previousCleanJSON), &previousTasksJSON)
 		if err != nil {
-			previousTasksJSON =map[string]json.RawMessage{}
+			previousTasksJSON = map[string]json.RawMessage{}
 			utils.LogErrorWithTraceBack("Error unmarshalling JSON:", err)
 		}
-
 
 		var previousTasks []json.RawMessage
 		if _, ok := previousTasksJSON["tasks"]; ok {
@@ -273,7 +261,7 @@ func main() {
 				utils.LogErrorWithTraceBack("Error unmarshalling tasks:", err)
 				return
 			}
-		} else{
+		} else {
 			previousTasks = []json.RawMessage{}
 		}
 
@@ -306,9 +294,9 @@ func main() {
 			//
 
 			isRespectiveTask := func(myTask shared.Task) bool {
-				return myTask.Label ==label
+				return myTask.Label == label
 			}
-			index,targetTask,err := utils.FindElement(tasksJSON.Tasks,isRespectiveTask)
+			index, targetTask, err := utils.FindElement(tasksJSON.Tasks, isRespectiveTask)
 			if err == nil {
 				targetTask.RunOptions.InstanceLimit = int(runOptions["instanceLimit"].(float64))
 				tasksJSON.Tasks[index] = targetTask
@@ -333,7 +321,7 @@ func main() {
 		newTasksJSON.Version = tasksJSON.Version
 		newTasksJSON.Tasks = append(filterJSONForOwnItems(previousTasks), currentTasksRaw...)
 		newTasksJSON.Inputs = append(filterJSONForOwnItems(previousInputs), currentInputsRaw...)
-		if newTasksJSON.Inputs == nil{
+		if newTasksJSON.Inputs == nil {
 			newTasksJSON.Inputs = []json.RawMessage{}
 		}
 
@@ -359,5 +347,3 @@ func main() {
 
 	shared.RebuildExecutables(proceed, tasksJSON, goScriptsDestDirPath, goExecutable, preActions(deleteDestDir, goScriptsSourceDirPath, goScriptsDestDirPath))
 }
-
-

@@ -1,0 +1,203 @@
+{
+  "global": {
+    "title": "[PROJECT_NAME_CAPITAL]",
+    "website": "",
+    "logoImgAlt": "Logo Img",
+    "errorRequired": "This field is required",
+    "errorEmail":"Please provide a valid email",
+    "errrorMin0": "At least one value must be provided",
+    "avatarImgAlt": "Avatar Img",
+    "wmlChipsplaceholder": "Type your value then press enter to see it appear",
+    "wmlChipsuserInputsAriaLabel": "User Inputs",
+    "wmlChipsremoveChipAriaLabel": "remove",
+    "fillOutForm": "Please fill out all required fields",
+    "loginAgain": "Please login again to continue using your account",
+    "logoutError": "There was an issue while trying to log you out of your account please try again or contact support if the issue persists",
+    "overlayLoading": "Loading ...",
+    "siteUnderConstruction": "Site Under Construction",
+    "formSubmitSuccess": "Form Submitted Sucessfully",
+    "systemError": "An error has occured please try again later or contact support if the issue persists",
+    "serviceUnavailableError": "The resource you requested is not available due to system maintenance, please try again in a few minutes",
+    "submitBtn": "Submit",
+    "comingSoon": "This feature is not availble yet, please try again later",
+    "na": "N\\A",
+    "countries": [
+      "US"
+    ],
+    "add": "Add",
+    "remove": "Remove",
+    "view":"View",
+    "of":"of",
+    "saveBtn": "Saved!",
+    "saveBtnNotSaved": "Save?",
+    "back":"Back",
+    "link":"Link",
+    "download":"Download",
+    "email":"Email",
+    "progress":"Progress",
+    "states": [
+      "AL",
+      "AK",
+      "AZ",
+      "AR",
+      "CA",
+      "CO",
+      "CT",
+      "DE",
+      "FL",
+      "GA",
+      "HI",
+      "ID",
+      "IL",
+      "IN",
+      "IA",
+      "KS",
+      "KY",
+      "LA",
+      "ME",
+      "MD",
+      "MA",
+      "MI",
+      "MN",
+      "MS",
+      "MO",
+      "MT",
+      "NE",
+      "NV",
+      "NH",
+      "NJ",
+      "NM",
+      "NY",
+      "NC",
+      "ND",
+      "OH",
+      "OK",
+      "OR",
+      "PA",
+      "RI",
+      "SC",
+      "SD",
+      "TN",
+      "TX",
+      "UT",
+      "VT",
+      "VA",
+      "WA",
+      "WV",
+      "WI",
+      "WY"
+    ],
+    "langAbbreviations": [
+      "EN",
+      "AM",
+      "BN",
+      "DE",
+      "ES",
+      "FR",
+      "HI",
+      "MS",
+      "SW",
+      "UK",
+      "ZH"
+    ],
+    "wmlSelect": {
+      "select": "Please Select"
+    },
+    "WMLNotifyOne": {
+      "purchaseMoreCredits":"It looks like you are out of credits for this action please either purchase more credits or upgrade your subscription to complete this action",
+      "reconnectToPlatform": "It looks like there was an issue. Please try to reconnect to a video platform and storage provider to resolve the issue. If the issue persists please contact support",
+      "disabledAccount":"Your account has been disabled. Please reach out to support for further assistance",
+      "providerExists":"It may be that you have created an account with a different provider. Please make sure to sign in with that provider"
+    },
+    "wmlChipsZero":{
+      "placeholder":"Type your value then press enter to see it appear",
+      "clearBtn":"Clear",
+      "enterBtn":"Enter"
+    },
+    "wmlFileUpload":{
+      "dragDropText" :"Drag and drop the file(s) here or click on \"Browse Files\".",
+      "browseFileText": "Browse Files"
+    },
+    "registerAgreement": [
+      "By using our services, you acknowledge that you have read, understood, and agree to our",
+      "Terms of Service",
+      "and ",
+      "Privacy Policy"
+    ]
+  },
+  "nav": {
+    "pageTitle": {
+      "default": "[PROJECT_NAME_CAPITAL]",
+      "terms-and-conditions": "[PROJECT_NAME_CAPITAL] Terms and Conditions",
+      "privacy-policy": "[PROJECT_NAME_CAPITAL] Privacy Policy"
+    }
+  },
+  "siteOffine": {
+    "title": "Site Offline",
+    "subtitle": "The site is currently unavailable due to scheduled maintenance, Please try again later"
+  },
+  "notFound": {
+    "lines": [
+      "404",
+      "Whoops! This is not what you were looking for",
+      "But you just found the logo we'd lost, thanks. Try your luck by going back to the ",
+      "home page."
+    ],
+    "someImgAlt": "Resume"
+  },
+
+  "NavZero": {
+    "mobileOptions": [
+      [
+        "LANGUAGES"
+      ],
+      [
+        "HOW TO GUIDE"
+      ],
+      [
+        "TAKE SURVEY!"
+      ],
+      [
+        "VIDEO MANAGER"
+      ],
+      [
+        "CONNECTION HUB"
+      ],
+      [
+        "PROGRESS TRACKER"
+      ],
+      [
+        "UPLOAD & TRANSFER"
+      ],
+      [
+        "TERMS OF SERVICE"
+      ],
+      [
+        "PRIVACY POLICY"
+      ],
+      [
+        "PROFILE"
+      ],
+      [
+        "FRIENDS"
+      ],
+      [
+        "BILLING"
+      ],
+      [
+        "SUPPORT CHAT"
+      ],
+      [
+        "SIGN OUT"
+      ]
+    ]
+  },
+  "HcaptchaZero":{
+    "WMLNotifyOne":{
+      "failed":"It seems you have failed the challenge, please try again"
+    }
+  },
+  "TableOne":{
+    "noData":"There is no data to display at this time"
+  }
+}

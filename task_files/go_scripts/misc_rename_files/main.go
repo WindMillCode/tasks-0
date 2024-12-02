@@ -5,9 +5,7 @@ import (
 	"os"
 	"path/filepath"
 	"regexp"
-
 	"main/shared"
-
 	"github.com/windmillcode/go_cli_scripts/v5/utils"
 )
 

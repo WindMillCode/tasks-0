@@ -1,0 +1,56 @@
+FROM python:3.13.0-alpine
+
+WORKDIR /app
+
+# Update the package list and install necessary packages
+RUN apk update && apk add --no-cache \
+  curl gnupg git openssh tar gzip ca-certificates \
+  g++ gcc autoconf automake bison libc-dev libffi-dev \
+  gdbm-dev ncurses-dev sqlite-dev libtool yaml-dev \
+  make pkgconfig sqlite zlib-dev gmp-dev readline-dev openssl-dev unixodbc-dev \
+  wget \
+  unzip jq \
+  xorg-server xf86-video-vesa openbox sudo \
+  mlocate vim dos2unix tmux \
+  logrotate cronie
+
+  # Further setup, SSH configuration, and other operations
+RUN apk add --no-cache openssh \
+&& echo "root:Docker!" | chpasswd
+
+COPY apps/devops/FlaskACR/sshd_config /etc/ssh/
+COPY apps/devops/FlaskACR/ssh_config  /etc/ssh/
+COPY apps/.secrets/[VCS_PRIVATE_KEY]  /root/.ssh/[VCS_PRIVATE_KEY]
+COPY apps/devops/FlaskACR/known_hosts  /root/.ssh/known_hosts
+
+
+RUN chmod 400 /root/.ssh/[VCS_PRIVATE_KEY] \
+  && dos2unix /root/.ssh/[VCS_PRIVATE_KEY] \
+  && chmod 644 /root/.ssh/known_hosts \
+  && dos2unix /root/.ssh/known_hosts
+
+COPY apps/devops/FlaskACR/ssh_execute.sh /tmp
+RUN chmod +x /tmp/ssh_execute.sh \
+  && (sleep 1; /tmp/ssh_execute.sh 2>&1 > /dev/null)
+
+EXPOSE 80 2222
+
+COPY apps/devops/FlaskACR/logrotate.conf /etc/logrotate.conf
+RUN echo "/usr/sbin/logrotate /etc/logrotate.conf" > /etc/periodic/hourly/logrotate \
+  && chmod +x /etc/periodic/hourly/logrotate
+
+COPY apps/devops/FlaskACR/init-alpine.sh /usr/local/bin/init.sh
+# COPY apps/devops/FlaskACR/init.sh /usr/local/bin/init.sh
+RUN chmod u+x /usr/local/bin/init.sh \
+  && dos2unix /usr/local/bin/init.sh
+
+COPY apps/.secrets/[PROJECT_NAME]-preview-gae.json /
+COPY apps/.secrets/[PROJECT_NAME]-preview-ca-2021.crt /
+COPY apps/.secrets/[PROJECT_NAME]-preview-client_secret.json /
+COPY apps/.secrets/[PROJECT_NAME]-apple-iap-key.p8 /
+COPY apps/.secrets/apple_root_certs /apple_root_certs
+COPY apps/devops/FlaskACR/.vimrc /root/.vimrc
+
+RUN rm -rf /var/cache/apk/*
+
+ENTRYPOINT [ "/usr/local/bin/init.sh" ]

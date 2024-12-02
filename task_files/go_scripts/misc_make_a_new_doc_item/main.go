@@ -27,7 +27,7 @@ func main() {
 		Prompt: "Choose an option:",
 		Choices: []string{
 			utils.JoinAndConvertPathToOSFormat("docs", "tasks_docs"),
-			utils.JoinAndConvertPathToOSFormat("docs", "application_documentation"),
+			utils.JoinAndConvertPathToOSFormat("docs", "app_docs"),
 			"issues",
 		},
 	}

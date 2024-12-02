@@ -32,7 +32,7 @@ func main() {
 		},
 	)
 
-	utils.CDToTestNGApp()
+	utils.CDToSeleniumApp()
 	envVarContent, err := utils.ReadFile(testArgs.EnvVarsFile)
 	if err != nil {
 		return

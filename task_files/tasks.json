@@ -293,6 +293,13 @@
       }
     },
     {
+      "label": "misc: reinitialize project",
+      "type": "shell",
+      "runOptions": {
+        "instanceLimit": 10
+      }
+    },
+    {
       "label": "shopify: run",
       "type": "shell",
       "runOptions": {

@@ -1,0 +1,59 @@
+
+@import "src/assets/styles/global.scss";
+@import "src/assets/styles/common.scss";
+@import "src/assets/styles/layouts.scss";
+@import "src/assets/styles/media-queries.scss";
+
+:host {
+  &.LegalDocPageView{
+    display: block;
+    height:100%;
+    .LegalDocPage{
+    &Main{
+        &Pod{
+          @include pageLayout1;
+          align-items: flex-start;
+          padding:var(--wml-spacing5) var(--wml-spacing10);
+          background-color: rgba(var(--wml-black),.9);
+          margin: auto;
+          max-width: $wmlPageMaxWidth0;
+          * {
+            color: rgba(var(--wml-white));
+          }
+          h1{
+            align-self: flex-start;
+            font-size: var(--wml-display);
+            @include ClipText0(var(--wml-gradient-2));
+            color:transparent !important;
+          }
+        }
+        &Text {
+          &0 {
+            margin: var(--wml-spacing8) 0 0 0;
+            @include ClipText0(var(--wml-gradient-2));
+            color:transparent !important;
+          }
+          &1 {
+            margin: var(--wml-spacing5) 0 0 0;
+          }
+          &2 {
+            margin: 0  0 0 var(--wml-spacing8);
+          }
+        }
+
+      }
+      &Pod{
+
+        @for $i from 0 through 1 {
+          &#{$i} {
+            width: 100%;
+            max-width: $wmlPageMaxWidth0;
+          }
+        }
+
+        &0{}
+      }
+    }
+  }
+
+}

@@ -1,0 +1,36 @@
+
+@import "src/assets/styles/global.scss";
+@import "src/assets/styles/common.scss";
+@import "src/assets/styles/layouts.scss";
+@import "src/assets/styles/media-queries.scss";
+
+:host {
+  &.LogoImgZeroView{
+    display: block;
+    height:100%;
+    @include CursorPointer0;
+    .LogoImgZero{
+      &Main{
+        &Pod{
+          width: 100%;
+          height:100%;
+        }
+        &Img {
+          &0{
+            position: absolute;
+            inset:0;
+            width: 100%;
+            height:100%;
+          }
+          &1 {
+            position: relative;
+            width: 100%;
+            height:100%;
+          }
+        }
+      }
+
+    }
+  }
+
+}

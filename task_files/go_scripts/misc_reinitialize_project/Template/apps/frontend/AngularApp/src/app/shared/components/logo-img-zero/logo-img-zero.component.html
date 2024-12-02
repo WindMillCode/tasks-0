@@ -1,0 +1,14 @@
+<div [class]="classPrefix('MainPod')">
+  <img
+  [class]="classPrefix('MainImg0')"
+  *ngIf=props.backgroundImg (error)=props.backgroundImg.onError($event) [src]=props.backgroundImg.src [alt]="props.backgroundImg.alt | translate" />
+
+  <a href="#" (click)="navToHome($event)">
+    <img
+    [class]="classPrefix('MainImg1')"
+    [src]=specificService.logoImg.src
+    [alt]="specificService.logoImg.alt | translate"
+    />
+  </a>
+
+</div>

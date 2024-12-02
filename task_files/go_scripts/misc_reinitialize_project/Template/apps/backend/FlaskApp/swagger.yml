@@ -1,0 +1,12 @@
+openapi: '3.0.2'
+info:
+  title: [PROJECT_NAME_CAPITAL] Flask API
+  version: '1.0'
+servers:
+  - url: https://127.0.0.1:[Flask_Run_0]
+paths:
+
+components:
+  schemas:
+
+

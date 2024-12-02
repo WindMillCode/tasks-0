@@ -1,0 +1,11 @@
+// USE FLUTTER FIRE CLI TO GENERATE AND REPLACE THIS FILE
+{
+  "project_info": {
+    "project_number": "[PROJECT_NUMBER]",
+    "project_id": "[PROJECT_NAME]-preview",
+    "storage_bucket": "[PROJECT_NAME]-preview.appspot.com"
+  },
+  "client": [
+  ],
+  "configuration_version": "1"
+}

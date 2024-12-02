@@ -1,0 +1,24 @@
+@import "src/assets/styles/global.scss";
+@import "src/assets/styles/common.scss";
+@import "src/assets/styles/layouts.scss";
+@import "src/assets/styles/media-queries.scss";
+
+:host {
+
+
+  &.ScratchpadView{
+    display: block;
+    .Scratchpad{
+      &Main{
+        &Pod{
+          background-color: rgba(var(--wml-primary));
+        }
+      }
+      &Pod{
+
+        &0{}
+      }
+    }
+  }
+
+}

@@ -1,0 +1,5 @@
+dispatch:
+- url: "api.preview.[PROJECT_NAME].com/*"
+  service: api-preview-0
+- url: "api.[PROJECT_NAME].com/*"
+  service: api-0

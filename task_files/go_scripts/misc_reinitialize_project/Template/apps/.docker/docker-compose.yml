@@ -1,0 +1,93 @@
+version: '3'
+name: [PROJECT_NAME]
+
+services:
+  base_img:
+    image: [PROJECT_NAME]/base_img
+    build:
+      context: .
+      dockerfile: .docker/base.dockerfile
+
+  angular_app:
+    image: [PROJECT_NAME]/angular_app
+    container_name: angular_app
+    build:
+      context: .
+      dockerfile: .docker/angular.dockerfile
+    restart: on-failure
+    ports:
+      - "[Angular_Run_0]:4200"
+    networks:
+      - network-0
+    # volumes:
+    #   - ./frontend/AngularApp:/AngularApp
+    depends_on:
+      - flask_app
+      - base_img
+
+  flask_app:
+    image: [PROJECT_NAME]/flask_app
+    container_name: flask_app
+    build:
+      context: .
+      dockerfile: .docker/flask.dockerfile
+    restart: on-failure
+    ports:
+      - "[Flask_Run_0]:5000"
+    networks:
+      - network-0
+    volumes:
+      - ./backend/FlaskApp:/FlaskApp
+    depends_on:
+      - firebase_app
+      - mysql_db
+      - base_img
+
+    environment:
+      - YOUR_ENV_VAR=YOUR_ENV_VAR_VALUE
+
+  firebase_app:
+    image: [PROJECT_NAME]/firebase_app
+    container_name: firebase_app
+    build:
+      context: .
+      dockerfile: .docker/firebase.dockerfile
+    restart: on-failure
+    ports:
+      # - "9199:9199"
+      # - "9099:9099"
+      # - "9098:9098"
+      # - "4400:4400"
+      # - "5000:5000"
+      # - "4500:4500"
+      - "4000:4000"
+    networks:
+      - network-0
+    # volumes:
+    #   - ./cloud/FirebaseApp:/FirebaseApp
+    depends_on:
+      - base_img
+
+  mysql_db:
+    image: [PROJECT_NAME]/mysql_db
+    container_name: mysql_db
+    build:
+      context: .
+      dockerfile: .docker/mysql.dockerfile
+      args:
+        MYSQL_ROOT_PASSWORD: my-secret-pw
+    restart: no
+
+    ports:
+      - "[Postgres_0]:3306"
+    networks:
+      - network-0
+    volumes:
+      - ./database/backup:/var/lib/mysql
+      - ./database/mysql/schema_entries/dev:/MySQL_DB/schema_entries
+    depends_on:
+      - base_img
+
+networks:
+  network-0:
+

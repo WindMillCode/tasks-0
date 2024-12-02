@@ -1,0 +1,268 @@
+{
+  "global": {
+    "title": "[PROJECT_NAME_CAPITAL]",
+    "website": "",
+    "logoImgAlt": "Logo Img",
+    "errorRequired": "This field is required",
+    "errorEmail":"Please provide a valid email",
+    "errrorMin0": "At least one value must be provided",
+    "avatarImgAlt": "Avatar Img",
+    "wmlChipsplaceholder": "Type your value then press enter to see it appear",
+    "wmlChipsuserInputsAriaLabel": "User Inputs",
+    "wmlChipsremoveChipAriaLabel": "remove",
+    "fillOutForm": "Please fill out all required fields",
+    "loginAgain": "Please login again to continue using your account",
+    "logoutError": "There was an issue while trying to log you out of your account please try again or contact support if the issue persists",
+    "overlayLoading": "Loading ...",
+    "siteUnderConstruction": "Site Under Construction",
+    "formSubmitSuccess": "Form Submitted Sucessfully",
+    "systemError": "An error has occured please try again later or contact support if the issue persists",
+    "serviceUnavailableError": "The resource you requested is not available due to system maintenance, please try again in a few minutes",
+    "submitBtn": "Submit",
+    "comingSoon": "This feature is not availble yet, please try again later",
+    "na": "N\\A",
+    "countries": [
+      "US"
+    ],
+    "add": "Add",
+    "remove": "Remove",
+    "view":"View",
+    "of":"of",
+    "saveBtn": "Saved!",
+    "saveBtnNotSaved": "Save?",
+    "applyChanges": "Apply Changes",
+    "back":"Back",
+    "link":"Link",
+    "download":"Download",
+    "progress":"Progress",
+    "email":"Email",
+    "states": [
+      "AL",
+      "AK",
+      "AZ",
+      "AR",
+      "CA",
+      "CO",
+      "CT",
+      "DE",
+      "FL",
+      "GA",
+      "HI",
+      "ID",
+      "IL",
+      "IN",
+      "IA",
+      "KS",
+      "KY",
+      "LA",
+      "ME",
+      "MD",
+      "MA",
+      "MI",
+      "MN",
+      "MS",
+      "MO",
+      "MT",
+      "NE",
+      "NV",
+      "NH",
+      "NJ",
+      "NM",
+      "NY",
+      "NC",
+      "ND",
+      "OH",
+      "OK",
+      "OR",
+      "PA",
+      "RI",
+      "SC",
+      "SD",
+      "TN",
+      "TX",
+      "UT",
+      "VT",
+      "VA",
+      "WA",
+      "WV",
+      "WI",
+      "WY"
+    ],
+    "langAbbreviations": [
+      "EN",
+      "AM",
+      "BN",
+      "DE",
+      "ES",
+      "FR",
+      "HI",
+      "MS",
+      "SW",
+      "UK",
+      "ZH"
+    ],
+    "wmlSelect": {
+      "select": "Please Select"
+    },
+    "WMLNotifyOne": {
+      "purchaseMoreCredits":"It looks like you are out of credits for this action please either purchase more credits or upgrade your subscription to complete this action",
+      "reconnectToPlatform": "It looks like there was an issue. Please try to reconnect to a video platform and storage provider to resolve the issue. If the issue persists please contact support",
+      "disabledAccount":"Your account has been disabled. Please reach out to support for further assistance",
+      "ensureEnoughStorage": "NOTICE !!!!. MAKE SURE you have enough storage space with your storage provider",
+      "providerExists":"It may be that you have created an account with a different provider. Please make sure to sign in with that provider"
+    },
+    "wmlChipsZero":{
+      "placeholder":"Type your value then press enter to see it appear",
+      "clearBtn":"Clear"
+    },
+    "wmlFileUpload":{
+      "dragDropText" :"Drag and drop the file(s) here or click on \"Browse Files\".",
+      "browseFileText": "Browse Files"
+    },
+    "registerAgreement": [
+      "By using our services, you acknowledge that you have read, understood, and agree to our",
+      "Terms of Service",
+      "and ",
+      "Privacy Policy"
+    ]
+  },
+  "ConfirmDialogZero": {
+    "title": "WARNING! This action cannot be undone. Are you sure you wish to proceed",
+    "subtitle":"",
+    "options": [
+      "Yes",
+      "No"
+    ]
+  },
+  "nav": {
+    "pageInfo": {
+      "default": {
+        "title": "[PROJECT_NAME_CAPITAL]",
+        "description": "Manage Your Content On All Platforms At the click of a button.",
+        "keywords": "Media management platform, [PROJECT_NAME_CAPITAL], Content creators, Bulk editing digital assets, External storage integration, file transfer, video data editor"
+      },
+      "landing": {
+        "title": "[PROJECT_NAME_CAPITAL]",
+        "description": "Manage Your Content On All Platforms At the click of a button.",
+    "keywords": "Media management platform, [PROJECT_NAME_CAPITAL], Content creators, Bulk editing, Storage integration, file transfer, video data editor"
+      },
+      "contact": {
+        "title": "[PROJECT_NAME_CAPITAL] Contact",
+        "description": "Get in touch with the [PROJECT_NAME_CAPITAL] team.",
+    "keywords": "[PROJECT_NAME_CAPITAL], contact, support, help, customer service, assistance, inquiry"
+      },
+      "about": {
+        "title": "[PROJECT_NAME_CAPITAL] About",
+        "description": "Learn more about [PROJECT_NAME_CAPITAL] and our mission.",
+    "keywords": "[PROJECT_NAME_CAPITAL], about, company, mission, values, background, story"
+      },
+      "store": {
+        "title": "[PROJECT_NAME_CAPITAL] Store",
+        "description": "Explore the [PROJECT_NAME_CAPITAL] store for exclusive content and products.",
+    "keywords": "[PROJECT_NAME_CAPITAL], store, products, exclusive, shop, merchandise, sales"
+      },
+      "overview": {
+        "title": "[PROJECT_NAME_CAPITAL] Account Profile",
+        "description": "Manage your [PROJECT_NAME_CAPITAL] account settings.",
+    "keywords": "[PROJECT_NAME_CAPITAL], account overview, activities, settings, profile, account management, dashboard"
+      },
+      "hub": {
+        "title": "[PROJECT_NAME_CAPITAL] Connection Hub",
+        "description": "Connect with others through the [PROJECT_NAME_CAPITAL] Connection Hub.",
+    "keywords": "[PROJECT_NAME_CAPITAL], connection hub, platforms, Google Drive, YouTube, Video Platform, Storage Platform"
+      },
+      "manage": {
+        "title": "[PROJECT_NAME_CAPITAL] Video Manager",
+        "description": "Manage your videos with the [PROJECT_NAME_CAPITAL] Video Manager.",
+    "keywords": "[PROJECT_NAME_CAPITAL], video manager, video editing, media management, content control, video organization"
+      },
+      "sign-up": {
+        "title": "[PROJECT_NAME_CAPITAL] Sign Up",
+        "description": "Sign up for an [PROJECT_NAME_CAPITAL] account.",
+    "keywords": "[PROJECT_NAME_CAPITAL], sign up, register, create account, join, new user, registration"
+      },
+      "sign-in": {
+        "title": "[PROJECT_NAME_CAPITAL] Sign In",
+        "description": "Sign in to your [PROJECT_NAME_CAPITAL] account.",
+    "keywords": "[PROJECT_NAME_CAPITAL], sign in, login, access account, authentication, user entry"
+      },
+      "terms-and-conditions": {
+        "title": "[PROJECT_NAME_CAPITAL] Terms and Conditions",
+        "description": "Understand the terms and conditions of using [PROJECT_NAME_CAPITAL].",
+    "keywords": "[PROJECT_NAME_CAPITAL], terms and conditions, legal, policy, agreement, rules, regulations"
+      },
+      "privacy-policy": {
+        "title": "[PROJECT_NAME_CAPITAL] Privacy Policy",
+        "description": "Understand how [PROJECT_NAME_CAPITAL] handles your privacy.",
+    "keywords": "[PROJECT_NAME_CAPITAL], privacy policy, data protection, personal information, security, confidentiality"
+      },
+      "survey": {
+        "title": "[PROJECT_NAME_CAPITAL] Survey",
+        "description": "Participate in the [PROJECT_NAME_CAPITAL] survey.",
+    "keywords": "[PROJECT_NAME_CAPITAL], survey, feedback, opinion, participation, questionnaire"
+      },
+      "forgot-pass": {
+        "title": "[PROJECT_NAME_CAPITAL] Forgot Password",
+        "description": "Reset your [PROJECT_NAME_CAPITAL] account password.",
+    "keywords": "[PROJECT_NAME_CAPITAL], forgot password, reset password, account recovery, password assistance"
+      },
+      "data-editor": {
+        "title": "[PROJECT_NAME_CAPITAL] Video Data Editor",
+        "description": "Edit your video data with [PROJECT_NAME_CAPITAL]'s editor.",
+    "keywords": "[PROJECT_NAME_CAPITAL], video data editor, video editing, metadata, content modification, data management"
+      },
+      "upload": {
+        "title": "[PROJECT_NAME_CAPITAL] Upload",
+        "description": "Upload your media files to your platforms. Transfer files to other devices",
+    "keywords": "[PROJECT_NAME_CAPITAL], upload, media files, file transfer, large file transfer, content upload"
+      },
+      "site-offline": {
+        "title": "[PROJECT_NAME_CAPITAL] Site Offline",
+        "description": "The [PROJECT_NAME_CAPITAL] site is currently offline.",
+    "keywords": "[PROJECT_NAME_CAPITAL], site offline, maintenance, downtime, unavailable, temporary suspension"
+      },
+      "friends": {
+        "title": "[PROJECT_NAME_CAPITAL] Friends",
+        "description": "Manage your friends on [PROJECT_NAME_CAPITAL].",
+    "keywords": "[PROJECT_NAME_CAPITAL], friends, social, connections, network, relationships"
+      },
+      "billing": {
+        "title": "[PROJECT_NAME_CAPITAL] Billing",
+        "description": "Manage your billing information with [PROJECT_NAME_CAPITAL].",
+    "keywords": "[PROJECT_NAME_CAPITAL], billing, payment, purchases, subscriptions, financial management"
+      },
+      "guide": {
+        "title": "How to Use [PROJECT_NAME_CAPITAL]",
+        "description": "Learn how to use [PROJECT_NAME_CAPITAL] with our comprehensive guide.",
+    "keywords": "[PROJECT_NAME_CAPITAL], guide, how to use, tutorial, help, instructions"
+      },
+      "verify-email": {
+        "title": "[PROJECT_NAME_CAPITAL] Verify Email",
+        "description": "Verify your email address for your [PROJECT_NAME_CAPITAL] account.",
+    "keywords": "[PROJECT_NAME_CAPITAL], verify email, email verification, account security, confirmation"
+      }
+    }
+  },
+  "siteOffine": {
+    "title": "Site Offline",
+    "subtitle": "The site is currently unavailable due to scheduled maintenance, Please try again later"
+  },
+  "notFound": {
+    "lines": [
+      "404",
+      "Whoops! This is not what you were looking for",
+      "But you just found our logo, thanks. Click on the logo to go back to the ",
+      "home page."
+    ],
+    "someImgAlt": "Resume"
+  },
+  "NavZero": {
+    "desktopOptions": [
+      "Home",
+      "Guide",
+      "Privacy Policy",
+      "Terms of Service",
+      "Contact Us"
+    ]
+  }
+}

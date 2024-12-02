@@ -1,0 +1,187 @@
+
+# cant upgrade
+# form_builder_validators make me have to refactor the whole app
+# custom_lint
+# flutter_quill - until they remove the fork of flutter_keyboard_visibility
+# webview_flutter
+# youtube_player_iframe
+
+name: [PROJECT_NAME]
+description: [WEB_SEO_DESCRIPTION]
+publish_to: 'none'
+version: 3.3.2+50
+
+environment:
+  sdk: '>=3.1.0 <4.0.0'
+
+dependencies:
+  mime: ^2.0.0
+  cupertino_icons: ^1.0.8
+  firebase_auth: ^5.3.3
+  firebase_core: ^3.8.0
+  firebase_analytics: ^11.3.5
+  flutter:
+    sdk: flutter
+  flutter_keyboard_visibility: ^6.0.0
+  flutter_riverpod: ^2.6.1
+  go_router: ^14.6.1
+  google_mobile_ads: ^5.2.0
+  google_sign_in: ^6.2.2
+  http: ^1.2.2
+  sentry_flutter: ^8.10.1
+  url_launcher: ^6.3.1
+  webview_flutter: ^4.9.0
+  flutter_svg_provider: ^1.0.7
+  form_builder_validators: ^10.0.1
+  form_builder_file_picker: ^4.2.0
+  flutter_facebook_auth: ^7.1.1
+  socket_io_client: ^3.0.2
+  path_provider: ^2.1.5
+  open_filex: ^4.5.0
+  awesome_notifications_core: ^0.10.0
+  awesome_notifications: any
+
+  # windmillcode_peerdart:
+  #   path: ../../../../Windmillcode_app_tutorials/tutorials/working_with_peerjs_for_flutter/peerdart
+  # windmillcode_peerdart:
+  #   path: ../../../../peerdart
+  windmillcode_peerdart: ^1.5.4031
+  # flutter_translate: ^4.0.4
+  # flutter_translate:
+  #   path: ../../../../Windmillcode_app_tutorials/tutorials/refactor_flutter_translate/flutter_translate
+  # flutter_translate:
+  #   git:
+  #     url: https://github.com/Judimax/flutter_translate.git
+  #     ref: v5.0_support_list_and_maps
+  windmillcode_flutter_translate: ^5.0.4
+  flutter_svg: any
+  uuid: ^4.5.1
+  cached_network_image: ^3.4.1
+  json_annotation: any
+  permission_handler: ^11.3.1
+  flutter_quill: 10.8.0
+  app_links: ^6.3.2
+  media_kit: ^1.1.11
+  media_kit_video: ^1.2.5
+  media_kit_libs_video: ^1.0.5
+  youtube_player_iframe: ^5.2.0
+  flutter_smart_dialog: ^4.9.8
+  wakelock_plus: ^1.2.8
+  in_app_purchase: ^3.2.0
+  onesignal_flutter: ^5.2.8
+
+
+# dev_dependencies:
+#   json_serializable:
+#     path:  ../../../../Windmillcode_app_tutorials/tutorials/refactor_json_serializable/json_serializable.dart/json_serializable
+#   flutter_test:
+#     sdk: flutter
+#   flutter_lints: ^2.0.0
+#   custom_lint: ^0.6.4  # Updated based on conflict resolution suggestion
+#   riverpod_lint: ^2.0.4
+#   build_runner: ^2.4.6
+#   riverpod_generator: ^2.3.2
+#   flutter_launcher_icons: ^0.13.1
+#   mocktail: ^1.0.1
+#   vector_graphics_compiler: 1.1.11+1
+
+# dev_dependencies:
+  # json_serializable:
+  #   path:  ../../../../Windmillcode_app_tutorials/tutorials/refactor_json_serializable/json_serializable.dart/json_serializable
+  # json_serializable: ^6.7.10
+  # json_annotation: ^4.8.1
+
+dev_dependencies:
+
+  json_serializable:
+    git:
+      url: https://github.com/Judimax/json_serializable.dart
+      ref: via-string
+      path: json_serializable
+
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+  custom_lint: ^0.6.4
+  build_runner: ^2.4.13
+  # riverpod_lint: ^2.3.10
+  # riverpod_generator: ^2.4.0
+  flutter_launcher_icons: ^0.14.1
+  mocktail: ^1.0.4
+  vector_graphics_compiler: 1.1.16
+  mockito: ^5.4.4
+  unused_import_remover: ^1.0.1
+
+
+# dependency_overrides:
+#   json_annotation:
+#     path: ../../../../Windmillcode_app_tutorials/tutorials/refactor_json_serializable/json_serializable.dart/json_annotation
+
+
+
+
+dependency_overrides:
+  json_annotation:
+    git:
+      url: https://github.com/Judimax/json_serializable.dart
+      ref: via-string
+      path: json_annotation
+
+
+
+
+
+flutter:
+
+  uses-material-design: true
+
+  assets:
+  - assets/media/
+  - assets/i18n/
+
+  fonts:
+
+    - family: Segoe UI
+      fonts:
+        - asset: assets/fonts/Segoe-UI/Segoe-UI-Variable-Static-Text-Bold.ttf
+
+    - family: Barlow
+      fonts:
+        - asset: assets/fonts/Barlow/Barlow.ttf
+
+    - family: Barlow
+      fonts:
+        - asset: assets/fonts/Barlow/Barlow.ttf
+
+    - family: Component-Italic
+      fonts:
+        - asset: assets/fonts/Component-Italic/Component.ttf
+
+    - family: DT-Nightingale
+      fonts:
+        - asset: assets/fonts/DT-Nightingale/DT-Nightingale.ttf
+
+    - family: Freelancer
+      fonts:
+        - asset: assets/fonts/Freelancer/Freelancer.ttf
+
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/Poppins/Poppins.ttf
+
+    - family: PT-Mono
+      fonts:
+        - asset: assets/fonts/PT-Mono/PT-Mono.ttf
+
+    - family: Quicksand-Book
+      fonts:
+        - asset: assets/fonts/Quicksand-Book/Quicksand-Book.ttf
+
+
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets//media//logo.jpg"
+  remove_alpha_ios: true
+  min_sdk_android: 21

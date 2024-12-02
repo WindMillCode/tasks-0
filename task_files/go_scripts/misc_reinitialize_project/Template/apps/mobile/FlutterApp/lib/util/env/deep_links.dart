@@ -1,7 +1,7 @@
 import 'package:app_links/app_links.dart';
-import 'package:[PROJECT_NAME]/shared/widgets/overlay_zero/overlay_zero_riverpod_provider.dart';
-import 'package:[PROJECT_NAME]/util/go_router/my_router.dart';
-import 'package:[PROJECT_NAME]/util/riverpod_providers/wml_nav/wml_nav.dart';
+import 'package:tuli/shared/widgets/overlay_zero/overlay_zero_riverpod_provider.dart';
+import 'package:tuli/util/go_router/my_router.dart';
+import 'package:tuli/util/riverpod_providers/wml_nav/wml_nav.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:windmillcode_flutter_translate/flutter_translate.dart';
 

@@ -3,7 +3,7 @@
 import 'dart:async';
 
 import 'package:awesome_notifications/awesome_notifications.dart';
-import 'package:[PROJECT_NAME]/util/riverpod_providers/wml_colors/wml_colors.dart';
+import 'package:tuli/util/riverpod_providers/wml_colors/wml_colors.dart';
 import 'package:open_filex/open_filex.dart';
 
 enum AwesomeNotifyMsgType { VIEW_EXPORT_DATA }

@@ -5,7 +5,7 @@ import 'dart:io';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'package:[PROJECT_NAME]/util/env/env.dart';
+import 'package:tuli/util/env/env.dart';
 
 class AdsRiverpodProviderValue {
   int widgetCtnrSize = 18;
@@ -17,13 +17,13 @@ class AdsRiverpodProviderValue {
   AdsRiverpodProviderValue() {
     if (APPENV.type.isDeployedEnvironment) {
       mainBannerID = {
-        AppEnvPlatformType.ANDROID: "[FLUTTER_ANDRIOID_GOOGLE_ADS_ID]",
-        AppEnvPlatformType.IOS: "[FLUTTER_IOS_GOOGLE_ADS_ID]"
+        AppEnvPlatformType.ANDROID: "ca-app-pub-8492729057076492/9442229728",
+        AppEnvPlatformType.IOS: "ca-app-pub-8492729057076492/3830810397"
       }[APPENV.platformType] as dynamic;
 
       openAppID = {
-        AppEnvPlatformType.ANDROID: "[FLUTTER_ANDRIOID_GOOGLE_ADS_ID]",
-        AppEnvPlatformType.IOS: "[FLUTTER_IOS_GOOGLE_ADS_ID]"
+        AppEnvPlatformType.ANDROID: "ca-app-pub-8492729057076492/9442229728",
+        AppEnvPlatformType.IOS: "ca-app-pub-8492729057076492/3830810397"
       }[APPENV.platformType] as dynamic;
     } else {
       openAppID = mainBannerID = getFakeAdID();

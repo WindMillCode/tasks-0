@@ -1,6 +1,6 @@
 {
   "global": {
-    "title": "[PROJECT_NAME_CAPITAL]",
+    "title": "Tuli",
     "website": "",
     "logoImgAlt": "Logo Img",
     "errorRequired": "This field is required",
@@ -127,9 +127,9 @@
   },
   "nav": {
     "pageTitle": {
-      "default": "[PROJECT_NAME_CAPITAL]",
-      "terms-and-conditions": "[PROJECT_NAME_CAPITAL] Terms and Conditions",
-      "privacy-policy": "[PROJECT_NAME_CAPITAL] Privacy Policy"
+      "default": "Tuli",
+      "terms-and-conditions": "Tuli Terms and Conditions",
+      "privacy-policy": "Tuli Privacy Policy"
     }
   },
   "siteOffine": {

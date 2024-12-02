@@ -1,4 +1,4 @@
-import 'package:[PROJECT_NAME]/util/misc/number.dart';
+import 'package:tuli/util/misc/number.dart';
 
 class StoreRiverpodProviderPrice {
   double business;

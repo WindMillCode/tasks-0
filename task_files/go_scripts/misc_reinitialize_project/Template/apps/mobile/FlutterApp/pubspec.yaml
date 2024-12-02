@@ -6,8 +6,8 @@
 # webview_flutter
 # youtube_player_iframe
 
-name: [PROJECT_NAME]
-description: [WEB_SEO_DESCRIPTION]
+name: tuli
+description: An SEO description, also known as a meta description, should be concise yet informative, typically containing 25 to 30 words or 155 to 160 characters, spread across 1 to 2 sentences. To maximize its effectiveness, it’s important to include primary keywords that reflect the page’s content while using engaging, action-driven language to encourage clicks. Each description should be unique to avoid duplication penalties and ensure relevance to the specific page. By adhering to these guidelines, you can create descriptions that not only display fully in search engine results but also effectively attract and inform users.
 publish_to: 'none'
 version: 3.3.2+50
 

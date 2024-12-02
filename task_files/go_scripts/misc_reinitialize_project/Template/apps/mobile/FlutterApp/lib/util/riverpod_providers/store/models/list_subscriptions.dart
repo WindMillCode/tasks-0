@@ -1,4 +1,4 @@
-import 'package:[PROJECT_NAME]/util/wml/pagination/pagination.dart';
+import 'package:tuli/util/wml/pagination/pagination.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'list_subscriptions.g.dart';

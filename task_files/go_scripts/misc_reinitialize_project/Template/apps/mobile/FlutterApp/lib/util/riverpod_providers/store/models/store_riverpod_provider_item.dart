@@ -1,5 +1,5 @@
-import 'package:[PROJECT_NAME]/util/riverpod_providers/store/models/store_riverpod_provider_category.dart';
-import 'package:[PROJECT_NAME]/util/riverpod_providers/store/models/store_riverpod_provider_price.dart';
+import 'package:tuli/util/riverpod_providers/store/models/store_riverpod_provider_category.dart';
+import 'package:tuli/util/riverpod_providers/store/models/store_riverpod_provider_price.dart';
 
 class StoreRiverpodProviderItem {
   String? id;

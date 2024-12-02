@@ -1,8 +1,8 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, must_be_immutable, unused_local_variable, unused_catch_stack
 
-import 'package:[PROJECT_NAME]/util/riverpod_providers/wml_colors/wml_colors.dart';
-import 'package:[PROJECT_NAME]/util/riverpod_providers/wml_fonts/wml_fonts.dart';
-import 'package:[PROJECT_NAME]/util/wml/pagination/pagination.dart';
+import 'package:tuli/util/riverpod_providers/wml_colors/wml_colors.dart';
+import 'package:tuli/util/riverpod_providers/wml_fonts/wml_fonts.dart';
+import 'package:tuli/util/wml/pagination/pagination.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:windmillcode_flutter_translate/flutter_translate.dart';

@@ -2,15 +2,15 @@
 
 import 'dart:convert';
 import 'dart:io';
-import 'package:[PROJECT_NAME]/util/riverpod_providers/store/models/cancel_subscription.dart';
-import 'package:[PROJECT_NAME]/util/riverpod_providers/store/models/list_credits.dart';
-import 'package:[PROJECT_NAME]/util/riverpod_providers/store/models/list_subscriptions.dart';
-import 'package:[PROJECT_NAME]/util/riverpod_providers/store/models/purchase_credits.dart';
-import 'package:[PROJECT_NAME]/util/riverpod_providers/store/models/purchase_subscription.dart';
-import 'package:[PROJECT_NAME]/util/riverpod_providers/store/models/use_credits.dart';
+import 'package:tuli/util/riverpod_providers/store/models/cancel_subscription.dart';
+import 'package:tuli/util/riverpod_providers/store/models/list_credits.dart';
+import 'package:tuli/util/riverpod_providers/store/models/list_subscriptions.dart';
+import 'package:tuli/util/riverpod_providers/store/models/purchase_credits.dart';
+import 'package:tuli/util/riverpod_providers/store/models/purchase_subscription.dart';
+import 'package:tuli/util/riverpod_providers/store/models/use_credits.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart' as http;
-import 'package:[PROJECT_NAME]/util/env/env.dart';
+import 'package:tuli/util/env/env.dart';
 
 class StoreRiverpodProviderValue {
   Future<ListSubscriptionsResponseBody> listSubscriptions({

@@ -1,17 +1,17 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, must_be_immutable, unused_local_variable, unused_catch_stack
 
-import 'package:[PROJECT_NAME]/shared/widgets/button_zero/button_zero_widget.dart';
-import 'package:[PROJECT_NAME]/shared/widgets/input_zero/input_zero_widget.dart';
-import 'package:[PROJECT_NAME]/shared/widgets/overlay_zero/overlay_zero_riverpod_provider.dart';
+import 'package:tuli/shared/widgets/button_zero/button_zero_widget.dart';
+import 'package:tuli/shared/widgets/input_zero/input_zero_widget.dart';
+import 'package:tuli/shared/widgets/overlay_zero/overlay_zero_riverpod_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:windmillcode_flutter_translate/flutter_translate.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'multi_input_one_widget_riverpod_provider.dart';
-import 'package:[PROJECT_NAME]/util/riverpod_providers/wml_colors/wml_colors.dart';
-import 'package:[PROJECT_NAME]/util/riverpod_providers/wml_fonts/wml_fonts.dart';
-import 'package:[PROJECT_NAME]/util/riverpod_providers/wml_nav/wml_nav.dart';
-import 'package:[PROJECT_NAME]/util/riverpod_providers/wml_spacing/wml_spacing.dart';
+import 'package:tuli/util/riverpod_providers/wml_colors/wml_colors.dart';
+import 'package:tuli/util/riverpod_providers/wml_fonts/wml_fonts.dart';
+import 'package:tuli/util/riverpod_providers/wml_nav/wml_nav.dart';
+import 'package:tuli/util/riverpod_providers/wml_spacing/wml_spacing.dart';
 
 class MultiInputOneWidget extends ConsumerStatefulWidget {
   MultiInputOneWidget(

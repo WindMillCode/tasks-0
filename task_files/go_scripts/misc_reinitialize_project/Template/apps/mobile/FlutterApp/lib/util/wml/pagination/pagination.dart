@@ -1,4 +1,4 @@
-import 'package:[PROJECT_NAME]/util/misc/sort.dart';
+import 'package:tuli/util/misc/sort.dart';
 
 enum WMLAPIPageRequestModelFilterPredicateEnum {
   EQUALS,

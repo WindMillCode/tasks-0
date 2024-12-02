@@ -1,10 +1,10 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, must_be_immutable, unused_local_variable, unused_catch_stack
 
-import 'package:[PROJECT_NAME]/util/riverpod_providers/wml_colors/wml_colors.dart';
+import 'package:tuli/util/riverpod_providers/wml_colors/wml_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:windmillcode_flutter_translate/flutter_translate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:[PROJECT_NAME]/shared/widgets/overlay_zero/overlay_zero_riverpod_provider.dart';
+import 'package:tuli/shared/widgets/overlay_zero/overlay_zero_riverpod_provider.dart';
 
 enum ButtonZeroWidgetType { primary, secondary, tertiary, quaternary, quinary }
 

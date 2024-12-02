@@ -1,4 +1,4 @@
-import 'package:[PROJECT_NAME]/util/misc/map.dart';
+import 'package:tuli/util/misc/map.dart';
 
 List<T> removeDuplicates<T>(List<T> items, dynamic Function(T) keySelector) {
   var seenKeys = Set<dynamic>();

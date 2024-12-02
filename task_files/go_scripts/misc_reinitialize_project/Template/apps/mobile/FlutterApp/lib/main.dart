@@ -1,14 +1,14 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, must_be_immutable, unused_local_variable, unused_catch_stack
 
 import 'dart:io';
-import 'package:[PROJECT_NAME]/shared/widgets/overlay_zero/overlay_zero.dart';
-import 'package:[PROJECT_NAME]/util/env/env.dart';
-import 'package:[PROJECT_NAME]/util/env/deep_links.dart';
-import 'package:[PROJECT_NAME]/util/http/http_overide.dart';
-import 'package:[PROJECT_NAME]/util/misc/notify/my_awesome_notifications.dart';
-import 'package:[PROJECT_NAME]/util/riverpod_providers/i18n/i18n_riverpod_provider.dart';
-import 'package:[PROJECT_NAME]/util/riverpod_providers/socketio/socketio_riverpod_provider.dart';
-import 'package:[PROJECT_NAME]/util/wml/base/base_widget.dart';
+import 'package:tuli/shared/widgets/overlay_zero/overlay_zero.dart';
+import 'package:tuli/util/env/env.dart';
+import 'package:tuli/util/env/deep_links.dart';
+import 'package:tuli/util/http/http_overide.dart';
+import 'package:tuli/util/misc/notify/my_awesome_notifications.dart';
+import 'package:tuli/util/riverpod_providers/i18n/i18n_riverpod_provider.dart';
+import 'package:tuli/util/riverpod_providers/socketio/socketio_riverpod_provider.dart';
+import 'package:tuli/util/wml/base/base_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:windmillcode_flutter_translate/flutter_translate.dart';
@@ -28,7 +28,7 @@ void main() async {
   // var advertisingId = await AdvertisingId.id(true);
   HttpOverrides.global = MyHttpOverrides();
   initializeDateFormatting();
-  initAwesomeNotifications();
+  // initAwesomeNotifications();
 
   FlutterTranslate.initialize(
       FlutterTranslateOptions(fallback: 'en', supported: I18NRiverpodProviderInstance.supportedLocales));
@@ -50,6 +50,7 @@ void main() async {
     );
   } else {
     runApp(ProviderScope(child: LocalizedApp(MainApp())));
+    runApp(app)
   }
 }
 

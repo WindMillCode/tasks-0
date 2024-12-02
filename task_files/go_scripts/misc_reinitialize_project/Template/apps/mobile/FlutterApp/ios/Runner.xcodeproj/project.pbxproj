@@ -89,7 +89,7 @@
 		905FD1102C8CF2610091C470 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		905FD1122C8CF2610091C470 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		905FD11E2C8CF5730091C470 /* OneSignalNotificationServiceExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OneSignalNotificationServiceExtension.entitlements; sourceTree = "<group>"; };
-		9065C2062C333247004E331B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../[PROJECT_NAME_CAPITAL]/docs/tasks_docs/deploying_to_ios/preview/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		9065C2062C333247004E331B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Tuli/docs/tasks_docs/deploying_to_ios/preview/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9091C70E2C335272002CA548 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		90A884E62C8EA30300A81AF5 /* RunnerRelease-preview.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "RunnerRelease-preview.entitlements"; sourceTree = "<group>"; };
 		90A884E72C8EA31A00A81AF5 /* RunnerProfile-dev.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "RunnerProfile-dev.entitlements"; sourceTree = "<group>"; };
@@ -100,7 +100,7 @@
 		90B2D1FF2C2DD58D00937E5F /* Runner.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Runner.entitlements; sourceTree = "<group>"; };
 		9740EEB21CF90195004384FC /* Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Debug.xcconfig; path = Flutter/Debug.xcconfig; sourceTree = "<group>"; };
 		9740EEB31CF90195004384FC /* Generated.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Generated.xcconfig; path = Flutter/Generated.xcconfig; sourceTree = "<group>"; };
-		97C146EE1CF9000F007C117D /* [PROJECT_NAME_CAPITAL].app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = [PROJECT_NAME_CAPITAL].app; sourceTree = BUILT_PRODUCTS_DIR; };
+		97C146EE1CF9000F007C117D /* Tuli.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tuli.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		97C146FB1CF9000F007C117D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		97C146FD1CF9000F007C117D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		97C147001CF9000F007C117D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -257,7 +257,7 @@
 		97C146EF1CF9000F007C117D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				97C146EE1CF9000F007C117D /* [PROJECT_NAME_CAPITAL].app */,
+				97C146EE1CF9000F007C117D /* Tuli.app */,
 				331C8081294A63A400263BE5 /* RunnerTests.xctest */,
 				905FD10E2C8CF2610091C470 /* OneSignalNotificationServiceExtension.appex */,
 			);
@@ -346,7 +346,7 @@
 			);
 			name = Runner;
 			productName = Runner;
-			productReference = 97C146EE1CF9000F007C117D /* [PROJECT_NAME_CAPITAL].app */;
+			productReference = 97C146EE1CF9000F007C117D /* Tuli.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -708,8 +708,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.[ORGANIZATION_NAME].[PROJECT_NAME];
-				PRODUCT_NAME = [PROJECT_NAME_CAPITAL];
+				PRODUCT_BUNDLE_IDENTIFIER = com.kunjoga.tuli;
+				PRODUCT_NAME = Tuli;
 				SENTRY_DSN = "https://48d21c6e608f2d99b006139b08537593@o4505122556215296.ingest.sentry.io/4506533270061056";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
@@ -726,7 +726,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.[PROJECT_NAME].RunnerTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.tuli.RunnerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -744,7 +744,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.[PROJECT_NAME].RunnerTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.tuli.RunnerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Runner.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Runner";
@@ -760,7 +760,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.[PROJECT_NAME].RunnerTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.tuli.RunnerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Runner.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Runner";
@@ -771,7 +771,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4089C1F14600563166D512EB /* Pods-OneSignalNotificationServiceExtension.debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = AppIcon;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CLANG_ENABLE_OBJC_WEAK = YES;
@@ -797,7 +797,7 @@
 				MARKETING_VERSION = 1.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.[ORGANIZATION_NAME].[PROJECT_NAME].OneSignalNotificationServiceExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kunjoga.tuli.OneSignalNotificationServiceExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
@@ -812,7 +812,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = FD932409833371D7EE963EDF /* Pods-OneSignalNotificationServiceExtension.debug-preview.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = AppIcon;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CLANG_ENABLE_OBJC_WEAK = YES;
@@ -838,7 +838,7 @@
 				MARKETING_VERSION = 1.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.[ORGANIZATION_NAME].[PROJECT_NAME].OneSignalNotificationServiceExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kunjoga.tuli.OneSignalNotificationServiceExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
@@ -853,7 +853,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 594CEBEB73AD4937A2798800 /* Pods-OneSignalNotificationServiceExtension.release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = AppIcon;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CLANG_ENABLE_OBJC_WEAK = YES;
@@ -878,7 +878,7 @@
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MARKETING_VERSION = 1.0;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.[ORGANIZATION_NAME].[PROJECT_NAME].OneSignalNotificationServiceExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kunjoga.tuli.OneSignalNotificationServiceExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -891,7 +891,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7C64BEA09D512105A6B26C78 /* Pods-OneSignalNotificationServiceExtension.release-preview.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = AppIcon;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CLANG_ENABLE_OBJC_WEAK = YES;
@@ -916,7 +916,7 @@
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MARKETING_VERSION = 1.0;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.[ORGANIZATION_NAME].[PROJECT_NAME].OneSignalNotificationServiceExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kunjoga.tuli.OneSignalNotificationServiceExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -929,7 +929,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F9140D69D990AB6FA16BF50B /* Pods-OneSignalNotificationServiceExtension.profile.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = AppIcon;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CLANG_ENABLE_OBJC_WEAK = YES;
@@ -954,7 +954,7 @@
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MARKETING_VERSION = 1.0;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.[ORGANIZATION_NAME].[PROJECT_NAME].OneSignalNotificationServiceExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kunjoga.tuli.OneSignalNotificationServiceExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -967,7 +967,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F432B13B97E83671DFA31628 /* Pods-OneSignalNotificationServiceExtension.profile-dev.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = AppIcon;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CLANG_ENABLE_OBJC_WEAK = YES;
@@ -992,7 +992,7 @@
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MARKETING_VERSION = 1.0;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.[ORGANIZATION_NAME].[PROJECT_NAME].OneSignalNotificationServiceExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kunjoga.tuli.OneSignalNotificationServiceExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1080,8 +1080,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.[ORGANIZATION_NAME].[PROJECT_NAME].preview;
-				PRODUCT_NAME = "[PROJECT_NAME_CAPITAL] Preview";
+				PRODUCT_BUNDLE_IDENTIFIER = com.kunjoga.tuli.preview;
+				PRODUCT_NAME = "Tuli Preview";
 				SENTRY_DSN = "https://48d21c6e608f2d99b006139b08537593@o4505122556215296.ingest.sentry.io/4506533270061056";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1099,7 +1099,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.[PROJECT_NAME].RunnerTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.tuli.RunnerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1184,8 +1184,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.[ORGANIZATION_NAME].[PROJECT_NAME].preview;
-				PRODUCT_NAME = "[PROJECT_NAME_CAPITAL] Preview";
+				PRODUCT_BUNDLE_IDENTIFIER = com.kunjoga.tuli.preview;
+				PRODUCT_NAME = "Tuli Preview";
 				SENTRY_DSN = "https://48d21c6e608f2d99b006139b08537593@o4505122556215296.ingest.sentry.io/4506533270061056";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
@@ -1202,7 +1202,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.[PROJECT_NAME].RunnerTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.tuli.RunnerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Runner.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Runner";
@@ -1213,7 +1213,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -1283,8 +1283,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.[ORGANIZATION_NAME].[PROJECT_NAME].preview;
-				PRODUCT_NAME = "[PROJECT_NAME_CAPITAL] Preview";
+				PRODUCT_BUNDLE_IDENTIFIER = com.kunjoga.tuli.preview;
+				PRODUCT_NAME = "Tuli Preview";
 				SENTRY_DSN = "https://48d21c6e608f2d99b006139b08537593@o4505122556215296.ingest.sentry.io/4506533270061056";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
@@ -1301,7 +1301,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.[PROJECT_NAME].RunnerTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.tuli.RunnerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Runner.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Runner";
@@ -1442,8 +1442,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.[ORGANIZATION_NAME].[PROJECT_NAME];
-				PRODUCT_NAME = [PROJECT_NAME_CAPITAL];
+				PRODUCT_BUNDLE_IDENTIFIER = com.kunjoga.tuli;
+				PRODUCT_NAME = Tuli;
 				SENTRY_DSN = "https://48d21c6e608f2d99b006139b08537593@o4505122556215296.ingest.sentry.io/4506533270061056";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1473,8 +1473,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.[ORGANIZATION_NAME].[PROJECT_NAME];
-				PRODUCT_NAME = [PROJECT_NAME_CAPITAL];
+				PRODUCT_BUNDLE_IDENTIFIER = com.kunjoga.tuli;
+				PRODUCT_NAME = Tuli;
 				SENTRY_DSN = "https://48d21c6e608f2d99b006139b08537593@o4505122556215296.ingest.sentry.io/4506533270061056";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;

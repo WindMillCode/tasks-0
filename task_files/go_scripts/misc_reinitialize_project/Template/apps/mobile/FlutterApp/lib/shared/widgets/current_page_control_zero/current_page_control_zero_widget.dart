@@ -5,10 +5,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:windmillcode_flutter_translate/flutter_translate.dart';
 
 import 'current_page_control_zero_widget_riverpod_provider.dart';
-import 'package:[PROJECT_NAME]/util/riverpod_providers/wml_colors/wml_colors.dart';
-import 'package:[PROJECT_NAME]/util/riverpod_providers/wml_fonts/wml_fonts.dart';
-import 'package:[PROJECT_NAME]/util/riverpod_providers/wml_nav/wml_nav.dart';
-import 'package:[PROJECT_NAME]/util/riverpod_providers/wml_spacing/wml_spacing.dart';
+import 'package:tuli/util/riverpod_providers/wml_colors/wml_colors.dart';
+import 'package:tuli/util/riverpod_providers/wml_fonts/wml_fonts.dart';
+import 'package:tuli/util/riverpod_providers/wml_nav/wml_nav.dart';
+import 'package:tuli/util/riverpod_providers/wml_spacing/wml_spacing.dart';
 
 class CurrentPageControlZeroWidget extends ConsumerStatefulWidget {
   int currentPage;

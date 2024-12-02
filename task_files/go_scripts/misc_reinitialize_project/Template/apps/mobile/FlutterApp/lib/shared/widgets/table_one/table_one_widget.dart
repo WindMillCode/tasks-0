@@ -1,15 +1,15 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, must_be_immutable, unused_local_variable, unused_catch_stack
 
-import 'package:[PROJECT_NAME]/shared/widgets/current_page_control_zero/current_page_control_zero_widget.dart';
-import 'package:[PROJECT_NAME]/util/wml/pagination/pagination.dart';
+import 'package:tuli/shared/widgets/current_page_control_zero/current_page_control_zero_widget.dart';
+import 'package:tuli/util/wml/pagination/pagination.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'table_one_widget_riverpod_provider.dart';
-import 'package:[PROJECT_NAME]/util/riverpod_providers/wml_colors/wml_colors.dart';
-import 'package:[PROJECT_NAME]/util/riverpod_providers/wml_fonts/wml_fonts.dart';
-import 'package:[PROJECT_NAME]/util/riverpod_providers/wml_nav/wml_nav.dart';
-import 'package:[PROJECT_NAME]/util/riverpod_providers/wml_spacing/wml_spacing.dart';
+import 'package:tuli/util/riverpod_providers/wml_colors/wml_colors.dart';
+import 'package:tuli/util/riverpod_providers/wml_fonts/wml_fonts.dart';
+import 'package:tuli/util/riverpod_providers/wml_nav/wml_nav.dart';
+import 'package:tuli/util/riverpod_providers/wml_spacing/wml_spacing.dart';
 
 class TableOneWidget extends ConsumerStatefulWidget {
   TableOneWidget({required super.key, required this.tablePredicate});

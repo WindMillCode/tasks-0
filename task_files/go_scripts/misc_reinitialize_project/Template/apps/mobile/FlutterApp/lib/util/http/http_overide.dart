@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:[PROJECT_NAME]/util/env/env.dart';
+import 'package:tuli/util/env/env.dart';
 
 class MyHttpOverrides extends HttpOverrides {
   @override

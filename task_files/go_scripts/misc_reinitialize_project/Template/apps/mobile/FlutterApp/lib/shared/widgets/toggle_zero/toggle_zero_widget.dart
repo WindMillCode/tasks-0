@@ -3,9 +3,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:[PROJECT_NAME]/util/riverpod_providers/wml_colors/wml_colors.dart';
-import 'package:[PROJECT_NAME]/util/riverpod_providers/wml_fonts/wml_fonts.dart';
-import 'package:[PROJECT_NAME]/util/riverpod_providers/wml_spacing/wml_spacing.dart';
+import 'package:tuli/util/riverpod_providers/wml_colors/wml_colors.dart';
+import 'package:tuli/util/riverpod_providers/wml_fonts/wml_fonts.dart';
+import 'package:tuli/util/riverpod_providers/wml_spacing/wml_spacing.dart';
 
 class ToggleZeroWidget extends ConsumerStatefulWidget {
   ToggleZeroWidget(

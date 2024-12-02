@@ -1,5 +1,5 @@
-import 'package:[PROJECT_NAME]/util/env/env.dart';
-import 'package:[PROJECT_NAME]/util/specific/classes.dart';
+import 'package:tuli/util/env/env.dart';
+import 'package:tuli/util/specific/classes.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'purchase_credits.g.dart';

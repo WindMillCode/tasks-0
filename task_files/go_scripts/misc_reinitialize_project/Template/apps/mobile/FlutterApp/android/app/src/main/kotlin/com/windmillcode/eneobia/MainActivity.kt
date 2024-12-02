@@ -1,4 +1,4 @@
-package com.[ORGANIZATION_NAME].[PROJECT_NAME]
+package com.kunjoga.tuli
 
 
 // import android.content.pm.PackageInfo
@@ -15,7 +15,7 @@ import io.flutter.embedding.android.FlutterActivity
 
 class MainActivity : FlutterActivity()
 // {
-//   private val CHANNEL = "com.[ORGANIZATION_NAME].[PROJECT_NAME]/keyhash"
+//   private val CHANNEL = "com.kunjoga.tuli/keyhash"
 
 //   override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
 //     super.configureFlutterEngine(flutterEngine)
@@ -36,7 +36,7 @@ class MainActivity : FlutterActivity()
 //   private fun getKeyHash(): String? {
 //     try {
 //       val info: PackageInfo = packageManager.getPackageInfo(
-//         "com.[ORGANIZATION_NAME].[PROJECT_NAME]",
+//         "com.kunjoga.tuli",
 //         PackageManager.GET_SIGNATURES
 //       )
 //       for (signature in info.signatures) {

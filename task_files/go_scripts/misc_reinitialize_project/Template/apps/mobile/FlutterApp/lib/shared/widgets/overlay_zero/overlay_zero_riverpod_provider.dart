@@ -1,12 +1,12 @@
-import 'package:[PROJECT_NAME]/shared/widgets/hcaptcha_zero/complete_hcaptcha.dart';
-import 'package:[PROJECT_NAME]/util/env/env.dart';
-import 'package:[PROJECT_NAME]/util/misc/misc.dart';
-import 'package:[PROJECT_NAME]/util/riverpod_providers/wml_spacing/wml_spacing.dart';
+import 'package:tuli/shared/widgets/hcaptcha_zero/complete_hcaptcha.dart';
+import 'package:tuli/util/env/env.dart';
+import 'package:tuli/util/misc/misc.dart';
+import 'package:tuli/util/riverpod_providers/wml_spacing/wml_spacing.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:windmillcode_flutter_translate/flutter_translate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:[PROJECT_NAME]/util/riverpod_providers/wml_colors/wml_colors.dart';
+import 'package:tuli/util/riverpod_providers/wml_colors/wml_colors.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 class OverlayZeroRiverpodProviderValue {

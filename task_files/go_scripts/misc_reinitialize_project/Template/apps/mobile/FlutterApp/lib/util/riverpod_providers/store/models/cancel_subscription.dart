@@ -1,4 +1,4 @@
-import 'package:[PROJECT_NAME]/util/specific/classes.dart';
+import 'package:tuli/util/specific/classes.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'cancel_subscription.g.dart';

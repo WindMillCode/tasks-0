@@ -1,4 +1,4 @@
-import 'package:[PROJECT_NAME]/util/env/env.dart';
+import 'package:tuli/util/env/env.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'classes.g.dart';

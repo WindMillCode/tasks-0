@@ -15,7 +15,7 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>[PROJECT_NAME]</string>
+	<string>tuli</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
@@ -24,40 +24,58 @@
 	<string>????</string>
 	<key>CFBundleURLTypes</key>
 	<array>
-		[FLUTTER_IOS_GOOGLE_OAUTH_URL_SCHEMES]
+		
+							<dict>
+								<key>CFBundleTypeRole</key>
+								<string>Editor</string>
+								<key>CFBundleURLSchemes</key>
+								<array>
+									<string>com.googleusercontent.apps.1087581737335-4uq8coakihibufs0i59kpg49ol20vgs1</string>
+								</array>
+							</dict>
+							
+							<dict>
+								<key>CFBundleTypeRole</key>
+								<string>Editor</string>
+								<key>CFBundleURLSchemes</key>
+								<array>
+									<string>com.googleusercontent.apps.940530829997-ovrvnsosdm3p1b64lf16v1oon82i4l0g</string>
+								</array>
+							</dict>
+							
 
 		<dict>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>com.[ORGANIZATION_NAME].[PROJECT_NAME]</string>
+			<string>com.kunjoga.tuli</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>[PROJECT_NAME]</string>
+				<string>tuli</string>
 			</array>
 		</dict>
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>[FLUTTER_IOS_FACEBOOK_CUSTOM_URL_SCHEME]</string>
+				<string>fb394494519905392</string>
 			</array>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
 	<key>FacebookAppID</key>
-	<string>[FLUTTER_IOS_FACEBOOK_APP_ID]</string>
+	<string>394494519905392</string>
 	<key>FacebookClientToken</key>
-	<string>[FLUTTER_IOS_FACEBOOK_CLIENT_TOKEN]</string>
+	<string>d205c178941dfba1b20f25688e302f66</string>
 	<key>FacebookDisplayName</key>
-	<string>[PROJECT_NAME_CAPITAL]</string>
+	<string>Tuli</string>
 	<key>GADApplicationIdentifier</key>
-	<string>[FLUTTER_IOS_GOOGLE_APPLICATION_ID]</string>
+	<string>ca-app-pub-8492729057076492~6297191638</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
-		<string>[PROJECT_NAME]</string>
+		<string>tuli</string>
 		<string>fbapi</string>
 		<string>fb-messenger-share-api</string>
 	</array>

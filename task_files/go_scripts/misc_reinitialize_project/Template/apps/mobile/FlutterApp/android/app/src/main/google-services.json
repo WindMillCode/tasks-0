@@ -1,15 +1,15 @@
 {
   "project_info": {
     "project_number": "1087581737335",
-    "project_id": "[PROJECT_NAME]",
-    "storage_bucket": "[PROJECT_NAME].appspot.com"
+    "project_id": "tuli",
+    "storage_bucket": "tuli.appspot.com"
   },
   "client": [
     {
       "client_info": {
         "mobilesdk_app_id": "1:1087581737335:android:b227ea960f4f8a76f89172",
         "android_client_info": {
-          "package_name": "com.[ORGANIZATION_NAME].[PROJECT_NAME]"
+          "package_name": "com.kunjoga.tuli"
         }
       },
       "oauth_client": [
@@ -17,7 +17,7 @@
           "client_id": "1087581737335-46oejcnrisqhj6v4jskf1g942flh0adp.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.[ORGANIZATION_NAME].[PROJECT_NAME]",
+            "package_name": "com.kunjoga.tuli",
             "certificate_hash": "e76c79dd1bd58573d1b8e5cd8253f2deca6afed4"
           }
         },
@@ -25,7 +25,7 @@
           "client_id": "1087581737335-6d70d5qkogb4fqm8pddt3hkfhn0g28p2.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.[ORGANIZATION_NAME].[PROJECT_NAME]",
+            "package_name": "com.kunjoga.tuli",
             "certificate_hash": "33fa36517fe81342770251bc3d6c8f51fd3f3b48"
           }
         },
@@ -33,7 +33,7 @@
           "client_id": "1087581737335-v0qfge3q8ic9qfhg45jqfgplr22mvbn1.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.[ORGANIZATION_NAME].[PROJECT_NAME]",
+            "package_name": "com.kunjoga.tuli",
             "certificate_hash": "198ebcb5dc38545e202817df38f3b4b66f25b475"
           }
         },
@@ -58,7 +58,7 @@
               "client_id": "1087581737335-6a3b8ju50r2jcot5bbn7ibrd436ndgu0.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.example.[PROJECT_NAME]"
+                "bundle_id": "com.example.tuli"
               }
             }
           ]

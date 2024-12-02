@@ -2,8 +2,8 @@
 {
   "project_info": {
     "project_number": "[PROJECT_NUMBER]",
-    "project_id": "[PROJECT_NAME]-preview",
-    "storage_bucket": "[PROJECT_NAME]-preview.appspot.com"
+    "project_id": "tuli-preview",
+    "storage_bucket": "tuli-preview.appspot.com"
   },
   "client": [
   ],

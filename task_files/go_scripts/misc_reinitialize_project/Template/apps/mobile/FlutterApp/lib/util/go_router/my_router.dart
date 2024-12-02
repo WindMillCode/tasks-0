@@ -16,14 +16,12 @@ GoRouter createGoRouter(WidgetRef ref) {
       navigatorKey: GlobalKey<NavigatorState>(),
       routes: [
         // Example route you need a layout and a page
-        // GoRoute(
-        //     path: WMLNavRiverpodProviderInstance.route["path"],
-        //     builder: (context, state) {
-        //       return LandingLayoutWidget(
-        //         pageWidget: WMLNavRiverpodProviderInstance.route["widget"],
-        //       );
-        //     }),
-        // 
+        GoRoute(
+            path: WMLNavRiverpodProviderInstance.route["path"],
+            builder: (context, state) {
+              return WMLNavRiverpodProviderInstance.route["widget"];
+            }),
+        //
       ]);
 }
 

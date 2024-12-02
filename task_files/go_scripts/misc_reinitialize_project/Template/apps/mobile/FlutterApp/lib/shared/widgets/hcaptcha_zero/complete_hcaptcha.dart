@@ -1,6 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:[PROJECT_NAME]/shared/widgets/hcaptcha_zero/hcaptcha_zero_widget.dart';
+import 'package:tuli/shared/widgets/hcaptcha_zero/hcaptcha_zero_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 

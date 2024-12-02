@@ -1,3 +1,3 @@
-# [PROJECT_NAME]
+# tuli
 
 A new Flutter project.

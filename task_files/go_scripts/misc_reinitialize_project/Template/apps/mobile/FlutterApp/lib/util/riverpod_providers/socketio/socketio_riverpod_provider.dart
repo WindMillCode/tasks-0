@@ -1,10 +1,10 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, must_be_immutable, , unused_catch_stack, unused_local_variable
 
-import 'package:[PROJECT_NAME]/util/env/env.dart';
+import 'package:tuli/util/env/env.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
-import 'package:[PROJECT_NAME]/util/http/http_utils.dart';
+import 'package:tuli/util/http/http_utils.dart';
 
 class SocketioRiverpodProviderValue {
   IO.Socket? socket;

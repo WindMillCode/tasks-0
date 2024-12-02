@@ -1,4 +1,4 @@
-import 'package:[PROJECT_NAME]/util/misc/iterable.dart';
+import 'package:tuli/util/misc/iterable.dart';
 
 Map<String, dynamic> deepCopyMap(Map<dynamic, dynamic> original) {
   Map<String, dynamic> copy = {};

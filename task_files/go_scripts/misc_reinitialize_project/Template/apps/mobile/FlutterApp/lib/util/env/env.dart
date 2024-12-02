@@ -1,7 +1,7 @@
 // ignore_for_file: non_constant_identifier_names, constant_identifier_names
 
 import 'dart:io';
-import 'package:[PROJECT_NAME]/util/wml/url.dart';
+import 'package:tuli/util/wml/url.dart';
 import 'package:flutter/foundation.dart';
 
 enum AppEnvType { DEV, DOCKER_DEV, PREVIEW, PROD, TEST }
@@ -73,12 +73,12 @@ class AppEnv {
   WMLUri backendURI0 = WMLUri(
     scheme: 'https',
     host: '10.0.2.2',
-    port: [Flask_Run_0],
+    port: 10073,
   );
   WMLUri frontendURI0 = WMLUri(
     scheme: 'https',
     host: 'example.com',
-    port: [Angular_Run_0],
+    port: 10003,
   );
   WMLUri firebaseURI0 = WMLUri(scheme: 'http', host: 'localhost');
 
@@ -97,7 +97,7 @@ class AppEnv {
     // LOCAL | REMOTE
 
     if (platformType != AppEnvPlatformType.ANDROID) {
-      backendURI0.uri = backendURI0.uri.replace(host: "example.com", port: [Flask_Run_0]);
+      backendURI0.uri = backendURI0.uri.replace(host: "example.com", port: 10073);
     }
     if (platformType == AppEnvPlatformType.IOS) {
       app["authContainerHeight"] = .88;
@@ -106,21 +106,21 @@ class AppEnv {
       hostRemoteIPS = const String.fromEnvironment("HOST_REMOTE_IPS").split(",");
       firebaseURI0.uri = firebaseURI0.uri.replace(host: hostRemoteIPS[0]);
       frontendURI0.uri = frontendURI0.uri.replace(host: hostRemoteIPS[0]);
-      backendURI0.uri = backendURI0.uri.replace(host: "[PROXY_URLS_0]", port: 443);
+      backendURI0.uri = backendURI0.uri.replace(host: "0xdaf8738d7d6dca8774f2f2742cbd7be913e9c3eb.diode.link", port: 443);
     }
     // must be like this
     firebase = {
       'storageImageUrl': '${firebaseURI0.uri.scheme}://${firebaseURI0.uri.host}:9199/v0/b/default.appspot.com/o/'
     };
     if (type == AppEnvType.PREVIEW) {
-      backendURI0.uri = backendURI0.uri.replace(host: "api.preview.[PROJECT_NAME].com", port: 443);
-      frontendURI0.uri = frontendURI0.uri.replace(host: "ui.preview.[PROJECT_NAME].com", port: 443);
-      firebase['storageImageUrl'] = 'https://firebasestorage.googleapis.com/v0/b/[PROJECT_NAME]-preview.appspot.com/o/';
+      backendURI0.uri = backendURI0.uri.replace(host: "api.preview.tuli.com", port: 443);
+      frontendURI0.uri = frontendURI0.uri.replace(host: "ui.preview.tuli.com", port: 443);
+      firebase['storageImageUrl'] = 'https://firebasestorage.googleapis.com/v0/b/tuli-preview.appspot.com/o/';
     }
     if (type == AppEnvType.PROD) {
-      backendURI0.uri = backendURI0.uri.replace(host: "api.[PROJECT_NAME].com", port: 443);
-      frontendURI0.uri = frontendURI0.uri.replace(host: "[PROJECT_NAME].com", port: 443);
-      firebase['storageImageUrl'] = 'https://firebasestorage.googleapis.com/v0/b/[PROJECT_NAME].appspot.com/o/';
+      backendURI0.uri = backendURI0.uri.replace(host: "api.tuli.com", port: 443);
+      frontendURI0.uri = frontendURI0.uri.replace(host: "tuli.com", port: 443);
+      firebase['storageImageUrl'] = 'https://firebasestorage.googleapis.com/v0/b/tuli.appspot.com/o/';
     }
 
     endpoints = AppEnvEndpoints(backendURI0: backendURI0.fqdn);

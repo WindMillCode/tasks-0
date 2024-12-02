@@ -6,7 +6,7 @@ import (
 
 	"main/shared"
 
-	"github.com/windmillcode/go_cli_scripts/v5/utils"
+	"github.com/windmillcode/go_cli_scripts/v6/utils"
 )
 
 func main() {
@@ -19,7 +19,7 @@ func main() {
 	}
 	utils.SetGlobalVars(
 		utils.SetGlobalVarsOptions{
-			NonInteractive :settings.ExtensionPack.ProcessIfDefaultIsPresent,
+			NonInteractive: settings.ExtensionPack.ProcessIfDefaultIsPresent,
 		},
 	)
 	workSpaceFolder, err := os.Getwd()

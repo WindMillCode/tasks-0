@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/windmillcode/go_cli_scripts/v5/utils"
+	"github.com/windmillcode/go_cli_scripts/v6/utils"
 	// "os"
 	// "path/filepath"
 )

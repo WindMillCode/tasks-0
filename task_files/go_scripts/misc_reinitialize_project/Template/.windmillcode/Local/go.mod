@@ -4,9 +4,9 @@ go 1.21
 
 toolchain go1.21.0
 
-require github.com/windmillcode/go_cli_scripts/v5 v5.6.3
+require github.com/windmillcode/go_cli_scripts/v6 v5.6.3
 
-// replace github.com/windmillcode/go_cli_scripts/v5 => C:\Users\Restop-1294\My_Apps\go-libs\go_cli_scripts\package
+// replace github.com/windmillcode/go_cli_scripts/v6 => C:\Users\Restop-1294\My_Apps\go-libs\go_cli_scripts\package
 
 require (
 	github.com/atotto/clipboard v0.1.4 // indirect

@@ -601,3 +601,12 @@ New script added. Builds Safari-specific extensions for your WXT app. Includes b
 File: `task_files/go_scripts/wxt_run/main.go`
 New script added. Runs your WXT app in dev mode.
 
+## [1.95.3100] [12/1/2024 03:18:35 PM EST]
+
+[UPDATE] Updated all Go scripts to use `github.com/windmillcode/go_cli_scripts/v6/utils` instead of `v5/utils`. Developers must ensure they update their dependencies to `v6` in their local environments to avoid compatibility issues.
+
+[UPDATE] `go.mod` now reflects the dependency on `v6` instead of `v5`. This includes updating the replace directive and requiring `v6.0.0`. Ensure your dependency management tools pull the latest `v6.0.0`.
+
+[BUG] Removed outdated replace directive for `v5` in `go.mod`. Builds will now fail if relying on older paths. Update all references to the `v6` module path.
+
+[CHECKPOINT] Developers should verify all functions relying on `utils` in the affected files to ensure no breaking changes in the new version (`v6.0.0`).

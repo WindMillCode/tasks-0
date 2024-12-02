@@ -8,7 +8,7 @@ import (
 	"path/filepath"
 	"strings"
 	"sync"
-	"github.com/windmillcode/go_cli_scripts/v5/utils"
+	"github.com/windmillcode/go_cli_scripts/v6/utils"
 	"google.golang.org/api/androidpublisher/v3"
 	"google.golang.org/api/googleapi"
 	"google.golang.org/api/option"

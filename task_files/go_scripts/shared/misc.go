@@ -10,7 +10,7 @@ import (
 	"slices"
 	"strings"
 	"sync"
-	"github.com/windmillcode/go_cli_scripts/v5/utils"
+	"github.com/windmillcode/go_cli_scripts/v6/utils"
 )
 
 type ShellOptions struct {

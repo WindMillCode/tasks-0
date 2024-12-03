@@ -5,10 +5,10 @@
 @import "src/assets/styles/media-queries.scss";
 
 :host {
-  &.LegalDocPageView{
+  &.DocZeroPageView{
     display: block;
     height:100%;
-    .LegalDocPage{
+    .DocZeroPage{
     &Main{
         &Pod{
           @include pageLayout1;

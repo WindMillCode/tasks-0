@@ -8,7 +8,7 @@ import enTranslations from "src/assets/i18n/en.json";
 import { SharedModule } from '@shared/shared.module';
 
 
-type LegalDocPageType = "text"|"section"|"list" |"value"| "bold_text";
+type DocZeroPageType = "text"|"section"|"list" |"value"| "bold_text";
 @Component({
     selector: 'doc-zero-page',
     templateUrl: './doc-zero-page.component.html',
@@ -18,15 +18,15 @@ type LegalDocPageType = "text"|"section"|"list" |"value"| "bold_text";
         SharedModule
     ]
 })
-export class LegalDocPageComponent  {
+export class DocZeroPageComponent  {
   constructor(
     public cdref:ChangeDetectorRef,
     public utilService:UtilityService,
     public baseService:BaseService
   ) { }
 
-  classPrefix = generateClassPrefix('LegalDocPage')
-  idPrefix = generateIdPrefix(ENV.idPrefix.legalDocPage)
+  classPrefix = generateClassPrefix('DocZeroPage')
+  idPrefix = generateIdPrefix(ENV.idPrefix.DocZeroPage)
   @HostBinding('class') myClass: string = this.classPrefix(`View`);
   @HostBinding('id') myId:string = this.idPrefix()
   ngUnsub= new Subject<void>()
@@ -58,7 +58,7 @@ export class LegalDocPageComponent  {
       let type = Object.keys(sectionText)[0]
       let i18nText:any = this.transformSectionText(sectionText,`${i18nSectionString}.${index0}`,type)
 
-      return new WMLUIProperty<LegalDocPageType>({
+      return new WMLUIProperty<DocZeroPageType>({
         text:i18nText,
         type:type?? "text"
       })

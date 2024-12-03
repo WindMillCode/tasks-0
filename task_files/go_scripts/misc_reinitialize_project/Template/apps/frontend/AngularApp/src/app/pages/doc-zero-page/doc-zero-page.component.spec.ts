@@ -13,21 +13,21 @@ import { resetDeclarations } from '@core/utility/test-utils/mock-declarations';
 // rxjs
 import { Subject } from 'rxjs';
 
-import { LegalDocPageComponent } from './doc-zero-page.component';
+import { DocZeroPageComponent } from './doc-zero-page.component';
 import { ENV } from '@env/environment';
 
 
-describe('LegalDocPageComponent', () => {
-  let cpnt: LegalDocPageComponent;
-  let fixture: ComponentFixture<LegalDocPageComponent>;
+describe('DocZeroPageComponent', () => {
+  let cpnt: DocZeroPageComponent;
+  let fixture: ComponentFixture<DocZeroPageComponent>;
 
   beforeEach(async () => {
     resetImports()
     resetProviders()
     resetDeclarations()
     wmlTestUtils.mock.mockUtilService.router.url =ENV.nav.urls.privacyPolicyPage
-    await wmlTestUtils.configureTestingModuleForComponents(LegalDocPageComponent);
-    ({fixture, cpnt} =  wmlTestUtils.grabComponentInstance(LegalDocPageComponent));
+    await wmlTestUtils.configureTestingModuleForComponents(DocZeroPageComponent);
+    ({fixture, cpnt} =  wmlTestUtils.grabComponentInstance(DocZeroPageComponent));
 
     fixture.detectChanges()
     spyOn(cpnt.cdref,"detectChanges")
@@ -40,7 +40,7 @@ describe('LegalDocPageComponent', () => {
     })
 
     it("should have all values initalize properly", () => {
-      expect(cpnt.myClass).toEqual('LegalDocPageView ')
+      expect(cpnt.myClass).toEqual('DocZeroPageView ')
     })
 
     it("should have all properties be the correct class instance", () => {

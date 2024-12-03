@@ -555,7 +555,6 @@ flutter_mobile_build_deploy updaated so all commands are processed before runnin
 
 ## [1.95.3000] [11/29/2024 10:35:47 AM EST]
 
-
 [UPDATE]
 File: `task_files/go_scripts/angular_frontend_deploy_to_firebase/main.go`
 New script added. Handles deploying Angular apps to Firebase with options for linting, SSG, and directory cleanup. If you're deploying, check the new prompts and environment settings.
@@ -612,4 +611,7 @@ New script added. Runs your WXT app in dev mode.
 
 
 ## [1.95.3101] [12/1/2024 04:18:35 PM EST]
+* minor fixes with `misc_reinitalize_project`
+
+## [1.95.3102] [12/3/2024 04:18:35 PM EST]
 * minor fixes with `misc_reinitalize_project`

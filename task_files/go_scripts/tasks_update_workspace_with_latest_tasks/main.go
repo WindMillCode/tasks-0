@@ -280,7 +280,7 @@ func main() {
 				continue
 			}
 
-			// TODO is this not needed / its not doing  anything
+
 			var runOnValue = ""
 			if utils.ArrayContainsAny([]string{label}, settings.ExtensionPack.TasksToRunOnFolderOpen) {
 				runOnValue = "folderOpen"
@@ -293,7 +293,7 @@ func main() {
 			if !utils.ArrayContainsAny([]string{""}, []string{runOnValue}) {
 				runOptions["runOn"] = runOnValue
 			}
-			//
+
 
 			isRespectiveTask := func(myTask shared.Task) bool {
 				return myTask.Label == label

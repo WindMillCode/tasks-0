@@ -4,6 +4,8 @@ go 1.23.3
 
 require github.com/windmillcode/go_cli_scripts/v6 v6.0.0
 
+replace github.com/windmillcode/go_cli_scripts/v6 => C:\Users\Restop-1294\My_Apps\go-libs\go_cli_scripts\package
+
 require (
 	github.com/atotto/clipboard v0.1.4 // indirect
 	github.com/aymanbagabas/go-osc52/v2 v2.0.1 // indirect

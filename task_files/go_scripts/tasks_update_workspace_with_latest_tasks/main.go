@@ -30,7 +30,7 @@ func filterJSONForOwnItems(items []json.RawMessage) []json.RawMessage {
 	var filteredItems []json.RawMessage
 	for _, item := range items {
 		var itemWithMetadata struct {
-			Metadata shared.Metadata `json:"metadata"`
+			Metadata utils.VSCodeTasksMetadata `json:"metadata"`
 		}
 
 		if err := json.Unmarshal(item, &itemWithMetadata); err != nil {
@@ -167,10 +167,10 @@ func main() {
 		}
 	}
 
-	var tasksJSON shared.TasksJSON
+	var tasksJSON utils.VSCodeTasksTasksJSON
 	content, err := os.ReadFile(tasksJsonFilePath)
 	if err != nil {
-		newContent, err, shouldReturn := shared.CreateTasksJson(tasksJsonFilePath, false)
+		newContent, err, shouldReturn := utils.CreateTasksJson(tasksJsonFilePath, false)
 
 		if err != nil {
 			utils.LogErrorWithTraceBack("Error creating tasks json file", err)
@@ -224,8 +224,8 @@ func main() {
 			tasksJSON.Tasks[index].Windows.Command = windowsCommand0
 			tasksJSON.Tasks[index].Osx.Command = linuxCommand0
 			tasksJSON.Tasks[index].Linux.Command = linuxCommand0
-			tasksJSON.Tasks[index].Linux.Options = shared.CommandOptions{
-				Shell: shared.ShellOptions{
+			tasksJSON.Tasks[index].Linux.Options = utils.VSCodeTasksCommandOptions{
+				Shell: utils.VSCodeTasksShellOptions{
 					Executable: "bash",
 					Args:       []string{"-ic"},
 				},
@@ -238,7 +238,7 @@ func main() {
 			}
 		}
 		workspaceTasksJSONFilePath := utils.JoinAndConvertPathToOSFormat(workSpaceFolder, "/.vscode/tasks.json")
-		content, err, shouldReturn := shared.CreateTasksJson(workspaceTasksJSONFilePath, false)
+		content, err, shouldReturn := utils.CreateTasksJson(workspaceTasksJSONFilePath, false)
 		if err != nil {
 			utils.LogErrorWithTraceBack("Error creating tasks json file", err)
 			return
@@ -295,7 +295,7 @@ func main() {
 			}
 
 
-			isRespectiveTask := func(myTask shared.Task) bool {
+			isRespectiveTask := func(myTask utils.VSCodeTasksTask) bool {
 				return myTask.Label == label
 			}
 			index, targetTask, err := utils.FindElement(tasksJSON.Tasks, isRespectiveTask)
@@ -319,7 +319,7 @@ func main() {
 		var previousInputs []json.RawMessage
 		_ = json.Unmarshal(previousTasksJSON["inputs"], &previousInputs)
 		currentInputsRaw := turnToDynamicJSONArray(tasksJSON.Inputs)
-		var newTasksJSON shared.DynamicTasksJSON
+		var newTasksJSON utils.VSCodeTasksDynamicTasksJSON
 		newTasksJSON.Version = tasksJSON.Version
 		newTasksJSON.Tasks = append(filterJSONForOwnItems(previousTasks), currentTasksRaw...)
 		newTasksJSON.Inputs = append(filterJSONForOwnItems(previousInputs), currentInputsRaw...)

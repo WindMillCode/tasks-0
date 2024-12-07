@@ -26,12 +26,12 @@ func main() {
 
 	tasksJsonFilePath := utils.JoinAndConvertPathToOSFormat(workspaceRoot, ".vscode/tasks.json")
 
-	content, err, shouldReturn := shared.CreateTasksJson(tasksJsonFilePath, false)
+	content, err, shouldReturn := utils.CreateTasksJson(tasksJsonFilePath, false)
 	if shouldReturn {
 		return
 	}
 
-	var tasksJSON shared.TasksJSON
+	var tasksJSON utils.VSCodeTasksTasksJSON
 	err = json.Unmarshal(content, &tasksJSON)
 	if err != nil {
 		fmt.Println("Error unmarshalling JSON:", err)

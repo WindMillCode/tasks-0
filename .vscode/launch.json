@@ -25,5 +25,13 @@
       "mode": "debug",
       "program": "${workspaceRoot}/task_files/go_scripts/firebase_cloud_run_emulators/main.go"
     },
+    {
+      "name": "Launch go file",
+      "type": "go",
+      "request": "launch",
+      "mode": "debug",
+      "console": "integratedTerminal",
+      "program": "${workspaceFolder}/.windmillcode/Local/make_new_go_command.go"
+    }
   ]
 }

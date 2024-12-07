@@ -1,7 +1,6 @@
 package shared
 
 import (
-	"encoding/json"
 	"fmt"
 	"os"
 	"os/exec"
@@ -13,70 +12,71 @@ import (
 	"github.com/windmillcode/go_cli_scripts/v6/utils"
 )
 
-type ShellOptions struct {
-	Executable string   `json:"executable"`
-	Args       []string `json:"args"`
-}
+// TODO remove and use go_cli_scripts respective values
+// type ShellOptions struct {
+// 	Executable string   `json:"executable"`
+// 	Args       []string `json:"args"`
+// }
 
-type CommandOptions struct {
-	Shell ShellOptions `json:"shell"`
-}
+// type CommandOptions struct {
+// 	Shell ShellOptions `json:"shell"`
+// }
 
-type Metadata struct {
-	Name string `json:"name"`
-}
+// type Metadata struct {
+// 	Name string `json:"name"`
+// }
 
-type RunOptions struct {
-	RunOn         string `json:"runOn,omitempty"`
-	InstanceLimit int    `json:"instanceLimit"`
-}
+// type RunOptions struct {
+// 	RunOn         string `json:"runOn,omitempty"`
+// 	InstanceLimit int    `json:"instanceLimit"`
+// }
 
-type Task struct {
-	Label   string `json:"label"`
-	Type    string `json:"type"`
-	Windows struct {
-		Command string `json:"command"`
-	} `json:"windows"`
-	Linux struct {
-		Command string         `json:"command"`
-		Options CommandOptions `json:"options"`
-	} `json:"linux"`
-	Osx struct {
-		Command string        `json:"command"`
-		Args    []string      `json:"args"`
-	} `json:"osx"`
-	RunOptions   RunOptions `json:"runOptions"`
-	Presentation struct {
-		Panel string `json:"panel,omitempty"`
-	} `json:"presentation"`
-	Metadata Metadata `json:"metadata"`
-}
+// type Task struct {
+// 	Label   string `json:"label"`
+// 	Type    string `json:"type"`
+// 	Windows struct {
+// 		Command string `json:"command"`
+// 	} `json:"windows"`
+// 	Linux struct {
+// 		Command string         `json:"command"`
+// 		Options CommandOptions `json:"options"`
+// 	} `json:"linux"`
+// 	Osx struct {
+// 		Command string        `json:"command"`
+// 		Args    []string      `json:"args"`
+// 	} `json:"osx"`
+// 	RunOptions   RunOptions `json:"runOptions"`
+// 	Presentation struct {
+// 		Panel string `json:"panel,omitempty"`
+// 	} `json:"presentation"`
+// 	Metadata Metadata `json:"metadata"`
+// }
 
-type Input struct {
-	ID          string   `json:"id"`
-	Description string   `json:"description"`
-	Default     string   `json:"default"`
-	Type        string   `json:"type"`
-	Metadata    Metadata `json:"metadata"`
-}
+// type Input struct {
+// 	ID          string   `json:"id"`
+// 	Description string   `json:"description"`
+// 	Default     string   `json:"default"`
+// 	Type        string   `json:"type"`
+// 	Metadata    Metadata `json:"metadata"`
+// }
 
-type TasksJSON struct {
-	Version string  `json:"version"`
-	Tasks   []Task  `json:"tasks"`
-	Inputs  []Input `json:"inputs"`
-}
+// type TasksJSON struct {
+// 	Version string  `json:"version"`
+// 	Tasks   []Task  `json:"tasks"`
+// 	Inputs  []Input `json:"inputs"`
+// }
 
-type DynamicTasksJSON struct {
-	Version string            `json:"version"`
-	Tasks   []json.RawMessage `json:"tasks"`
-	Inputs  []json.RawMessage `json:"inputs"`
-}
-
+// type DynamicTasksJSON struct {
+// 	Version string            `json:"version"`
+// 	Tasks   []json.RawMessage `json:"tasks"`
+// 	Inputs  []json.RawMessage `json:"inputs"`
+// }
+//
 func CDToWorkspaceRoot() {
 	utils.CDToLocation(filepath.Join("..", "..", ".."))
 }
 
-func RebuildExecutables(proceed string, tasksJSON TasksJSON, goScriptsDestDirPath string, goExecutable string, beforeActionPredicate func()) {
+func RebuildExecutables(proceed string, tasksJSON utils.VSCodeTasksTasksJSON, goScriptsDestDirPath string, goExecutable string, beforeActionPredicate func()) {
 	var rebuild string
 	var cliInfo utils.ShowMenuModel
 	if proceed == "TRUE" {
@@ -148,26 +148,7 @@ func BuildGoCLIProgram(programLocation string, goExecutable string) {
 
 }
 
-func CreateTasksJson(tasksJsonFilePath string, triedCreateOnError bool) ([]byte, error, bool) {
 
-	content, err := os.ReadFile(tasksJsonFilePath)
-	if err != nil {
-		if triedCreateOnError {
-			return nil, err, true
-		}
-
-		// If the file doesn't exist, create it.
-		_, createErr := os.Create(tasksJsonFilePath)
-		if createErr != nil {
-			return nil, createErr, true
-		}
-
-		// Recursively attempt to read the file after creating it.
-		return CreateTasksJson(tasksJsonFilePath, true)
-	}
-
-	return content, nil, false
-}
 
 func SetFlaskAppPort() bool {
 	scriptRoot, err := os.Getwd()

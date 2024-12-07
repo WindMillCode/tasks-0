@@ -4,402 +4,1595 @@
     {
       "label": "android: replace all emulators",
       "type": "shell",
+      "windows": {
+        "command": ""
+      },
+      "linux": {
+        "command": "",
+        "options": {
+          "shell": {
+            "executable": "",
+            "args": null
+          }
+        }
+      },
+      "osx": {
+        "command": "",
+        "args": null
+      },
       "runOptions": {
         "instanceLimit": 1
+      },
+      "presentation": {},
+      "metadata": {
+        "name": ""
       }
     },
     {
       "label": "angular frontend: analyze",
       "type": "shell",
+      "windows": {
+        "command": ""
+      },
+      "linux": {
+        "command": "",
+        "options": {
+          "shell": {
+            "executable": "",
+            "args": null
+          }
+        }
+      },
+      "osx": {
+        "command": "",
+        "args": null
+      },
       "runOptions": {
         "instanceLimit": 1
+      },
+      "presentation": {},
+      "metadata": {
+        "name": ""
       }
     },
     {
       "label": "angular frontend: check for angular updates",
       "type": "shell",
+      "windows": {
+        "command": ""
+      },
+      "linux": {
+        "command": "",
+        "options": {
+          "shell": {
+            "executable": "",
+            "args": null
+          }
+        }
+      },
+      "osx": {
+        "command": "",
+        "args": null
+      },
       "runOptions": {
         "instanceLimit": 1
+      },
+      "presentation": {},
+      "metadata": {
+        "name": ""
       }
     },
     {
       "label": "angular frontend: deploy to firebase",
       "type": "shell",
+      "windows": {
+        "command": ""
+      },
+      "linux": {
+        "command": "",
+        "options": {
+          "shell": {
+            "executable": "",
+            "args": null
+          }
+        }
+      },
+      "osx": {
+        "command": "",
+        "args": null
+      },
       "runOptions": {
         "instanceLimit": 1
+      },
+      "presentation": {},
+      "metadata": {
+        "name": ""
       }
     },
     {
       "label": "angular frontend: run",
       "type": "shell",
+      "windows": {
+        "command": ""
+      },
+      "linux": {
+        "command": "",
+        "options": {
+          "shell": {
+            "executable": "",
+            "args": null
+          }
+        }
+      },
+      "osx": {
+        "command": "",
+        "args": null
+      },
       "runOptions": {
         "instanceLimit": 1
+      },
+      "presentation": {},
+      "metadata": {
+        "name": ""
       }
     },
     {
       "label": "angular frontend: run compodoc",
       "type": "shell",
+      "windows": {
+        "command": ""
+      },
+      "linux": {
+        "command": "",
+        "options": {
+          "shell": {
+            "executable": "",
+            "args": null
+          }
+        }
+      },
+      "osx": {
+        "command": "",
+        "args": null
+      },
       "runOptions": {
         "instanceLimit": 1
+      },
+      "presentation": {},
+      "metadata": {
+        "name": ""
       }
     },
     {
       "label": "angular frontend: test",
       "type": "shell",
+      "windows": {
+        "command": ""
+      },
+      "linux": {
+        "command": "",
+        "options": {
+          "shell": {
+            "executable": "",
+            "args": null
+          }
+        }
+      },
+      "osx": {
+        "command": "",
+        "args": null
+      },
       "runOptions": {
         "instanceLimit": 1
+      },
+      "presentation": {},
+      "metadata": {
+        "name": ""
       }
     },
     {
       "label": "angular frontend: update angular",
       "type": "shell",
+      "windows": {
+        "command": ""
+      },
+      "linux": {
+        "command": "",
+        "options": {
+          "shell": {
+            "executable": "",
+            "args": null
+          }
+        }
+      },
+      "osx": {
+        "command": "",
+        "args": null
+      },
       "runOptions": {
         "instanceLimit": 1
+      },
+      "presentation": {},
+      "metadata": {
+        "name": ""
       }
     },
     {
       "label": "docker: backup all images",
       "type": "shell",
+      "windows": {
+        "command": ""
+      },
+      "linux": {
+        "command": "",
+        "options": {
+          "shell": {
+            "executable": "",
+            "args": null
+          }
+        }
+      },
+      "osx": {
+        "command": "",
+        "args": null
+      },
       "runOptions": {
         "instanceLimit": 1
+      },
+      "presentation": {},
+      "metadata": {
+        "name": ""
       }
     },
     {
       "label": "docker: init container",
       "type": "shell",
+      "windows": {
+        "command": ""
+      },
+      "linux": {
+        "command": "",
+        "options": {
+          "shell": {
+            "executable": "",
+            "args": null
+          }
+        }
+      },
+      "osx": {
+        "command": "",
+        "args": null
+      },
       "runOptions": {
         "instanceLimit": 10
+      },
+      "presentation": {},
+      "metadata": {
+        "name": ""
       }
     },
     {
       "label": "docker: restore all images",
       "type": "shell",
+      "windows": {
+        "command": ""
+      },
+      "linux": {
+        "command": "",
+        "options": {
+          "shell": {
+            "executable": "",
+            "args": null
+          }
+        }
+      },
+      "osx": {
+        "command": "",
+        "args": null
+      },
       "runOptions": {
         "instanceLimit": 1
+      },
+      "presentation": {},
+      "metadata": {
+        "name": ""
       }
     },
     {
       "label": "docker: run",
       "type": "shell",
+      "windows": {
+        "command": ""
+      },
+      "linux": {
+        "command": "",
+        "options": {
+          "shell": {
+            "executable": "",
+            "args": null
+          }
+        }
+      },
+      "osx": {
+        "command": "",
+        "args": null
+      },
       "runOptions": {
         "instanceLimit": 10
+      },
+      "presentation": {},
+      "metadata": {
+        "name": ""
       }
     },
     {
       "label": "docker: ssh into container",
       "type": "shell",
+      "windows": {
+        "command": ""
+      },
+      "linux": {
+        "command": "",
+        "options": {
+          "shell": {
+            "executable": "",
+            "args": null
+          }
+        }
+      },
+      "osx": {
+        "command": "",
+        "args": null
+      },
       "runOptions": {
         "instanceLimit": 10
+      },
+      "presentation": {},
+      "metadata": {
+        "name": ""
       }
     },
     {
       "label": "firebase cloud: run emulators",
       "type": "shell",
+      "windows": {
+        "command": ""
+      },
+      "linux": {
+        "command": "",
+        "options": {
+          "shell": {
+            "executable": "",
+            "args": null
+          }
+        }
+      },
+      "osx": {
+        "command": "",
+        "args": null
+      },
       "runOptions": {
         "instanceLimit": 1
+      },
+      "presentation": {},
+      "metadata": {
+        "name": ""
       }
     },
     {
       "label": "flask backend: create controller",
       "type": "shell",
+      "windows": {
+        "command": ""
+      },
+      "linux": {
+        "command": "",
+        "options": {
+          "shell": {
+            "executable": "",
+            "args": null
+          }
+        }
+      },
+      "osx": {
+        "command": "",
+        "args": null
+      },
       "runOptions": {
         "instanceLimit": 1
+      },
+      "presentation": {},
+      "metadata": {
+        "name": ""
       }
     },
     {
       "label": "flask backend: create manager",
       "type": "shell",
+      "windows": {
+        "command": ""
+      },
+      "linux": {
+        "command": "",
+        "options": {
+          "shell": {
+            "executable": "",
+            "args": null
+          }
+        }
+      },
+      "osx": {
+        "command": "",
+        "args": null
+      },
       "runOptions": {
         "instanceLimit": 1
+      },
+      "presentation": {},
+      "metadata": {
+        "name": ""
       }
     },
     {
       "label": "flask backend: run",
       "type": "shell",
+      "windows": {
+        "command": ""
+      },
+      "linux": {
+        "command": "",
+        "options": {
+          "shell": {
+            "executable": "",
+            "args": null
+          }
+        }
+      },
+      "osx": {
+        "command": "",
+        "args": null
+      },
       "runOptions": {
         "instanceLimit": 1
+      },
+      "presentation": {},
+      "metadata": {
+        "name": ""
       }
     },
     {
       "label": "flask backend: run with reloader",
       "type": "shell",
+      "windows": {
+        "command": ""
+      },
+      "linux": {
+        "command": "",
+        "options": {
+          "shell": {
+            "executable": "",
+            "args": null
+          }
+        }
+      },
+      "osx": {
+        "command": "",
+        "args": null
+      },
       "runOptions": {
         "instanceLimit": 1
+      },
+      "presentation": {},
+      "metadata": {
+        "name": ""
       }
     },
     {
       "label": "flask backend: test",
       "type": "shell",
+      "windows": {
+        "command": ""
+      },
+      "linux": {
+        "command": "",
+        "options": {
+          "shell": {
+            "executable": "",
+            "args": null
+          }
+        }
+      },
+      "osx": {
+        "command": "",
+        "args": null
+      },
       "runOptions": {
         "instanceLimit": 1
+      },
+      "presentation": {},
+      "metadata": {
+        "name": ""
       }
     },
     {
       "label": "flutter mobile: build deploy",
       "type": "shell",
+      "windows": {
+        "command": ""
+      },
+      "linux": {
+        "command": "",
+        "options": {
+          "shell": {
+            "executable": "",
+            "args": null
+          }
+        }
+      },
+      "osx": {
+        "command": "",
+        "args": null
+      },
       "runOptions": {
         "instanceLimit": 1
+      },
+      "presentation": {},
+      "metadata": {
+        "name": ""
       }
     },
     {
       "label": "flutter mobile: create layout",
       "type": "shell",
+      "windows": {
+        "command": ""
+      },
+      "linux": {
+        "command": "",
+        "options": {
+          "shell": {
+            "executable": "",
+            "args": null
+          }
+        }
+      },
+      "osx": {
+        "command": "",
+        "args": null
+      },
       "runOptions": {
         "instanceLimit": 1
+      },
+      "presentation": {},
+      "metadata": {
+        "name": ""
       }
     },
     {
       "label": "flutter mobile: create page",
       "type": "shell",
+      "windows": {
+        "command": ""
+      },
+      "linux": {
+        "command": "",
+        "options": {
+          "shell": {
+            "executable": "",
+            "args": null
+          }
+        }
+      },
+      "osx": {
+        "command": "",
+        "args": null
+      },
       "runOptions": {
         "instanceLimit": 1
+      },
+      "presentation": {},
+      "metadata": {
+        "name": ""
       }
     },
     {
       "label": "flutter mobile: create riverpod async notifier provider",
       "type": "shell",
+      "windows": {
+        "command": ""
+      },
+      "linux": {
+        "command": "",
+        "options": {
+          "shell": {
+            "executable": "",
+            "args": null
+          }
+        }
+      },
+      "osx": {
+        "command": "",
+        "args": null
+      },
       "runOptions": {
         "instanceLimit": 1
+      },
+      "presentation": {},
+      "metadata": {
+        "name": ""
       }
     },
     {
       "label": "flutter mobile: create riverpod provider",
       "type": "shell",
+      "windows": {
+        "command": ""
+      },
+      "linux": {
+        "command": "",
+        "options": {
+          "shell": {
+            "executable": "",
+            "args": null
+          }
+        }
+      },
+      "osx": {
+        "command": "",
+        "args": null
+      },
       "runOptions": {
         "instanceLimit": 1
+      },
+      "presentation": {},
+      "metadata": {
+        "name": ""
       }
     },
     {
       "label": "flutter mobile: create shared widget",
       "type": "shell",
+      "windows": {
+        "command": ""
+      },
+      "linux": {
+        "command": "",
+        "options": {
+          "shell": {
+            "executable": "",
+            "args": null
+          }
+        }
+      },
+      "osx": {
+        "command": "",
+        "args": null
+      },
       "runOptions": {
         "instanceLimit": 1
+      },
+      "presentation": {},
+      "metadata": {
+        "name": ""
       }
     },
     {
       "label": "flutter mobile: install specific packages",
       "type": "shell",
+      "windows": {
+        "command": ""
+      },
+      "linux": {
+        "command": "",
+        "options": {
+          "shell": {
+            "executable": "",
+            "args": null
+          }
+        }
+      },
+      "osx": {
+        "command": "",
+        "args": null
+      },
       "runOptions": {
         "instanceLimit": 1
+      },
+      "presentation": {},
+      "metadata": {
+        "name": ""
       }
     },
     {
       "label": "flutter mobile: test",
       "type": "shell",
+      "windows": {
+        "command": ""
+      },
+      "linux": {
+        "command": "",
+        "options": {
+          "shell": {
+            "executable": "",
+            "args": null
+          }
+        }
+      },
+      "osx": {
+        "command": "",
+        "args": null
+      },
       "runOptions": {
         "instanceLimit": 1
+      },
+      "presentation": {},
+      "metadata": {
+        "name": ""
       }
     },
     {
       "label": "git: clone subdirs",
       "type": "shell",
+      "windows": {
+        "command": ""
+      },
+      "linux": {
+        "command": "",
+        "options": {
+          "shell": {
+            "executable": "",
+            "args": null
+          }
+        }
+      },
+      "osx": {
+        "command": "",
+        "args": null
+      },
       "runOptions": {
         "instanceLimit": 1
+      },
+      "presentation": {},
+      "metadata": {
+        "name": ""
       }
     },
     {
       "label": "git: create branch after merged changes",
       "type": "shell",
+      "windows": {
+        "command": ""
+      },
+      "linux": {
+        "command": "",
+        "options": {
+          "shell": {
+            "executable": "",
+            "args": null
+          }
+        }
+      },
+      "osx": {
+        "command": "",
+        "args": null
+      },
       "runOptions": {
         "instanceLimit": 1
+      },
+      "presentation": {},
+      "metadata": {
+        "name": ""
       }
     },
     {
       "label": "git: merge changes from current dev branch",
       "type": "shell",
+      "windows": {
+        "command": ""
+      },
+      "linux": {
+        "command": "",
+        "options": {
+          "shell": {
+            "executable": "",
+            "args": null
+          }
+        }
+      },
+      "osx": {
+        "command": "",
+        "args": null
+      },
       "runOptions": {
         "instanceLimit": 1
+      },
+      "presentation": {},
+      "metadata": {
+        "name": ""
       }
     },
     {
       "label": "git: pushing work to git remote",
       "type": "shell",
+      "windows": {
+        "command": ""
+      },
+      "linux": {
+        "command": "",
+        "options": {
+          "shell": {
+            "executable": "",
+            "args": null
+          }
+        }
+      },
+      "osx": {
+        "command": "",
+        "args": null
+      },
       "runOptions": {
         "instanceLimit": 1
+      },
+      "presentation": {},
+      "metadata": {
+        "name": ""
       }
     },
     {
       "label": "git: removing a file from being tracked by git",
       "type": "shell",
+      "windows": {
+        "command": ""
+      },
+      "linux": {
+        "command": "",
+        "options": {
+          "shell": {
+            "executable": "",
+            "args": null
+          }
+        }
+      },
+      "osx": {
+        "command": "",
+        "args": null
+      },
       "runOptions": {
         "instanceLimit": 1
+      },
+      "presentation": {},
+      "metadata": {
+        "name": ""
       }
     },
     {
       "label": "misc: copy to keep projects in sync",
       "type": "shell",
+      "windows": {
+        "command": ""
+      },
+      "linux": {
+        "command": "",
+        "options": {
+          "shell": {
+            "executable": "",
+            "args": null
+          }
+        }
+      },
+      "osx": {
+        "command": "",
+        "args": null
+      },
       "runOptions": {
         "instanceLimit": 1
+      },
+      "presentation": {},
+      "metadata": {
+        "name": ""
       }
     },
     {
       "label": "misc: make a new doc item",
       "type": "shell",
+      "windows": {
+        "command": ""
+      },
+      "linux": {
+        "command": "",
+        "options": {
+          "shell": {
+            "executable": "",
+            "args": null
+          }
+        }
+      },
+      "osx": {
+        "command": "",
+        "args": null
+      },
       "runOptions": {
         "instanceLimit": 1
+      },
+      "presentation": {},
+      "metadata": {
+        "name": ""
       }
     },
     {
       "label": "misc: open doc item in vscode",
       "type": "shell",
+      "windows": {
+        "command": ""
+      },
+      "linux": {
+        "command": "",
+        "options": {
+          "shell": {
+            "executable": "",
+            "args": null
+          }
+        }
+      },
+      "osx": {
+        "command": "",
+        "args": null
+      },
       "runOptions": {
         "instanceLimit": 1
+      },
+      "presentation": {},
+      "metadata": {
+        "name": ""
       }
     },
     {
       "label": "misc: optimize images",
       "type": "shell",
+      "windows": {
+        "command": ""
+      },
+      "linux": {
+        "command": "",
+        "options": {
+          "shell": {
+            "executable": "",
+            "args": null
+          }
+        }
+      },
+      "osx": {
+        "command": "",
+        "args": null
+      },
       "runOptions": {
         "instanceLimit": 1
+      },
+      "presentation": {},
+      "metadata": {
+        "name": ""
       }
     },
     {
       "label": "misc: reinitialize project",
       "type": "shell",
+      "windows": {
+        "command": ""
+      },
+      "linux": {
+        "command": "",
+        "options": {
+          "shell": {
+            "executable": "",
+            "args": null
+          }
+        }
+      },
+      "osx": {
+        "command": "",
+        "args": null
+      },
       "runOptions": {
         "instanceLimit": 10
+      },
+      "presentation": {},
+      "metadata": {
+        "name": ""
       }
     },
     {
       "label": "misc: rename files",
       "type": "shell",
+      "windows": {
+        "command": ""
+      },
+      "linux": {
+        "command": "",
+        "options": {
+          "shell": {
+            "executable": "",
+            "args": null
+          }
+        }
+      },
+      "osx": {
+        "command": "",
+        "args": null
+      },
       "runOptions": {
         "instanceLimit": 1
+      },
+      "presentation": {},
+      "metadata": {
+        "name": ""
       }
     },
     {
       "label": "misc: run proxies",
       "type": "shell",
+      "windows": {
+        "command": ""
+      },
+      "linux": {
+        "command": "",
+        "options": {
+          "shell": {
+            "executable": "",
+            "args": null
+          }
+        }
+      },
+      "osx": {
+        "command": "",
+        "args": null
+      },
       "runOptions": {
         "instanceLimit": 1000
+      },
+      "presentation": {},
+      "metadata": {
+        "name": ""
       }
     },
     {
       "label": "misc: translate json",
       "type": "shell",
+      "windows": {
+        "command": ""
+      },
+      "linux": {
+        "command": "",
+        "options": {
+          "shell": {
+            "executable": "",
+            "args": null
+          }
+        }
+      },
+      "osx": {
+        "command": "",
+        "args": null
+      },
       "runOptions": {
         "instanceLimit": 10000
+      },
+      "presentation": {},
+      "metadata": {
+        "name": ""
       }
     },
     {
       "label": "npm: install app deps",
       "type": "shell",
+      "windows": {
+        "command": ""
+      },
+      "linux": {
+        "command": "",
+        "options": {
+          "shell": {
+            "executable": "",
+            "args": null
+          }
+        }
+      },
+      "osx": {
+        "command": "",
+        "args": null
+      },
       "runOptions": {
         "instanceLimit": 10
+      },
+      "presentation": {},
+      "metadata": {
+        "name": ""
       }
     },
     {
       "label": "npm: install specific packages",
       "type": "shell",
+      "windows": {
+        "command": ""
+      },
+      "linux": {
+        "command": "",
+        "options": {
+          "shell": {
+            "executable": "",
+            "args": null
+          }
+        }
+      },
+      "osx": {
+        "command": "",
+        "args": null
+      },
       "runOptions": {
         "instanceLimit": 10
+      },
+      "presentation": {},
+      "metadata": {
+        "name": ""
       }
     },
     {
       "label": "npm: silence typescript errors",
       "type": "shell",
+      "windows": {
+        "command": ""
+      },
+      "linux": {
+        "command": "",
+        "options": {
+          "shell": {
+            "executable": "",
+            "args": null
+          }
+        }
+      },
+      "osx": {
+        "command": "",
+        "args": null
+      },
       "runOptions": {
         "instanceLimit": 10
+      },
+      "presentation": {},
+      "metadata": {
+        "name": ""
       }
     },
     {
       "label": "npm: switch to new version",
       "type": "shell",
+      "windows": {
+        "command": ""
+      },
+      "linux": {
+        "command": "",
+        "options": {
+          "shell": {
+            "executable": "",
+            "args": null
+          }
+        }
+      },
+      "osx": {
+        "command": "",
+        "args": null
+      },
       "runOptions": {
         "instanceLimit": 10
+      },
+      "presentation": {},
+      "metadata": {
+        "name": ""
       }
     },
     {
       "label": "python: install app deps",
       "type": "shell",
+      "windows": {
+        "command": ""
+      },
+      "linux": {
+        "command": "",
+        "options": {
+          "shell": {
+            "executable": "",
+            "args": null
+          }
+        }
+      },
+      "osx": {
+        "command": "",
+        "args": null
+      },
       "runOptions": {
         "instanceLimit": 10
+      },
+      "presentation": {},
+      "metadata": {
+        "name": ""
       }
     },
     {
       "label": "python: install specific packages",
       "type": "shell",
+      "windows": {
+        "command": ""
+      },
+      "linux": {
+        "command": "",
+        "options": {
+          "shell": {
+            "executable": "",
+            "args": null
+          }
+        }
+      },
+      "osx": {
+        "command": "",
+        "args": null
+      },
       "runOptions": {
         "instanceLimit": 10
+      },
+      "presentation": {},
+      "metadata": {
+        "name": ""
+      }
+    },
+    {
+      "label": "react native expo mobile create page",
+      "type": "shell",
+      "windows": {
+        "command": ""
+      },
+      "linux": {
+        "command": "",
+        "options": {
+          "shell": {
+            "executable": "",
+            "args": null
+          }
+        }
+      },
+      "osx": {
+        "command": "",
+        "args": null
+      },
+      "runOptions": {
+        "instanceLimit": 1
+      },
+      "presentation": {},
+      "metadata": {
+        "name": ""
+      }
+    },
+    {
+      "label": "react native expo mobile create page",
+      "type": "shell",
+      "windows": {
+        "command": ""
+      },
+      "linux": {
+        "command": "",
+        "options": {
+          "shell": {
+            "executable": "",
+            "args": null
+          }
+        }
+      },
+      "osx": {
+        "command": "",
+        "args": null
+      },
+      "runOptions": {
+        "instanceLimit": 1
+      },
+      "presentation": {},
+      "metadata": {
+        "name": ""
       }
     },
     {
       "label": "react native expo mobile: run",
       "type": "shell",
+      "windows": {
+        "command": ""
+      },
+      "linux": {
+        "command": "",
+        "options": {
+          "shell": {
+            "executable": "",
+            "args": null
+          }
+        }
+      },
+      "osx": {
+        "command": "",
+        "args": null
+      },
       "runOptions": {
         "instanceLimit": 10
+      },
+      "presentation": {},
+      "metadata": {
+        "name": ""
       }
     },
     {
       "label": "shopify: run",
       "type": "shell",
+      "windows": {
+        "command": ""
+      },
+      "linux": {
+        "command": "",
+        "options": {
+          "shell": {
+            "executable": "",
+            "args": null
+          }
+        }
+      },
+      "osx": {
+        "command": "",
+        "args": null
+      },
       "runOptions": {
         "instanceLimit": 50
+      },
+      "presentation": {},
+      "metadata": {
+        "name": ""
       }
     },
     {
       "label": "sql: get schema via docker",
       "type": "shell",
+      "windows": {
+        "command": ""
+      },
+      "linux": {
+        "command": "",
+        "options": {
+          "shell": {
+            "executable": "",
+            "args": null
+          }
+        }
+      },
+      "osx": {
+        "command": "",
+        "args": null
+      },
       "runOptions": {
         "instanceLimit": 1
+      },
+      "presentation": {},
+      "metadata": {
+        "name": ""
       }
     },
     {
       "label": "sql: make db schema update entry",
       "type": "shell",
+      "windows": {
+        "command": ""
+      },
+      "linux": {
+        "command": "",
+        "options": {
+          "shell": {
+            "executable": "",
+            "args": null
+          }
+        }
+      },
+      "osx": {
+        "command": "",
+        "args": null
+      },
       "runOptions": {
         "instanceLimit": 1
+      },
+      "presentation": {},
+      "metadata": {
+        "name": ""
       }
     },
     {
       "label": "tasks: update workspace without extension",
       "type": "shell",
+      "windows": {
+        "command": ""
+      },
+      "linux": {
+        "command": "",
+        "options": {
+          "shell": {
+            "executable": "",
+            "args": null
+          }
+        }
+      },
+      "osx": {
+        "command": "",
+        "args": null
+      },
       "runOptions": {
         "instanceLimit": 10
+      },
+      "presentation": {},
+      "metadata": {
+        "name": ""
       }
     },
     {
       "label": "testng: e2e create testng page",
       "type": "shell",
+      "windows": {
+        "command": ""
+      },
+      "linux": {
+        "command": "",
+        "options": {
+          "shell": {
+            "executable": "",
+            "args": null
+          }
+        }
+      },
+      "osx": {
+        "command": "",
+        "args": null
+      },
       "runOptions": {
         "instanceLimit": 1
+      },
+      "presentation": {},
+      "metadata": {
+        "name": ""
       }
     },
     {
       "label": "testng: e2e run",
       "type": "shell",
+      "windows": {
+        "command": ""
+      },
+      "linux": {
+        "command": "",
+        "options": {
+          "shell": {
+            "executable": "",
+            "args": null
+          }
+        }
+      },
+      "osx": {
+        "command": "",
+        "args": null
+      },
       "runOptions": {
         "instanceLimit": 1
+      },
+      "presentation": {},
+      "metadata": {
+        "name": ""
       }
     },
     {
       "label": "testng: e2e setup vscode extension",
       "type": "shell",
+      "windows": {
+        "command": ""
+      },
+      "linux": {
+        "command": "",
+        "options": {
+          "shell": {
+            "executable": "",
+            "args": null
+          }
+        }
+      },
+      "osx": {
+        "command": "",
+        "args": null
+      },
       "runOptions": {
         "instanceLimit": 1
+      },
+      "presentation": {},
+      "metadata": {
+        "name": ""
       }
     },
     {
       "label": "wxt: build",
       "type": "shell",
+      "windows": {
+        "command": ""
+      },
+      "linux": {
+        "command": "",
+        "options": {
+          "shell": {
+            "executable": "",
+            "args": null
+          }
+        }
+      },
+      "osx": {
+        "command": "",
+        "args": null
+      },
       "runOptions": {
         "instanceLimit": 1
+      },
+      "presentation": {},
+      "metadata": {
+        "name": ""
       }
     },
     {
       "label": "wxt: build safari",
       "type": "shell",
+      "windows": {
+        "command": ""
+      },
+      "linux": {
+        "command": "",
+        "options": {
+          "shell": {
+            "executable": "",
+            "args": null
+          }
+        }
+      },
+      "osx": {
+        "command": "",
+        "args": null
+      },
       "runOptions": {
         "instanceLimit": 1
+      },
+      "presentation": {},
+      "metadata": {
+        "name": ""
       }
     },
     {
       "label": "wxt: run",
       "type": "shell",
+      "windows": {
+        "command": ""
+      },
+      "linux": {
+        "command": "",
+        "options": {
+          "shell": {
+            "executable": "",
+            "args": null
+          }
+        }
+      },
+      "osx": {
+        "command": "",
+        "args": null
+      },
       "runOptions": {
         "instanceLimit": 1
+      },
+      "presentation": {},
+      "metadata": {
+        "name": ""
       }
     }
-  ],
-  "inputs": []
+  ]
 }

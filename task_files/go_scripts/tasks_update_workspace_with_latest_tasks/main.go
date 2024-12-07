@@ -290,7 +290,9 @@ func main() {
 				runOptions = make(map[string]interface{})
 				task["runOptions"] = runOptions
 			}
-			runOptions["runOn"] = runOnValue
+			if !utils.ArrayContainsAny([]string{""}, []string{runOnValue}) {
+				runOptions["runOn"] = runOnValue
+			}
 			//
 
 			isRespectiveTask := func(myTask shared.Task) bool {

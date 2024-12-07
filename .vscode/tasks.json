@@ -8,7 +8,6 @@
       "type": "shell",
       "command": "git add .;git commit -m'[UPDATE] additional work';git branch --unset-upstream;git push origin HEAD"
     },
-
     {
       "type": "shell",
       "label": "npm: watch",
@@ -40,7 +39,6 @@
         "command": "cd task_files\\go_scripts\\git_pushing_work_to_git_remote ; windmillcode_go run . "
       },
       "runOptions": {
-        "runOn": "",
         "instanceLimit": 1
       }
     },
@@ -51,17 +49,14 @@
         "command": "cd task_files\\go_scripts\\git_merge_changes_from_current_dev_branch ; windmillcode_go run . "
       },
       "runOptions": {
-        "runOn": "",
         "instanceLimit": 1
       }
     },
-
-
     {
       "label": "misc: make new go command",
       "type": "shell",
       "windows": {
-        "command": "cd .\\task_files\\go_scripts;cp -r template ${input:misc_make_new_command_0}"
+        "command": "cd .\\.windmillcode\\Local; go run make_new_go_command.go"
       }
     }
   ],

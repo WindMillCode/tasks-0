@@ -30,7 +30,7 @@ func main() {
 		utils.JoinAndConvertPathToOSFormat("..",".."),
 	)
 
-	tasksJsonFilePath := utils.JoinAndConvertPathToOSFormat(".", ".vscode/tasks.json")
+	tasksJsonFilePath := utils.JoinAndConvertPathToOSFormat(".", ".vscode","tasks.json")
 
 	content, err, _ := utils.CreateTasksJson(tasksJsonFilePath, false)
 	var tasksJSON utils.VSCodeTasksTasksJSON

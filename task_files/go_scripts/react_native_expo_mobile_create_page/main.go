@@ -51,7 +51,7 @@ func main() {
 			if err != nil {
 				return
 			}
-			fileString = strings.ReplaceAll(fileString, "WMLTemplate", pageNameObject.Orig)
+			fileString = strings.ReplaceAll(fileString, "WMLTemplate", pageNameObject.Capitalize(false,""))
 			utils.OverwriteFile(srcPath, fileString)
 		},
 		Filter: func(srcPath string, info os.FileInfo) bool {

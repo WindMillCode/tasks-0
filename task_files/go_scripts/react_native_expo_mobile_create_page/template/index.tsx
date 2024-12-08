@@ -1,9 +1,14 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet,Appearance } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context'
-
+import { Colors } from '@/constants/Colors';
 
 export default function WMLTemplateScreen() {
-
+  const colorScheme = Appearance.getColorScheme()
+  const theme = colorScheme === 'dark' ? Colors.dark : Colors.light
+  const styles = createStyles({
+    colorScheme,
+    theme
+  });
   return (
     <SafeAreaView style={styles.container}>
 
@@ -11,12 +16,18 @@ export default function WMLTemplateScreen() {
   );
 }
 
-export const styles = StyleSheet.create({
-  container: {
-    flex: 1
-  },
-  mainView: {
-    padding: 20
-  },
-});
+
+function createStyles(props) {
+
+  return StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor:props.theme.background
+    },
+    mainView: {
+      padding: 20
+    },
+  });
+}
+
 

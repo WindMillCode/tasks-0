@@ -615,3 +615,15 @@ New script added. Runs your WXT app in dev mode.
 
 ## [1.95.3102] [12/3/2024 04:18:35 PM EST]
 * minor fixes with `misc_reinitalize_project`
+
+
+## [1.95.3200] [12/9/2024 1:15:42 PM EST]
+
+[UPDATE] Added new scripts for React Native Expo under `task_files/go_scripts/react_native_expo_mobile_*`. These scripts provide functionality to build, create pages, and run the Expo app. Includes templates for new pages in `/template` folder. Start using `react_native_expo_mobile_*` scripts for React Native Expo workflows.
+
+[NEW] Introduced `react_native_expo_mobile_build` and `react_native_expo_mobile_run`. These scripts streamline the Expo build and run processes. Check out the prompts for profile, platform, and build options to tailor builds.
+
+[NEW] Added `react_native_expo_mobile_create_page/main.go` to automate page creation in React Native Expo. Templates for `_layout.tsx` and `index.tsx` provided in `/template`. Use this for consistent structure and theming.
+
+[BUG] Fixed improper handling of `runOn` logic in `tasks_update_workspace_with_latest_tasks/main.go`. if not set to folderOpen the key Value wont appear in tasks.json.
+

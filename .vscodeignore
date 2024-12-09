@@ -13,10 +13,6 @@ task_files/go/**
 task_files/win32/**
 task_files/go_scripts/.git/**
 src/WML**
-task_files/go_scripts/misc_reinitialize_project/Template/apps/mobile/FlutterApp/android
-task_files/go_scripts/misc_reinitialize_project/Template/apps/mobile/FlutterApp/ios
-task_files/go_scripts/misc_reinitialize_project/Template/apps/mobile/FlutterApp/linux
-task_files/go_scripts/misc_reinitialize_project/Template/apps/mobile/FlutterApp/macos
-task_files/go_scripts/misc_reinitialize_project/Template/apps/mobile/FlutterApp/windows
+task_files/go_scripts/misc_reinitialize_project/Template/apps/mobile/FlutterApp
 
 .windmillcode

@@ -8,6 +8,12 @@ import (
 
 func main() {
 
+	cliInfo := utils.ShowMenuModel{
+		Prompt: "use tunnel",
+		Choices:[]string{"TRUE","FALSE"},
+	}
+	useTunnel := utils.ShowMenu(cliInfo,nil)
+
 	shared.CDToWorkspaceRoot()
 	workspaceRoot, err := os.Getwd()
 	settings, err := utils.GetSettingsJSON(workspaceRoot)
@@ -21,9 +27,14 @@ func main() {
 	)
 	utils.CDToReactNativeExpoApp()
 
+	commandArgs := []string{"run", "start"}
+	if useTunnel == "TRUE" {
+		commandArgs = append(commandArgs, "--tunnel")
+	}
+
 	opts := utils.CommandOptions{
 		Command: "npm",
-		Args:    []string{"run", "start"},
+		Args:    commandArgs,
 		GetOutput:       false,
 		PrintOutputOnly: true,
 	}

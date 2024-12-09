@@ -1,10 +1,10 @@
 import { StyleSheet,Appearance } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { Colors } from '@/constants/Colors';
+import { MyColors } from '@/constants/Colors';
 
 export default function WMLTemplateScreen() {
   const colorScheme = Appearance.getColorScheme()
-  const theme = colorScheme === 'dark' ? Colors.dark : Colors.light
+  const theme = colorScheme === 'dark' ? MyColors.dark : MyColors.light
   const styles = createStyles({
     colorScheme,
     theme

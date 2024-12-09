@@ -1244,6 +1244,33 @@
       }
     },
     {
+      "label": "react native expo mobile build",
+      "type": "shell",
+      "windows": {
+        "command": ""
+      },
+      "linux": {
+        "command": "",
+        "options": {
+          "shell": {
+            "executable": "",
+            "args": null
+          }
+        }
+      },
+      "osx": {
+        "command": "",
+        "args": null
+      },
+      "runOptions": {
+        "instanceLimit": 100
+      },
+      "presentation": {},
+      "metadata": {
+        "name": ""
+      }
+    },
+    {
       "label": "react native expo mobile create page",
       "type": "shell",
       "windows": {
@@ -1290,7 +1317,7 @@
         "args": null
       },
       "runOptions": {
-        "instanceLimit": 10
+        "instanceLimit": 1
       },
       "presentation": {},
       "metadata": {

@@ -6,7 +6,6 @@ import (
 	"regexp"
 	"strings"
 	"sync"
-
 	"github.com/windmillcode/go_cli_scripts/v6/utils"
 )
 
@@ -65,7 +64,7 @@ func main() {
 
 func updateAngular(project string, angularApp string) {
 	utils.RunCommandInSpecificDirectory("git", []string{"add", "."}, project)
-	utils.RunCommandInSpecificDirectory("git", []string{"commit", "-m", "[CHECKPOINT] before upgrading to next angular version"}, project)
+	utils.RunCommandInSpecificDirectory("git", []string{"commit", "-m", "[CHECKPOINT] before upgrading to next angular version","--allow-empty"}, project)
 	inputText := utils.RunCommandInSpecifcDirectoryAndGetOutput("npx", []string{"ng", "update"}, angularApp)
 	inputLines := strings.Split(inputText, "\n")
 	packagesToUpdate := []string{}

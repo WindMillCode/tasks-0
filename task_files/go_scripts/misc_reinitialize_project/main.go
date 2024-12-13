@@ -135,18 +135,15 @@ func main() {
 	PROJECT_NAME, _ = utils.CreateStringObject(ProjectName, "")
 	var OrganizationName = utils.GetInputFromStdin(
 		utils.GetInputFromStdinStruct{
-			Prompt:  []string{"The project name"},
+			Prompt:  []string{"The organization name"},
 			Default: settings.ExtensionPack.MiscReinitializeProject.OrganizationName,
 		},
 	)
 	if OrganizationName == "" {
-		fmt.Println("Project name cannot be empty")
+		fmt.Println("Organization name cannot be empty")
 		return
 	}
 	ORGANIZATION_NAME, _ = utils.CreateStringObject(OrganizationName, "")
-
-
-
 
 	VCS_PRIVATE_KEY = utils.GetInputFromStdin(
 		utils.GetInputFromStdinStruct{
@@ -166,10 +163,14 @@ func main() {
 			Default: settings.ExtensionPack.MiscReinitializeProject.WebSEOKeywords,
 		},
 	)
+  PROXY_URLS_0:= ""
+  if len(settings.ExtensionPack.MiscReinitializeProject.ProxyURLs) == 0{
+    PROXY_URLS_0 =""
+  }
 	PROXY_URLS_0 = utils.GetInputFromStdin(
 		utils.GetInputFromStdinStruct{
 			Prompt:  []string{"The proxy urls to use"},
-			Default: settings.ExtensionPack.MiscReinitializeProject.ProxyURLs[0],
+			Default: PROXY_URLS_0,
 		},
 	)
 	FLUTTER_ANDRIOID_GOOGLE_ADS_ID = utils.GetInputFromStdin(

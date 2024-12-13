@@ -14,5 +14,5 @@ task_files/win32/**
 task_files/go_scripts/.git/**
 src/WML**
 task_files/go_scripts/misc_reinitialize_project/Template/apps/mobile/FlutterApp
-
+__debug_bin*.exe
 .windmillcode

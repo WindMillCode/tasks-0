@@ -5,5 +5,4 @@ site-packages
 task_files/go/
 task_files/go_scripts/*/main.exe
 task_files/go_scripts/*/main
-
-
+__debug_bin*.exe

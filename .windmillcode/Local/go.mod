@@ -1,10 +1,10 @@
 module main
 
-go 1.23.3
+go 1.23.4
 
-require github.com/windmillcode/go_cli_scripts/v6 v6.0.0
+require github.com/windmillcode/go_cli_scripts/v6 v6.0.1
 
-replace github.com/windmillcode/go_cli_scripts/v6 => C:\Users\Restop-1294\My_Apps\go-libs\go_cli_scripts\package
+// replace github.com/windmillcode/go_cli_scripts/v6 => C:\Users\Restop-1294\My_Apps\go-libs\go_cli_scripts\package
 
 require (
 	github.com/atotto/clipboard v0.1.4 // indirect

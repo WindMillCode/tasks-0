@@ -866,6 +866,33 @@
       }
     },
     {
+      "label": "laravel: run",
+      "type": "shell",
+      "windows": {
+        "command": ""
+      },
+      "linux": {
+        "command": "",
+        "options": {
+          "shell": {
+            "executable": "",
+            "args": null
+          }
+        }
+      },
+      "osx": {
+        "command": "",
+        "args": null
+      },
+      "runOptions": {
+        "instanceLimit": 1
+      },
+      "presentation": {},
+      "metadata": {
+        "name": ""
+      }
+    },
+    {
       "label": "misc: copy to keep projects in sync",
       "type": "shell",
       "windows": {

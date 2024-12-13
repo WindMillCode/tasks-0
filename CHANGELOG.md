@@ -627,3 +627,7 @@ New script added. Runs your WXT app in dev mode.
 
 [BUG] Fixed improper handling of `runOn` logic in `tasks_update_workspace_with_latest_tasks/main.go`. if not set to folderOpen the key Value wont appear in tasks.json.
 
+## [1.96.0] [12/12/2024 1:15:42 PM EST]
+
+[UPDATE] added a new script `laravel: run`
+

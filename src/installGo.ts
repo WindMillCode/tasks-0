@@ -11,7 +11,7 @@ const semver = require('semver');
 let AdmZip = require("adm-zip");
 const targz = require('tar.gz2');
 
-let extensionDesiredVersion = "1.23.2"
+let extensionDesiredVersion = "1.23.4"
 
 let downloadFile =async (url: string, destinationPath: string): Promise<void> => {
 

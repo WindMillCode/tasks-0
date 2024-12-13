@@ -22,9 +22,11 @@ func main() {
 	)
 	utils.CDToLaravelApp()
 
-	opts := utils.CommandOptions{
+	commandOptions := utils.CommandOptions{
 		Command: "php",
 		Args:    []string{"artisan","serve"},
+		GetOutput:   false,
+		PrintOutputOnly: true,
 	}
-	utils.RunCommandWithOptions(opts)
+	utils.RunCommandWithOptions(commandOptions)
 }

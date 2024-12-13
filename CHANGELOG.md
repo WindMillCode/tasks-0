@@ -631,3 +631,11 @@ New script added. Runs your WXT app in dev mode.
 
 [UPDATE] added a new script `laravel: run`
 
+## [1.96.1] [12/13/2024 10:23:45 AM EST] [12/13/2024 10:39:22 AM EST]
+
+[UPDATE] `laravel_run`
+Developers can now run Laravel commands with more control over the output. Commands can display results directly in the console , making automation and debugging easier.
+
+[PATCH] `template`
+Template updated to display results and logs of commands directly in the console
+

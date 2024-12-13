@@ -22,9 +22,11 @@ func main() {
 	)
 	utils.CDToSeleniumApp()
 
-	opts := utils.CommandOptions{
+	commandOptions := utils.CommandOptions{
 		Command: "",
 		Args:    []string{},
+		GetOutput:   false,
+		PrintOutputOnly: true,
 	}
-	utils.RunCommandWithOptions(opts)
+	utils.RunCommandWithOptions(commandOptions)
 }

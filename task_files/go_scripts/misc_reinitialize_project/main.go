@@ -849,7 +849,7 @@ func updateSettingsJSON(workspaceRoot string, amountToAppendToPortNumberString s
 	parseableSettingsJSON.WindmillcodeExtensionPack.ShopifyRun = utils.ShopifyRunStruct{
 		ProjectName: "base-folder-name-of-shopify-app",
 	}
-	parseableSettingsJSON.WindmillcodeExtensionPack.ProxyURLs = fmt.Sprintf("https://example.com%d", parseableSettingsJSON.WindmillcodeExtensionPack.Ports.FlaskRun0)
+	parseableSettingsJSON.WindmillcodeExtensionPack.ProxyURLs = fmt.Sprintf("https://example.com:%d", parseableSettingsJSON.WindmillcodeExtensionPack.Ports.FlaskRun0)
 	parseableSettingsJSON.WindmillcodeExtensionPack.PythonVersion0 = "Skip"
 	parseableSettingsJSON.WindmillcodeExtensionPack.NodeJSVersion0 = "Skip"
 	parseableSettingsJSON.WindmillcodeExtensionPack.JavaVersion0 = "Skip"

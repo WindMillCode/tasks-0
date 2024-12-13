@@ -641,5 +641,5 @@ Template updated to display results and logs of commands directly in the console
 
 
 ## [1.96.2]  [12/13/2024 11:23:45 AM EST] [12/13/2024 10:39:22 AM EST]
-* Update fixed an error in `misc: reinitalize project` where the proxy urls would thro an error if they were undefined
+* [FIX] Update fixed an error in `misc: reinitalize project` where the proxy urls would thro an error if they were undefined
 

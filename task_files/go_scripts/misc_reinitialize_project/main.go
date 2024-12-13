@@ -811,11 +811,13 @@ func updateSettingsJSON(workspaceRoot string, amountToAppendToPortNumberString s
 	}
 
 	parseableSettingsJSON.SQLToolsConnections = []SettingsJSONSQLToolsConnections{}
-	parseableSettingsJSON.WindmillcodeExtensionPack.TasksToRunOnFolderOpen = []string{
+	parseableSettingsJSON.WindmillcodeExtensionPack.TasksToRunOnFolderOpen = append(
+		parseableSettingsJSON.WindmillcodeExtensionPack.TasksToRunOnFolderOpen,
 		"angular frontend: run",
 		"firebase cloud: run emulators",
 		"misc: run proxies",
-	}
+	)
+
 	ports := &utils.WMLPorts{}
 	basePorts := map[string]int{
 		"AngularRun0":                10000,

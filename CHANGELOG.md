@@ -648,3 +648,7 @@ Template updated to display results and logs of commands directly in the console
 [UPDATE] `Laravel run` is updated to run your Laravel app on a custom port. When prompted, simply input the port number you want, and the app will serve on that port.
 
 [UPDATE] The Laravel script will now ask for the port number every time it runs, giving you control over which port to use without needing to hardcode or edit config files.
+
+## [1.96.4] [12/14/2024 01:25:12 PM EST]
+
+[FIX] - fixed issue with `laravel: run` script

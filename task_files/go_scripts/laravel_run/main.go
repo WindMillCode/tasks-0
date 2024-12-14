@@ -26,7 +26,7 @@ func main() {
 		utils.GetInputFromStdinStruct{
 			Prompt: []string{"The port for the app"},
 			Default: func() string {
-				if settings.ExtensionPack.Ports.LaravelRun0 == "" {
+				if settings.ExtensionPack.Ports.LaravelRun0 == 0 {
 					return "8000"
 				}
 				return strconv.Itoa(settings.ExtensionPack.Ports.LaravelRun0)

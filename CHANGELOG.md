@@ -643,3 +643,8 @@ Template updated to display results and logs of commands directly in the console
 ## [1.96.2]  [12/13/2024 11:23:45 AM EST] [12/13/2024 10:39:22 AM EST]
 * [FIX] Update fixed an error in `misc: reinitalize project` where the proxy urls would thro an error if they were undefined
 
+## [1.96.3] [12/14/2024 01:25:12 PM EST]
+
+[UPDATE] `Laravel run` is updated to run your Laravel app on a custom port. When prompted, simply input the port number you want, and the app will serve on that port.
+
+[UPDATE] The Laravel script will now ask for the port number every time it runs, giving you control over which port to use without needing to hardcode or edit config files.

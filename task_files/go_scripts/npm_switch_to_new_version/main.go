@@ -8,7 +8,6 @@ import (
 	"regexp"
 	"runtime"
 	"strings"
-
 	"github.com/windmillcode/go_cli_scripts/v6/utils"
 )
 

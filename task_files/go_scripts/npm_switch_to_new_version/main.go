@@ -14,6 +14,7 @@ import (
 
 func main() {
 
+
 	shared.CDToWorkspaceRoot()
 	workspaceRoot, err := os.Getwd()
 	settings, err := utils.GetSettingsJSON(workspaceRoot)
@@ -26,14 +27,55 @@ func main() {
 		},
 	)
 
-
-
 	cliInfo := utils.ShowMenuModel{
 		Prompt: "Handle special packages",
 		Choices:[]string{"YES","NO"},
 		Default: "YES",
 	}
 	handleSpecialPackages := utils.ShowMenu(cliInfo,nil)
+
+
+	nvmPath, err := findCommandPath("nvm")
+	askForPath := false
+	if err != nil {
+		askForPath = true
+	} else if runtime.GOOS == "windows" {
+		if !strings.HasSuffix(nvmPath, "nvm.exe") {
+			askForPath = true
+		}
+	} else {
+		if !strings.HasSuffix(nvmPath, "nvm") {
+			askForPath = true
+		}
+	}
+	if askForPath == true{
+		nvmPath = utils.GetInputFromStdin(
+			utils.GetInputFromStdinStruct{
+				Prompt: []string{"The path to nvm"},
+				ErrMsg: "a value is required",
+			},
+		)
+	}
+	nvmPath = utils.ConvertPathToOSFormat(nvmPath)
+  _, err = os.Stat(nvmPath)
+  if err != nil {
+    fmt.Println("not a valid file path:", err)
+  }
+	if runtime.GOOS == "windows" {
+		if !strings.HasSuffix(nvmPath, "nvm.exe") {
+			fmt.Println("this may not be the nvm executable")
+			return
+		}
+	} else {
+		if !strings.HasSuffix(nvmPath, "nvm") {
+			fmt.Println("this may not be the nvm executable")
+			return
+		}
+	}
+	nodeVersionsPath := utils.JoinAndConvertPathToOSFormat(filepath.Dir(nvmPath))
+	if runtime.GOOS != "windows" {
+		nodeVersionsPath = utils.JoinAndConvertPathToOSFormat(filepath.Dir(nvmPath), "..", "versions", "node")
+	}
 
 
 	// Prompt for new Node.js version
@@ -78,22 +120,9 @@ func main() {
 		}
 	}
 
-	// nvmPath, err := findCommandPath("nvm")
-	// if err != nil {
-	// 	fmt.Println("Error finding NVM path:", err)
-	// 	return
-	// }
-	// TODO just ask for the path
-	nvmPath := utils.JoinAndConvertPathToOSFormat("..","..","executables",runtime.GOOS,"nvm")
-	if runtime.GOOS == "windows"{
-		nvmPath = strings.Replace(nvmPath,"nvm","nvm.exe",1)
-	}
 
 
-	nodeVersionsPath := utils.JoinAndConvertPathToOSFormat(filepath.Dir(nvmPath))
-	if runtime.GOOS != "windows" {
-		nodeVersionsPath = utils.JoinAndConvertPathToOSFormat(filepath.Dir(nvmPath), "..", "versions", "node")
-	}
+
 	var nodeVersions []string
 	err = utils.TraverseDirectory(utils.TraverseDirectoryParams{
 		RootDir: nodeVersionsPath,

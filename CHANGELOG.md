@@ -652,3 +652,13 @@ Template updated to display results and logs of commands directly in the console
 ## [1.96.4] [12/14/2024 01:25:12 PM EST]
 
 [FIX] - fixed issue with `laravel: run` script
+
+## [1.96.3000] [1/13/2025 11:45:00 AM EST]
+
+[FIX] - fixed an issue with `"npm: switch to new version"` to where the nvm executable was not properly being retrieved
+
+[UPDATE]
+Added a new task labeled `"python switch to new version"` in `task_files/tasks.json`. This includes placeholders for commands on Windows, Linux, and macOS. This script will take your global installed packages and install them in the new Python version.
+
+[PATCH]
+Ensured the `task_files/tasks.json` file ends with a newline. Developers maintaining JSON files should always ensure proper EOF handling.

@@ -1217,6 +1217,33 @@
       }
     },
     {
+      "label": "python switch to new version",
+      "type": "shell",
+      "windows": {
+        "command": ""
+      },
+      "linux": {
+        "command": "",
+        "options": {
+          "shell": {
+            "executable": "",
+            "args": null
+          }
+        }
+      },
+      "osx": {
+        "command": "",
+        "args": null
+      },
+      "runOptions": {
+        "instanceLimit": 1
+      },
+      "presentation": {},
+      "metadata": {
+        "name": ""
+      }
+    },
+    {
       "label": "python: install app deps",
       "type": "shell",
       "windows": {

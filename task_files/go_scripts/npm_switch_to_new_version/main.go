@@ -33,7 +33,6 @@ func main() {
 	}
 	handleSpecialPackages := utils.ShowMenu(cliInfo,nil)
 
-
 	nvmPath, err := findCommandPath("nvm")
 	askForPath := false
 	if err != nil {

@@ -299,7 +299,11 @@ func main() {
 			}
 			index, targetTask, err := utils.FindElement(tasksJSON.Tasks, isRespectiveTask)
 			if err == nil {
-				targetTask.RunOptions.InstanceLimit = int(runOptions["instanceLimit"].(float64))
+				if val, ok := runOptions["instanceLimit"]; ok && val != nil {
+					targetTask.RunOptions.InstanceLimit = int(val.(float64))
+				} else {
+					targetTask.RunOptions.InstanceLimit = 1 // Default value when nil
+				}
 				tasksJSON.Tasks[index] = targetTask
 			}
 			// Marshal the task back into json.RawMessage

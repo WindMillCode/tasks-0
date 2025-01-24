@@ -14,6 +14,12 @@ func main() {
 	}
 	useTunnel := utils.ShowMenu(cliInfo,nil)
 
+	cliInfo = utils.ShowMenuModel{
+		Prompt: "clear cache",
+		Choices:[]string{"TRUE","FALSE"},
+	}
+	clearCache := utils.ShowMenu(cliInfo,nil)
+
 	shared.CDToWorkspaceRoot()
 	workspaceRoot, err := os.Getwd()
 	settings, err := utils.GetSettingsJSON(workspaceRoot)
@@ -32,11 +38,15 @@ func main() {
 		commandArgs = append(commandArgs, "--tunnel")
 	}
 
+	if clearCache == "TRUE" {
+		commandArgs = append(commandArgs, "--clear")
+	}
+
 	opts := utils.CommandOptions{
-		Command: "npm",
-		Args:    commandArgs,
-		GetOutput:       false,
-		PrintOutputOnly: true,
+		Command:             "npm",
+		Args:                commandArgs,
+		GetOutput:           false,
+		PrintOutputOnly:     true,
 	}
 	utils.RunCommandWithOptions(opts)
 }

@@ -662,3 +662,10 @@ Added a new task labeled `"python switch to new version"` in `task_files/tasks.j
 
 [PATCH]
 Ensured the `task_files/tasks.json` file ends with a newline. Developers maintaining JSON files should always ensure proper EOF handling.
+
+## [1.96.4000] [1/23/2025 4:45:12 PM EST]
+
+[UPDATE] Changed `Choices` in `task_files/go_scripts/react_native_expo_mobile_build/main.go` from "staging" to "preview" in the `cliInfo` model under the `main` function. This impacts the environment selection for mobile builds.
+
+[UPDATE] Added a new prompt `clear cache` in `task_files/go_scripts/react_native_expo_mobile_run/main.go` under the `main` function. Developers can now choose between "TRUE" and "FALSE" to clear the cache when running mobile builds.
+

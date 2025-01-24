@@ -3,7 +3,6 @@ package main
 import (
 	"main/shared"
 	"os"
-
 	"github.com/windmillcode/go_cli_scripts/v6/utils"
 )
 
@@ -24,7 +23,7 @@ func main() {
 
 	cliInfo := utils.ShowMenuModel{
 		Prompt: "profile",
-		Choices:[]string{"development","staging","production"},
+		Choices:[]string{"development","preview","production"},
 	}
 	myProfile := utils.ShowMenu(cliInfo,nil)
 

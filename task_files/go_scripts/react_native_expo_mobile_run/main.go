@@ -20,6 +20,13 @@ func main() {
 	}
 	clearCache := utils.ShowMenu(cliInfo,nil)
 
+	cliInfo = utils.ShowMenuModel{
+		Prompt: "select the ennvironment",
+		Choices:[]string{"dev","preview","prod"},
+		Other: true,
+	}
+	dotenvEnv:= utils.ShowMenu(cliInfo,nil)
+
 	shared.CDToWorkspaceRoot()
 	workspaceRoot, err := os.Getwd()
 	settings, err := utils.GetSettingsJSON(workspaceRoot)
@@ -47,6 +54,9 @@ func main() {
 		Args:                commandArgs,
 		GetOutput:           false,
 		PrintOutputOnly:     true,
+		EnvVars:             map[string]string{
+			"NODE_ENV":dotenvEnv,
+		},
 	}
 	utils.RunCommandWithOptions(opts)
 }

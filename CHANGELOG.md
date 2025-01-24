@@ -669,3 +669,6 @@ Ensured the `task_files/tasks.json` file ends with a newline. Developers maintai
 
 [UPDATE] Added a new prompt `clear cache` in `task_files/go_scripts/react_native_expo_mobile_run/main.go` under the `main` function. Developers can now choose between "TRUE" and "FALSE" to clear the cache when running mobile builds.
 
+## [1.96.4001] [1/24/2025 4:45:12 PM EST]
+
+[FIX] fixed logic with react-native-expo-run

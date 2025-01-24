@@ -33,7 +33,7 @@ func main() {
 	)
 	utils.CDToReactNativeExpoApp()
 
-	commandArgs := []string{"run", "start"}
+	commandArgs := []string{"expo", "start"}
 	if useTunnel == "TRUE" {
 		commandArgs = append(commandArgs, "--tunnel")
 	}
@@ -43,7 +43,7 @@ func main() {
 	}
 
 	opts := utils.CommandOptions{
-		Command:             "npm",
+		Command:             "npx",
 		Args:                commandArgs,
 		GetOutput:           false,
 		PrintOutputOnly:     true,

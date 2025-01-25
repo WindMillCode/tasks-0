@@ -34,14 +34,16 @@ func main() {
 		},
 	)
 
+
 	cliInfo := utils.ShowMenuModel{
-		Other:  true,
+		Other:   true,
 		Prompt: "Choose an option:",
-		Choices: []string{
-			utils.JoinAndConvertPathToOSFormat("./apps/backend/FlaskApp"),
-			utils.JoinAndConvertPathToOSFormat("."),
-		},
+		Choices: settings.ExtensionPack.PythonInstallAppDeps.AppLocations,
 	}
+	if cliInfo.Choices == nil {
+		cliInfo.Choices = settings.ExtensionPack.PythonAppLocations
+	}
+
 	appLocation := utils.ShowMenu(cliInfo, nil)
 
 	shared.SetPythonEnvironment(settings.ExtensionPack.PythonVersion0)

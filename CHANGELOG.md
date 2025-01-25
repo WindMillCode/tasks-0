@@ -680,5 +680,24 @@ Ensured the `task_files/tasks.json` file ends with a newline. Developers maintai
 
 ## [1.96.4003] [1/24/2025 11:12:45 AM EST]
 
-
 [FIX] fixed an edge case with tasks_update_workspace_with_latest_tasks
+
+## [1.96.4010] [1/25/2025 5:42:10 PM EST]
+
+[FIX] Fixed a tricky bug in `tasks_update_workspace_with_latest_tasks`. Makes syncing tasks smoother for everyone.
+
+[UPDATE] added support for dynamic app locations in npm install app deps
+Replaced hardcoded app locations with settings from `settings.ExtensionPack.NPMInstallAppDeps.AppLocations` and fallback to `settings.ExtensionPack.NodeJSAppLocations`.
+Developers can now easily configure and manage multiple Node.js apps.
+
+[UPDATE] added support for dynamic app locations in npm install specific packages
+Replaced hardcoded app locations with `settings.ExtensionPack.NPMInstallSpecifcPackages.AppLocations` and fallback to `settings.ExtensionPack.NodeJSAppLocations`.
+Allows developers to configure app locations dynamically for package management.
+
+[UPDATE] added support for dynamic app locations in python install app deps
+Switched to using `settings.ExtensionPack.PythonInstallAppDeps.AppLocations` with a fallback to `settings.ExtensionPack.PythonAppLocations`.
+Python app dependencies are now easier to manage with centralized settings.
+
+[UPDATE] added support for dynamic app locations in python install specific packages
+Same update as python install app deps, applied to specific package installations.
+Centralized settings simplify Python app location management.

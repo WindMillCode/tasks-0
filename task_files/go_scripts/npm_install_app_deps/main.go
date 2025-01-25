@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"main/shared"
 	"os"
 	"regexp"
@@ -23,9 +22,6 @@ func main() {
 			NonInteractive :settings.ExtensionPack.ProcessIfDefaultIsPresent,
 		},
 	)
-	if err != nil {
-		fmt.Println("there was an error while trying to receive the current dir")
-	}
 	projectsCLI := utils.TakeVariableArgs(
 		utils.TakeVariableArgsStruct{
 			Prompt:  "Provide the paths of all the application where you want the actions to take place",
@@ -35,14 +31,12 @@ func main() {
 
 	packageManager := shared.ChooseNodePackageManager()
 	cliInfo := utils.ShowMenuModel{
-		Other:  true,
-		Prompt: "Choose the node.js app",
-		Choices: []string{
-			utils.JoinAndConvertPathToOSFormat("./apps/frontend/AngularApp"),
-			utils.JoinAndConvertPathToOSFormat("./apps/cloud/FirebaseApp"),
-			utils.JoinAndConvertPathToOSFormat("./apps/extensions/WxtApp"),
-			utils.JoinAndConvertPathToOSFormat("."),
-		},
+		Other:   true,
+		Prompt:  "Choose the node.js app",
+		Choices: settings.ExtensionPack.NPMInstallAppDeps.AppLocations,
+	}
+	if cliInfo.Choices == nil {
+		cliInfo.Choices = settings.ExtensionPack.NodeJSAppLocations
 	}
 	appLocation := utils.ShowMenu(cliInfo, nil)
 

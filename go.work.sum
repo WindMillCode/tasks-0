@@ -417,8 +417,10 @@ github.com/windmillcode/go_cli_scripts/v6 v6.0.1 h1:yJw0RyXXVb+z2ebHwauw2dFvT3ER
 github.com/windmillcode/go_cli_scripts/v6 v6.0.1/go.mod h1:Zwi6d5U+d/jAZZTTNID6cJJgsq6TdfGa0o6fnjzoM5c=
 github.com/windmillcode/go_cli_scripts/v6 v6.0.2 h1:j8OZkuaQXBKyVViPPJDcB3/OM+Y1Ro8YNsoafyU/BKU=
 github.com/windmillcode/go_cli_scripts/v6 v6.0.2/go.mod h1:Zwi6d5U+d/jAZZTTNID6cJJgsq6TdfGa0o6fnjzoM5c=
-github.com/windmillcode/go_cli_scripts/v6 v6.0.4 h1:LCon6+mvbBiXS07f9b/zcfmfhkbhXwe8wZamIVLRm1o=
-github.com/windmillcode/go_cli_scripts/v6 v6.0.4/go.mod h1:Zwi6d5U+d/jAZZTTNID6cJJgsq6TdfGa0o6fnjzoM5c=
+github.com/windmillcode/go_cli_scripts/v6 v6.0.6 h1:u3a1wd3Ag+WXIu8AHNXTeanNKEdsY5Xf3v+8GJou+Xg=
+github.com/windmillcode/go_cli_scripts/v6 v6.0.6/go.mod h1:letrfzfbGs4WrWgE57uFYDWoYgTq7+yFfIxiMiHAhzY=
+github.com/windmillcode/go_cli_scripts/v6 v6.0.7 h1:GlUaT6WRQok68xsi3zTbd5tb+5HAiBMq2uaCtw6Mg/o=
+github.com/windmillcode/go_cli_scripts/v6 v6.0.7/go.mod h1:letrfzfbGs4WrWgE57uFYDWoYgTq7+yFfIxiMiHAhzY=
 github.com/yuin/goldmark v1.1.25/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=
 github.com/yuin/goldmark v1.1.27/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=
 github.com/yuin/goldmark v1.1.32/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=

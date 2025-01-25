@@ -29,12 +29,12 @@ func main() {
 	)
 
 	cliInfo := utils.ShowMenuModel{
-		Other:  true,
+		Other:   true,
 		Prompt: "Choose an option:",
-		Choices: []string{
-			utils.JoinAndConvertPathToOSFormat("./apps/backend/FlaskApp"),
-			utils.JoinAndConvertPathToOSFormat("."),
-		},
+		Choices: settings.ExtensionPack.PythonInstallSpecifcPackages.AppLocations,
+	}
+	if cliInfo.Choices == nil {
+		cliInfo.Choices = settings.ExtensionPack.PythonAppLocations
 	}
 	appLocation := utils.ShowMenu(cliInfo, nil)
 	appLocation = utils.JoinAndConvertPathToOSFormat(workspaceRoot, appLocation)

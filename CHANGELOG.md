@@ -701,3 +701,6 @@ Python app dependencies are now easier to manage with centralized settings.
 [UPDATE] added support for dynamic app locations in python install specific packages
 Same update as python install app deps, applied to specific package installations.
 Centralized settings simplify Python app location management.
+
+## [1.96.4011] [1/25/2025 5:43:10 PM EST]
+[UPDATE] For `react_native_expo_mobile_create_page` added react-i18nnext support when generating templates

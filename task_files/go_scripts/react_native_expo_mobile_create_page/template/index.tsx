@@ -1,6 +1,7 @@
 import { StyleSheet,Appearance } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { MyColors } from '@/constants/Colors';
+import { useTranslation } from 'react-i18next';
 
 export default function WMLTemplateScreen() {
   const colorScheme = Appearance.getColorScheme()
@@ -9,6 +10,8 @@ export default function WMLTemplateScreen() {
     colorScheme,
     theme
   });
+  const { t } = useTranslation();
+  
   return (
     <SafeAreaView style={styles.container}>
 

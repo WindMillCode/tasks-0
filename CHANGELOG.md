@@ -704,3 +704,10 @@ Centralized settings simplify Python app location management.
 
 ## [1.96.4011] [1/25/2025 5:43:10 PM EST]
 [UPDATE] For `react_native_expo_mobile_create_page` added react-i18nnext support when generating templates
+
+
+## [1.96.4012]  [1/25/2025 11:35:45 AM EST]
+
+[UPDATE] Added `captureException` from Sentry and `useWMLNavigation` to improve error tracking and navigation utility in `task_files/go_scripts/react_native_expo_mobile_create_page/template/index.tsx`. This change impacts the `WMLTemplateScreen` function and ensures developers have better tools for debugging and navigation handling.
+
+[UPDATE] Added a new task entry labeled "react native expo mobile create shared component" in `task_files/tasks.json`. This new task setup provides a shell command structure for Windows, Linux, and macOS. Developers can now utilize this entry to create shared components across the mobile app project.

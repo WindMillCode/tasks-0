@@ -1,11 +1,12 @@
-import { StyleSheet,Appearance } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context'
+import { StyleSheet,Appearance,View } from 'react-native';
 import { MyColors } from '@/constants/Colors';
 import { useTranslation } from 'react-i18next';
 import { captureException } from "@sentry/react-native";
 import { useWMLNavigation } from "@/constants/Nav";
 
-export default function WMLTemplateScreen() {
+export default function WMLTemplate({
+
+}) {
   const colorScheme = Appearance.getColorScheme()
   const theme = colorScheme === 'dark' ? MyColors.dark : MyColors.light
   const styles = createStyles({
@@ -15,9 +16,9 @@ export default function WMLTemplateScreen() {
   const { t } = useTranslation();
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
 
-    </SafeAreaView>
+    </View>
   );
 }
 

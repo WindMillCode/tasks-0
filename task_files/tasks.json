@@ -1352,6 +1352,33 @@
       }
     },
     {
+      "label": "react native expo mobile create shared component",
+      "type": "shell",
+      "windows": {
+        "command": ""
+      },
+      "linux": {
+        "command": "",
+        "options": {
+          "shell": {
+            "executable": "",
+            "args": null
+          }
+        }
+      },
+      "osx": {
+        "command": "",
+        "args": null
+      },
+      "runOptions": {
+        "instanceLimit": 1
+      },
+      "presentation": {},
+      "metadata": {
+        "name": ""
+      }
+    },
+    {
       "label": "react native expo mobile: run",
       "type": "shell",
       "windows": {

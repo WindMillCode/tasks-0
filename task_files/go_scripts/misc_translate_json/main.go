@@ -23,13 +23,11 @@ func main() {
 	)
 
 	cliInfo := utils.ShowMenuModel{
-		Prompt: "choose the location of the i18n folder",
-		Choices: []string{
-			utils.JoinAndConvertPathToOSFormat(workspaceRoot, "apps", "frontend", "AngularApp", "src", "assets", "i18n"),
-			utils.JoinAndConvertPathToOSFormat(workspaceRoot, "apps", "mobile", "FlutterApp", "assets", "i18n"),
-			utils.JoinAndConvertPathToOSFormat(workspaceRoot, "apps", "extensions", "WxtApp", "locales"),
-		},
+		Other:   true,
+		Prompt:  "choose the location of the i18n folder",
+		Choices: settings.ExtensionPack.MiscTranslateJson.AppLocations,
 	}
+
 	i18nLocation := utils.ShowMenu(cliInfo, nil)
 	openAIAPIKey := utils.GetInputFromStdin(
 		utils.GetInputFromStdinStruct{

@@ -12,66 +12,7 @@ import (
 	"github.com/windmillcode/go_cli_scripts/v6/utils"
 )
 
-// TODO remove and use go_cli_scripts respective values
-// type ShellOptions struct {
-// 	Executable string   `json:"executable"`
-// 	Args       []string `json:"args"`
-// }
 
-// type CommandOptions struct {
-// 	Shell ShellOptions `json:"shell"`
-// }
-
-// type Metadata struct {
-// 	Name string `json:"name"`
-// }
-
-// type RunOptions struct {
-// 	RunOn         string `json:"runOn,omitempty"`
-// 	InstanceLimit int    `json:"instanceLimit"`
-// }
-
-// type Task struct {
-// 	Label   string `json:"label"`
-// 	Type    string `json:"type"`
-// 	Windows struct {
-// 		Command string `json:"command"`
-// 	} `json:"windows"`
-// 	Linux struct {
-// 		Command string         `json:"command"`
-// 		Options CommandOptions `json:"options"`
-// 	} `json:"linux"`
-// 	Osx struct {
-// 		Command string        `json:"command"`
-// 		Args    []string      `json:"args"`
-// 	} `json:"osx"`
-// 	RunOptions   RunOptions `json:"runOptions"`
-// 	Presentation struct {
-// 		Panel string `json:"panel,omitempty"`
-// 	} `json:"presentation"`
-// 	Metadata Metadata `json:"metadata"`
-// }
-
-// type Input struct {
-// 	ID          string   `json:"id"`
-// 	Description string   `json:"description"`
-// 	Default     string   `json:"default"`
-// 	Type        string   `json:"type"`
-// 	Metadata    Metadata `json:"metadata"`
-// }
-
-// type TasksJSON struct {
-// 	Version string  `json:"version"`
-// 	Tasks   []Task  `json:"tasks"`
-// 	Inputs  []Input `json:"inputs"`
-// }
-
-// type DynamicTasksJSON struct {
-// 	Version string            `json:"version"`
-// 	Tasks   []json.RawMessage `json:"tasks"`
-// 	Inputs  []json.RawMessage `json:"inputs"`
-// }
-//
 func CDToWorkspaceRoot() {
 	utils.CDToLocation(filepath.Join("..", "..", ".."))
 }
@@ -346,7 +287,7 @@ func GetGoExecutable() string {
 	cliInfo := utils.ShowMenuModel{
 		Prompt:  "choose the executable to use (try with windmillcode_go first if not then use go)",
 		Choices: []string{"go", "windmillcode_go"},
-		Default: "windmillcode_go",
+		Default: "go",
 	}
 	goExecutable := utils.ShowMenu(cliInfo, nil)
 	return goExecutable

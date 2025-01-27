@@ -711,3 +711,12 @@ Centralized settings simplify Python app location management.
 [UPDATE] Added `captureException` from Sentry and `useWMLNavigation` to improve error tracking and navigation utility in `task_files/go_scripts/react_native_expo_mobile_create_page/template/index.tsx`. This change impacts the `WMLTemplateScreen` function and ensures developers have better tools for debugging and navigation handling.
 
 [UPDATE] Added a new task entry labeled "react native expo mobile create shared component" in `task_files/tasks.json`. This new task setup provides a shell command structure for Windows, Linux, and macOS. Developers can now utilize this entry to create shared components across the mobile app project.
+
+## [1.96.4100] [1/27/2025 10:38:02 AM EST]
+
+[UPDATE]
+In `misc_translate_json/main.go`, the `cliInfo.Choices` now uses `settings.ExtensionPack.MiscTranslateJson.AppLocations`. This means developers can configure translation folder locations via settings, offering more flexibility.
+
+[BREAKING CHANGE]
+Changed the default Go executable in `shared/misc.go`. It now defaults to `go` instead of `windmillcode_go`. If you're using custom executables, double-check your workflow as the default has shifted.
+

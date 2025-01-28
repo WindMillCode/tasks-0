@@ -720,3 +720,8 @@ In `misc_translate_json/main.go`, the `cliInfo.Choices` now uses `settings.Exten
 [BREAKING CHANGE]
 Changed the default Go executable in `shared/misc.go`. It now defaults to `go` instead of `windmillcode_go`. If you're using custom executables, double-check your workflow as the default has shifted.
 
+## [1.96.4101] [1/28/2025 11:45:00 AM EST]
+
+[UPDATE] Changed `main.go` in `task_files/go_scripts/react_native_expo_mobile_build`. Updated the script to dynamically handle `outputDir` for builds. Developers now get a prompt asking for an output directory for build files with defaults based on the platform and profile.
+
+

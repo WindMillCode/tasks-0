@@ -1,8 +1,10 @@
 package main
 
 import (
+	"fmt"
 	"main/shared"
 	"os"
+
 	"github.com/windmillcode/go_cli_scripts/v6/utils"
 )
 
@@ -38,7 +40,27 @@ func main() {
 		Choices:[]string{"TRUE","FALSE"},
 	}
 	localBuild := utils.ShowMenu(cliInfo,nil)
-	commandArgs:= []string{"build", "--profile", myProfile, "--platform", myPlatform}
+
+	fileExt := "ipa"
+
+	if myPlatform == "android" {
+
+		cliInfo := utils.ShowMenuModel{
+			Prompt: "android file extension",
+			Choices:[]string{"apk","aab"},
+		}
+		fileExt = utils.ShowMenu(cliInfo,nil)
+		fileExt = "ipa"
+	}
+
+	 outputDir := utils.GetInputFromStdin(
+		utils.GetInputFromStdinStruct{
+			Prompt: []string{"The output dir"},
+			Default: utils.JoinAndConvertPathToOSFormat(workspaceRoot,"misc",fmt.Sprintf("local-%s-%s.%s",myProfile,myPlatform,fileExt)),
+		},
+	 )
+
+	commandArgs:= []string{"build", "--profile", myProfile, "--platform", myPlatform ,"--output",outputDir}
 
 	if localBuild == "TRUE" {
 		commandArgs = append(commandArgs, "--local")

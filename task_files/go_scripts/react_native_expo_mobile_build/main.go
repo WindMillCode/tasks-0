@@ -53,12 +53,15 @@ func main() {
 		fileExt = "ipa"
 	}
 
-	 outputDir := utils.GetInputFromStdin(
-		utils.GetInputFromStdinStruct{
-			Prompt: []string{"The output dir"},
-			Default: utils.JoinAndConvertPathToOSFormat(workspaceRoot,"misc",fmt.Sprintf("local-%s-%s.%s",myProfile,myPlatform,fileExt)),
-		},
-	 )
+	outputDir := ""
+	if localBuild == "TRUE" {
+		outputDir = utils.GetInputFromStdin(
+			utils.GetInputFromStdinStruct{
+				Prompt: []string{"The output dir"},
+				Default: utils.JoinAndConvertPathToOSFormat(workspaceRoot,"misc",fmt.Sprintf("local-%s-%s.%s",myProfile,myPlatform,fileExt)),
+			},
+		)
+	}
 
 	commandArgs:= []string{"build", "--profile", myProfile, "--platform", myPlatform ,"--output",outputDir}
 

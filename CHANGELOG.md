@@ -160,23 +160,23 @@ from coverageReporter.dir if it cant find it it will run the test regardless and
 * [PATCH] Adjusted helper script determination logic in `SetupEnvironmentToRunFlaskApp` to select the correct script based on the environment.
 
 ## [1.87.1002] - 3-9-2024
-* [UPDATE] - Updated go.work.sum and task_files/go_scripts/go.sum to include new dependencies on github.com/ghodss/yaml and gopkg.in/yaml.v2.
-* [UPDATE] - Upgraded github.com/windmillcode/go_cli_scripts/v4 to v4.5.0 in task_files/go_scripts/go.mod and go.work.sum.
-* [REMOVE] - Removed direct requirements on github.com/fsnotify/fsnotify and github.com/windmillcode/go_cli_scripts/v4 in task_files/go_scripts/go.mod, now marked as indirect dependencies.
+* [UPDATE] - Updated go.work.sum and go.sum to include new dependencies on github.com/ghodss/yaml and gopkg.in/yaml.v2.
+* [UPDATE] - Upgraded github.com/windmillcode/go_cli_scripts/v4 to v4.5.0 in go.mod and go.work.sum.
+* [REMOVE] - Removed direct requirements on github.com/fsnotify/fsnotify and github.com/windmillcode/go_cli_scripts/v4 in go.mod, now marked as indirect dependencies.
 * [CHANGE] - Binary difference detected in diff_output.txt without specific details due to the binary nature of the file change.
 
 ## [1.87.1003] - 3-10-2024
-* [UPDATE] - Updated go.work.sum and task_files/go_scripts/go.mod to use version v4.5.1 of github.com/windmillcode/go_cli_scripts/v4.
-* [REMOVE] - Removed references to github.com/ghodss/yaml and gopkg.in/yaml.v2 from go.work.sum and task_files/go_scripts/go.mod.
-* [ADD] - Added github.com/tailscale/hujson to go.work.sum and task_files/go_scripts/go.sum as a new dependency.
+* [UPDATE] - Updated go.work.sum and go.mod to use version v4.5.1 of github.com/windmillcode/go_cli_scripts/v4.
+* [REMOVE] - Removed references to github.com/ghodss/yaml and gopkg.in/yaml.v2 from go.work.sum and go.mod.
+* [ADD] - Added github.com/tailscale/hujson to go.work.sum and go.sum as a new dependency.
 * [UPDATE] - Updated go.sum to include new checksums for github.com/tailscale/hujson and github.com/windmillcode/go_cli_scripts/v4 at their updated versions.
 
 ## [1.87.1004] - 3-10-2024
-* [UPDATE] - Formatted struct alignment in task_files/go_scripts/shared/misc.go for Linux command options.
-* [UPDATE] - Removed whitespace and adjusted formatting in various functions in task_files/go_scripts/shared/misc.go.
-* [REFACTOR] - Enhanced SetupEnvironmentToRunFlaskApp function in task_files/go_scripts/shared/misc.go to better extract and parse environment variables using regex.
+* [UPDATE] - Formatted struct alignment in shared/misc.go for Linux command options.
+* [UPDATE] - Removed whitespace and adjusted formatting in various functions in shared/misc.go.
+* [REFACTOR] - Enhanced SetupEnvironmentToRunFlaskApp function in shared/misc.go to better extract and parse environment variables using regex.
 * [UPDATE] - Moved the Python version setting logic in SetupEnvironmentToRunFlaskApp to after the environment variables are set.
-* [FORMAT] - Adjusted spacing and formatting in various parts of task_files/go_scripts/shared/misc.go for better readability.
+* [FORMAT] - Adjusted spacing and formatting in various parts of shared/misc.go for better readability.
 
 
 
@@ -263,23 +263,23 @@ from coverageReporter.dir if it cant find it it will run the test regardless and
 
 [PATCH] Updated the desired extension version for Go from 1.21.6 to 1.22.2 in `src/installGo.ts`. Developers need to ensure compatibility with the new version in their projects.
 
-[UPDATE] Added a function call to set the Node.js environment based on a predefined version in `task_files/go_scripts/angular_frontend_run/main.go`. Developers using this script should verify that Node.js is configured correctly.
+[UPDATE] Added a function call to set the Node.js environment based on a predefined version in `angular_frontend_run/main.go`. Developers using this script should verify that Node.js is configured correctly.
 
 [PATCH] Updated dependency from `github.com/windmillcode/go_cli_scripts/v5` version 5.1.2 to 5.1.3 in `go.mod` and `go.sum`. Developers should update their local dependencies to avoid potential conflicts.
 
-[UPDATE] Improved error handling in Python environment setup in `task_files/go_scripts/shared/misc.go`. Now checks if `pyenv` is installed before attempting to use it, providing a fallback message otherwise.
+[UPDATE] Improved error handling in Python environment setup in `shared/misc.go`. Now checks if `pyenv` is installed before attempting to use it, providing a fallback message otherwise.
 
-[NEW FEATURE] Added functionality to prompt for and use a specific Node.js version in `task_files/go_scripts/shared/misc.go`. This affects developers needing to switch Node.js versions frequently.
+[NEW FEATURE] Added functionality to prompt for and use a specific Node.js version in `shared/misc.go`. This affects developers needing to switch Node.js versions frequently.
 
 ## [1.88.1012] [5/25/2024 6:57:00 PM EST]
 
 **[UPDATE]**
-- **File:** `task_files/go_scripts/firebase_cloud_run_emulators/main.go`
+- **File:** `firebase_cloud_run_emulators/main.go`
 - **Change:** Commented out code for debug mode.
 - **Detail:** Added commented code for enabling Firebase debug mode.
 
 **[UPDATE]**
-- **File:** `task_files/go_scripts/flutter_mobile_build_deploy/main.go`
+- **File:** `flutter_mobile_build_deploy/main.go`
 - **Change:** Added options to remove unused imports and executed the commands concurrently.
 - **Detail:** Added prompts to remove unused imports and used goroutines to run the command for both `lib` and `test` directories.
 
@@ -357,11 +357,11 @@ Changes:
 
 ## [1.88.1020] [5/29/2024 12:05:00 PM EST]
 
-[FIX] task_files/go_scripts/tasks_update_workspace_with_latest_tasks/main.go: Fixed error handling in main function to properly check for and handle errors when reading JSON files.
+[FIX] tasks_update_workspace_with_latest_tasks/main.go: Fixed error handling in main function to properly check for and handle errors when reading JSON files.
 
-[PATCH] task_files/go_scripts/tasks_update_workspace_with_latest_tasks/main.go: Added error handling for JSON unmarshalling and file operations.
+[PATCH] tasks_update_workspace_with_latest_tasks/main.go: Added error handling for JSON unmarshalling and file operations.
 
-[PATCH] task_files/go_scripts/tasks_update_workspace_with_latest_tasks/main.go: Simplified preActions function for copying files.
+[PATCH] tasks_update_workspace_with_latest_tasks/main.go: Simplified preActions function for copying files.
 
 [UPDATE] its not necessary to have a tasks.json or settings.json when intializing the extension in your workspace it will create it for you along with the upsert .gitingore so large executables dont end up in github.com or your remote VCS
 
@@ -409,7 +409,7 @@ also ensured if jvms was not on system to handle appropriately
 ## [1.88.1025] 6/6/2024 10:32:45 AM EST
 
 
-[PATCH] added SetJavaEnvironment function in main.go at task_files/go_scripts/flutter_mobile_build_deploy/main.go to set Java environment for building and deploying Flutter mobile apps
+[PATCH] added SetJavaEnvironment function in main.go at flutter_mobile_build_deploy/main.go to set Java environment for building and deploying Flutter mobile apps
 
 ## [1.90.1000] [6/19/2024 10:15:00 AM EST]
 
@@ -452,12 +452,12 @@ added a feature to translate_json to remove-json-keys to help the script better 
 
 ## [1.91.1010]  [7/25/2024 3:14:56 PM EST]
 [PATCH]
-Fixed `deployToPlayStore` logic in `task_files/go_scripts/flutter_mobile_build_deploy/main.go`
+Fixed `deployToPlayStore` logic in `flutter_mobile_build_deploy/main.go`
   - `deployToPlayStore` variable is set based on a new condition to check for 'ipa' in args
 
 
 [PATCH]
-Fixed commands for Windows in `task_files/go_scripts/tasks_update_workspace_with_latest_tasks/main.go`
+Fixed commands for Windows in `tasks_update_workspace_with_latest_tasks/main.go`
   - Added a check for `tasks_update_workspace_without_extension` before appending `.exe`
 
 [PATCH]
@@ -469,7 +469,7 @@ increased merge capabilites from previous tasks.json so if you have a tasks that
 
 ## [1.91.1011] [7/27/2024 2:15:30 PM EST]
 [UPDATE]
-Fixed the order of operations in main.go in task_files/go_scripts/angular_frontend_run. Now, setting the NodeJS environment happens before asking if the server should run concurrently with SCSS. this helps with scripts that will run in your shell paralle to the tasks
+Fixed the order of operations in main.go in angular_frontend_run. Now, setting the NodeJS environment happens before asking if the server should run concurrently with SCSS. this helps with scripts that will run in your shell paralle to the tasks
 
 ## [1.91.1100] [7/29/2024 11:45:00 AM EST]
 
@@ -495,11 +495,11 @@ firebase cloud run emulators will update the firebase.json with the appropiate p
 ## [1.91.1202] [7/31/2024 10:15:00 AM EST]
 
 [UPDATE]
-File: task_files/go_scripts/angular_frontend_run/main.go
+File: angular_frontend_run/main.go
 Changed the default cache setting from TRUE to FALSE. Now the script will prompt with FALSE as the default choice. If auto run is set this will automaitcally delete the .angular folder
 
 [UPDATE]
-File: task_files/go_scripts/npm_install_specific_packages/main.go
+File: npm_install_specific_packages/main.go
 Moved the prompt for choosing dependency type (`-D` or `-s`) to after the uninstall prompt and only if the user selects to install. This change affects the npm package installation flow.
 
 
@@ -514,7 +514,7 @@ Moved the prompt for choosing dependency type (`-D` or `-s`) to after the uninst
 ## [1.93.1000] [9/13/2024 9:42:00 AM EST]
 
 [FIX]
-- **File**: `task_files/go_scripts/flask_backend_create_manager/main.go`
+- **File**: `flask_backend_create_manager/main.go`
 - **Change**: Removed the `shared.CDToWorkspaceRoot()` line
 - **Why it matters**: It no longer switches directories to the workspace root. You should now be sure you're in the correct folder manually before running the script. The command that changed is located in the main function that initializes the flask backend creation.
 
@@ -556,7 +556,7 @@ flutter_mobile_build_deploy updaated so all commands are processed before runnin
 ## [1.95.3000] [11/29/2024 10:35:47 AM EST]
 
 [UPDATE]
-File: `task_files/go_scripts/angular_frontend_deploy_to_firebase/main.go`
+File: `angular_frontend_deploy_to_firebase/main.go`
 New script added. Handles deploying Angular apps to Firebase with options for linting, SSG, and directory cleanup. If you're deploying, check the new prompts and environment settings.
 
 here is the schema for reference you add this to the "windmillcode-extension-pack-0" object in settings.json
@@ -577,27 +577,27 @@ here is the schema for reference you add this to the "windmillcode-extension-pac
 ```
 
 [UPDATE]
-File: `task_files/go_scripts/npm_switch_to_new_version/main.go`
+File: `npm_switch_to_new_version/main.go`
 Now batches global package installations into one command. This makes installs faster and cleaner.
 
 [UPDATE]
-File: `task_files/go_scripts/shared/misc.go`
+File: `shared/misc.go`
 Fields `RunOn` and `Panel` in `RunOptions` are now optional (`omitempty`). Makes your JSON outputs less cluttered.
 
 [PATCH]
-File: `task_files/go_scripts/tasks_update_workspace_with_latest_tasks/main.go`
+File: `tasks_update_workspace_with_latest_tasks/main.go`
 Added `Tasks[index].Osx.Command` and `Args` for compatibility with macOS.
 
 [UPDATE]
-File: `task_files/go_scripts/wxt_build/main.go`
+File: `wxt_build/main.go`
 New script added. Automates zipping your WXT app. Use it to speed up your build process.
 
 [UPDATE]
-File: `task_files/go_scripts/wxt_build_safari/main.go`
+File: `wxt_build_safari/main.go`
 New script added. Builds Safari-specific extensions for your WXT app. Includes bundle identifier setup using `xcrun`.
 
 [UPDATE]
-File: `task_files/go_scripts/wxt_run/main.go`
+File: `wxt_run/main.go`
 New script added. Runs your WXT app in dev mode.
 
 ## [1.95.3100] [12/1/2024 03:18:35 PM EST]
@@ -619,7 +619,7 @@ New script added. Runs your WXT app in dev mode.
 
 ## [1.95.3200] [12/9/2024 1:15:42 PM EST]
 
-[UPDATE] Added new scripts for React Native Expo under `task_files/go_scripts/react_native_expo_mobile_*`. These scripts provide functionality to build, create pages, and run the Expo app. Includes templates for new pages in `/template` folder. Start using `react_native_expo_mobile_*` scripts for React Native Expo workflows.
+[UPDATE] Added new scripts for React Native Expo under `react_native_expo_mobile_*`. These scripts provide functionality to build, create pages, and run the Expo app. Includes templates for new pages in `/template` folder. Start using `react_native_expo_mobile_*` scripts for React Native Expo workflows.
 
 [NEW] Introduced `react_native_expo_mobile_build` and `react_native_expo_mobile_run`. These scripts streamline the Expo build and run processes. Check out the prompts for profile, platform, and build options to tailor builds.
 
@@ -665,9 +665,9 @@ Ensured the `task_files/tasks.json` file ends with a newline. Developers maintai
 
 ## [1.96.4000] [1/23/2025 4:45:12 PM EST]
 
-[UPDATE] Changed `Choices` in `task_files/go_scripts/react_native_expo_mobile_build/main.go` from "staging" to "preview" in the `cliInfo` model under the `main` function. This impacts the environment selection for mobile builds.
+[UPDATE] Changed `Choices` in `react_native_expo_mobile_build/main.go` from "staging" to "preview" in the `cliInfo` model under the `main` function. This impacts the environment selection for mobile builds.
 
-[UPDATE] Added a new prompt `clear cache` in `task_files/go_scripts/react_native_expo_mobile_run/main.go` under the `main` function. Developers can now choose between "TRUE" and "FALSE" to clear the cache when running mobile builds.
+[UPDATE] Added a new prompt `clear cache` in `react_native_expo_mobile_run/main.go` under the `main` function. Developers can now choose between "TRUE" and "FALSE" to clear the cache when running mobile builds.
 
 ## [1.96.4001] [1/23/2025 5:45:12 PM EST]
 
@@ -708,7 +708,7 @@ Centralized settings simplify Python app location management.
 
 ## [1.96.4012]  [1/25/2025 11:35:45 AM EST]
 
-[UPDATE] Added `captureException` from Sentry and `useWMLNavigation` to improve error tracking and navigation utility in `task_files/go_scripts/react_native_expo_mobile_create_page/template/index.tsx`. This change impacts the `WMLTemplateScreen` function and ensures developers have better tools for debugging and navigation handling.
+[UPDATE] Added `captureException` from Sentry and `useWMLNavigation` to improve error tracking and navigation utility in `react_native_expo_mobile_create_page/template/index.tsx`. This change impacts the `WMLTemplateScreen` function and ensures developers have better tools for debugging and navigation handling.
 
 [UPDATE] Added a new task entry labeled "react native expo mobile create shared component" in `task_files/tasks.json`. This new task setup provides a shell command structure for Windows, Linux, and macOS. Developers can now utilize this entry to create shared components across the mobile app project.
 
@@ -722,6 +722,8 @@ Changed the default Go executable in `shared/misc.go`. It now defaults to `go` i
 
 ## [1.96.4101] [1/28/2025 11:45:00 AM EST]
 
-[UPDATE] Changed `main.go` in `task_files/go_scripts/react_native_expo_mobile_build`. Updated the script to dynamically handle `outputDir` for builds. Developers now get a prompt asking for an output directory for build files with defaults based on the platform and profile.
+[UPDATE] Changed `main.go` in `react_native_expo_mobile_build`. Updated the script to dynamically handle `outputDir` for builds. Developers now get a prompt asking for an output directory for build files with defaults based on the platform and profile.
 
 
+## [1.96.4102] [1/28/2025 11:45:00 AM EST]
+[FIX] updated  `react_native_expo_mobile_build` fixing logic with output dir for local builds

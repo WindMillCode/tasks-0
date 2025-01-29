@@ -43,14 +43,13 @@ func main() {
 
 	fileExt := "ipa"
 
-	if myPlatform == "android" {
+	if myPlatform == "android" && localBuild == "TRUE" {
 
 		cliInfo := utils.ShowMenuModel{
 			Prompt: "android file extension",
 			Choices:[]string{"apk","aab"},
 		}
 		fileExt = utils.ShowMenu(cliInfo,nil)
-		fileExt = "ipa"
 	}
 
 	outputDir := ""
@@ -63,7 +62,10 @@ func main() {
 		)
 	}
 
-	commandArgs:= []string{"build", "--profile", myProfile, "--platform", myPlatform ,"--output",outputDir}
+	commandArgs:= []string{"build", "--profile", myProfile, "--platform", myPlatform }
+	if localBuild == "TRUE" {
+		commandArgs = append(commandArgs, "--output", outputDir)
+	}
 
 	if localBuild == "TRUE" {
 		commandArgs = append(commandArgs, "--local")

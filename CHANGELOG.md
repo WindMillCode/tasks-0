@@ -744,3 +744,6 @@ Changed the default Go executable in `shared/misc.go`. It now defaults to `go` i
 
  [BREAKING CHANGE] Removed unnecessary `captureException` and `useWMLNavigation` imports from `index.tsx` in `react_native_expo_mobile_create_page` and `template.tsx` in `react_native_expo_mobile_create_shared_component`. They weren’t being used, so now the files are cleaner.
 
+## [1.96.4201] [2/1/2024 2:15:30 PM EST]
+
+[FIX] Modified path handling in go_scripts/misc_translate_json/main.go ShowMenu function - now auto-converts i18n folder paths to match OS format instead of using raw settings values. This should fix path issues.

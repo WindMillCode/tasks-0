@@ -22,10 +22,15 @@ func main() {
 		},
 	)
 
+	Choices := make([]string, len(settings.ExtensionPack.MiscTranslateJson.AppLocations))
+	for i, x := range settings.ExtensionPack.MiscTranslateJson.AppLocations {
+		Choices[i] = utils.JoinAndConvertPathToOSFormat(workspaceRoot, x)
+	}
+
 	cliInfo := utils.ShowMenuModel{
 		Other:   true,
 		Prompt:  "choose the location of the i18n folder",
-		Choices: settings.ExtensionPack.MiscTranslateJson.AppLocations,
+		Choices: Choices,
 	}
 
 	i18nLocation := utils.ShowMenu(cliInfo, nil)

@@ -1,14 +1,11 @@
-import { StyleSheet,Appearance,View } from 'react-native';
-import { MyColors } from '@/constants/Colors';
+import { StyleSheet,View } from 'react-native';
 import { useTranslation } from 'react-i18next';
-import { captureException } from "@sentry/react-native";
-import { useWMLNavigation } from "@/constants/Nav";
+import { useWMLTheme } from '@/constants/Theme';
 
 export default function WMLTemplate({
 
 }) {
-  const colorScheme = Appearance.getColorScheme()
-  const theme = colorScheme === 'dark' ? MyColors.dark : MyColors.light
+  const {colorScheme,theme} = useWMLTheme();
   const styles = createStyles({
     colorScheme,
     theme
@@ -24,11 +21,11 @@ export default function WMLTemplate({
 
 
 function createStyles(props) {
-
+  let {colorScheme,theme} = props
   return StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor:props.theme.background
+      backgroundColor:theme.background
     },
     mainView: {
       padding: 20

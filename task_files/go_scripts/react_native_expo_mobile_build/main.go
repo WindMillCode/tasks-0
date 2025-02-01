@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"main/shared"
 	"os"
-
 	"github.com/windmillcode/go_cli_scripts/v6/utils"
 )
 
@@ -62,6 +61,24 @@ func main() {
 		)
 	}
 
+	cliInfo = utils.ShowMenuModel{
+		Prompt: "Run prebuild?",
+		Choices:[]string{"YES","NO"},
+	}
+	prebuildArgs := []string{"expo","prebuild","--platform", myPlatform}
+	runPrebuild := utils.ShowMenu(cliInfo,nil)
+	if runPrebuild == "YES" {
+		cliInfo := utils.ShowMenuModel{
+			Prompt: "run prebuild with clean",
+			Choices:[]string{"YES","NO"},
+		}
+		withClean:= utils.ShowMenu(cliInfo,nil)
+		if withClean == "YES" {
+			prebuildArgs = append(prebuildArgs, "--clean")
+		}
+
+	}
+
 	commandArgs:= []string{"build", "--profile", myProfile, "--platform", myPlatform }
 	if localBuild == "TRUE" {
 		commandArgs = append(commandArgs, "--output", outputDir)
@@ -70,6 +87,16 @@ func main() {
 	if localBuild == "TRUE" {
 		commandArgs = append(commandArgs, "--local")
 	}
+	if runPrebuild == "YES" {
+		runPrebuildOptions := utils.CommandOptions{
+			Command:     "npx",
+			Args:        prebuildArgs,
+			GetOutput:   false,
+			PrintOutputOnly: true,
+		}
+		utils.RunCommandWithOptions(runPrebuildOptions)
+	}
+
 
 	opts := utils.CommandOptions{
 		Command: "eas",

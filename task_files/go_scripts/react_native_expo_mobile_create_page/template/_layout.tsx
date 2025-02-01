@@ -1,10 +1,11 @@
 import { Tabs } from 'expo-router';
 import React from 'react';
 import { Platform } from 'react-native';
-import { useColorScheme } from '@/hooks/useColorScheme';
+import { useWMLTheme } from "@/constants/Theme";
+
 
 export default function WMLTemplateLayout() {
-  const colorScheme = useColorScheme();
+  const {colorScheme,theme} = useWMLTheme();
 
   return (
     <Tabs

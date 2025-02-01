@@ -727,3 +727,20 @@ Changed the default Go executable in `shared/misc.go`. It now defaults to `go` i
 
 ## [1.96.4102] [1/28/2025 11:45:00 AM EST]
 [FIX] updated  `react_native_expo_mobile_build` fixing logic with output dir for local builds
+
+
+## [1.96.4200] [1/31/25 3:45:12 PM EST]
+[UPDATE] Added prebuild step to `main.go` in `react_native_expo_mobile_build`. Now, when running the script, you’ll get a menu asking if you want to run `expo prebuild` before the build starts. If you pick "YES," another menu will ask if you want to clean the build. If you say yes again, `--clean` gets added to the prebuild command.
+
+
+ [BREAKING CHANGE] Updated `_layout.tsx` in `react_native_expo_mobile_create_page`. `useColorScheme` is gone, and now `useWMLTheme` is used instead. This means theme handling now comes from the new centralized WMLTheme system.
+
+ [BREAKING CHANGE] Renamed `WMLTemplateScreen` to `WMLTemplatePage` in `index.tsx` inside `react_native_expo_mobile_create_page`. If you were importing or using this component by its old name, update your imports.
+
+ [BREAKING CHANGE] Replaced direct `Appearance.getColorScheme()` calls with `useWMLTheme` in `index.tsx` inside `react_native_expo_mobile_create_page`. Theme selection now pulls from the new WMLTheme system instead of raw `Appearance`.
+
+ [BREAKING CHANGE] Replaced `useColorScheme` with `useWMLTheme` in `template.tsx` inside `react_native_expo_mobile_create_shared_component`. Theme logic now pulls from `useWMLTheme`.
+
+
+ [BREAKING CHANGE] Removed unnecessary `captureException` and `useWMLNavigation` imports from `index.tsx` in `react_native_expo_mobile_create_page` and `template.tsx` in `react_native_expo_mobile_create_shared_component`. They weren’t being used, so now the files are cleaner.
+

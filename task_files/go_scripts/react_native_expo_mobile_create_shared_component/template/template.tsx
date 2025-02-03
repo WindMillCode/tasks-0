@@ -1,16 +1,17 @@
 import { StyleSheet,View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { useWMLTheme } from '@/constants/Theme';
+import {useWMLTranslation } from '@/constants/Global';
 
 export default function WMLTemplate({
 
 }) {
-  const {colorScheme,theme} = useWMLTheme();
+  const {isDark,theme} = useWMLTheme();
   const styles = createStyles({
-    colorScheme,
+    isDark,
     theme
   });
-  const { t } = useTranslation();
+  const { t} = useWMLTranslation();
 
   return (
     <View style={styles.container}>
@@ -21,7 +22,7 @@ export default function WMLTemplate({
 
 
 function createStyles(props) {
-  let {colorScheme,theme} = props
+  let {isDark,theme} = props
   return StyleSheet.create({
     container: {
       flex: 1,

@@ -1,15 +1,15 @@
 import { StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useTranslation } from 'react-i18next';
+import {useWMLTranslation } from '@/constants/Global';
 import { useWMLTheme } from '@/constants/Theme';
 
 export default function WMLTemplatePage() {
-  const {colorScheme,theme} = useWMLTheme();
+  const {isDark,theme} = useWMLTheme();
   const styles = createStyles({
-    colorScheme,
+    isDark,
     theme
   });
-  const { t } = useTranslation();
+  const { t} = useWMLTranslation();
 
   return (
     <SafeAreaView style={styles.container}>
@@ -20,7 +20,7 @@ export default function WMLTemplatePage() {
 
 
 function createStyles(props) {
-  let {colorScheme,theme} = props
+  let {isDark,theme} = props
   return StyleSheet.create({
     container: {
       flex: 1,

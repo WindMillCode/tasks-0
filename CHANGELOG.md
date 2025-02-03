@@ -747,3 +747,7 @@ Changed the default Go executable in `shared/misc.go`. It now defaults to `go` i
 ## [1.96.4201] [2/1/2024 2:15:30 PM EST]
 
 [FIX] Modified path handling in go_scripts/misc_translate_json/main.go ShowMenu function - now auto-converts i18n folder paths to match OS format instead of using raw settings values. This should fix path issues.
+
+## [1.96.4300] [2/2/2024 2:15:30 PM EST]
+
+[BREAKING CHANGE] `react_native_expo_mobile_create_page` and `react_native_expo_mobile_create_shared_component` are updated to the modern version of handling react native components

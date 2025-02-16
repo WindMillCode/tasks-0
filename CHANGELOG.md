@@ -751,3 +751,10 @@ Changed the default Go executable in `shared/misc.go`. It now defaults to `go` i
 ## [1.96.4300] [2/2/2024 2:15:30 PM EST]
 
 [BREAKING CHANGE] `react_native_expo_mobile_create_page` and `react_native_expo_mobile_create_shared_component` are updated to the modern version of handling react native components
+
+## [1.97.2000] [1/15/2024 10:30:45 AM EST]
+
+ [UPDATE] Updated `react_native_expo_mobile_build` script to add sourcemap upload support
+
+
+

@@ -74,25 +74,9 @@ func main() {
 		Prompt:  "Run prebuild?",
 		Choices: []string{"YES", "NO"},
 	}
-	jsEngine := ""
-	cliInfo = utils.ShowMenuModel{
-		Prompt:  "upload source maps",
-		Choices: []string{"YES", "NO"},
-		Default: "YES",
-	}
-	uploadSourceMaps := utils.ShowMenu(cliInfo, nil)
-
-	if uploadSourceMaps == "YES" {
-		cliInfo = utils.ShowMenuModel{
-			Prompt:  "jsEngine (if unsure pick jsc)",
-			Choices: []string{"hermes", "jsc"},
-			Default: "jsc",
-		}
-		jsEngine = utils.ShowMenu(cliInfo, nil)
-	}
-
-	prebuildArgs := []string{"expo", "prebuild", "--platform", myPlatform}
 	runPrebuild := utils.ShowMenu(cliInfo, nil)
+	prebuildArgs := []string{"expo", "prebuild", "--platform", myPlatform}
+
 	if runPrebuild == "YES" {
 		cliInfo := utils.ShowMenuModel{
 			Prompt:  "run prebuild with clean",
@@ -104,6 +88,24 @@ func main() {
 		}
 
 	}
+
+	jsEngine := ""
+	cliInfo = utils.ShowMenuModel{
+		Prompt:  "upload source maps",
+		Choices: []string{"YES", "NO"},
+		Default: "YES",
+	}
+	uploadSourceMaps := utils.ShowMenu(cliInfo, nil)
+
+	if uploadSourceMaps == "YES" {
+		cliInfo = utils.ShowMenuModel{
+			Prompt:  "jsEngine (if unsure pick jsc)",
+			Choices: []string{ "jsc","hermes"},
+			Default: "jsc",
+		}
+		jsEngine = utils.ShowMenu(cliInfo, nil)
+	}
+
 
 	commandArgs := []string{"build", "--profile", myProfile, "--platform", myPlatform}
 	if localBuild == "TRUE" {
@@ -128,6 +130,7 @@ func main() {
 		Args:            commandArgs,
 		GetOutput:       false,
 		PrintOutputOnly: true,
+		PanicOnError:    true,
 	}
 	utils.RunCommandWithOptions(opts)
 
@@ -147,6 +150,7 @@ func main() {
 
 			opts = utils.CommandOptions{
 				Command: "npx",
+				PanicOnError:    true,
 				Args: []string{
 					"expo",
 					"export:embed",
@@ -173,6 +177,7 @@ func main() {
 			}[myPlatform]
 			opts = utils.CommandOptions{
 				Command: utils.ConvertPathToOSFormat(newCommand),
+				PanicOnError:    true,
 				Args: []string{
 					"-O", "-emit-binary",
 					"-output-source-map",
@@ -182,7 +187,7 @@ func main() {
 			}
 
 			if err := os.Remove(bundleOutput); err != nil && !os.IsNotExist(err) {
-				panic(err)
+				// panic(err)
 			}
 
 			if err := os.Rename(out, bundleOutput); err != nil {
@@ -208,6 +213,7 @@ func main() {
 
 			opts = utils.CommandOptions{
 				Command: "node",
+				PanicOnError:    true,
 				Args: []string{
 					utils.ConvertPathToOSFormat("node_modules/@sentry/react-native/scripts/copy-debugid.js"),
 					packagerMap,
@@ -220,6 +226,7 @@ func main() {
 
 			opts = utils.CommandOptions{
 				Command: "node",
+				PanicOnError:    true,
 				Args: []string{
 					utils.ConvertPathToOSFormat("node_modules/@sentry/react-native/scripts/copy-debugid.js"),
 					packagerMap, outputMap,
@@ -232,6 +239,7 @@ func main() {
 
 			opts = utils.CommandOptions{
 				Command: "npx",
+				PanicOnError:    true,
 				Args: []string{
 					"sentry-cli", "sourcemaps", "upload",
 					"--debug-id-reference",
@@ -245,6 +253,7 @@ func main() {
 
 			opts = utils.CommandOptions{
 				Command: "npx",
+				PanicOnError:    true,
 				Args: []string{
 					"expo","export:embed",
 					"--entry-file", utils.JoinAndConvertPathToOSFormat(reactNativeExpoRoot, "node_modules/expo/AppEntry.js"),
@@ -261,6 +270,7 @@ func main() {
 
 			opts = utils.CommandOptions{
 				Command: "npx",
+				PanicOnError:    true,
 				Args: []string{
 					"sentry-cli", "sourcemaps", "upload",
 					"--strip-prefix", reactNativeExpoRoot,
@@ -270,9 +280,6 @@ func main() {
 		}
 	}
 }
-
-
-
 
 
 

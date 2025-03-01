@@ -22,6 +22,9 @@ export default function WMLTemplatePage() {
 function createStyles(props) {
   let {isDark,theme} = props
   return StyleSheet.create({
+    label:{
+      color:theme.text
+    },
     container: {
       flex: 1,
       backgroundColor:theme.background

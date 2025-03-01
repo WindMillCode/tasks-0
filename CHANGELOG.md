@@ -757,4 +757,10 @@ Changed the default Go executable in `shared/misc.go`. It now defaults to `go` i
  [UPDATE] Updated `react_native_expo_mobile_build` script to add sourcemap upload support
 
 
+## [1.97.2001] [3/1/2024 10:30:45 AM EST]
 
+[UPDATE] Added "label" style with theme.text color to WMLTemplate component styles
+
+[UPDATE] Changed WMLTemplate component to accept props parameter instead of empty destructuring
+
+[UPDATE] Modified container style to use theme.background instead of hardcoded value in createStyles function

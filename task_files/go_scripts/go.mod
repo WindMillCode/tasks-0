@@ -1,10 +1,10 @@
 module main
 
-go 1.23.5
+go 1.24.1
 
 require (
 	github.com/iancoleman/strcase v0.3.0
-	github.com/windmillcode/go_cli_scripts/v6 v6.0.9
+	github.com/windmillcode/go_cli_scripts/v6 v6.0.10
 	golang.org/x/oauth2 v0.21.0 // indirect
 	google.golang.org/api v0.187.0 // adjust the version correctly
 )

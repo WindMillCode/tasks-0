@@ -96,7 +96,9 @@ func main() {
 		Default: "YES",
 	}
 	uploadSourceMaps := utils.ShowMenu(cliInfo, nil)
-
+	sentryOrg := ""
+	sentryProject := ""
+	sentryRelease := ""
 	if uploadSourceMaps == "YES" {
 		cliInfo = utils.ShowMenuModel{
 			Prompt:  "jsEngine (if unsure pick jsc)",
@@ -104,6 +106,27 @@ func main() {
 			Default: "jsc",
 		}
 		jsEngine = utils.ShowMenu(cliInfo, nil)
+
+		sentryOrg = utils.GetInputFromStdin(
+			utils.GetInputFromStdinStruct{
+				Prompt: []string{"The sentry organization name"},
+				Default: settings.ExtensionPack.ReactNativeExpoMobileBuild.SentryOrg,
+			},
+		)
+
+		sentryProject = utils.GetInputFromStdin(
+			utils.GetInputFromStdinStruct{
+				Prompt: []string{"The sentry project name"},
+				Default: settings.ExtensionPack.ReactNativeExpoMobileBuild.SentryProject,
+			},
+		)
+
+		sentryRelease = utils.GetInputFromStdin(
+			utils.GetInputFromStdinStruct{
+				Prompt: []string{"The sentry release name"},
+				Default: settings.ExtensionPack.ReactNativeExpoMobileBuild.SentryRelease,
+			},
+		)
 	}
 
 
@@ -124,6 +147,7 @@ func main() {
 		}
 		utils.RunCommandWithOptions(runPrebuildOptions)
 	}
+	os.RemoveAll("~/.app-store/")
 
 	opts := utils.CommandOptions{
 		Command:         "eas",
@@ -155,7 +179,7 @@ func main() {
 					"expo",
 					"export:embed",
 					"--entry-file",
-					utils.JoinAndConvertPathToOSFormat(reactNativeExpoRoot, "node_modules/expo/AppEntry.js"),
+					utils.JoinAndConvertPathToOSFormat(reactNativeExpoRoot, "node_modules/expo-router/entry.js"),
 					"--platform", myPlatform,
 					"--dev", "false",
 					"--reset-cache",
@@ -256,7 +280,7 @@ func main() {
 				PanicOnError:    true,
 				Args: []string{
 					"expo","export:embed",
-					"--entry-file", utils.JoinAndConvertPathToOSFormat(reactNativeExpoRoot, "node_modules/expo/AppEntry.js"),
+					"--entry-file", utils.JoinAndConvertPathToOSFormat(reactNativeExpoRoot, "node_modules/expo-router/entry.js"),
 					"--platform", myPlatform,
 					"--dev", "false",
 					"--reset-cache",
@@ -273,10 +297,16 @@ func main() {
 				PanicOnError:    true,
 				Args: []string{
 					"sentry-cli", "sourcemaps", "upload",
-					"--strip-prefix", reactNativeExpoRoot,
+					"--org",sentryOrg,
+					"--project",sentryProject,
+					"--release",sentryRelease,
+					"--strip-prefix",
+					reactNativeExpoRoot,
 					bundleOutput, sourceMapOutput,
 				},
 			}
+
+			utils.RunCommandWithOptions(opts)
 		}
 	}
 }

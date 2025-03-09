@@ -757,10 +757,17 @@ Changed the default Go executable in `shared/misc.go`. It now defaults to `go` i
  [UPDATE] Updated `react_native_expo_mobile_build` script to add sourcemap upload support
 
 
-## [1.97.2001] [3/1/2024 10:30:45 AM EST]
+## [1.97.2001] [3/1/2025 10:30:45 AM EST]
 
 [UPDATE] Added "label" style with theme.text color to WMLTemplate component styles
 
 [UPDATE] Changed WMLTemplate component to accept props parameter instead of empty destructuring
 
 [UPDATE] Modified container style to use theme.background instead of hardcoded value in createStyles function
+
+## [1.97.2002] [3/9/2025 10:30:45 AM EST]
+
+[FIX] Modified the `react_native_expo_mobile_build/main.go` script to include Sentry organization, project, and release inputs for sourcemap uploads. Changed the entry file path in `react_native_expo_mobile_build/main.go` from `node_modules/expo/AppEntry.js` to `node_modules/expo-router/entry.js`.
+
+[UPDATE] Added cleanup for the `~/.app-store/` directory in `react_native_expo_mobile_build/main.go`.
+

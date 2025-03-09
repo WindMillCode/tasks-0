@@ -765,7 +765,7 @@ Changed the default Go executable in `shared/misc.go`. It now defaults to `go` i
 
 [UPDATE] Modified container style to use theme.background instead of hardcoded value in createStyles function
 
-## [1.97.2002] [3/9/2025 10:30:45 AM EST]
+## [1.98.0] [3/9/2025 10:30:45 AM EST]
 
 [FIX] Modified the `react_native_expo_mobile_build/main.go` script to include Sentry organization, project, and release inputs for sourcemap uploads. Changed the entry file path in `react_native_expo_mobile_build/main.go` from `node_modules/expo/AppEntry.js` to `node_modules/expo-router/entry.js`.
 

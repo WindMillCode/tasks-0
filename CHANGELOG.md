@@ -776,3 +776,7 @@ Changed the default Go executable in `shared/misc.go`. It now defaults to `go` i
 [BREAKING CHANGE] Removed automatic Go installation - developers MUST have Go >=1.24.1 installed system-wide. All Go scripts now use system "go" command instead of bundled windmillcode_go
 
 [UPDATE] for all docker scripts added startdockerdesktop function before performing docker tasks to ensure docker is running before attempting to perform any docker related tasks
+
+## [1.98.2001] [3/20/2025 12:58:21 PM EST]
+
+[FIX] -fixed an issue with powershell scripts

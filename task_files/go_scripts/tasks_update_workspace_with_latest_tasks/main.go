@@ -193,7 +193,7 @@ func main() {
 
 	fmt.Print("\n\n\n If you see an unexpected end of input one of the array in your JSON has a ',' for its last item. this is not valid json remove that LAST comma\n\n\n")
 
-	goExecutable := shared.GetGoExecutable()
+	goExecutable := "go"
 	goScriptsSourceDirPath := utils.JoinAndConvertPathToOSFormat(extensionFolder, "task_files/go_scripts")
 	goScriptsDestDirPath := utils.JoinAndConvertPathToOSFormat(workSpaceFolder, ".windmillcode/go_scripts")
 
@@ -350,5 +350,5 @@ func main() {
 		}
 	}
 
-	shared.RebuildExecutables(proceed, tasksJSON, goScriptsDestDirPath, goExecutable, preActions(deleteDestDir, goScriptsSourceDirPath, goScriptsDestDirPath))
+	shared.RebuildExecutables(proceed, tasksJSON, goScriptsDestDirPath, preActions(deleteDestDir, goScriptsSourceDirPath, goScriptsDestDirPath))
 }

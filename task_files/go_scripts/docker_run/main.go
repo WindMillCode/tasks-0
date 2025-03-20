@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"os"
 
 	"main/shared"
@@ -28,6 +29,24 @@ func main() {
 			Default: settings.ExtensionPack.SQLDockerContainerName,
 		},
 	)
-
-	utils.RunCommand("docker", []string{"start", dockerContainerName})
+	commandOptions := utils.CommandOptions{
+		Command:     "docker",
+		Args:        []string{"start", dockerContainerName},
+		GetOutput:   true,
+		TargetDir:   "",
+		PrintOutput: false,
+	}
+	_, err = utils.RunCommandWithOptions(commandOptions)
+	if err != nil {
+		shared.StartDockerDesktop()
+		_, err = utils.RunCommandWithOptions(commandOptions)
+		if err != nil {
+			fmt.Println(`
+			Please find the root folder of your docker installation and ENSURE you add in the following order or else there may be issue in getting the docker engine to start at all
+			[ROOT_PATH]/
+			[ROOT_PATH]/resources
+			[ROOT_PATH]/resources/bin
+			`)
+		}
+	}
 }

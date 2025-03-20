@@ -771,3 +771,8 @@ Changed the default Go executable in `shared/misc.go`. It now defaults to `go` i
 
 [UPDATE] Added cleanup for the `~/.app-store/` directory in `react_native_expo_mobile_build/main.go`.
 
+## [1.98.2000] [3/20/2025 11:58:21 AM EST]
+
+[BREAKING CHANGE] Removed automatic Go installation - developers MUST have Go >=1.24.1 installed system-wide. All Go scripts now use system "go" command instead of bundled windmillcode_go
+
+[UPDATE] for all docker scripts added startdockerdesktop function before performing docker tasks to ensure docker is running before attempting to perform any docker related tasks

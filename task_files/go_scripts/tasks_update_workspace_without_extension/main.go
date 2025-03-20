@@ -22,7 +22,7 @@ func main() {
 		},
 	)
 
-	goExecutable := shared.GetGoExecutable()
+
 
 	tasksJsonFilePath := utils.JoinAndConvertPathToOSFormat(workspaceRoot, ".vscode/tasks.json")
 
@@ -39,6 +39,6 @@ func main() {
 	}
 	goScriptsDestDirPath := utils.JoinAndConvertPathToOSFormat(workspaceRoot, ".windmillcode/go_scripts")
 
-	shared.RebuildExecutables("FALSE", tasksJSON, goScriptsDestDirPath, goExecutable, func() {})
+	shared.RebuildExecutables("FALSE", tasksJSON, goScriptsDestDirPath, func() {})
 
 }

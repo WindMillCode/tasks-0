@@ -59,7 +59,7 @@ func main() {
 			os.Mkdir(folder, 0755)
 		}
 	}
-
+	shared.StartDockerDesktop()
 	var wg sync.WaitGroup
 	wg.Add(1)
 	go func() {

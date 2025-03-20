@@ -9,6 +9,9 @@ import (
 	"slices"
 	"strings"
 	"sync"
+	"time"
+	"runtime"
+
 	"github.com/windmillcode/go_cli_scripts/v6/utils"
 )
 
@@ -17,7 +20,7 @@ func CDToWorkspaceRoot() {
 	utils.CDToLocation(filepath.Join("..", "..", ".."))
 }
 
-func RebuildExecutables(proceed string, tasksJSON utils.VSCodeTasksTasksJSON, goScriptsDestDirPath string, goExecutable string, beforeActionPredicate func()) {
+func RebuildExecutables(proceed string, tasksJSON utils.VSCodeTasksTasksJSON, goScriptsDestDirPath string, beforeActionPredicate func()) {
 	var rebuild string
 	var cliInfo utils.ShowMenuModel
 	if proceed == "TRUE" {
@@ -55,7 +58,7 @@ func RebuildExecutables(proceed string, tasksJSON utils.VSCodeTasksTasksJSON, go
 				absProgramLocation := utils.JoinAndConvertPathToOSFormat(goScriptsDestDirPath, programLocation2)
 				go func() {
 					defer wg.Done()
-					BuildGoCLIProgram(absProgramLocation, goExecutable)
+					BuildGoCLIProgram(absProgramLocation)
 				}()
 			}
 			wg.Wait()
@@ -71,7 +74,7 @@ func RebuildExecutables(proceed string, tasksJSON utils.VSCodeTasksTasksJSON, go
 				programLocation1 := regex1.Split(strings.Join(programLocation0, ""), -1)
 				programLocation2 := strings.Join(programLocation1, "_")
 				absProgramLocation := utils.JoinAndConvertPathToOSFormat(goScriptsDestDirPath, programLocation2)
-				BuildGoCLIProgram(absProgramLocation, goExecutable)
+				BuildGoCLIProgram(absProgramLocation)
 
 			}
 		}
@@ -81,14 +84,106 @@ func RebuildExecutables(proceed string, tasksJSON utils.VSCodeTasksTasksJSON, go
 	}
 }
 
-func BuildGoCLIProgram(programLocation string, goExecutable string) {
+func BuildGoCLIProgram(programLocation string) {
 
 	fmt.Printf("%s \n", programLocation)
-	utils.RunCommandInSpecificDirectory(goExecutable, []string{"build", "main.go"}, programLocation)
+	utils.RunCommandInSpecificDirectory("go", []string{"build", "main.go"}, programLocation)
 	fmt.Printf("Finished building %s \n", programLocation)
 
 }
 
+// func StartDockerDesktop() (string, error) {
+//     commandOptions := utils.CommandOptions{
+//       Command:     "dockerd",
+//       Args:        []string{},
+//       GetOutput:   true,
+//       PrintOutput: false,
+// 			IsElevated: true,
+//     }
+//     result, err := utils.RunCommandWithOptions(commandOptions)
+//     if err != nil {
+//       return "", fmt.Errorf("failed to start Docker Desktop on macOS: %v", err)
+//     }
+//     return result, nil
+// }
+
+func waitForDockerEngine() error {
+	const maxAttempts = 30
+	const delay = 2 * time.Second
+
+	for i := 0; i < maxAttempts; i++ {
+		cmdOptions := utils.CommandOptions{
+			Command:     "docker",
+			Args:        []string{"info"},
+			GetOutput:   true,
+			PrintOutput: false,
+		}
+		_, err := utils.RunCommandWithOptions(cmdOptions)
+		if err == nil {
+			return nil
+		}
+		time.Sleep(delay)
+	}
+	return fmt.Errorf("docker engine did not become ready after %d attempts", maxAttempts)
+}
+
+func StartDockerDesktop() (string, error) {
+	switch runtime.GOOS {
+	case "windows":
+		commandOptions := utils.CommandOptions{
+			Command:     "powershell.exe",
+			Args:        []string{"-Command", "Start-Process 'Docker Desktop.exe'"},
+			GetOutput:   true,
+			TargetDir: "",
+			PrintOutput: false,
+		}
+		result, err := utils.RunCommandWithOptions(commandOptions)
+		if err != nil {
+			return "", fmt.Errorf("failed to start Docker Desktop on Windows: %v", err)
+		}
+		if err := waitForDockerEngine(); err != nil {
+			return result, fmt.Errorf("Docker Desktop started but engine not ready: %v", err)
+		}
+		return result, nil
+
+	case "darwin": // macOS
+		commandOptions := utils.CommandOptions{
+			Command:     "open",
+			Args:        []string{"/Applications/Docker.app"},
+			GetOutput:   true,
+			TargetDir: "",
+			PrintOutput: false,
+		}
+		result, err := utils.RunCommandWithOptions(commandOptions)
+		if err != nil {
+			return "", fmt.Errorf("failed to start Docker Desktop on macOS: %v", err)
+		}
+		if err := waitForDockerEngine(); err != nil {
+			return result, fmt.Errorf("Docker Desktop started but engine not ready: %v", err)
+		}
+		return result, nil
+
+	case "linux":
+		commandOptions := utils.CommandOptions{
+			Command:     "systemctl",
+			Args:        []string{"--user", "start", "docker-desktop"},
+			GetOutput:   true,
+			TargetDir: "",
+			PrintOutput: false,
+		}
+		result, err := utils.RunCommandWithOptions(commandOptions)
+		if err != nil {
+			return "", fmt.Errorf("failed to start Docker Desktop on Linux: %v", err)
+		}
+		if err := waitForDockerEngine(); err != nil {
+			return result, fmt.Errorf("Docker Desktop started but engine not ready: %v", err)
+		}
+		return result, nil
+
+	default:
+		return "", fmt.Errorf("unsupported operating system: %s", runtime.GOOS)
+	}
+}
 
 
 func SetFlaskAppPort() bool {
@@ -178,7 +273,7 @@ func SetupEnvironmentToRunFlaskApp(env string) (string, error) {
 	// Execute the helper script to set environment variables
 	utils.CDToLocation(workspaceFolder)
 	envVarCommandOptions := utils.CommandOptions{
-		Command:     GetGoExecutable(),
+		Command:     "go",
 		Args:        []string{"run", envVarsFile, filepath.Dir(utils.JoinAndConvertPathToOSFormat(envVarsFile)), workspaceFolder},
 		GetOutput:   true,
 		TargetDir:   filepath.Dir(utils.JoinAndConvertPathToOSFormat(envVarsFile)),
@@ -283,15 +378,8 @@ func SetJavaEnvironment(settings utils.VSCodeSettings){
 
 }
 
-func GetGoExecutable() string {
-	cliInfo := utils.ShowMenuModel{
-		Prompt:  "choose the executable to use (try with windmillcode_go first if not then use go)",
-		Choices: []string{"go", "windmillcode_go"},
-		Default: "go",
-	}
-	goExecutable := utils.ShowMenu(cliInfo, nil)
-	return goExecutable
-}
+
+
 
 func ChooseNodePackageManager() string {
 	cliInfo := utils.ShowMenuModel{

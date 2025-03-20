@@ -52,10 +52,8 @@
     "typescript": "^5.4.5"
   },
   "dependencies": {
-    "adm-zip": "^0.5.12",
     "semver": "^7.6.0",
     "tar": "^7.0.1",
-    "tar.gz2": "^1.0.0",
     "uuid": "^9.0.1"
   }
 }

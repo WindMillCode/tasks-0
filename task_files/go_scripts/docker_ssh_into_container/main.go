@@ -34,6 +34,6 @@ func main() {
 		Choices: []string{"sh", "bash", "dash", "zsh", "cmd", "fish", "ksh", "powershell"},
 	}
 	shell := utils.ShowMenu(cliInfo, nil)
-
+	shared.StartDockerDesktop()
 	utils.RunCommand("docker", []string{"exec", "-it", dockerContainerName, shell})
 }

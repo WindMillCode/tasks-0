@@ -35,6 +35,6 @@ func main() {
 	initScriptLocation := filepath.Dir(initScript)
 	utils.CDToLocation(initScriptLocation)
 	initScript = filepath.Base(initScript)
-
-	utils.RunCommand(shared.GetGoExecutable(), []string{"run", initScript, initScriptArgs})
+	shared.StartDockerDesktop()
+	utils.RunCommand("go", []string{"run", initScript, initScriptArgs})
 }

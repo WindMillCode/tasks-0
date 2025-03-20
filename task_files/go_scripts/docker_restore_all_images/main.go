@@ -53,7 +53,7 @@ func main() {
 		fmt.Println("Please enter a number", err)
 		return
 	}
-
+	shared.StartDockerDesktop()
 	var wg sync.WaitGroup
 	wg.Add(1)
 	go func() {

@@ -35,13 +35,13 @@ func main() {
 	)
 	componentNameObject,_ := utils.CreateStringObject(componentName,"")
 
-	utils.CDToReactNativeExpoApp()
-	reactNativeExpoApp, err := os.Getwd()
+	utils.CDToExpoApp()
+	expoApp, err := os.Getwd()
 	if err != nil {
 		return
 	}
 	providerLocation := utils.JoinAndConvertPathToOSFormat(
-		reactNativeExpoApp,
+		expoApp,
 		"components",
 		componentNameObject.PascalCase(false,""),
 	)

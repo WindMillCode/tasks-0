@@ -36,12 +36,12 @@ func main() {
 	)
 	pageNameObject,_ := utils.CreateStringObject(pageName,"")
 
-	utils.CDToReactNativeExpoApp()
-	reactNativeExpoApp, err := os.Getwd()
+	utils.CDToExpoApp()
+	expoApp, err := os.Getwd()
 	if err != nil {
 		return
 	}
-	providerLocation := utils.JoinAndConvertPathToOSFormat(reactNativeExpoApp, "app", fmt.Sprintf("(%s)",pageNameObject.Snakecase(false,"")) )
+	providerLocation := utils.JoinAndConvertPathToOSFormat(expoApp, "app", fmt.Sprintf("(%s)",pageNameObject.Snakecase(false,"")) )
 	utils.CopyDir(templateLocation, providerLocation)
 
 	utils.TraverseDirectory(utils.TraverseDirectoryParams{

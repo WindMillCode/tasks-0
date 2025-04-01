@@ -38,7 +38,7 @@ func main() {
 			NonInteractive: settings.ExtensionPack.ProcessIfDefaultIsPresent,
 		},
 	)
-	utils.CDToReactNativeExpoApp()
+	utils.CDToExpoApp()
 
 	commandArgs := []string{"expo", "start"}
 	if useTunnel == "TRUE" {

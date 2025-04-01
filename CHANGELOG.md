@@ -780,3 +780,13 @@ Changed the default Go executable in `shared/misc.go`. It now defaults to `go` i
 ## [1.98.2001] [3/20/2025 12:58:21 PM EST]
 
 [FIX] -fixed an issue with powershell scripts
+
+## [1.98.2010] [4/1/2025 3:30:45 PM EST]
+
+[BREAKING CHANGE] Renamed CDToReactNativeExpoApp() to CDToExpoApp() in all mobile scripts - update any custom scripts calling old function name
+[FIX] Fixed Sentry CLI command formatting in mobile build script to handle org/project/release params correctly
+[PATCH] Standardized command output handling in shared docker functions (GetOutput: false for cleaner execution)
+[UPDATE] Improved sourcemap upload logic in mobile build for both Hermes & JSC engines with proper path handling
+[FIX] Corrected error message in mvFile utility function during mobile build asset relocation
+[PATCH] Removed empty lines and standardized import order across all Go script files
+[COMPLEX MERGE] Unified Expo app directory handling between build/run/page/component creation scripts

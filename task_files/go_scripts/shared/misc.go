@@ -115,7 +115,7 @@ func waitForDockerEngine() error {
 		cmdOptions := utils.CommandOptions{
 			Command:     "docker",
 			Args:        []string{"info"},
-			GetOutput:   true,
+			GetOutput:   false,
 			PrintOutput: false,
 		}
 		_, err := utils.RunCommandWithOptions(cmdOptions)
@@ -133,7 +133,7 @@ func StartDockerDesktop() (string, error) {
 		commandOptions := utils.CommandOptions{
 			Command:     "powershell.exe",
 			Args:        []string{"-Command", "Start-Process 'Docker Desktop.exe'"},
-			GetOutput:   true,
+			GetOutput:   false,
 			TargetDir: "",
 			PrintOutput: false,
 		}
@@ -150,7 +150,7 @@ func StartDockerDesktop() (string, error) {
 		commandOptions := utils.CommandOptions{
 			Command:     "open",
 			Args:        []string{"/Applications/Docker.app"},
-			GetOutput:   true,
+			GetOutput:   false,
 			TargetDir: "",
 			PrintOutput: false,
 		}
@@ -167,7 +167,7 @@ func StartDockerDesktop() (string, error) {
 		commandOptions := utils.CommandOptions{
 			Command:     "systemctl",
 			Args:        []string{"--user", "start", "docker-desktop"},
-			GetOutput:   true,
+			GetOutput:   false,
 			TargetDir: "",
 			PrintOutput: false,
 		}

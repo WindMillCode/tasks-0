@@ -2,9 +2,10 @@ package main
 
 import (
 	"fmt"
-	"github.com/windmillcode/go_cli_scripts/v6/utils"
 	"main/shared"
 	"os"
+
+	"github.com/windmillcode/go_cli_scripts/v6/utils"
 )
 
 func main() {
@@ -24,7 +25,7 @@ func main() {
 			NonInteractive: settings.ExtensionPack.ProcessIfDefaultIsPresent,
 		},
 	)
-	utils.CDToReactNativeExpoApp()
+	utils.CDToExpoApp()
 	reactNativeExpoRoot, err := os.Getwd()
 	if err != nil {
 		fmt.Printf("Error getting react native root: %v", err)
@@ -102,33 +103,32 @@ func main() {
 	if uploadSourceMaps == "YES" {
 		cliInfo = utils.ShowMenuModel{
 			Prompt:  "jsEngine (if unsure pick jsc)",
-			Choices: []string{ "jsc","hermes"},
+			Choices: []string{"jsc", "hermes"},
 			Default: "jsc",
 		}
 		jsEngine = utils.ShowMenu(cliInfo, nil)
 
 		sentryOrg = utils.GetInputFromStdin(
 			utils.GetInputFromStdinStruct{
-				Prompt: []string{"The sentry organization name"},
+				Prompt:  []string{"The sentry organization name"},
 				Default: settings.ExtensionPack.ReactNativeExpoMobileBuild.SentryOrg,
 			},
 		)
 
 		sentryProject = utils.GetInputFromStdin(
 			utils.GetInputFromStdinStruct{
-				Prompt: []string{"The sentry project name"},
+				Prompt:  []string{"The sentry project name"},
 				Default: settings.ExtensionPack.ReactNativeExpoMobileBuild.SentryProject,
 			},
 		)
 
 		sentryRelease = utils.GetInputFromStdin(
 			utils.GetInputFromStdinStruct{
-				Prompt: []string{"The sentry release name"},
+				Prompt:  []string{"The sentry release name"},
 				Default: settings.ExtensionPack.ReactNativeExpoMobileBuild.SentryRelease,
 			},
 		)
 	}
-
 
 	commandArgs := []string{"build", "--profile", myProfile, "--platform", myPlatform}
 	if localBuild == "TRUE" {
@@ -169,12 +169,9 @@ func main() {
 		}[myPlatform]
 		if jsEngine == "hermes" {
 
-
-
-
 			opts = utils.CommandOptions{
-				Command: "npx",
-				PanicOnError:    true,
+				Command:      "npx",
+				PanicOnError: true,
 				Args: []string{
 					"expo",
 					"export:embed",
@@ -200,8 +197,8 @@ func main() {
 				"ios":     "main.jsbundle.hbc",
 			}[myPlatform]
 			opts = utils.CommandOptions{
-				Command: utils.ConvertPathToOSFormat(newCommand),
-				PanicOnError:    true,
+				Command:      utils.ConvertPathToOSFormat(newCommand),
+				PanicOnError: true,
 				Args: []string{
 					"-O", "-emit-binary",
 					"-output-source-map",
@@ -236,8 +233,8 @@ func main() {
 			}[myPlatform]
 
 			opts = utils.CommandOptions{
-				Command: "node",
-				PanicOnError:    true,
+				Command:      "node",
+				PanicOnError: true,
 				Args: []string{
 					utils.ConvertPathToOSFormat("node_modules/@sentry/react-native/scripts/copy-debugid.js"),
 					packagerMap,
@@ -249,8 +246,8 @@ func main() {
 			utils.RunCommandWithOptions(opts)
 
 			opts = utils.CommandOptions{
-				Command: "node",
-				PanicOnError:    true,
+				Command:      "node",
+				PanicOnError: true,
 				Args: []string{
 					utils.ConvertPathToOSFormat("node_modules/@sentry/react-native/scripts/copy-debugid.js"),
 					packagerMap, outputMap,
@@ -262,8 +259,8 @@ func main() {
 			rmFile(packagerMap)
 
 			opts = utils.CommandOptions{
-				Command: "npx",
-				PanicOnError:    true,
+				Command:      "npx",
+				PanicOnError: true,
 				Args: []string{
 					"sentry-cli", "sourcemaps", "upload",
 					"--debug-id-reference",
@@ -276,10 +273,10 @@ func main() {
 		} else if jsEngine == "jsc" {
 
 			opts = utils.CommandOptions{
-				Command: "npx",
-				PanicOnError:    true,
+				Command:      "npx",
+				PanicOnError: true,
 				Args: []string{
-					"expo","export:embed",
+					"expo", "export:embed",
 					"--entry-file", utils.JoinAndConvertPathToOSFormat(reactNativeExpoRoot, "node_modules/expo-router/entry.js"),
 					"--platform", myPlatform,
 					"--dev", "false",
@@ -293,13 +290,13 @@ func main() {
 			utils.RunCommandWithOptions(opts)
 
 			opts = utils.CommandOptions{
-				Command: "npx",
-				PanicOnError:    true,
+				Command:      "npx",
+				PanicOnError: true,
 				Args: []string{
 					"sentry-cli", "sourcemaps", "upload",
-					"--org",sentryOrg,
-					"--project",sentryProject,
-					"--release",sentryRelease,
+					"--org", sentryOrg,
+					"--project", sentryProject,
+					"--release", sentryRelease,
 					"--strip-prefix",
 					reactNativeExpoRoot,
 					bundleOutput, sourceMapOutput,
@@ -310,8 +307,6 @@ func main() {
 		}
 	}
 }
-
-
 
 func mvFile(source, destination string) error {
 	if err := os.Rename(source, destination); err != nil {

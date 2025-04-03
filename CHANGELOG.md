@@ -790,3 +790,8 @@ Changed the default Go executable in `shared/misc.go`. It now defaults to `go` i
 [FIX] Corrected error message in mvFile utility function during mobile build asset relocation
 [PATCH] Removed empty lines and standardized import order across all Go script files
 [COMPLEX MERGE] Unified Expo app directory handling between build/run/page/component creation scripts
+
+
+## [1.98.2011]  [10/25/2023 3:14:16 PM EST]
+[UPDATE] Switched image optimization command from `convert` to `magick` in `main.go` reordered args to fix output file naming (now uses `.jpg` consistently) affects anyone using the `misc_optimize_images` script to process PNGs into JPGs
+

@@ -73,11 +73,13 @@ func main() {
 					imageFile := filepath.Base(entry)
 					destImage := utils.HasPrefixInArray(prefixImage, []string{imageFolderPath + "\\"}, true)
 
-					utils.RunCommandInSpecificDirectory("convert", []string{
-						"-quality", optimizePercent,
+					utils.RunCommandInSpecificDirectory("magick", []string{
 						imageFile,
-						"-background", "#FFFFFF", "-flatten",
-						fmt.Sprintf("%s%s", destImage, ".jpg")}, imageFolderPath)
+						"-background", "#FFFFFF",
+						"-flatten",
+						"-quality", optimizePercent,
+						fmt.Sprintf("%s.jpg", destImage)},
+						imageFolderPath)
 
 					if utils.HasSuffixInArray(entry, []string{".jpg"}, true) == "" {
 						os.Remove(entry)

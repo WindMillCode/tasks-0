@@ -792,6 +792,8 @@ Changed the default Go executable in `shared/misc.go`. It now defaults to `go` i
 [COMPLEX MERGE] Unified Expo app directory handling between build/run/page/component creation scripts
 
 
-## [1.98.2011]  [10/25/2023 3:14:16 PM EST]
+## [1.98.2011]  [4/5/2025 3:14:16 PM EST]
 [UPDATE] Switched image optimization command from `convert` to `magick` in `main.go` reordered args to fix output file naming (now uses `.jpg` consistently) affects anyone using the `misc_optimize_images` script to process PNGs into JPGs
 
+## [1.99.2000] [4/11/2025 3:45:18 PM EST]
+[UPDATE] Switched order of TRUE/FALSE options + set FALSE as default in `task_files/go_scripts/misc_translate_json/main.go` - devs running this script will now see FALSE first and have it auto-selected to reduce accidental JSON key removal during translations.

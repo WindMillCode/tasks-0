@@ -60,7 +60,8 @@ func main() {
 
 	cliInfo = utils.ShowMenuModel{
 		Prompt:  "Randomly remove key value json to better translate unmodifed key sections",
-		Choices: []string{"TRUE", "FALSE"},
+		Choices: []string{"FALSE","TRUE"},
+		Default: "FALSE",
 	}
 	random_remove_json := utils.ShowMenu(cliInfo, nil)
 

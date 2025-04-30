@@ -24,7 +24,7 @@ func main() {
 	)
 	projectsCLI := utils.TakeVariableArgs(
 		utils.TakeVariableArgsStruct{
-			Prompt:  "Provide the paths of all the application where you want the actions to take place",
+			Prompt:  "Provide the paths of all the applications where you want the actions to take place",
 			Default: workspaceRoot,
 		},
 	)

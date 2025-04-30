@@ -5,10 +5,10 @@ import (
 	"main/shared"
 	"os"
 	"path/filepath"
-	"regexp"
 	"runtime"
 	"strings"
 	"github.com/windmillcode/go_cli_scripts/v6/utils"
+	"regexp"
 )
 
 func main() {
@@ -33,53 +33,52 @@ func main() {
 	}
 	handleSpecialPackages := utils.ShowMenu(cliInfo,nil)
 
-	nvmPath, err := findCommandPath("nvm")
+	vfoxPath, err := findCommandPath("vfox")
 	askForPath := false
 	if err != nil {
 		askForPath = true
 	} else if runtime.GOOS == "windows" {
-		if !strings.HasSuffix(nvmPath, "nvm.exe") {
+		if !strings.HasSuffix(vfoxPath, "vfox.exe") {
 			askForPath = true
 		}
 	} else {
-		if !strings.HasSuffix(nvmPath, "nvm") {
+		if !strings.HasSuffix(vfoxPath, "vfox") {
 			askForPath = true
 		}
 	}
 	if askForPath == true{
-		nvmPath = utils.GetInputFromStdin(
+		vfoxPath = utils.GetInputFromStdin(
 			utils.GetInputFromStdinStruct{
-				Prompt: []string{"The path to nvm"},
+				Prompt: []string{"The path to vfox"},
 				ErrMsg: "a value is required",
 			},
 		)
 	}
-	nvmPath = utils.ConvertPathToOSFormat(nvmPath)
-  _, err = os.Stat(nvmPath)
+	vfoxPath = utils.ConvertPathToOSFormat(vfoxPath)
+  _, err = os.Stat(vfoxPath)
   if err != nil {
     fmt.Println("not a valid file path:", err)
   }
 	if runtime.GOOS == "windows" {
-		if !strings.HasSuffix(nvmPath, "nvm.exe") {
-			fmt.Println("this may not be the nvm executable")
+		if !strings.HasSuffix(vfoxPath, "vfox.exe") {
+			fmt.Println("this may not be the vfox executable")
 			return
 		}
 	} else {
-		if !strings.HasSuffix(nvmPath, "nvm") {
-			fmt.Println("this may not be the nvm executable")
+		if !strings.HasSuffix(vfoxPath, "vfox") {
+			fmt.Println("this may not be the vfox executable")
 			return
 		}
 	}
-	nodeVersionsPath := utils.JoinAndConvertPathToOSFormat(filepath.Dir(nvmPath))
-	if runtime.GOOS != "windows" {
-		nodeVersionsPath = utils.JoinAndConvertPathToOSFormat(filepath.Dir(nvmPath), "..", "versions", "node")
-	}
 
 
-	// Prompt for new Node.js version
+
+
 	newNodeVersion := utils.GetInputFromStdin(utils.GetInputFromStdinStruct{
 		Prompt: []string{"Enter the new Node.js version to install:"},
+		ErrMsg: "You must provide a version",
 	})
+
 
 	currentNodeVersionCmd := utils.CommandOptions{
 		Command:   "node",
@@ -107,7 +106,7 @@ func main() {
 		return
 	}
 
-	// Parse the JSON output to extract package names
+
 	var globalPackages map[string]interface{}
 	utils.ParseJSONFromString(globalPackagesJson, &globalPackages)
 
@@ -122,43 +121,60 @@ func main() {
 
 
 	var nodeVersions []string
-	err = utils.TraverseDirectory(utils.TraverseDirectoryParams{
-		RootDir: nodeVersionsPath,
-		Predicate: func(path string, info os.FileInfo) {
-			if info.IsDir() {
-				semverRegex := regexp.MustCompile(`^v(\d+\.\d+\.\d+)$`)
-				matches := semverRegex.FindStringSubmatch(info.Name())
-				if matches != nil && matches[1] == newNodeVersion {
-					nodeVersions = append(nodeVersions, matches[1])
-				}
-			}
-		},
-	})
+	var nodeVersionsResult string
+	nodeVersionsCmd := utils.CommandOptions{
+		Command:     "vfox",
+		Args:        []string{"list","nodejs"},
+		GetOutput:   true,
+		TargetDir:   "",
+		PrintOutput: false,
+	}
+	nodeVersionsResult, err = utils.RunCommandWithOptions(nodeVersionsCmd)
+	var lines []string
 	if err != nil {
 		fmt.Println("Error listing installed Node.js versions:", err)
-		return
+		lines = []string{}
+	} else{
+		lines = strings.Split(nodeVersionsResult, "\n")
 	}
 
+
+	var semverRegex = regexp.MustCompile(`\d+\.\d+\.\d+(-[0-9A-Za-z-.]*)?`)
+
+	for _, line := range lines {
+			if line == "" {
+					continue
+			}
+
+
+			match := semverRegex.FindString(line)
+
+			if match != "" {
+					nodeVersions = append(nodeVersions, match)
+			}
+	}
+	fmt.Println("Installed Node.js versions:", nodeVersions)
+
+	vfoxNodeVersion := fmt.Sprintf("nodejs@%s", newNodeVersion)
 	if utils.ArrayContainsAny(nodeVersions, []string{newNodeVersion}) {
 		fmt.Println("Node.js version", newNodeVersion, "is already available on the system.")
 	} else {
-		fmt.Println("Installing Node.js version", newNodeVersion, "...")
 
-		// Install the new Node.js version using nvm
-		nvmInstallCmd := utils.CommandOptions{
-			Command: nvmPath,
-			Args:    []string{"install", newNodeVersion},
+		vfoxInstallCmd := utils.CommandOptions{
+			Command: "vfox",
+			Args:    []string{"install", vfoxNodeVersion},
+			PrintOutput: true,
 		}
-		utils.RunCommandWithOptions(nvmInstallCmd)
+		utils.RunCommandWithOptions(vfoxInstallCmd)
 	}
 
 
-	nvmUseCmd := utils.CommandOptions{
-		Command: "nvm",
-		Args:    []string{ "use", newNodeVersion},
+	vfoxUseCmd := utils.CommandOptions{
+		Command: "vfox",
+		Args:    []string{"use","--global", vfoxNodeVersion},
 	}
-	utils.RunCommandWithOptions(nvmUseCmd)
-	// Reinstall global packages
+	utils.RunCommandWithOptions(vfoxUseCmd)
+
 	regularInstallArray := []string{}
 	if dependencies, ok := globalPackages["dependencies"].(map[string]interface{}); ok {
 		for name, pkg := range dependencies {
@@ -180,10 +196,21 @@ func main() {
 						if err != nil {
 							fmt.Printf("Error resolving symlink: %v", err)
 						} else{
-							npmLinkCmd := utils.CommandOptions{
-								Command:   "npm",
-								Args:      []string{"link"},
-								TargetDir: utils.ConvertPathToOSFormat(resolvedPath),
+							var npmLinkCmd utils.CommandOptions
+							if runtime.GOOS == "windows" {
+								npmLinkCmd = utils.CommandOptions{
+									Command:   "powershell",
+									Args:      []string{"-c","npm link"},
+									PrintOutput: true,
+									TargetDir: utils.ConvertPathToOSFormat(resolvedPath),
+								}
+							} else {
+								npmLinkCmd = utils.CommandOptions{
+									Command:   "npm",
+									Args:      []string{"link"},
+									PrintOutput: true,
+									TargetDir: utils.ConvertPathToOSFormat(resolvedPath),
+								}
 							}
 							utils.RunCommandWithOptions(npmLinkCmd)
 						}
@@ -196,19 +223,37 @@ func main() {
 		}
 
 
-		npmInstallCmd := utils.CommandOptions{
-			Command: "npm",
-			Args: append([]string{"install", "-g"}, regularInstallArray...),
+		var npmInstallCmd utils.CommandOptions
+		if runtime.GOOS == "windows" {
+			npmInstallCmd = utils.CommandOptions{
+				Command: "powershell",
+				Args: append([]string{"-c","npm install -g"}, regularInstallArray...),
+				PrintOutput: true,
+			}
+		} else {
+			npmInstallCmd = utils.CommandOptions{
+				Command: "npm",
+				Args: append([]string{"install", "-g"}, regularInstallArray...),
+				PrintOutput: true,
+			}
 		}
 		utils.RunCommandWithOptions(npmInstallCmd)
 
 	}
 
-	fmt.Println("Global packages have been migrated to Node.js version", newNodeVersion)
+	newNodeVersionViaCheckCmd := utils.CommandOptions{
+		Command:     "node",
+		Args:        []string{"-v"},
+		GetOutput:   true,
+		TargetDir:   "",
+		PrintOutput: false,
+	}
+	newNodeVersionViaCheck, err := utils.RunCommandWithOptions(newNodeVersionViaCheckCmd)
+	fmt.Println("Global packages have been migrated to Node.js version", newNodeVersionViaCheck)
 
 }
 
-// findCommandPath attempts to locate the specified command path in a cross-platform manner.
+
 
 func findCommandPath(commandName string) (string, error) {
 	var commandCheck string
@@ -216,24 +261,19 @@ func findCommandPath(commandName string) (string, error) {
 
 	switch runtime.GOOS {
 	case "windows":
-		// En Windows, usamos `Get-Command` en PowerShell para localizar el comando
+
 		commandCheck = "powershell"
 		commandArgs = []string{"-Command", fmt.Sprintf("Get-Command %s | Select-Object -ExpandProperty Definition", commandName)}
-	case "linux":
-		// En sistemas Unix-like, usamos `command -v` o `which`
+	case "linux", "darwin":
+
 		commandCheck = "sh"
 		commandArgs = []string{"-c", fmt.Sprintf("command -v %s || which %s", commandName, commandName)}
-
-	// TODO cant get mac os to work
-	// case "darwin":
-	// 	commandCheck = "zsh"
-	// 	commandArgs = []string{"-c",fmt.Sprintf("(type -a %s | tail -n 1 | awk '{print $NF}')",commandName)}
 
 	default:
 		return "", fmt.Errorf("unsupported platform")
 	}
 
-	// Usar la función de utils para ejecutar el comando
+
 	output, err := utils.RunCommandWithOptions(utils.CommandOptions{
 		Command:   commandCheck,
 		Args:      commandArgs,

@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import {useWMLTranslation } from '@/constants/Global';
+import {useWMLTranslation } from '@/constants/MyGlobal';
 import { useWMLTheme } from '@/constants/Theme';
 
 export default function WMLTemplatePage() {

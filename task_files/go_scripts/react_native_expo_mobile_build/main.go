@@ -26,7 +26,7 @@ func main() {
 		},
 	)
 	utils.CDToExpoApp()
-	reactNativeExpoRoot, err := os.Getwd()
+	expoRoot, err := os.Getwd()
 	if err != nil {
 		fmt.Printf("Error getting react native root: %v", err)
 		return
@@ -176,7 +176,7 @@ func main() {
 					"expo",
 					"export:embed",
 					"--entry-file",
-					utils.JoinAndConvertPathToOSFormat(reactNativeExpoRoot, "node_modules/expo-router/entry.js"),
+					utils.JoinAndConvertPathToOSFormat(expoRoot, "node_modules/expo-router/entry.js"),
 					"--platform", myPlatform,
 					"--dev", "false",
 					"--reset-cache",
@@ -264,7 +264,7 @@ func main() {
 				Args: []string{
 					"sentry-cli", "sourcemaps", "upload",
 					"--debug-id-reference",
-					"--strip-prefix", reactNativeExpoRoot,
+					"--strip-prefix", expoRoot,
 					bundleOutput, outputMap,
 				},
 			}
@@ -277,7 +277,7 @@ func main() {
 				PanicOnError: true,
 				Args: []string{
 					"expo", "export:embed",
-					"--entry-file", utils.JoinAndConvertPathToOSFormat(reactNativeExpoRoot, "node_modules/expo-router/entry.js"),
+					"--entry-file", utils.JoinAndConvertPathToOSFormat(expoRoot, "node_modules/expo-router/entry.js"),
 					"--platform", myPlatform,
 					"--dev", "false",
 					"--reset-cache",
@@ -298,7 +298,7 @@ func main() {
 					"--project", sentryProject,
 					"--release", sentryRelease,
 					"--strip-prefix",
-					reactNativeExpoRoot,
+					expoRoot,
 					bundleOutput, sourceMapOutput,
 				},
 			}

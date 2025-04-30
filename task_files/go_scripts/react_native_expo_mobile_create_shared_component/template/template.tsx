@@ -1,6 +1,6 @@
 import { StyleSheet,View } from 'react-native';
 import { useWMLTheme } from '@/constants/Theme';
-import {useWMLTranslation } from '@/constants/Global';
+import {useWMLTranslation } from '@/constants/MyGlobal';
 
 export default function WMLTemplate(props) {
   const {isDark,theme} = useWMLTheme();

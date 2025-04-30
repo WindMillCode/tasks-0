@@ -797,3 +797,7 @@ Changed the default Go executable in `shared/misc.go`. It now defaults to `go` i
 
 ## [1.99.2000] [4/11/2025 3:45:18 PM EST]
 [UPDATE] Switched order of TRUE/FALSE options + set FALSE as default in `task_files/go_scripts/misc_translate_json/main.go` - devs running this script will now see FALSE first and have it auto-selected to reduce accidental JSON key removal during translations.
+
+## [1.99.3000] [2025-04-30 00:27:12]
+[BREAKING CHANGE] Replaced nvm with vfox in npm_switch_to_new_version
+[UPDATE]  updated react_native_expo_mobile_create_shared_component react_native_expo_mobile_build to match utility files names in new version

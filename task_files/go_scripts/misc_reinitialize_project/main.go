@@ -652,7 +652,7 @@ func removeFilesFromDotWindmillcodeSlashLocalFolder(workspaceRoot string) bool {
 	keep := []string{
 		"minify_flask_app",
 		"docker_dump_db.go",
-		"docker_init_container.go",
+		"docker_init_sql_container.go",
 		"go.mod",
 		"go.sum",
 	}

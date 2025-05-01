@@ -25,7 +25,7 @@ func main() {
 	initScript := utils.GetInputFromStdin(
 		utils.GetInputFromStdinStruct{
 			Prompt:  []string{"docker init script to run relative to workspace root "},
-			Default: utils.JoinAndConvertPathToOSFormat(".windmillcode","Local","docker_init_container.go"),
+			Default: utils.JoinAndConvertPathToOSFormat(".windmillcode","Local","docker_init_sql_container.go"),
 		},
 	)
 	initScriptArgsStruct := utils.TakeVariableArgs(

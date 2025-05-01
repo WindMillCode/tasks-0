@@ -801,3 +801,6 @@ Changed the default Go executable in `shared/misc.go`. It now defaults to `go` i
 ## [1.99.3000] [2025-04-30 00:27:12]
 [BREAKING CHANGE] Replaced nvm with vfox in npm_switch_to_new_version
 [UPDATE]  updated react_native_expo_mobile_create_shared_component react_native_expo_mobile_build to match utility files names in new version
+
+## [1.99.3001]
+[UPDATE] renamed docker init container to docker init sql container

@@ -245,7 +245,7 @@
       }
     },
     {
-      "label": "docker: init container",
+      "label": "docker: init sql container",
       "type": "shell",
       "windows": {
         "command": ""

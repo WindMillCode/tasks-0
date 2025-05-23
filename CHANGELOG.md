@@ -804,3 +804,6 @@ Changed the default Go executable in `shared/misc.go`. It now defaults to `go` i
 
 ## [1.99.3001]
 [UPDATE] renamed docker init container to docker init sql container
+
+## [1.1000.2000] [2025-05-23 10:27:12]
+[UPDATE] react_native_expo_mobile_build added optional non interactive mode

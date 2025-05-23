@@ -62,6 +62,7 @@ func main() {
 	}
 
 	outputDir := ""
+	disableInteractiveMode := "TRUE"
 	if localBuild == "TRUE" {
 		outputDir = utils.GetInputFromStdin(
 			utils.GetInputFromStdinStruct{
@@ -69,6 +70,13 @@ func main() {
 				Default: utils.JoinAndConvertPathToOSFormat(workspaceRoot, "misc", fmt.Sprintf("local-%s-%s.%s", myProfile, myPlatform, fileExt)),
 			},
 		)
+
+		cliInfo = utils.ShowMenuModel{
+			Prompt:  "disable interactive mode",
+			Choices: []string{"TRUE", "FALSE"},
+			Default: "TRUE",
+		}
+		disableInteractiveMode = utils.ShowMenu(cliInfo, nil)
 	}
 
 	cliInfo = utils.ShowMenuModel{
@@ -133,6 +141,9 @@ func main() {
 	commandArgs := []string{"build", "--profile", myProfile, "--platform", myPlatform}
 	if localBuild == "TRUE" {
 		commandArgs = append(commandArgs, "--output", outputDir)
+	}
+	if disableInteractiveMode == "TRUE" {
+		commandArgs = append(commandArgs, "--non-interactive")
 	}
 
 	if localBuild == "TRUE" {

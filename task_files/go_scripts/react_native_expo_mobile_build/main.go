@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"main/shared"
 	"os"
-
 	"github.com/windmillcode/go_cli_scripts/v6/utils"
 )
 
@@ -155,6 +154,13 @@ func main() {
 			Args:            prebuildArgs,
 			GetOutput:       false,
 			PrintOutputOnly: true,
+			EnvVars         : map[string]string{
+				"EXPO_MOBILE_ENV": map[string]string{
+					"development": "DEV",
+					"preview":     "PREVIEW",
+					"production":  "PROD",
+				}[myProfile],
+			},
 		}
 		utils.RunCommandWithOptions(runPrebuildOptions)
 	}

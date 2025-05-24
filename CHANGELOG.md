@@ -807,3 +807,7 @@ Changed the default Go executable in `shared/misc.go`. It now defaults to `go` i
 
 ## [1.1000.2000] [2025-05-23 10:27:12]
 [UPDATE] react_native_expo_mobile_build added optional non interactive mode
+
+## [1.1000.2001] [2025-05-24 10:27:12]
+[FIX] react_native_expo_mobile_build fixed environment issue now you dont have to update your app config to choose a different environment
+[FIX] react_native_expo_mobile_run ensured environment variable selection is respected for the process

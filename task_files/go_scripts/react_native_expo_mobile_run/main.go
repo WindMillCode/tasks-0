@@ -22,13 +22,16 @@ func main() {
 
 	cliInfo = utils.ShowMenuModel{
 		Prompt: "select the ennvironment",
-		Choices:[]string{"dev","preview","prod"},
+		Choices:[]string{"DEV","PREVIEW","PROD"},
 		Other: true,
 	}
-	dotenvEnv:= utils.ShowMenu(cliInfo,nil)
+	EXPO_MOBILE_ENV:= utils.ShowMenu(cliInfo,nil)
 
 	shared.CDToWorkspaceRoot()
 	workspaceRoot, err := os.Getwd()
+	if err != nil {
+		return
+	}
 	settings, err := utils.GetSettingsJSON(workspaceRoot)
 	if err != nil {
 		return
@@ -55,7 +58,7 @@ func main() {
 		GetOutput:           false,
 		PrintOutputOnly:     true,
 		EnvVars:             map[string]string{
-			"NODE_ENV":dotenvEnv,
+			"EXPO_MOBILE_ENV":EXPO_MOBILE_ENV,
 		},
 	}
 	utils.RunCommandWithOptions(opts)

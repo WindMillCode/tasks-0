@@ -42,7 +42,7 @@ export let checkForGolang = async (goVersion=extensionDesiredVersion) => {
 
 
 
-  notifyDeveloper(null, ` Executable ${executable}`)
+  // notifyDeveloper(null, ` Executable ${executable}`)
   if(executable === false){
     let message = `Golang is not installed on the system. Please install golang with a version greater than or equal to ${goVersion}`
     vscode.window.showErrorMessage(message)

@@ -20,12 +20,12 @@ func main() {
 			NonInteractive: settings.ExtensionPack.ProcessIfDefaultIsPresent,
 		},
 	)
-	utils.CDToSeleniumApp()
+	utils.CDToSeleniumSuite()
 
 	commandOptions := utils.CommandOptions{
-		Command: "",
-		Args:    []string{},
-		GetOutput:   false,
+		Command:         "",
+		Args:            []string{},
+		GetOutput:       false,
 		PrintOutputOnly: true,
 	}
 	utils.RunCommandWithOptions(commandOptions)

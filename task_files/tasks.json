@@ -1514,7 +1514,7 @@
       }
     },
     {
-      "label": "testng: e2e create testng page",
+      "label": "testng: e2e create page",
       "type": "shell",
       "windows": {
         "command": ""

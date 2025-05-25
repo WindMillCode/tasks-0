@@ -2,10 +2,9 @@ package main
 
 import (
 	"fmt"
+	"main/shared"
 	"os"
 	"strings"
-
-	"main/shared"
 
 	"github.com/iancoleman/strcase"
 	"github.com/windmillcode/go_cli_scripts/v6/utils"
@@ -24,16 +23,22 @@ func main() {
 			NonInteractive: settings.ExtensionPack.ProcessIfDefaultIsPresent,
 		},
 	)
-	utils.CDToSeleniumApp()
-	testNGApp, err := os.Getwd()
-	if err != nil {
-		return
+	cliInfo := utils.ShowMenuModel{
+		Prompt:  "choose the suite location",
+		Choices: settings.ExtensionPack.TestNGE2ECreatePage.AppLocations,
+		Other:   true,
 	}
-	pageFolder := utils.JoinAndConvertPathToOSFormat(testNGApp, "src", "main", "java", "pages")
-	testFolder := utils.JoinAndConvertPathToOSFormat(testNGApp, "src", "test", "java", "e2e")
+	if cliInfo.Choices == nil {
+		cliInfo.Choices = settings.ExtensionPack.JavaSuiteLocations
+	}
+	suiteLocation := utils.ShowMenu(cliInfo, nil)
+	suiteLocation = utils.JoinAndConvertPathToOSFormat(workspaceRoot, suiteLocation)
+
+	pageFolder := utils.JoinAndConvertPathToOSFormat(suiteLocation, "src", "main", "java", "pages")
+	testFolder := utils.JoinAndConvertPathToOSFormat(suiteLocation, "src", "test", "java", "e2e")
 	pageName := utils.GetInputFromStdin(
 		utils.GetInputFromStdinStruct{
-			Prompt: []string{"The name of the page on the website type in snake case "},
+			Prompt: []string{"The name of the screen (type in snake case)"},
 			ErrMsg: "You must provide a page name",
 		},
 	)

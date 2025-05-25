@@ -18,6 +18,9 @@ import (
 var (
 	PROJECT_NAME                      = utils.CreateStringObjectType{}
 	ORGANIZATION_NAME                 = utils.CreateStringObjectType{}
+	ANDROID_PACKAGE_IDENTIFIER                           =""
+	ANDROID_MAIN_ACTIVITY_CLASS                          =""
+	IOS_BUNDLE_IDENTIFIER                                =""
 	WEB_DRIVER_PATH                                      = ""
 	VCS_PRIVATE_KEY                                      = ""
 	WEB_SEO_DESCRIPTION                                  = ""
@@ -249,6 +252,36 @@ func main() {
 		},
 	)
 	EDGE_DRIVER_PATH = utils.ConvertPathToOSFormat(EDGE_DRIVER_PATH)
+	CROSS_PLATFORM_PACKAGE_IDENTIFIER := utils.GetInputFromStdin(
+		utils.GetInputFromStdinStruct{
+			Prompt: []string{"The cross platform package identifier"},
+			Default: settings.ExtensionPack.MiscReinitializeProject.CrossPlatformPackageIdentifier,
+		},
+	)
+	ANDROID_PACKAGE_IDENTIFIER := utils.GetInputFromStdin(
+		utils.GetInputFromStdinStruct{
+			Prompt: []string{"The android package identifier"},
+			Default: settings.ExtensionPack.MiscReinitializeProject.AndroidPackageIdentifier,
+		},
+	)
+	if(ANDROID_PACKAGE_IDENTIFIER == ""){ANDROID_PACKAGE_IDENTIFIER = CROSS_PLATFORM_PACKAGE_IDENTIFIER}
+	ANDROID_MAIN_ACTIVITY_CLASS = utils.GetInputFromStdin(
+		utils.GetInputFromStdinStruct{
+			Prompt: []string{"The android main activity class"},
+			Default: settings.ExtensionPack.MiscReinitializeProject.AndroidMainActivityClass,
+		},
+	)
+
+	IOS_BUNDLE_IDENTIFIER = utils.GetInputFromStdin(
+		utils.GetInputFromStdinStruct{
+			Prompt: []string{"The ios bundle identifier"},
+			Default: settings.ExtensionPack.MiscReinitializeProject.IosBundleIdentifier,
+		},
+	)
+	if(IOS_BUNDLE_IDENTIFIER == ""){IOS_BUNDLE_IDENTIFIER = CROSS_PLATFORM_PACKAGE_IDENTIFIER}
+
+
+
 
 
 
@@ -276,21 +309,19 @@ func main() {
 	removePathsForAngularApp(workspaceRoot)
 	removePathsForFlaskApp(workspaceRoot)
 	removePathsForFlutterApp(workspaceRoot)
-	removePathsForSeleniumApp(workspaceRoot)
+	removePathsForJavaSuites(workspaceRoot)
 	updateSubPath(executableDir, workspaceRoot, []string{"apps"}, true)
 
 }
 
 
 
-func removePathsForSeleniumApp(workspaceRoot string) {
+func removePathsForJavaSuites(workspaceRoot string) {
 	removeDirectories(
 		workspaceRoot,
 		[][]string{
-			{"apps", "testing", "appium"},
-			{"apps", "testing", "AppiumApp"},
-			{"apps", "testing", "selenium"},
-			{"apps", "testing", "SeleniumApp"},
+			{"apps", "testing", "AppiumSuite"},
+			{"apps", "testing", "SeleniumSuite"},
 		},
 		[]string{},
 	)
@@ -599,13 +630,8 @@ func updateSubPath(executableDir, workspaceRoot string, targetRelativePath []str
 						}
 
 						fileString = strings.ReplaceAll(fileString, "[FLUTTER_IOS_GOOGLE_OAUTH_URL_SCHEMES]", FLUTTER_IOS_GOOGLE_OAUTH_URL_SCHEMES_Value)
-
 						fileString = strings.ReplaceAll(fileString, "[PROJECT_NAME]", PROJECT_NAME.Orig)
-						fileString = strings.ReplaceAll(
-							fileString,
-							"[PROJECT_NAME_CAPITAL]",
-							PROJECT_NAME.Capitalize(false, ""),
-						)
+						fileString = strings.ReplaceAll(fileString, "[PROJECT_NAME_CAPITAL]",PROJECT_NAME.Capitalize(false, ""))
 						fileString = strings.ReplaceAll(fileString, "[ORGANIZATION_NAME]", ORGANIZATION_NAME.Orig)
 						fileString = strings.ReplaceAll(fileString, "[ORGANIZATION_NAME_CAPITAL]", ORGANIZATION_NAME.Capitalize(false, ""))
 						fileString = strings.ReplaceAll(fileString, "[WEB_SEO_DESCRIPTION]", WEB_SEO_DESCRIPTION)
@@ -625,6 +651,12 @@ func updateSubPath(executableDir, workspaceRoot string, targetRelativePath []str
 						fileString = strings.ReplaceAll(fileString, "[Flask_Run_0]", strconv.Itoa(windmillcodeSettings.ExtensionPack.Ports.FlaskRun0))
 						fileString = strings.ReplaceAll(fileString, "[Postgres_0]", strconv.Itoa(windmillcodeSettings.ExtensionPack.Ports.Postgres0))
 						fileString = strings.ReplaceAll(fileString, "[Firebase_Emulator_Auth_0]", strconv.Itoa(windmillcodeSettings.ExtensionPack.Ports.FirebaseEmulatorAuth0))
+
+						// android
+						fileString = strings.ReplaceAll(fileString, "[ANDROID_PACKAGE_IDENTIFIER]", ANDROID_PACKAGE_IDENTIFIER)
+						fileString = strings.ReplaceAll(fileString, "[ANDROID_MAIN_ACTIVITY_CLASS]", ANDROID_MAIN_ACTIVITY_CLASS)
+						fileString = strings.ReplaceAll(fileString, "[IOS_BUNDLE_IDENTIFIER]", IOS_BUNDLE_IDENTIFIER)
+
 
 
 

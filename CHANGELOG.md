@@ -814,3 +814,7 @@ Changed the default Go executable in `shared/misc.go`. It now defaults to `go` i
 
 ## [1.1000.2100] [2025-05-25 10:27:12]
 [UPDATE] made all testng scripts flexible due to the new addition of the AppiumSuite folder
+
+## [1.1000.2100] [2025-05-29 10:33:12]
+[UPDATE] added skip_auto_fingerprint option to the react_native_expo_mobile_build script
+

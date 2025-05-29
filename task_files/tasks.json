@@ -1298,7 +1298,7 @@
       }
     },
     {
-      "label": "react native expo mobile build",
+      "label": "react native expo mobile: build",
       "type": "shell",
       "windows": {
         "command": ""
@@ -1325,7 +1325,7 @@
       }
     },
     {
-      "label": "react native expo mobile create page",
+      "label": "react native expo mobile: create page",
       "type": "shell",
       "windows": {
         "command": ""
@@ -1352,7 +1352,7 @@
       }
     },
     {
-      "label": "react native expo mobile create shared component",
+      "label": "react native expo mobile: create shared component",
       "type": "shell",
       "windows": {
         "command": ""

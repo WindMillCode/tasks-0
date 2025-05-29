@@ -60,6 +60,20 @@ func main() {
 		fileExt = utils.ShowMenu(cliInfo, nil)
 	}
 
+	cliInfo = utils.ShowMenuModel{
+		Prompt: "skip fingerprint",
+		Choices:[]string{"FALSE","TRUE"},
+		Default:"FALSE",
+	}
+	isAutoFingerprintSkipped := utils.ShowMenu(cliInfo,nil)
+	if isAutoFingerprintSkipped == "TRUE" {
+		isAutoFingerprintSkipped = "1"
+	} else{
+		isAutoFingerprintSkipped = "0"
+	}
+
+
+
 	outputDir := ""
 	disableInteractiveMode := "TRUE"
 	if localBuild == "TRUE" {
@@ -172,6 +186,9 @@ func main() {
 		GetOutput:       false,
 		PrintOutputOnly: true,
 		PanicOnError:    true,
+		EnvVars         : map[string]string{
+			"EAS_SKIP_AUTO_FINGERPRINT": isAutoFingerprintSkipped,
+		},
 	}
 	utils.RunCommandWithOptions(opts)
 

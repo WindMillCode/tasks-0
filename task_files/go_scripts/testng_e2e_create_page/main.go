@@ -5,8 +5,6 @@ import (
 	"main/shared"
 	"os"
 	"strings"
-
-	"github.com/iancoleman/strcase"
 	"github.com/windmillcode/go_cli_scripts/v6/utils"
 )
 
@@ -42,9 +40,11 @@ func main() {
 			ErrMsg: "You must provide a page name",
 		},
 	)
+	pageNameObject,_ := utils.CreateStringObject(pageName, "")
 	utils.CDToLocation(pageFolder)
-	myPrefix := strcase.ToCamel(pageName)
-	myDir := strings.ToLower(myPrefix)
+
+	myPrefix := pageNameObject.CamelCase(false,"")
+	myDir := pageNameObject.Snakecase(false,"")
 	err = os.Mkdir(myDir, 0755)
 	if err != nil {
 		fmt.Printf("Error: ", err.Error())

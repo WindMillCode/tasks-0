@@ -2,9 +2,9 @@ package main
 
 import (
 	"fmt"
+	"github.com/windmillcode/go_cli_scripts/v6/utils"
 	"main/shared"
 	"os"
-	"github.com/windmillcode/go_cli_scripts/v6/utils"
 )
 
 func main() {
@@ -32,10 +32,17 @@ func main() {
 	}
 
 	cliInfo := utils.ShowMenuModel{
-		Prompt:  "profile",
-		Choices: []string{"development", "preview", "production"},
+		Prompt:  "select profile",
+		Choices: []string{"development", "preview", "production", "e2e"},
+		Other:   true,
 	}
 	myProfile := utils.ShowMenu(cliInfo, nil)
+	easProfile := map[string]string{
+		"e2e":         "preview",
+	}[myProfile]
+	if(easProfile == "") {
+		easProfile = myProfile
+	}
 
 	cliInfo = utils.ShowMenuModel{
 		Prompt:  "platform",
@@ -61,18 +68,16 @@ func main() {
 	}
 
 	cliInfo = utils.ShowMenuModel{
-		Prompt: "skip fingerprint",
-		Choices:[]string{"FALSE","TRUE"},
-		Default:"FALSE",
+		Prompt:  "skip fingerprint",
+		Choices: []string{"FALSE", "TRUE"},
+		Default: "FALSE",
 	}
-	isAutoFingerprintSkipped := utils.ShowMenu(cliInfo,nil)
+	isAutoFingerprintSkipped := utils.ShowMenu(cliInfo, nil)
 	if isAutoFingerprintSkipped == "TRUE" {
 		isAutoFingerprintSkipped = "1"
-	} else{
+	} else {
 		isAutoFingerprintSkipped = "0"
 	}
-
-
 
 	outputDir := ""
 	disableInteractiveMode := "TRUE"
@@ -151,7 +156,7 @@ func main() {
 		)
 	}
 
-	commandArgs := []string{"build", "--profile", myProfile, "--platform", myPlatform}
+	commandArgs := []string{"build", "--profile", easProfile, "--platform", myPlatform}
 	if localBuild == "TRUE" {
 		commandArgs = append(commandArgs, "--output", outputDir)
 	}
@@ -162,18 +167,24 @@ func main() {
 	if localBuild == "TRUE" {
 		commandArgs = append(commandArgs, "--local")
 	}
+	expoMobileEnv := map[string]string{
+		"development": "DEV",
+		"preview":     "PREVIEW",
+		"production":  "PROD",
+		"e2e":         "E2E",
+	}[myProfile]
+	if expoMobileEnv == "" {
+		expoMobileEnvObject, _ := utils.CreateStringObject(myProfile, "")
+		expoMobileEnv = expoMobileEnvObject.Uppercase(false, "")
+	}
 	if runPrebuild == "YES" {
 		runPrebuildOptions := utils.CommandOptions{
 			Command:         "npx",
 			Args:            prebuildArgs,
 			GetOutput:       false,
 			PrintOutputOnly: true,
-			EnvVars         : map[string]string{
-				"EXPO_MOBILE_ENV": map[string]string{
-					"development": "DEV",
-					"preview":     "PREVIEW",
-					"production":  "PROD",
-				}[myProfile],
+			EnvVars: map[string]string{
+				"EXPO_MOBILE_ENV": expoMobileEnv,
 			},
 		}
 		utils.RunCommandWithOptions(runPrebuildOptions)
@@ -186,7 +197,7 @@ func main() {
 		GetOutput:       false,
 		PrintOutputOnly: true,
 		PanicOnError:    true,
-		EnvVars         : map[string]string{
+		EnvVars: map[string]string{
 			"EAS_SKIP_AUTO_FINGERPRINT": isAutoFingerprintSkipped,
 		},
 	}

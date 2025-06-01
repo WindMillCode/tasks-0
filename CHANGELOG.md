@@ -818,3 +818,6 @@ Changed the default Go executable in `shared/misc.go`. It now defaults to `go` i
 ## [1.1000.2101] [2025-05-29 10:33:12]
 [UPDATE] added skip_auto_fingerprint option to the react_native_expo_mobile_build script
 
+## [1.1000.2102]
+[UPDATE] react_native_expo_mobile_build script more flexiblility in providing a profile which will be be converted to uppercase for env variable and for the eas profile if its not developmenent,preivew or production will use preview as the profile name
+[UPDATE] testng_e2e_create_page ensured that directories are in snakecase

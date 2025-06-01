@@ -43,7 +43,7 @@ func main() {
 	pageNameObject,_ := utils.CreateStringObject(pageName, "")
 	utils.CDToLocation(pageFolder)
 
-	myPrefix := pageNameObject.CamelCase(false,"")
+	myPrefix := pageNameObject.PascalCase(false,"")
 	myDir := pageNameObject.Snakecase(false,"")
 	err = os.Mkdir(myDir, 0755)
 	if err != nil {

@@ -1055,7 +1055,7 @@
       }
     },
     {
-      "label": "misc: run proxies",
+      "label": "diode: run proxies",
       "type": "shell",
       "windows": {
         "command": ""

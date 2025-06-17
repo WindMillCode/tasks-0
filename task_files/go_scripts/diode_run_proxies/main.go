@@ -74,11 +74,35 @@ func main() {
 			wg.Add(1)
 			go func() {
 				defer wg.Done()
-				options := utils.CommandOptions{
-					Command: targetExecutable,
-					Args:    []string{"publish", "-public", fmt.Sprintf("%s:80", port)},
+				gatewayOptions := utils.CommandOptions{
+					Command:     "diode",
+					Args:        []string{
+						"-dbpath=private.db","gateway",
+						"-httpd_port","80",
+						"-httpsd_port","443",
+						"-secure",
+						"-certpath","C:\\My_Notebook\\system_mgnt\\ssl\\cert.pem",
+						"-privpath","C:\\My_Notebook\\system_mgnt\\ssl\\key.pem",
+						"-edge_acme",
+						"-httpd_host","0.0.0.0",
+						"-httpsd_host","0.0.0.0",
+						"-proxy_host","0.0.0.0",
+						"-fallback","false",
+					},
+					GetOutput:   false,
+					PrintOutputOnly: true,
+					NonBlocking: true,
 				}
-				utils.RunCommandWithOptions(options)
+				utils.RunCommandWithOptions(gatewayOptions)
+
+				publishOptions := utils.CommandOptions{
+					Command: targetExecutable,
+					Args:    []string{
+						"publish", "-public",
+						fmt.Sprintf("%s:80", port),
+					},
+				}
+				utils.RunCommandWithOptions(publishOptions)
 
 			}()
 		}
@@ -86,7 +110,7 @@ func main() {
 		wg.Add(1)
 		go func() {
 			defer wg.Done()
-			fmt.Println(fmt.Sprintf("HTTP proxy server listening on port %s forwarding all request data to %s", port, proxyURL))
+			fmt.Print(fmt.Sprintf("HTTP proxy server listening on port %s forwarding all request data to %s", port, proxyURL))
 			if err := http.ListenAndServe(fmt.Sprintf(":%s", port), nil); err != nil {
 				fmt.Println("ListenAndServe: ", err)
 			}
